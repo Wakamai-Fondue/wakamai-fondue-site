@@ -1,20 +1,30 @@
-/*
-  TODO: Font.js can be defered/lazy loaded, as it will only
-		be needed after user "uploads" a font
-*/
+// TODO: Font.js can be defered/lazy loaded, as it will only
+// be needed after user "uploads" a font
 import "./lib/Font.js/Font.js";
+import Hero from "./components/Hero.vue";
+import Report from "./components/Report.vue";
 
 export default {
+	components: {
+		Hero,
+		Report
+	},
+	data: () => {
+		return {
+			font: false
+		};
+	},
 	methods: {
 		drag() {
 			// TODO: drag feedback
 			console.log("Dragging...");
 		},
 		grabFont(e) {
+			const that = this; // Is this the way to update data?
 			let files = e.target.files || e.dataTransfer.files;
 			if (!files) return;
 			[...files].forEach((file, key) => {
-				// Covert file to base64 string...
+				// Convert file to base64 string...
 				const reader = new FileReader();
 				reader.readAsDataURL(file);
 				reader.onload = function() {
@@ -22,10 +32,15 @@ export default {
 					const font = new window.Font(`font${key}`);
 					font.loadFont(reader.result, file.name);
 					font.onload = e => {
-						console.log(e.detail.font.opentype.tables);
+						that.font = e.detail.font;
+					};
+					font.onerror = function(error) {
+						// TODO: error handling
+						console.log(error);
 					};
 				};
 				reader.onerror = function(error) {
+					// TODO: error handling
 					console.log(error);
 				};
 			});

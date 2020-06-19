@@ -1,0 +1,14 @@
+section {
+	position: relative;
+	background: url("../img/fondue.jpg") center;
+	background-size: cover;
+	/*height: 100vh;*/
+	height: 50vh;
+}
+
+.logo {
+	position: absolute;
+	right: 2vw;
+	bottom: 1.5vw;
+	width: 10vw;
+}

@@ -1,0 +1,17 @@
+.filedrop {
+	position: relative;
+	z-index: 10; /* Must be above all other elements */
+	/*background: rgba(0, 0, 0, 0.2);*/
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.circle {
+	width: 30vmin;
+	height: 30vmin;
+	border-radius: 50%;
+	background: hotpink;
+}
