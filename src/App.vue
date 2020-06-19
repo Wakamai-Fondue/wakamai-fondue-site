@@ -1,5 +1,11 @@
 <template>
-	<main id="app" @drop.prevent="grabFont" @dragover.prevent="drag">
+	<main
+		id="app"
+		@drop.prevent="grabFont"
+		@dragover.prevent="dragging = true"
+		@mouseout="dragging = false"
+		:class="{ dragging }"
+	>
 		<!--
 		<label>
 			<input type="file" name="file" @change="grabFont" />

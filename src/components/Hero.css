@@ -2,8 +2,7 @@ section {
 	position: relative;
 	background: url("../img/fondue.jpg") center;
 	background-size: cover;
-	/*height: 100vh;*/
-	height: 50vh;
+	height: 100vh;
 }
 
 .logo {

@@ -1,7 +1,6 @@
 .filedrop {
 	position: relative;
 	z-index: 10; /* Must be above all other elements */
-	/*background: rgba(0, 0, 0, 0.2);*/
 	height: 100%;
 	width: 100%;
 	display: flex;
@@ -14,4 +13,8 @@
 	height: 30vmin;
 	border-radius: 50%;
 	background: hotpink;
+}
+
+.dragging .filedrop {
+	background: rgba(0, 0, 0, 0.5);
 }

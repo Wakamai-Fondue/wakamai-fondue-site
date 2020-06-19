@@ -9,16 +9,11 @@ export default {
 		Hero,
 		Report
 	},
-	data: () => {
-		return {
-			font: false
-		};
-	},
+	data: () => ({
+		font: false,
+		dragging: false
+	}),
 	methods: {
-		drag() {
-			// TODO: drag feedback
-			console.log("Dragging...");
-		},
 		grabFont(e) {
 			const that = this; // Is this the way to update data?
 			let files = e.target.files || e.dataTransfer.files;
