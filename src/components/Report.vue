@@ -1,7 +1,7 @@
 <template>
-	<div v-if="font">
+	<section v-if="font" class="report">
 		{{ font }}
-	</div>
+	</section>
 </template>
 
 <script src="./Report.js"></script>

@@ -2,16 +2,12 @@
 	<main
 		id="app"
 		@drop.prevent="grabFont"
+		v-on:poop="grabFont"
 		@dragover.prevent="dragging = true"
 		@mouseout="dragging = false"
 		:class="{ dragging }"
 	>
-		<!--
-		<label>
-			<input type="file" name="file" @change="grabFont" />
-		</label>
-		-->
-		<Hero />
+		<Hero v-on:filePickFont="grabFont" />
 		<Report :font="font" />
 	</main>
 </template>

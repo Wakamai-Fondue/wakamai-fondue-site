@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="hero">
 		<Filedrop />
 		<img src="../img/pixelambacht.svg" alt="" class="logo" />
 	</section>

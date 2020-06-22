@@ -1,4 +1,4 @@
-section {
+.hero {
 	position: relative;
 	background: url("../img/fondue.jpg") center;
 	background-size: cover;

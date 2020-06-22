@@ -15,6 +15,7 @@ export default {
 	}),
 	methods: {
 		grabFont(e) {
+			this.dragging = false;
 			const that = this; // Is this the way to update data?
 			let files = e.target.files || e.dataTransfer.files;
 			if (!files) return;

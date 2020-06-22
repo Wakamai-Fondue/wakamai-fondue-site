@@ -1,6 +1,12 @@
 <template>
 	<div class="filedrop">
-		<div class="circle"></div>
+		<label class="upload">
+			<input type="file" name="file" v-on:change="filePickFont" />
+			<div class="background"></div>
+			<div class="info">
+				Drop a font!
+			</div>
+		</label>
 	</div>
 </template>
 
