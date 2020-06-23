@@ -1,0 +1,26 @@
+.summary {
+	/* placeholder */
+}
+
+.summary h1 {
+	font-family: wakamai-fondue, monospace;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 2rem 0;
+	margin: 0;
+	font-size: 4rem;
+}
+
+.oneliner {
+    text-align: center;
+}
+
+.font-details li {
+	margin-top: 1em;
+}
+
+.font-details strong {
+	display: block;
+	color: var(--red);
+}

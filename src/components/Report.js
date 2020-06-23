@@ -1,3 +1,8 @@
+import Summary from "./report/Summary.vue";
+
 export default {
-	props: ["font"]
+	props: ["font"],
+	components: {
+		Summary
+	}
 };

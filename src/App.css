@@ -1,3 +1,9 @@
+:root {
+	--yellow: #d8b33d;
+	--green: #5f8e5d;
+	--red: #cd4e49;
+}
+
 html {
 	box-sizing: border-box;
 	min-height: 320px;
@@ -34,4 +40,3 @@ ul {
 table, button {
 	font-family: inherit;
 }
-

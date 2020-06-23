@@ -1,8 +1,8 @@
 <template>
-	<section class="hero">
+	<header class="hero">
 		<Filedrop />
 		<img src="../img/pixelambacht.svg" alt="" class="logo" />
-	</section>
+	</header>
 </template>
 
 <script src="./Hero.js"></script>

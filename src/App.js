@@ -1,5 +1,6 @@
 // TODO: Font.js can be defered/lazy loaded, as it will only
 // be needed after user "uploads" a font
+// TODO: deal with multiple fonts
 import "./lib/Font.js/Font.js";
 import Hero from "./components/Hero.vue";
 import Report from "./components/Report.vue";
@@ -15,8 +16,14 @@ export default {
 	}),
 	methods: {
 		grabFont(e) {
+			const that = this; // Is this the best way to deal with context?
+
+			e.preventDefault();
+
+			// Turn off drag feedback
 			this.dragging = false;
-			const that = this; // Is this the way to update data?
+
+			// Loop over all files
 			let files = e.target.files || e.dataTransfer.files;
 			if (!files) return;
 			[...files].forEach((file, key) => {
@@ -28,7 +35,9 @@ export default {
 					const font = new window.Font(`font${key}`);
 					font.loadFont(reader.result, file.name);
 					font.onload = e => {
+						that.injectStyleSheet(file, key);
 						that.font = e.detail.font;
+						window.font = e.detail.font; // DEBUG
 					};
 					font.onerror = function(error) {
 						// TODO: error handling
@@ -40,6 +49,27 @@ export default {
 					console.log(error);
 				};
 			});
+		},
+		injectStyleSheet(file) {
+			// Use the "uploaded" font on the page
+			const id = "wakamai-fondue-custom-stylesheet";
+			let style = document.getElementById(id);
+
+			// Clean up previous instance of stylesheet
+			if (!style) {
+				style = document.createElement("style");
+				style.id = id;
+				document.head.appendChild(style);
+			}
+
+			// Inject new stylesheet
+			const objectURL = URL.createObjectURL(file);
+			style.innerHTML = "";
+			style.appendChild(
+				document.createTextNode(
+					`@font-face { font-family: 'wakamai-fondue'; src: url('${objectURL}'); }`
+				)
+			);
 		}
 	}
 };

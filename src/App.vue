@@ -2,7 +2,6 @@
 	<main
 		id="app"
 		@drop.prevent="grabFont"
-		v-on:poop="grabFont"
 		@dragover.prevent="dragging = true"
 		@mouseout="dragging = false"
 		:class="{ dragging }"
