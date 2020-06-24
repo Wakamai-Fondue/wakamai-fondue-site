@@ -60,7 +60,8 @@
 
 .dragging .filedrop {
 	position: fixed;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.75);
+	backdrop-filter: blur(7.5px);
 }
 
 .dragging .upload {

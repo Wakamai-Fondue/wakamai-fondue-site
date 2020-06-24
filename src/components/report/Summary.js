@@ -1,3 +1,6 @@
 export default {
-	props: ["font"]
+	props: ["font"],
+	data: () => ({
+		features: ["abcd", "xxxx", "1234"]
+	})
 };

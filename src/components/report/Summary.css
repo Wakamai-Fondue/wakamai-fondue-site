@@ -1,7 +1,3 @@
-.summary {
-	/* placeholder */
-}
-
 .summary h1 {
 	font-family: wakamai-fondue, monospace;
 	text-align: center;
@@ -16,11 +12,20 @@
     text-align: center;
 }
 
-.font-details li {
+.features,
+.details {
 	margin-top: 1em;
 }
 
-.font-details strong {
-	display: block;
+.details th {
+	padding-right: 1em;
+	color: var(--red);
+}
+
+.features ul {
+	display: flex;
+}
+
+.features strong {
 	color: var(--red);
 }
