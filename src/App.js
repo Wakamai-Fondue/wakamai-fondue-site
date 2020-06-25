@@ -16,9 +16,8 @@ export default {
 	}),
 	methods: {
 		grabFont(e) {
-			const that = this; // Is this the best way to deal with context?
-
 			e.preventDefault();
+			const that = this; // Is this the best way to deal with context?
 
 			// Turn off drag feedback
 			this.dragging = false;
@@ -37,7 +36,10 @@ export default {
 					font.onload = e => {
 						that.injectStyleSheet(file, key);
 						that.font = e.detail.font;
-						window.font = e.detail.font; // DEBUG
+						that.$nextTick(() =>
+							document.getElementById("report").scrollIntoView()
+						);
+						window.font = e.detail.font; // DEV DEBUG ONLY !!
 					};
 					font.onerror = function(error) {
 						// TODO: error handling

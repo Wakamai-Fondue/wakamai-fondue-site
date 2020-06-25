@@ -9,6 +9,7 @@ html {
 	min-height: 320px;
 	min-width: 320px;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
+	scroll-behavior: smooth;
 }
 
 *,

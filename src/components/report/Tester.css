@@ -1,0 +1,41 @@
+.tester-wrapper {
+	background: var(--red);
+	margin-top: 4rem;
+	padding: 4rem 1rem;
+	position: relative;
+	overflow: hidden;
+}
+
+.tester-wrapper::before {
+    content: "Try me!";
+    position: absolute;
+    right: -5rem;
+    top: 1.5rem;
+    width: 15rem;
+    padding: 0.75rem 0;
+    transform: rotate(45deg);
+    text-align: center;
+    background: #d8b33d;
+    color: #cd4e49;
+    font-weight: bold;
+}
+
+.tester {
+	font-family: wakamai-fondue, monospace;
+	max-width: 68rem;
+	margin: 0 auto 0 auto;
+	padding: 0 1rem;
+	color: white;
+}
+
+.tester h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 1rem 0;
+    font-size: 4rem;
+}
+
+.tester p {
+    font-size: 1.25rem;
+}
