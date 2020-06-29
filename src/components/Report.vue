@@ -1,8 +1,8 @@
 <template>
 	<section v-if="font" class="report" id="report">
-		<!-- {{ font }} -->
 		<Summary :font="font" />
 		<Tester :font="font" />
+		<Features :font="font" />
 	</section>
 </template>
 

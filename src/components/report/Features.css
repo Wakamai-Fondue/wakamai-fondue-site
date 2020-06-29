@@ -1,0 +1,45 @@
+.features-wrapper {
+	margin-top: 4rem;
+}
+
+.features h3 {
+	font-weight: bold;
+	font-size: 1.25rem;
+	color: var(--green);
+}
+
+.features p {
+	margin: 1rem 0;
+}
+
+.features .content + .content {
+	margin-top: 4rem;
+}
+
+.feature-demo + .feature-demo {
+	margin-top: 1rem;
+}
+
+.state {
+	margin-left: auto;
+	margin-right: 0.5em;
+	color: var(--yellow);
+}
+
+.state.on {
+	color: var(--green);
+}
+
+.feature-control {
+	display: flex;
+	align-items: center;
+}
+
+.chars {
+	font-family: wakamai-fondue, monospace;
+	font-size: 1.5rem;
+	background: var(--light-grey);
+	padding: 0.5rem;
+	margin-top: 0.5rem;
+	overflow: hidden;
+}

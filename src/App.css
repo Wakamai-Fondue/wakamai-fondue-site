@@ -2,13 +2,15 @@
 	--yellow: #d8b33d;
 	--green: #5f8e5d;
 	--red: #cd4e49;
+	--light-grey: #eee;
 }
 
 html {
 	box-sizing: border-box;
 	min-height: 320px;
 	min-width: 320px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
 	scroll-behavior: smooth;
 }
 
@@ -48,7 +50,23 @@ button {
 	font-family: inherit;
 }
 
-/* Some global styles */
+/* Global styles */
+.content {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 68rem;
+	padding: 0 1rem;
+}
+
+.section-title {
+	font-size: 1.5rem;
+	padding: 2rem 0;
+	margin-bottom: 2rem;
+	background: var(--green);
+	color: white;
+	text-align: center;
+}
+
 .opentype-label {
 	display: inline-block;
 	padding: 0.25rem 0.5rem;
