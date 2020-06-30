@@ -3,6 +3,7 @@
 		<Summary :font="font" />
 		<Tester :font="font" />
 		<Features :font="font" />
+		<Charset :font="font" />
 	</section>
 </template>
 

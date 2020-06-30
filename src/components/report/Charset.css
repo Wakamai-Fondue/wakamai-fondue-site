@@ -1,0 +1,47 @@
+.charset {
+	margin-top: 4rem;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+	grid-gap: 0.25rem;
+}
+
+.grid li {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.75rem 0 0.25rem 0;
+}
+
+.code {
+	background: var(--light-grey);
+}
+
+.feature {
+	background: var(--unlight-grey);
+}
+
+.char {
+	font-size: 2rem;
+	flex: auto;
+}
+
+.label {
+	flex: none;
+	font-size: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.code .label {
+	text-transform: uppercase;
+	color: var(--unlighter-grey);
+}
+
+.feature .label {
+	background: var(--unlighter-grey);
+	color: var(--light-grey);
+	padding: 0 0.5em;
+	border-radius: 0.25em;
+}

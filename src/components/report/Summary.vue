@@ -1,5 +1,5 @@
 <template>
-	<section class="summary" id="summary">
+	<section class="summary content" id="summary">
 		<h1>Font name</h1>
 		<p class="oneliner">
 			This is
