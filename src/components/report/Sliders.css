@@ -1,0 +1,41 @@
+.axis-slider {
+	display: grid;
+	align-items: center;
+	grid-template-columns:
+		auto
+		8em
+		4em
+		1fr
+		4em
+		4em
+		auto;
+}
+
+.axis-slider + .axis-slider {
+	margin-top: 0.5em;
+}
+
+.axis-slider > * + * {
+	margin-left: 0.5em;
+}
+
+.min {
+	text-align: right;
+}
+
+.axis-slider button {
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.2rem;
+    margin: 0;
+    border: 0;
+    background: none;
+    font-size: 0.85rem;
+    background: var(--green);
+    color: white;
+    cursor: pointer;
+}
+
+.axis-slider button.hide {
+	opacity: 0;
+	pointer-events: none;
+}

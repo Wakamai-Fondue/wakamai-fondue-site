@@ -55,7 +55,7 @@
 					</div>
 					<div
 						class="chars"
-						v-bind:style="{
+						:style="{
 							fontFeatureSettings: `'${feature}' ${status}`
 						}"
 					>

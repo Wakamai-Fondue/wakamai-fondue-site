@@ -2,13 +2,30 @@
 	margin-top: 4rem;
 }
 
+.char-bar {
+	background: var(--light-grey);
+	padding: 1em;
+	margin-bottom: 0.25rem;
+	display: flex;
+	align-items: center;
+}
+
+.char-bar span {
+	margin-right: auto;
+}
+
+.char-bar label {
+	margin-left: 1rem;
+}
+
 .grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
 	grid-gap: 0.25rem;
 }
 
-.grid li {
+.code,
+.feature {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -21,9 +38,15 @@
 
 .feature {
 	background: var(--unlight-grey);
+	display: none;
+}
+
+.show-features .feature {
+	display: flex;
 }
 
 .char {
+	font-family: wakamai-fondue, monospace;
 	font-size: 2rem;
 	flex: auto;
 }
@@ -44,4 +67,10 @@
 	color: var(--light-grey);
 	padding: 0 0.5em;
 	border-radius: 0.25em;
+}
+
+.char-sliders {
+	background: var(--light-grey);
+	padding: 1em;
+	margin-bottom: 0.25rem;
 }
