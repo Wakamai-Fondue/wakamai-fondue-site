@@ -2,6 +2,7 @@
 	<section v-if="font" class="report" id="report">
 		<Summary :font="font" />
 		<Tester :font="font" />
+		<Variable :font="font" />
 		<Features :font="font" />
 		<Charset :font="font" />
 	</section>

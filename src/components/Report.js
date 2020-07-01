@@ -1,5 +1,6 @@
 import Summary from "./report/Summary.vue";
 import Tester from "./report/Tester.vue";
+import Variable from "./report/Variable.vue";
 import Features from "./report/Features.vue";
 import Charset from "./report/Charset.vue";
 
@@ -8,6 +9,7 @@ export default {
 	components: {
 		Summary,
 		Tester,
+		Variable,
 		Features,
 		Charset
 	}
