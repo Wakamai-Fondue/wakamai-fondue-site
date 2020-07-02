@@ -5,7 +5,13 @@
 			<div contenteditable class="variable-tester" :style="axesStyle">
 				The five boxing wizards jump quickly
 			</div>
-			<Sliders :font="font" @updateAxes="updateAxes" class="xxxxxxxx" />
+			<Sliders
+				:font="font"
+				:showAxes="true"
+				:showInstances="true"
+				:showTitles="true"
+				@updateAxes="updateAxes"
+			/>
 		</div>
 	</section>
 </template>

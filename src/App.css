@@ -63,7 +63,7 @@ button {
 .section-title {
 	font-size: 1.5rem;
 	padding: 2rem 0;
-	margin-bottom: 2rem;
+	margin: 4rem 0;
 	background: var(--green);
 	color: white;
 	text-align: center;

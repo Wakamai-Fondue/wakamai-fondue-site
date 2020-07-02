@@ -25,6 +25,7 @@
 			</div>
 			<Sliders
 				:font="font"
+				:showAxes="true"
 				@updateAxes="updateAxes"
 				v-if="showAxes"
 				class="char-sliders"

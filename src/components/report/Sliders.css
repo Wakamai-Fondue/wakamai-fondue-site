@@ -1,3 +1,10 @@
+.variable-sliders h3 {
+	font-weight: bold;
+	font-size: 1.25rem;
+	color: var(--green);
+	margin: 4rem 0 1rem 0;
+}
+
 .axis-slider {
 	display: grid;
 	align-items: center;
@@ -23,7 +30,7 @@
 	text-align: right;
 }
 
-.axis-slider button {
+.button {
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.2rem;
     margin: 0;
@@ -38,4 +45,18 @@
 .axis-slider button.hide {
 	opacity: 0;
 	pointer-events: none;
+}
+
+.instances li {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+	grid-gap: 0.25rem;
+}
+
+.instances .button {
+    background: var(--yellow);
+}
+
+.instances .button.active {
+	background: var(--green);
 }
