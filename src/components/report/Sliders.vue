@@ -40,7 +40,10 @@
 						v-for="(values, instance) in instances"
 						:key="instance"
 					>
-						{{ instance }}
+						<span>
+							<span class="sample">wf</span>
+							{{ instance }}
+						</span>
 					</button>
 				</li>
 			</ul>

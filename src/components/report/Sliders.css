@@ -49,7 +49,7 @@
 
 .instances li {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 	grid-gap: 0.25rem;
 }
 
@@ -59,4 +59,16 @@
 
 .instances .button.active {
 	background: var(--green);
+}
+
+.instances .button > span {
+	display: flex;
+	place-items: center
+}
+
+.sample {
+	flex: none;
+	font-family: wakamai-fondue, monospace;
+	font-size: 2.5em;
+	margin-right: 0.15em;
 }

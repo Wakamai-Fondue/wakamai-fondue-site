@@ -1,5 +1,9 @@
 <template>
-	<section class="features" id="features">
+	<section
+		class="features"
+		id="features"
+		v-if="requiredFeatures && optionalFeatures"
+	>
 		<h2 class="section-title">Layout Features</h2>
 
 		<div class="content" v-if="requiredFeatures">

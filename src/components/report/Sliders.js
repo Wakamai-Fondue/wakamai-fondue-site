@@ -21,18 +21,6 @@ export default {
 				}
 			},
 			instances: {
-				// "Instance light": {
-				// 	opsz: 4,
-				// 	BOOP: 100
-				// },
-				// "Instance regular": {
-				// 	opsz: 40,
-				// 	BOOP: 333
-				// },
-				// "Instance bold": {
-				// 	opsz: 400,
-				// 	BOOP: 777
-				// }
 				"Mono Casual Light": { abcd: 123 },
 				"Mono Casual Light Italic": { abcd: 123 },
 				"Mono Casual Regular": { abcd: 123 },

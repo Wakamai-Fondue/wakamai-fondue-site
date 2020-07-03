@@ -18,6 +18,7 @@ export default {
 	},
 	data: () => ({
 		// ↓ All data down here should come from the font, once it's wired up
+		// Should be falsy to prevent component from being rendered
 		axes: {
 			abcd: {
 				name: "The ABCD axis",

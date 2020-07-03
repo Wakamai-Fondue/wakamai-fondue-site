@@ -1,7 +1,12 @@
 <template>
 	<div class="filedrop">
 		<label class="upload">
-			<input type="file" name="file" v-on:change="filePickFont" />
+			<input
+				type="file"
+				name="file"
+				v-on:change="filePickFont"
+				accept=".woff,.woff2,.ttf,.otf"
+			/>
 			<div class="background"></div>
 			<div class="info">
 				Drop a font!

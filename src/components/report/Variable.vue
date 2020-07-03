@@ -1,9 +1,10 @@
 <template>
-	<section class="variable" id="veriable">
+	<section class="variable" id="veriable" v-if="axes">
 		<h2 class="section-title">Variable</h2>
 		<div class="content">
 			<div contenteditable class="variable-tester" :style="axesStyle">
-				The five boxing wizards jump quickly
+				The melting cheese & bread explode in a quick wave of joy: “1,
+				2, 3… zen!” <!-- Pamgram by Amelia Bellamy-Royds -->
 			</div>
 			<Sliders
 				:font="font"
