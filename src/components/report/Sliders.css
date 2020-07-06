@@ -63,12 +63,13 @@
 
 .instances .button > span {
 	display: flex;
-	place-items: center
+	align-items: center;
+	text-align: left;
 }
 
 .sample {
 	flex: none;
 	font-family: wakamai-fondue, monospace;
 	font-size: 2.5em;
-	margin-right: 0.15em;
+	margin-right: 0.25em;
 }

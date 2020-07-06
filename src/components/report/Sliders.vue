@@ -41,7 +41,9 @@
 						:key="instance"
 					>
 						<span>
-							<span class="sample">wf</span>
+							<span class="sample" :style="sampleStyle(values)"
+								>wf</span
+							>
 							{{ instance }}
 						</span>
 					</button>

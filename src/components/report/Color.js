@@ -11,11 +11,11 @@ export default {
 	},
 	computed: {
 		colorFormat() {
-			const formats = ["SVG", "sbix", "colr"]; // should come from font object
+			const formats = ["COLR"]; // should come from font object
 			if (formats.length === 1) return formats[0];
 			let result = "";
 			result = formats.pop();
-			result = formats.join(", ") + " and " + formats.pop();
+			result = formats.join(", ") + " and " + result;
 			return result;
 		}
 	},

@@ -103,6 +103,15 @@ export default {
 				const value = this.instances[instance][axis];
 				this.axes[axis].current = value;
 			}
+		},
+		sampleStyle: function(axes) {
+			let axisCSS = "";
+			let glue = "";
+			for (const axis in axes) {
+				axisCSS += `${glue} "${axis}" ${axes[axis]}`;
+				glue = ",";
+			}
+			return `font-variation-settings:${axisCSS}`;
 		}
 	}
 };

@@ -4,3 +4,25 @@
 	color: var(--green);
 	margin: 4rem 0 1rem 0;
 }
+
+.palette {
+	display: flex;
+	margin-top: 1rem;
+}
+
+.palette li {
+	min-width: 7rem;
+	padding: 2.5rem 0 1rem 0;
+	text-align: center;
+}
+
+.label {
+	flex: none;
+	font-size: 0.75rem;
+	/*margin-top: 0.5rem;*/
+	text-transform: uppercase;
+	background: var(--unlighter-grey);
+	color: black;
+	padding: 0 0.5em;
+	border-radius: 0.25em;
+}

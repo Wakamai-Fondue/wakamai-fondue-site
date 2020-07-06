@@ -4,16 +4,23 @@
 		<div class="content">
 			<p>
 				This font has <strong>{{ colorFormat }}</strong> color glyphs.
-				<template v-if="palettes">
-					It has {{ palettes }} {{ palettes | pluralize("palette") }}
+				<template v-if="palettes.length">
+					It has {{ palettes.length }}
+					{{ palettes | pluralize("palette") }}.
 				</template>
-				<template else>
+				<template v-else>
 					The colors are hardcoded in the font.
 				</template>
 			</p>
-			<h3>Palettes</h3>
-			<ul v-for="palette in palettes" :key="palette">
-				<li v-for="color in palette" :key="color">{{ color }}</li>
+			<h3 v-if="palettes.length">Palettes</h3>
+			<ul v-for="palette in palettes" :key="palette" class="palette">
+				<li
+					v-for="color in palette"
+					:key="color"
+					:style="{ background: color }"
+				>
+					<span class="label">{{ color }}</span>
+				</li>
 			</ul>
 		</div>
 	</section>
