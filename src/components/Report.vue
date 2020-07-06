@@ -6,6 +6,7 @@
 		<Variable :font="font" />
 		<Features :font="font" />
 		<Charset :font="font" />
+		<Footer />
 	</section>
 </template>
 

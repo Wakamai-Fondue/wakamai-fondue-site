@@ -4,6 +4,7 @@ import Color from "./report/Color.vue";
 import Variable from "./report/Variable.vue";
 import Features from "./report/Features.vue";
 import Charset from "./report/Charset.vue";
+import Footer from "./Footer.vue";
 
 export default {
 	props: ["font"],
@@ -13,6 +14,7 @@ export default {
 		Color,
 		Variable,
 		Features,
-		Charset
+		Charset,
+		Footer
 	}
 };
