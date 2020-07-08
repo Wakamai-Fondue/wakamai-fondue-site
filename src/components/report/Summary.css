@@ -20,6 +20,9 @@
 .details th {
 	padding-right: 1em;
 	color: var(--red);
+	text-align: left;
+	white-space: nowrap;
+	text-transform: capitalize;
 }
 
 .features ul {

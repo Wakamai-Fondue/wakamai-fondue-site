@@ -36,57 +36,9 @@
 		</p>
 		<table class="details">
 			<tbody>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
-				</tr>
-				<tr>
-					<th scope="row">Thing</th>
-					<td>Value</td>
+				<tr v-for="(value, key) in name" :key="key">
+					<th scope="row">{{ key }}</th>
+					<td>{{ value }}</td>
 				</tr>
 			</tbody>
 		</table>
