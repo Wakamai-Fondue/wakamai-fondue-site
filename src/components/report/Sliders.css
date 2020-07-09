@@ -33,13 +33,13 @@
 .button {
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.2rem;
-    margin: 0;
-    border: 0;
-    background: none;
-    font-size: 0.85rem;
-    background: var(--green);
-    color: white;
-    cursor: pointer;
+	margin: 0;
+	border: 0;
+	background: none;
+	font-size: 0.85rem;
+	background: var(--green);
+	color: white;
+	cursor: pointer;
 }
 
 .axis-slider button.hide {
@@ -54,7 +54,7 @@
 }
 
 .instances .button {
-    background: var(--yellow);
+	background: var(--yellow);
 }
 
 .instances .button.active {

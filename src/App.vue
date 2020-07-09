@@ -6,7 +6,7 @@
 		@mouseout="dragging = false"
 		:class="{ dragging }"
 	>
-		<Hero v-on:filePickFont="grabFont" />
+		<Hero v-on:getFont="getFont" v-on:getExampleFont="getExampleFont" />
 		<Report :font="font" />
 	</main>
 </template>
