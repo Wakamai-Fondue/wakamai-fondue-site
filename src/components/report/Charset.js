@@ -1,7 +1,7 @@
 import Sliders from "./Sliders.vue";
 
 export default {
-	props: ["font"],
+	props: ["variables"],
 	components: {
 		Sliders
 	},
@@ -21,22 +21,6 @@ export default {
 		showFeatures: true,
 		showAxes: true,
 		// ↓ All data down here should come from the font, once it's wired up
-		axes: {
-			abcd: {
-				name: "The ABCD axis",
-				min: 100,
-				max: 900,
-				default: 200,
-				current: 200 // Starts as `default` and changes when slider is pulled
-			},
-			OOPS: {
-				name: "Ididitagain",
-				min: 1,
-				max: 1000,
-				default: 666,
-				current: 666 // Starts as `default` and changes when slider is pulled
-			}
-		},
 		hasFeatures: true, // Should be determined by the font
 		hasAxes: true, // Should be determined by the font
 		charCount: 123, // Total number of char (non-feature) glyphs

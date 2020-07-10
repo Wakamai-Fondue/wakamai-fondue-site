@@ -3,9 +3,9 @@
 		<Summary :summary="font.summary" :features="font.features" />
 		<Tester :font="font" />
 		<Color :font="font" />
-		<Variable :font="font" />
+		<Variable v-if="font.variables" :variables="font.variables" />
 		<Features :font="font" />
-		<Charset :font="font" />
+		<Charset v-if="font.variables" :variables="font.variables" />
 		<Footer />
 	</section>
 </template>

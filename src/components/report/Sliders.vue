@@ -3,13 +3,17 @@
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
-				<li class="axis-slider" v-for="(axis, tag) in axes" :key="tag">
-					<span class="opentype-label">{{ tag }}</span>
+				<li
+					class="axis-slider"
+					v-for="(axis, key) in variables.axes"
+					:key="key"
+				>
+					<span class="opentype-label">{{ axis.id }}</span>
 					<span>{{ axis.name }}</span>
 					<span class="min">{{ axis.min }}</span>
 					<input
 						type="range"
-						:name="tag"
+						:name="axis.id"
 						:min="axis.min"
 						:max="axis.max"
 						v-model="axis.current"
@@ -21,7 +25,7 @@
 						type="button"
 						class="button"
 						:class="axis.current !== axis.default ? 'show' : 'hide'"
-						@click="resetAxis(tag)"
+						@click="resetAxis(axis.id)"
 					>
 						Reset
 					</button>
@@ -37,7 +41,7 @@
 						class="button"
 						:class="instance == activeInstance ? 'active' : ''"
 						@click="selectInstance(instance, $event)"
-						v-for="(values, instance) in instances"
+						v-for="(values, instance) in variables.instances"
 						:key="instance"
 					>
 						<span>

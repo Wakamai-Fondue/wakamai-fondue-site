@@ -24,7 +24,7 @@
 				</label>
 			</div>
 			<Sliders
-				:font="font"
+				:variables="variables"
 				:showAxes="true"
 				@updateAxes="updateAxes"
 				v-if="showAxes"

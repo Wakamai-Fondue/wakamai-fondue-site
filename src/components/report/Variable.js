@@ -1,7 +1,7 @@
 import Sliders from "./Sliders.vue";
 
 export default {
-	props: ["font"],
+	props: ["variables"],
 	components: {
 		Sliders
 	},

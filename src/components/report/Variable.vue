@@ -8,7 +8,7 @@
 				<!-- Pangram by Amelia Bellamy-Royds -->
 			</div>
 			<Sliders
-				:font="font"
+				:variables="variables"
 				:showAxes="true"
 				:showInstances="true"
 				:showTitles="true"
