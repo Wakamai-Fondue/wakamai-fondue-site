@@ -1,7 +1,7 @@
 // TODO: Font.js can be defered/lazy loaded, as it will only
 // be needed after user "uploads" a font
 // TODO: deal with multiple fonts
-import "./lib/Font.js/Font.js";
+import loadFondue from "fondue";
 import Hero from "./components/Hero.vue";
 import Report from "./components/Report.vue";
 
@@ -31,20 +31,29 @@ export default {
 				reader.readAsDataURL(file);
 				reader.onload = function() {
 					// ...and try to pass to Font.js
-					const font = new window.Font(`font${key}`);
-					font.loadFont(reader.result, file.name);
-					font.onload = e => {
+					loadFondue(reader.result, file.name).then(fondue => {
 						that.injectStyleSheet(file, key);
-						that.font = e.detail.font;
+						that.font = fondue;
+						console.log(that.font);
 						that.$nextTick(() =>
 							document.getElementById("report").scrollIntoView()
 						);
-						window.font = e.detail.font; // DEV DEBUG ONLY !!
-					};
-					font.onerror = function(error) {
-						// TODO: error handling
-						console.log(error);
-					};
+						window.font = fondue; // DEV DEBUG ONLY !!
+					});
+					// const font = new window.Font(`font${key}`);
+					// font.loadFont(reader.result, file.name);
+					// font.onload = e => {
+					// 	that.injectStyleSheet(file, key);
+					// 	that.font = e.detail.font;
+					// 	that.$nextTick(() =>
+					// 		document.getElementById("report").scrollIntoView()
+					// 	);
+					// 	window.font = e.detail.font; // DEV DEBUG ONLY !!
+					// };
+					// font.onerror = function(error) {
+					// 	// TODO: error handling
+					// 	console.log(error);
+					// };
 				};
 				reader.onerror = function(error) {
 					// TODO: error handling

@@ -1,4 +1,0 @@
-[submodule "src/lib/Font.js"]
-	path = src/lib/Font.js
-	url = https://github.com/RoelN/Font.js
-	branch = base64-support
