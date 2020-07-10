@@ -4,12 +4,21 @@
 
 export default {
 	methods: {
-		filePickFont(e) {
+		getFont(e) {
 			// Quick and clean way to emit to grandparent
 			// that a file has been picked
 			let vm = this.$parent;
 			while (vm) {
-				vm.$emit("filePickFont", e);
+				vm.$emit("getFont", e);
+				vm = vm.$parent;
+			}
+		},
+		getExampleFont(filename) {
+			// Quick and clean way to emit to grandparent
+			// that a file has been picked
+			let vm = this.$parent;
+			while (vm) {
+				vm.$emit("getExampleFont", filename);
 				vm = vm.$parent;
 			}
 		}

@@ -1,8 +1,8 @@
 export default {
 	props: ["summary", "features"],
-	data() {
-		return {
-			featureLength: Object.keys(this.features).length
-		};
+	methods: {
+		featureLength() {
+			return Object.keys(this.features).length;
+		}
 	}
 };

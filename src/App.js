@@ -15,14 +15,24 @@ export default {
 		dragging: false
 	}),
 	methods: {
-		grabFont(e) {
+		loadFondue(data, file, key, that) {
+			loadFondue(data, file.name).then(fondue => {
+				that.injectStyleSheet(file, key);
+				that.font = fondue;
+				console.log(that.font);
+				that.$nextTick(() =>
+					document.getElementById("report").scrollIntoView()
+				);
+				window.font = fondue; // DEV DEBUG ONLY !!
+			});
+		},
+		getFont(e) {
 			e.preventDefault();
-			const that = this; // Is this the best way to deal with context?
-
-			// Turn off drag feedback
 			this.dragging = false;
 
-			// Loop over all files
+			const that = this;
+
+			// Loop over all uploaded files
 			let files = e.target.files || e.dataTransfer.files;
 			if (!files) return;
 			[...files].forEach((file, key) => {
@@ -31,35 +41,49 @@ export default {
 				reader.readAsDataURL(file);
 				reader.onload = function() {
 					// ...and try to pass to Font.js
-					loadFondue(reader.result, file.name).then(fondue => {
-						that.injectStyleSheet(file, key);
-						that.font = fondue;
-						console.log(that.font);
-						that.$nextTick(() =>
-							document.getElementById("report").scrollIntoView()
-						);
-						window.font = fondue; // DEV DEBUG ONLY !!
-					});
-					// const font = new window.Font(`font${key}`);
-					// font.loadFont(reader.result, file.name);
-					// font.onload = e => {
-					// 	that.injectStyleSheet(file, key);
-					// 	that.font = e.detail.font;
-					// 	that.$nextTick(() =>
-					// 		document.getElementById("report").scrollIntoView()
-					// 	);
-					// 	window.font = e.detail.font; // DEV DEBUG ONLY !!
-					// };
-					// font.onerror = function(error) {
-					// 	// TODO: error handling
-					// 	console.log(error);
-					// };
+					that.loadFondue(reader.result, file, key, that);
 				};
 				reader.onerror = function(error) {
 					// TODO: error handling
 					console.log(error);
 				};
 			});
+		},
+		loadFont(file, filename, that) {
+			const reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function() {
+				const filedata = reader.result;
+				that.loadFondue(filedata, file, null, that);
+				// const font = new window.Font(filename);
+				// font.loadFont(filedata, filename);
+				// font.onload = e => {
+				// 	that.injectStyleSheet(file);
+				// 	that.font = e.detail.font;
+				// 	that.$nextTick(() =>
+				// 		document.getElementById("report").scrollIntoView()
+				// 	);
+				// 	window.font = e.detail.font; // DEV DEBUG ONLY !!
+				// };
+				reader.onerror = function(error) {
+					// TODO: error handling
+					console.log(error);
+				};
+			};
+		},
+		getExampleFont(filename) {
+			const that = this;
+
+			// Grab font from server
+			const request = new XMLHttpRequest();
+			request.open("GET", `/${filename}`, true);
+			request.responseType = "blob";
+			request.send();
+
+			request.onload = function() {
+				const file = request.response;
+				that.loadFont(file, filename, that);
+			};
 		},
 		injectStyleSheet(file) {
 			// Use the "uploaded" font on the page

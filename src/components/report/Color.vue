@@ -13,7 +13,11 @@
 				</template>
 			</p>
 			<h3 v-if="palettes.length">Palettes</h3>
-			<ul v-for="palette in palettes" :key="palette" class="palette">
+			<ul
+				v-for="palette in palettes"
+				:key="`palette_${palette}`"
+				class="palette"
+			>
 				<li
 					v-for="color in palette"
 					:key="color"

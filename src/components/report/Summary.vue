@@ -1,6 +1,6 @@
 <template>
 	<section class="summary content" id="summary">
-		<h1>{{ summary.family }} {{ summary.subfamily }}</h1>
+		<h1>{{ summary["Font name"] }}</h1>
 		<p class="oneliner">
 			This is
 			<template v-if="true">an</template>
@@ -25,11 +25,11 @@
 				<strong>{ listColorFormats }</strong>
 				color glyphs.
 			</template>
-			It has {{ Object.features }}
-			<strong v-if="featureLength === 0">no</strong>
-			<strong v-else>{{ featureLength }}</strong>
+			It has
+			<strong v-if="featureLength() === 0">no</strong>
+			<strong v-else>{{ featureLength() }}</strong>
 			<strong>
-				layout feature<template v-if="featureLength !== 1"
+				layout feature<template v-if="featureLength() !== 1"
 					>s</template
 				> </strong
 			>.
