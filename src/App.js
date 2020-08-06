@@ -6,6 +6,12 @@ import Hero from "./components/Hero.vue";
 import Report from "./components/Report.vue";
 
 export default {
+	created: function() {
+		if (window.location.pathname == "/bungee") {
+			this.getExampleFont("Bungee-Regular.ttf");
+			document.getElementById("report").scrollIntoView();
+		}
+	},
 	components: {
 		Hero,
 		Report
