@@ -3,6 +3,7 @@
 ## Project setup
 ```
 npm install
+git submodule update --remote
 ```
 
 ### Compiles and hot-reloads for development

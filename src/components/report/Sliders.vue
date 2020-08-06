@@ -21,6 +21,7 @@
 						type="button"
 						class="button"
 						:class="axis.current !== axis.default ? 'show' : 'hide'"
+						:tabindex="axis.current !== axis.default ? 0 : -1"
 						@click="resetAxis(tag)"
 					>
 						Reset
