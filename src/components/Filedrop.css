@@ -25,9 +25,12 @@
 
 .upload {
 	position: relative;
-	width: 40vmin;
-	height: 40vmin;
+	width: 50vmin;
+	height: 50vmin;
+	max-width: 500px;
+	max-height: 500px;
 	transition: transform 150ms;
+	cursor: pointer;
 }
 
 .upload::after {
@@ -48,22 +51,6 @@
 	opacity: 0;
 }
 
-.demo-font {
-	/* Stacking tricks to prevent button click
-	   from being seen as label click */
-	position: relative;
-	z-index: 1;
-	padding: 0.25rem 0.5rem;
-	border-radius: 0.2rem;
-	margin: 1rem 0 0 0;
-	border: 0;
-	background: none;
-	font-size: 0.85rem;
-	background: var(--green);
-	color: white;
-	cursor: pointer;
-}
-
 .info {
 	position: relative;
 	display: flex;
@@ -71,6 +58,31 @@
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	padding-top: 1.5rem;
+	font-size: 0.9rem;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.info strong {
+	font-size: 1.5em;
+	margin-top: 1rem;
+	color: black;
+}
+
+.demo-font {
+	/* Stacking tricks to prevent button click
+	   from being seen as label click */
+	position: relative;
+	z-index: 1;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.2rem;
+	margin-top: 1.5rem;
+	border: 0;
+	background: none;
+	font-size: 0.85rem;
+	background: var(--green);
+	color: white;
+	cursor: pointer;
 }
 
 .dragging .filedrop {

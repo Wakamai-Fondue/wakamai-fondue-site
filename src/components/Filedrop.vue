@@ -9,7 +9,9 @@
 				accept=".woff,.woff2,.ttf,.otf"
 			/>
 			<div class="info">
-				Drop a font!
+				What can my font do?
+				<strong>Drop a font here</strong>
+				and find out!
 				<button
 					type="button"
 					v-on:click="getExampleFont('Bungee-Regular.ttf')"
