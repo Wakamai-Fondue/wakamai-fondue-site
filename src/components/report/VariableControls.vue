@@ -29,7 +29,7 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="showInstances" class="instances">
+		<div v-if="showInstances === 'list'" class="instances-list">
 			<h3 v-if="showTitles">Named instances</h3>
 			<ul>
 				<li>
@@ -37,7 +37,7 @@
 						type="button"
 						class="button"
 						:class="instance == activeInstance ? 'active' : ''"
-						@click="selectInstance(instance, $event)"
+						@click="selectInstance(instance)"
 						v-for="(values, instance) in instances"
 						:key="instance"
 					>
@@ -51,8 +51,19 @@
 				</li>
 			</ul>
 		</div>
+		<div v-if="showInstances === 'dropdown'" class="instances-dropdown">
+			<h3 v-if="showTitles">Named instances</h3>
+			<select
+				@change="selectInstance($event.target.value)"
+				:value="activeInstance"
+			>
+				<option v-for="(values, instance) in instances" :key="instance">
+					{{ instance }}
+				</option>
+			</select>
+		</div>
 	</div>
 </template>
 
-<script src="./Sliders.js"></script>
-<style src="./Sliders.css" scoped></style>
+<script src="./VariableControls.js"></script>
+<style src="./VariableControls.css" scoped></style>

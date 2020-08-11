@@ -7,11 +7,11 @@
 				2, 3… zen!”
 				<!-- Pangram by Amelia Bellamy-Royds -->
 			</div>
-			<Sliders
+			<VariableControls
 				:font="font"
 				:showAxes="true"
-				:showInstances="true"
 				:showTitles="true"
+				showInstances="list"
 				@updateAxes="updateAxes"
 			/>
 		</div>

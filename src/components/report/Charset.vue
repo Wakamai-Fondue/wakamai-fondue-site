@@ -23,7 +23,7 @@
 					/>Layout features
 				</label>
 			</div>
-			<Sliders
+			<VariableControls
 				:font="font"
 				:showAxes="true"
 				@updateAxes="updateAxes"
