@@ -13,7 +13,7 @@
 						:min="axis.min"
 						:max="axis.max"
 						v-model="axis.current"
-						@input="updateAxes()"
+						@input="updateStyles(true)"
 					/>
 					<span>{{ axis.max }}</span>
 					<strong>{{ axis.current }}</strong>
@@ -38,11 +38,11 @@
 						class="button"
 						:class="instance == activeInstance ? 'active' : ''"
 						@click="selectInstance(instance)"
-						v-for="(values, instance) in instances"
+						v-for="(axes, instance) in instances"
 						:key="instance"
 					>
 						<span>
-							<span class="sample" :style="sampleStyle(values)"
+							<span class="sample" :style="axesStyles(axes)"
 								>wf</span
 							>
 							{{ instance }}
@@ -57,7 +57,11 @@
 				@change="selectInstance($event.target.value)"
 				:value="activeInstance"
 			>
-				<option v-for="(values, instance) in instances" :key="instance">
+				<option
+					v-for="(axes, instance) in instances"
+					:key="instance"
+					:selected="instance === activeInstance"
+				>
 					{{ instance }}
 				</option>
 			</select>

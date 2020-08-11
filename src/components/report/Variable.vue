@@ -1,8 +1,8 @@
 <template>
-	<section class="variable" id="veriable" v-if="axes">
+	<section class="variable" id="variable">
 		<h2 class="section-title">Variable</h2>
 		<div class="content">
-			<div contenteditable class="variable-tester" :style="axesStyle">
+			<div contenteditable class="variable-tester" :style="axesStyles">
 				The melting cheese & bread explode in a quick wave of joy: “1,
 				2, 3… zen!”
 				<!-- Pangram by Amelia Bellamy-Royds -->
@@ -11,8 +11,8 @@
 				:font="font"
 				:showAxes="true"
 				:showTitles="true"
-				showInstances="list"
-				@updateAxes="updateAxes"
+				showInstances="dropdown"
+				@updateStyles="updateStyles"
 			/>
 		</div>
 	</section>

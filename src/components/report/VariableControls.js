@@ -21,8 +21,8 @@ export default {
 				}
 			},
 			instances: {
-				"Mono Casual Light": { abcd: 123 },
-				"Mono Casual Light Italic": { abcd: 123 },
+				"Mono Casual Light": { abcd: 800 },
+				"Mono Casual Light Italic": { abcd: 400 },
 				"Mono Casual Regular": { abcd: 123 },
 				"Mono Casual Italic": { abcd: 123 },
 				"Mono Casual Medium": { abcd: 123 },
@@ -92,10 +92,10 @@ export default {
 		resetAxis: function(axis) {
 			this.axes[axis].current = this.axes[axis].default;
 			this.activeInstance = "";
-		},
-		updateAxes: function() {
-			this.$emit("updateAxes", this.axes);
-			this.activeInstance = "";
+			// TODO: Instead of assuming no instance is active after
+			// a reset, check if the current this.axes values match
+			// a named instance.
+			this.updateStyles(true);
 		},
 		selectInstance: function(instance) {
 			this.activeInstance = instance;
@@ -103,12 +103,22 @@ export default {
 				const value = this.instances[instance][axis];
 				this.axes[axis].current = value;
 			}
+			this.updateStyles(false);
 		},
-		sampleStyle: function(axes) {
+		updateStyles: function(resetInstance) {
+			this.$emit("updateStyles", this.axesStyles(this.axes));
+			if (resetInstance) {
+				this.activeInstance = "";
+			}
+		},
+		axesStyles: function(axes) {
 			let axisCSS = "";
 			let glue = "";
 			for (const axis in axes) {
-				axisCSS += `${glue} "${axis}" ${axes[axis]}`;
+				// Get .current if "global" styles are used, otherwise
+				// use direct from key/value
+				const value = axes[axis].current || axes[axis];
+				axisCSS += `${glue} "${axis}" ${value}`;
 				glue = ",";
 			}
 			return `font-variation-settings:${axisCSS}`;
