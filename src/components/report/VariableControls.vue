@@ -12,8 +12,8 @@
 						:name="tag"
 						:min="axis.min"
 						:max="axis.max"
-						v-model="axis.current"
-						@input="updateStyles(true)"
+						v-model.number="axis.current"
+						@input="updateStyles()"
 					/>
 					<span>{{ axis.max }}</span>
 					<strong>{{ axis.current }}</strong>

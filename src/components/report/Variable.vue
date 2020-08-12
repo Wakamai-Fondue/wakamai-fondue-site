@@ -11,7 +11,7 @@
 				:font="font"
 				:showAxes="true"
 				:showTitles="true"
-				showInstances="dropdown"
+				showInstances="list"
 				@updateStyles="updateStyles"
 			/>
 		</div>
