@@ -56,10 +56,12 @@
 
 .instances-list .button {
 	background: var(--yellow);
+	transition: background 400ms;
 }
 
 .instances-list .button.active {
 	background: var(--green);
+	transition: background 0s;
 }
 
 .instances-list .button > span {
