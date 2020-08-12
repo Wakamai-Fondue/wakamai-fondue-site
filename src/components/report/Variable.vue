@@ -10,7 +10,8 @@
 			<VariableControls
 				:font="font"
 				:showAxes="true"
-				:showTitles="true"
+				:showTitles="false"
+				:showStyles="true"
 				showInstances="list"
 				@updateStyles="updateStyles"
 			/>

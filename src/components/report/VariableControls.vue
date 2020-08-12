@@ -42,7 +42,7 @@
 						:key="instance"
 					>
 						<span>
-							<span class="sample" :style="axesStyles(axes)"
+							<span class="sample" :style="getAxesStyles(axes)"
 								>wf</span
 							>
 							{{ instance }}
@@ -65,6 +65,11 @@
 					{{ instance }}
 				</option>
 			</select>
+		</div>
+		<div v-if="showStyles" class="axes-styles">
+			<code>
+				{{ axesStyles }}
+			</code>
 		</div>
 	</div>
 </template>

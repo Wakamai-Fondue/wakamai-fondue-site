@@ -1,3 +1,7 @@
+.variable-sliders div + div {
+	margin-top: 1rem;
+}
+
 .variable-sliders h3 {
 	font-weight: bold;
 	font-size: 1.25rem;
@@ -16,10 +20,6 @@
 		4em
 		4em
 		auto;
-}
-
-.axis-slider + .axis-slider {
-	margin-top: 0.5em;
 }
 
 .axis-slider > * + * {
@@ -47,7 +47,6 @@
 	pointer-events: none;
 }
 
-/* Instances as button list */
 .instances-list li {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
@@ -75,4 +74,11 @@
 	font-family: wakamai-fondue, monospace;
 	font-size: 2.5em;
 	margin-right: 0.25em;
+}
+
+.axes-styles {
+	/* Temporary code styles, will whip up a site-wide one */
+	background: black;
+	color: white;
+	padding: 2em;
 }

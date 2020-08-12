@@ -1,5 +1,5 @@
 export default {
-	props: ["font", "showAxes", "showInstances", "showTitles"],
+	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
 	data() {
 		return {
 			activeInstance: "",
@@ -27,6 +27,11 @@ export default {
 			}
 		};
 	},
+	computed: {
+		axesStyles() {
+			return this.getAxesStyles(this.axes);
+		}
+	},
 	methods: {
 		resetAxis: function(axis) {
 			this.axes[axis].current = this.axes[axis].default;
@@ -41,7 +46,7 @@ export default {
 			this.updateStyles();
 		},
 		updateStyles: function() {
-			this.$emit("updateStyles", this.axesStyles(this.axes));
+			this.$emit("updateStyles", this.getAxesStyles(this.axes));
 			this.matchInstance();
 		},
 		matchInstance: function() {
@@ -61,7 +66,7 @@ export default {
 			}
 			this.activeInstance = activeInstance;
 		},
-		axesStyles: function(axes) {
+		getAxesStyles: function(axes) {
 			let axisCSS = "";
 			let glue = "";
 			for (const axis in axes) {
@@ -71,7 +76,7 @@ export default {
 				axisCSS += `${glue} "${axis}" ${value}`;
 				glue = ",";
 			}
-			return `font-variation-settings:${axisCSS}`;
+			return `font-variation-settings:${axisCSS};`;
 		}
 	}
 };
