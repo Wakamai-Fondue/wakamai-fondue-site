@@ -32,14 +32,12 @@
 		<div v-if="showInstances === 'list'" class="instances-list">
 			<h3 v-if="showTitles">Named instances</h3>
 			<ul>
-				<li>
+				<li v-for="(axes, instance) in instances" :key="instance">
 					<button
 						type="button"
 						class="button"
 						:class="instance == activeInstance ? 'active' : ''"
 						@click="selectInstance(instance)"
-						v-for="(axes, instance) in instances"
-						:key="instance"
 					>
 						<span>
 							<span class="sample" :style="getAxesStyles(axes)"
