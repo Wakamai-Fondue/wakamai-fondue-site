@@ -2,7 +2,12 @@
 	<section id="tester">
 		<h2 class="section-title">Tester</h2>
 		<div class="tester-wrapper">
-			<div class="tester" contenteditable spellcheck="false">
+			<div
+				class="tester"
+				contenteditable
+				spellcheck="false"
+				:style="`${featureStyles}${variableStyles}`"
+			>
 				<p v-if="customText">
 					{{ customText }}
 				</p>
@@ -32,12 +37,16 @@
 			</div>
 		</div>
 		<div class="content">
+			<FeatureControls
+				:showTitles="true"
+				@updateFeatureStyles="updateFeatureStyles"
+			/>
 			<VariableControls
 				:font="font"
 				:showAxes="true"
-				:showTitles="true"
+				:showTitles="false"
 				showInstances="dropdown"
-				@updateAxes="updateAxes"
+				@updateVariableStyles="updateVariableStyles"
 			/>
 		</div>
 	</section>

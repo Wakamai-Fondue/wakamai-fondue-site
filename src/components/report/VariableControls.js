@@ -5,14 +5,14 @@ export default {
 			activeInstance: "",
 			// ↓ This should come from the font prop, once it's wired up
 			axes: {
-				abcd: {
-					name: "The ABCD axis",
+				wdth: {
+					name: "The wdth axis",
 					min: 100,
 					max: 900,
 					default: 200,
 					current: 200 // Starts as `default` and changes when slider is pulled
 				},
-				OOPS: {
+				wght: {
 					name: "Ididitagain",
 					min: 1,
 					max: 1000,
@@ -21,9 +21,9 @@ export default {
 				}
 			},
 			instances: {
-				"Mono Casual Light": { abcd: 800, OOPS: 666 },
-				"Mono Casual Light Italic!!": { abcd: 400, OOPS: 666 },
-				"Mono Casual Regular": { abcd: 123, OOPS: 666 }
+				"Mono Casual Light": { wdth: 800, wght: 666 },
+				"Mono Casual Light Italic": { wdth: 400, wght: 666 },
+				"Mono Casual Regular": { wdth: 123, wght: 666 }
 			}
 		};
 	},

@@ -1,10 +1,16 @@
 import VariableControls from "./VariableControls.vue";
+import FeatureControls from "./FeatureControls.vue";
 
 export default {
 	props: ["font"],
 	components: {
-		VariableControls
+		VariableControls,
+		FeatureControls
 	},
+	data: () => ({
+		variableStyles: "",
+		featureStyles: ""
+	}),
 	computed: {
 		customText: () => {
 			// TODO: check if there's a name table
@@ -16,8 +22,11 @@ export default {
 		}
 	},
 	methods: {
-		updateAxes: function(updatedAxes) {
-			this.axes = updatedAxes;
+		updateVariableStyles: function(updatedStyles) {
+			this.variableStyles = updatedStyles;
+		},
+		updateFeatureStyles: function(updatedStyles) {
+			this.featureStyles = updatedStyles;
 		}
 	}
 };

@@ -1,0 +1,27 @@
+.feature-controls {
+	margin: 1rem 0;
+}
+
+.feature-controls ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	grid-gap: 0.25rem;
+}
+
+/* TODO: componentalizationreuse */
+.button {
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.2rem;
+	margin: 0;
+	border: 0;
+	background: none;
+	font-size: 0.85rem;
+	/*background: var(--green);*/
+	background: var(--yellow);
+	color: white;
+	cursor: pointer;
+}
+
+.button.active {
+	background: var(--green);
+}
