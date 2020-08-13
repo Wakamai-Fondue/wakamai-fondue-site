@@ -1,7 +1,7 @@
 <template>
 	<section class="charset" id="charset">
 		<h2 class="section-title">Character Set</h2>
-		<div class="content" :class="showFeatures ? 'show-features' : ''">
+		<div class="content" :class="{ 'show-features': showFeatures }">
 			<div class="char-bar">
 				<span
 					>{{ showFeatures ? allCharCount : charCount }} glyphs</span

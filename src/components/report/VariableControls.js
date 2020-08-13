@@ -28,8 +28,8 @@ export default {
 		};
 	},
 	computed: {
-		axesStyles() {
-			return this.getAxesStyles(this.axes);
+		variableStyles() {
+			return this.getVariableStyles(this.axes);
 		}
 	},
 	methods: {
@@ -46,7 +46,10 @@ export default {
 			this.updateStyles();
 		},
 		updateStyles: function() {
-			this.$emit("updateStyles", this.getAxesStyles(this.axes));
+			this.$emit(
+				"updateVariableStyles",
+				this.getVariableStyles(this.axes)
+			);
 			this.matchInstance();
 		},
 		matchInstance: function() {
@@ -66,17 +69,17 @@ export default {
 			}
 			this.activeInstance = activeInstance;
 		},
-		getAxesStyles: function(axes) {
-			let axisCSS = "";
+		getVariableStyles: function(axes) {
+			let styles = "";
 			let glue = "";
 			for (const axis in axes) {
 				// Get .current if "global" styles are used, otherwise
 				// use direct from key/value
 				const value = axes[axis].current || axes[axis];
-				axisCSS += `${glue} "${axis}" ${value}`;
+				styles += `${glue} "${axis}" ${value}`;
 				glue = ",";
 			}
-			return `font-variation-settings:${axisCSS};`;
+			return `font-variation-settings:${styles};`;
 		}
 	}
 };

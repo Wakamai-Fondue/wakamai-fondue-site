@@ -6,13 +6,11 @@ export default {
 		VariableControls
 	},
 	data: () => ({
-		// ↓ All data down here should come from the font, once it's wired up
-		// Should be falsy to prevent component from being rendered
-		axesStyles: ""
+		variableStyles: ""
 	}),
 	methods: {
-		updateStyles: function(updatedStyles) {
-			this.axesStyles = updatedStyles;
+		updateVariableStyles: function(updatedStyles) {
+			this.variableStyles = updatedStyles;
 		}
 	}
 };

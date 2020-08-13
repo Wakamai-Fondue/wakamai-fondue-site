@@ -30,6 +30,7 @@
 	text-align: right;
 }
 
+/* TODO: componentalizationreuse */
 .button {
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.2rem;
@@ -76,7 +77,7 @@
 	margin-right: 0.25em;
 }
 
-.axes-styles {
+.variable-styles {
 	/* Temporary code styles, will whip up a site-wide one */
 	background: black;
 	color: white;

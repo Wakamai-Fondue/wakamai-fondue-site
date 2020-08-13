@@ -36,11 +36,11 @@
 					<button
 						type="button"
 						class="button"
-						:class="instance == activeInstance ? 'active' : ''"
+						:class="{ active: instance == activeInstance }"
 						@click="selectInstance(instance)"
 					>
 						<span>
-							<span class="sample" :style="getAxesStyles(axes)"
+							<span class="sample" :style="getVariableStyles(axes)"
 								>wf</span
 							>
 							{{ instance }}
@@ -64,9 +64,9 @@
 				</option>
 			</select>
 		</div>
-		<div v-if="showStyles" class="axes-styles">
+		<div v-if="showStyles" class="variable-styles">
 			<code>
-				{{ axesStyles }}
+				{{ variableStyles }}
 			</code>
 		</div>
 	</div>
