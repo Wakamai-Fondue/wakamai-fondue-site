@@ -38,7 +38,7 @@
 		</div>
 		<div class="content">
 			<FeatureControls
-				:showTitles="true"
+				:showTitles="false"
 				@updateFeatureStyles="updateFeatureStyles"
 			/>
 			<VariableControls

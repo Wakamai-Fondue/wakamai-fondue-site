@@ -1,11 +1,21 @@
 .feature-controls {
-	margin: 1rem 0;
+	margin: 3rem 0;
 }
 
 .feature-controls ul {
-	display: grid;
+/*	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-	grid-gap: 0.25rem;
+	grid-gap: 0.25rem;*/
+}
+
+.feature-controls li {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.25rem;
+}
+
+.feature-name {
+	min-width: 10em;
 }
 
 /* TODO: componentalizationreuse */
@@ -17,11 +27,41 @@
 	background: none;
 	font-size: 0.85rem;
 	/*background: var(--green);*/
-	background: var(--yellow);
+	/*background: var(--yellow);*/
+	background: var(--unlighter-grey);
 	color: white;
 	cursor: pointer;
+}
+.button:hover {
+	background: #777; /* TODO */
 }
 
 .button.active {
 	background: var(--green);
+}
+
+.button-on {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.on .button-on {
+	background: var(--green);
+}
+
+.button-off {
+	border-radius: 0;
+}
+
+.off .button-off {
+	background: var(--red);
+}
+
+.button-default {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.default .button-default {
+	background: #777;
 }

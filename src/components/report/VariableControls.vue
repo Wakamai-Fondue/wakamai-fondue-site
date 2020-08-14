@@ -40,7 +40,9 @@
 						@click="selectInstance(instance)"
 					>
 						<span>
-							<span class="sample" :style="getVariableStyles(axes)"
+							<span
+								class="sample"
+								:style="getVariableStyles(axes)"
 								>wf</span
 							>
 							{{ instance }}
