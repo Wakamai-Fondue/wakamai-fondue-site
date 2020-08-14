@@ -4,9 +4,11 @@
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
 				<li class="axis-slider" v-for="(axis, tag) in axes" :key="tag">
-					<span class="opentype-label">{{ tag }}</span>
-					<span>{{ axis.name }}</span>
-					<span class="min">{{ axis.min }}</span>
+					<span>
+						<span class="opentype-label">{{ tag }}</span>
+						<span class="axis-name">{{ axis.name }}</span>
+					</span>
+					<span class="axis-min">{{ axis.min }}</span>
 					<input
 						type="range"
 						:name="tag"
@@ -51,8 +53,11 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="showInstances === 'dropdown'" class="instances-dropdown">
+		<div v-if="showInstances === 'dropdown'">
 			<h3 v-if="showTitles">Named instances</h3>
+			<span class="instances-dropdown-label">
+				Named instances:
+			</span>
 			<select
 				@change="selectInstance($event.target.value)"
 				:value="activeInstance"

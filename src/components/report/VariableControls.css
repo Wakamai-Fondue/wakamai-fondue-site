@@ -1,5 +1,5 @@
 .variable-sliders div + div {
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 
 .variable-sliders h3 {
@@ -10,11 +10,11 @@
 }
 
 .axis-slider {
+	margin-bottom: 3px;
 	display: grid;
 	align-items: center;
 	grid-template-columns:
-		auto
-		8em
+		12em
 		4em
 		1fr
 		4em
@@ -22,11 +22,13 @@
 		auto;
 }
 
-.axis-slider > * + * {
-	margin-left: 0.5em;
+.axis-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.min {
+.axis-min {
 	text-align: right;
 }
 
@@ -75,6 +77,15 @@
 	font-family: wakamai-fondue, monospace;
 	font-size: 2.5em;
 	margin-right: 0.25em;
+}
+
+.instances-dropdown {
+	display: flex;
+}
+
+.instances-dropdown-label {
+	display: inline-block;
+	width: 16em;
 }
 
 .variable-styles {

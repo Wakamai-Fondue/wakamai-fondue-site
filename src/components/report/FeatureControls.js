@@ -22,6 +22,9 @@ export default {
 	}),
 	methods: {
 		flipState(feature, state) {
+			if (this.features[feature].state === state) {
+				state = null;
+			}
 			this.features[feature].state = state;
 			this.updateStyles();
 		},
@@ -39,7 +42,7 @@ export default {
 			}
 			return `font-feature-settings:${styles};`;
 		},
-		featureState: function(state) {
+		featureStateClass: function(state) {
 			if (state === true) {
 				return "on";
 			} else if (state === false) {

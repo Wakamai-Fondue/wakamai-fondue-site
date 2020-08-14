@@ -1,21 +1,20 @@
 .feature-controls {
-	margin: 3rem 0;
-}
-
-.feature-controls ul {
-/*	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-	grid-gap: 0.25rem;*/
+	margin: 2rem 0;
 }
 
 .feature-controls li {
-	display: flex;
+	margin-bottom: 3px;
+	display: grid;
 	align-items: center;
-	margin-bottom: 0.25rem;
+	grid-template-columns:
+		16em /* Match axis name + value width */
+		auto;
 }
 
 .feature-name {
-	min-width: 10em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* TODO: componentalizationreuse */
@@ -26,18 +25,16 @@
 	border: 0;
 	background: none;
 	font-size: 0.85rem;
-	/*background: var(--green);*/
-	/*background: var(--yellow);*/
 	background: var(--unlighter-grey);
-	color: white;
+	color: var(--dark-grey);
 	cursor: pointer;
-}
-.button:hover {
-	background: #777; /* TODO */
+	min-width: 4.75em;
+	transition: background 100ms;
+	user-select: none;
 }
 
-.button.active {
-	background: var(--green);
+.button:hover {
+	background: var(--unlighterer-grey);
 }
 
 .button-on {
@@ -47,6 +44,7 @@
 
 .on .button-on {
 	background: var(--green);
+	color: white;
 }
 
 .button-off {
@@ -55,6 +53,7 @@
 
 .off .button-off {
 	background: var(--red);
+	color: white;
 }
 
 .button-default {
@@ -63,5 +62,6 @@
 }
 
 .default .button-default {
-	background: #777;
+	background: var(--dark-grey);
+	color: var(--unlighter-grey);
 }
