@@ -1,15 +1,18 @@
 import VariableControls from "./VariableControls.vue";
 import FeatureControls from "./FeatureControls.vue";
+import TextControls from "./TextControls.vue";
 
 export default {
 	props: ["font"],
 	components: {
 		VariableControls,
-		FeatureControls
+		FeatureControls,
+		TextControls
 	},
 	data: () => ({
 		variableStyles: "",
-		featureStyles: ""
+		featureStyles: "",
+		textStyles: ""
 	}),
 	computed: {
 		customText: () => {
@@ -27,6 +30,9 @@ export default {
 		},
 		updateFeatureStyles: function(updatedStyles) {
 			this.featureStyles = updatedStyles;
+		},
+		updateTextStyles: function(updatedStyles) {
+			this.textStyles = updatedStyles;
 		}
 	}
 };

@@ -6,7 +6,7 @@
 				class="tester"
 				contenteditable
 				spellcheck="false"
-				:style="`${featureStyles}${variableStyles}`"
+				:style="`${variableStyles}${featureStyles}${textStyles}`"
 			>
 				<p v-if="customText">
 					{{ customText }}
@@ -37,6 +37,7 @@
 			</div>
 		</div>
 		<div class="content">
+			<TextControls @updateTextStyles="updateTextStyles" />
 			<FeatureControls
 				:showTitles="false"
 				@updateFeatureStyles="updateFeatureStyles"

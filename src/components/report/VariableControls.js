@@ -6,14 +6,14 @@ export default {
 			// ↓ This should come from the font prop, once it's wired up
 			axes: {
 				wdth: {
-					name: "The wdth axis",
+					name: "Width",
 					min: 100,
 					max: 900,
 					default: 200,
 					current: 200 // Starts as `default` and changes when slider is pulled
 				},
 				wght: {
-					name: "Ididitagain",
+					name: "Weight",
 					min: 1,
 					max: 1000,
 					default: 666,

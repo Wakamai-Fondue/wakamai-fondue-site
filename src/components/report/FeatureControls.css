@@ -63,5 +63,5 @@
 
 .default .button-default {
 	background: var(--dark-grey);
-	color: var(--unlighter-grey);
+	color: white;
 }
