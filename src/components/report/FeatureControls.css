@@ -1,0 +1,67 @@
+.feature-controls {
+	margin: 2rem 0;
+}
+
+.feature-controls li {
+	margin-bottom: 3px;
+	display: grid;
+	align-items: center;
+	grid-template-columns:
+		16em /* Match axis name + value width */
+		auto;
+}
+
+.feature-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* TODO: componentalizationreuse */
+.button {
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.2rem;
+	margin: 0;
+	border: 0;
+	background: none;
+	font-size: 0.85rem;
+	background: var(--unlighter-grey);
+	color: var(--dark-grey);
+	cursor: pointer;
+	min-width: 4.75em;
+	transition: background 100ms;
+	user-select: none;
+}
+
+.button:hover {
+	background: var(--unlighterer-grey);
+}
+
+.button-on {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.on .button-on {
+	background: var(--green);
+	color: white;
+}
+
+.button-off {
+	border-radius: 0;
+}
+
+.off .button-off {
+	background: var(--red);
+	color: white;
+}
+
+.button-default {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.default .button-default {
+	background: var(--dark-grey);
+	color: white;
+}

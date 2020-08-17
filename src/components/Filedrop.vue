@@ -9,8 +9,8 @@
 				accept=".woff,.woff2,.ttf,.otf"
 			/>
 			<div class="info">
-				What can my font do?
-				<strong>Drop a font here</strong>
+				"What can my font do?"
+				<strong>Drop a font</strong>
 				and find out!
 				<button
 					type="button"

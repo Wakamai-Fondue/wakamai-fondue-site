@@ -1,9 +1,9 @@
-import Sliders from "./Sliders.vue";
+import VariableControls from "./VariableControls.vue";
 
 export default {
 	props: ["font"],
 	components: {
-		Sliders
+		VariableControls
 	},
 	computed: {
 		axesStyle() {

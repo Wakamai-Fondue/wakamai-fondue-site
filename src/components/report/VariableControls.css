@@ -1,3 +1,7 @@
+.variable-sliders div + div {
+	margin-top: 2rem;
+}
+
 .variable-sliders h3 {
 	font-weight: bold;
 	font-size: 1.25rem;
@@ -6,11 +10,11 @@
 }
 
 .axis-slider {
+	margin-bottom: 3px;
 	display: grid;
 	align-items: center;
 	grid-template-columns:
-		auto
-		8em
+		12em
 		4em
 		1fr
 		4em
@@ -18,18 +22,17 @@
 		auto;
 }
 
-.axis-slider + .axis-slider {
-	margin-top: 0.5em;
+.axis-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.axis-slider > * + * {
-	margin-left: 0.5em;
-}
-
-.min {
+.axis-min {
 	text-align: right;
 }
 
+/* TODO: componentalizationreuse */
 .button {
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.2rem;
@@ -47,29 +50,47 @@
 	pointer-events: none;
 }
 
-.instances li {
+.instances-list ul {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 	grid-gap: 0.25rem;
 }
 
-.instances .button {
+.instances-list .button {
 	background: var(--yellow);
+	transition: background 400ms;
 }
 
-.instances .button.active {
+.instances-list .button.active {
 	background: var(--green);
+	transition: background 0s;
 }
 
-.instances .button > span {
+.instances-list .button > span {
 	display: flex;
 	align-items: center;
 	text-align: left;
 }
 
-.sample {
+.instances-list .sample {
 	flex: none;
 	font-family: wakamai-fondue, monospace;
 	font-size: 2.5em;
 	margin-right: 0.25em;
+}
+
+.instances-dropdown {
+	display: flex;
+}
+
+.instances-dropdown-label {
+	display: inline-block;
+	width: 16em;
+}
+
+.variable-styles {
+	/* Temporary code styles, will whip up a site-wide one */
+	background: black;
+	color: white;
+	padding: 2em;
 }

@@ -1,12 +1,20 @@
 <template>
-	<div class="tester-wrapper">
-		<section class="tester" id="tester" contenteditable spellcheck="false">
-			<p v-if="customText">
-				{{ customText }}
-			</p>
-			<template v-else>
-				<h1>Brillat Savarin’s Fondue (an excellent recipe)</h1>
-				<p>
+	<section id="tester">
+		<h2 class="section-title">Tester</h2>
+		<div class="tester-wrapper">
+			<div
+				class="tester"
+				contenteditable
+				spellcheck="false"
+				:style="`${variableStyles}${featureStyles}${textStyles}`"
+			>
+				<p v-if="customText">
+					{{ customText }}
+				</p>
+				<template v-else>
+					Brillat Savarin’s Fondue (an excellent recipe)
+					<br />
+					<br />
 					Ingredients: eggs, cheese, butter, pepper and salt. Take the
 					same number of eggs as there are guests; weigh the eggs in
 					the shell, allow a third of their weight in Gruyère cheese,
@@ -24,10 +32,24 @@
 					<br />
 					<br />
 					0123456789 !@#$%^&*(),.?
-				</p>
-			</template>
-		</section>
-	</div>
+				</template>
+			</div>
+		</div>
+		<div class="content">
+			<TextControls @updateTextStyles="updateTextStyles" />
+			<FeatureControls
+				:showTitles="false"
+				@updateFeatureStyles="updateFeatureStyles"
+			/>
+			<VariableControls
+				:font="font"
+				:showAxes="true"
+				:showTitles="false"
+				showInstances="dropdown"
+				@updateVariableStyles="updateVariableStyles"
+			/>
+		</div>
+	</section>
 </template>
 
 <script src="./Tester.js"></script>
