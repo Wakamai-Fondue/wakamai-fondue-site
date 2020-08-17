@@ -20,6 +20,9 @@ export default {
 			}
 		}
 	}),
+	mounted: function() {
+		this.updateStyles();
+	},
 	methods: {
 		flipState(feature, state) {
 			if (this.features[feature].state === state) {

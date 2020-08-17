@@ -1,10 +1,8 @@
 <template>
 	<div class="text-controls">
-		<!-- Font size! Line height! Alignment! -->
-
 		<div>
 			<label>
-				Font size X
+				Font size
 				<input
 					type="range"
 					min="8"
@@ -13,13 +11,11 @@
 					v-model.number="fontSize"
 					@input="updateStyles()"
 				/>
-				Y
 			</label>
 		</div>
-
 		<div>
 			<label>
-				Line height X
+				Line height
 				<input
 					type="range"
 					min="0"
@@ -28,41 +24,43 @@
 					v-model.number="lineHeight"
 					@input="updateStyles()"
 				/>
-				Y
 			</label>
 		</div>
-
 		<div>
 			<label>
 				Alignment
 				<button
+					v-html="`&nbsp;`"
 					type="button"
-					alt="left align text"
+					class="button left"
+					:class="{ active: textAlign === 'left' }"
 					@click="align('left')"
-				>
-					L
-				</button>
+					alt="left align text"
+				></button>
 				<button
+					v-html="`&nbsp;`"
 					type="button"
-					alt="center align text"
+					class="button center"
+					:class="{ active: textAlign === 'center' }"
 					@click="align('center')"
-				>
-					C
-				</button>
+					alt="center align text"
+				></button>
 				<button
+					v-html="`&nbsp;`"
 					type="button"
-					alt="right align text"
+					class="button right"
+					:class="{ active: textAlign === 'right' }"
 					@click="align('right')"
-				>
-					R
-				</button>
+					alt="right align text"
+				></button>
 				<button
+					v-html="`&nbsp;`"
 					type="button"
-					alt="justify text"
+					class="button justify"
+					:class="{ active: textAlign === 'justify' }"
 					@click="align('justify')"
-				>
-					J
-				</button>
+					alt="justify text"
+				></button>
 			</label>
 		</div>
 	</div>

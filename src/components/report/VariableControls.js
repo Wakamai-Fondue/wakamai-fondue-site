@@ -32,6 +32,9 @@ export default {
 			return this.getVariableStyles(this.axes);
 		}
 	},
+	mounted: function() {
+		this.updateStyles();
+	},
 	methods: {
 		resetAxis: function(axis) {
 			this.axes[axis].current = this.axes[axis].default;
