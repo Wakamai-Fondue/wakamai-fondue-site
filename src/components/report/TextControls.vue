@@ -61,6 +61,15 @@
 					@click="align('justify')"
 					alt="justify text"
 				></button>
+				<button
+					type="button"
+					class="button initial"
+					:class="{ active: textAlign === 'initial' }"
+					@click="align('initial')"
+					alt="default alignment"
+				>
+					Default
+				</button>
 			</label>
 		</div>
 	</div>

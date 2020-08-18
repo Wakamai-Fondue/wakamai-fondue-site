@@ -34,7 +34,7 @@
 }
 
 .button:hover {
-	background: var(--unlighterer-grey);
+	background-color: var(--unlighterer-grey);
 }
 
 .button-on {

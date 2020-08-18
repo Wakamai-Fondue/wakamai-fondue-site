@@ -27,8 +27,17 @@
 	background-size: 65%;
 }
 
+.button:hover {
+	background-color: var(--unlighterer-grey);
+}
+
 .active {
 	background-color: var(--green);
+}
+
+.initial.active {
+	background: var(--dark-grey);
+	color: white;
 }
 
 .button:first-child {

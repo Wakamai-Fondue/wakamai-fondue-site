@@ -4,8 +4,9 @@
 		<div class="tester-wrapper">
 			<div
 				class="tester"
-				contenteditable
 				spellcheck="false"
+				dir="auto"
+				contenteditable
 				:style="`${variableStyles}${featureStyles}${textStyles}`"
 			>
 				<p v-if="customText">
