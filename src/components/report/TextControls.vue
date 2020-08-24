@@ -15,6 +15,24 @@
 		</div>
 		<div>
 			<label>
+				Language
+				<select
+					@change="setLanguage($event.target.value)"
+					:value="activeLanguage"
+				>
+					<option value="">None</option>
+					<option
+						v-for="lang in languages"
+						:key="lang.html"
+						:value="lang.html"
+					>
+						{{ lang.name }} ({{ lang.html }})
+					</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label>
 				Alignment
 				<span class="alignment-buttons">
 					<button

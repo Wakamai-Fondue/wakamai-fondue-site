@@ -52,8 +52,10 @@ table {
 	border-spacing: 0;
 }
 
+select,
 button {
 	font-family: inherit;
+	font-size: inherit;
 }
 
 /* Global styles */
