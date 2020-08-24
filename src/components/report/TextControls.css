@@ -40,6 +40,10 @@
 	color: white;
 }
 
+.alignment-buttons {
+	white-space: nowrap;
+}
+
 .button:first-child {
 	border-top-left-radius: 0.2rem;
 	border-bottom-left-radius: 0.2rem;

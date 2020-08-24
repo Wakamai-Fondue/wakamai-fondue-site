@@ -15,61 +15,50 @@
 		</div>
 		<div>
 			<label>
-				Line height
-				<input
-					type="range"
-					min="0"
-					max="3"
-					step="any"
-					v-model.number="lineHeight"
-					@input="updateStyles()"
-				/>
-			</label>
-		</div>
-		<div>
-			<label>
 				Alignment
-				<button
-					v-html="`&nbsp;`"
-					type="button"
-					class="button left"
-					:class="{ active: textAlign === 'left' }"
-					@click="align('left')"
-					alt="left align text"
-				></button>
-				<button
-					v-html="`&nbsp;`"
-					type="button"
-					class="button center"
-					:class="{ active: textAlign === 'center' }"
-					@click="align('center')"
-					alt="center align text"
-				></button>
-				<button
-					v-html="`&nbsp;`"
-					type="button"
-					class="button right"
-					:class="{ active: textAlign === 'right' }"
-					@click="align('right')"
-					alt="right align text"
-				></button>
-				<button
-					v-html="`&nbsp;`"
-					type="button"
-					class="button justify"
-					:class="{ active: textAlign === 'justify' }"
-					@click="align('justify')"
-					alt="justify text"
-				></button>
-				<button
-					type="button"
-					class="button initial"
-					:class="{ active: textAlign === 'initial' }"
-					@click="align('initial')"
-					alt="default alignment"
-				>
-					Default
-				</button>
+				<span class="alignment-buttons">
+					<button
+						v-html="`&nbsp;`"
+						type="button"
+						class="button left"
+						:class="{ active: textAlign === 'left' }"
+						@click="align('left')"
+						alt="left align text"
+					></button>
+					<button
+						v-html="`&nbsp;`"
+						type="button"
+						class="button center"
+						:class="{ active: textAlign === 'center' }"
+						@click="align('center')"
+						alt="center align text"
+					></button>
+					<button
+						v-html="`&nbsp;`"
+						type="button"
+						class="button right"
+						:class="{ active: textAlign === 'right' }"
+						@click="align('right')"
+						alt="right align text"
+					></button>
+					<button
+						v-html="`&nbsp;`"
+						type="button"
+						class="button justify"
+						:class="{ active: textAlign === 'justify' }"
+						@click="align('justify')"
+						alt="justify text"
+					></button>
+					<button
+						type="button"
+						class="button initial"
+						:class="{ active: textAlign === 'initial' }"
+						@click="align('initial')"
+						alt="default alignment"
+					>
+						Default
+					</button>
+				</span>
 			</label>
 		</div>
 	</div>
