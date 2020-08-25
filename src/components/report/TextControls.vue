@@ -7,7 +7,7 @@
 					type="range"
 					min="8"
 					max="100"
-					step="any"
+					step="0.01"
 					v-model.number="fontSize"
 					@input="updateStyles()"
 				/>

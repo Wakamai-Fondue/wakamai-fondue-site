@@ -13,7 +13,7 @@ export default {
 		variableStyles: "",
 		featureStyles: "",
 		textStyles: "",
-		language: ""
+		language: null
 	}),
 	computed: {
 		customText: () => {
@@ -36,6 +36,7 @@ export default {
 			this.textStyles = updatedStyles;
 		},
 		updateLanguage: function(updatedLanguage) {
+			updatedLanguage = updatedLanguage || null;
 			this.language = updatedLanguage;
 		}
 	}
