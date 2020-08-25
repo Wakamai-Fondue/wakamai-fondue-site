@@ -1,18 +1,20 @@
 <template>
 	<section class="summary content" id="summary">
-		<h1>Font name</h1>
+		<h1>{{ summary["Font name"] }}</h1>
 		<p class="oneliner">
 			This is
-			<template v-if="true">an</template>
+
+			<template v-if="font.format == 'OpenType/CFF'">an</template>
 			<template v-else>a</template>
+			&nbsp;
 
-			<strong>{ getFontFormat }</strong>
+			<strong>{{ font.format }}</strong>
+			&nbsp;
 
-			<strong v-if="true">variable</strong>
-			<strong v-if="true">color</strong>
+			<strong v-if="font.isVariable">variable</strong>
+			<strong v-if="font.isColor">color &nbsp;</strong>
 
 			font with
-
 			<strong>{ numCharacters } characters.</strong>
 
 			<template v-if="true">
@@ -27,16 +29,18 @@
 				<strong>{ listColorFormats }</strong>
 				color glyphs.
 			</template>
-
 			It has
-			<strong v-if="true">no</strong>
-			<strong v-else>{ getAvailableFeatures.length }</strong>
-			<strong>layout feature<template v-if="true">s</template></strong
+			<strong v-if="featureLength() === 0">no</strong>
+			<strong v-else>{{ featureLength() }}</strong>
+			<strong>
+				layout feature<template v-if="featureLength() !== 1"
+					>s</template
+				> </strong
 			>.
 		</p>
 		<table class="details">
 			<tbody>
-				<tr v-for="(value, key) in name" :key="key">
+				<tr v-for="(value, key) in summary" :key="key">
 					<th scope="row">{{ key }}</th>
 					<td>{{ value }}</td>
 				</tr>
@@ -45,7 +49,7 @@
 		<div class="features" aria-label="Font layout features">
 			<strong>Layout features</strong>
 			<ul>
-				<li v-for="feature in features" :key="feature">
+				<li v-for="(featureData, feature) in features" :key="feature">
 					<span class="opentype-label">{{ feature }}</span>
 				</li>
 			</ul>

@@ -1,13 +1,19 @@
 export default {
 	props: ["font"],
-	data: () => ({
-		features: ["abcd", "xxxx", "1234"],
-		name: {
-			name: "Super Duper Sans",
-			copyright: "Roel Nieskens",
-			version: "Version 2.0001",
-			license: "This is the font license",
-			"manufactured by": "Kabisa Inc. Ltd. GmbH"
+	computed: {
+		summary: function() {
+			return this.font.summary;
+		},
+		features: function() {
+			return this.font.features;
+		},
+		fontFormat: function() {
+			return "hello";
 		}
-	})
+	},
+	methods: {
+		featureLength() {
+			return Object.keys(this.features).length;
+		}
+	}
 };

@@ -1,11 +1,11 @@
 <template>
 	<section v-if="font" class="report" id="report">
 		<Summary :font="font" />
-		<Tester :font="font" />
+		<Tester v-if="font.isVariable" :font="font" />
 		<Color :font="font" />
-		<Variable :font="font" />
+		<Variable v-if="font.isVariable" :font="font" />
 		<Features :font="font" />
-		<Charset :font="font" />
+		<Charset v-if="font.isVariable" :font="font" />
 		<Footer />
 	</section>
 </template>

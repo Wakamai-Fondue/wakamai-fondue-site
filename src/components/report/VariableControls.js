@@ -2,32 +2,16 @@ export default {
 	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
 	data() {
 		return {
-			activeInstance: "",
-			// ↓ This should come from the font prop, once it's wired up
-			axes: {
-				wdth: {
-					name: "Width",
-					min: 100,
-					max: 900,
-					default: 200,
-					current: 200 // Starts as `default` and changes when slider is pulled
-				},
-				wght: {
-					name: "Weight",
-					min: 1,
-					max: 1000,
-					default: 666,
-					current: 666 // Starts as `default` and changes when slider is pulled
-				}
-			},
-			instances: {
-				"Mono Casual Light": { wdth: 800, wght: 666 },
-				"Mono Casual Light Italic": { wdth: 400, wght: 666 },
-				"Mono Casual Regular": { wdth: 123, wght: 666 }
-			}
+			activeInstance: ""
 		};
 	},
 	computed: {
+		axes() {
+			return this.font.variables.axes;
+		},
+		instances() {
+			return this.font.variables.instances;
+		},
 		variableStyles() {
 			return this.getVariableStyles(this.axes);
 		}
