@@ -1,17 +1,11 @@
 export default {
 	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
-	data() {
-		return {
-			activeInstance: ""
-		};
-	},
+	data: self => ({
+		activeInstance: "",
+		axes: self.font.variables.axes,
+		instances: self.font.variables.instances
+	}),
 	computed: {
-		axes() {
-			return this.font.variables.axes;
-		},
-		instances() {
-			return this.font.variables.instances;
-		},
 		variableStyles() {
 			return this.getVariableStyles(this.axes);
 		}
@@ -59,11 +53,8 @@ export default {
 		getVariableStyles: function(axes) {
 			let styles = "";
 			let glue = "";
-			for (const axis in axes) {
-				// Get .current if "global" styles are used, otherwise
-				// use direct from key/value
-				const value = axes[axis].current || axes[axis];
-				styles += `${glue} "${axis}" ${value}`;
+			for (const axis of Object.values(axes)) {
+				styles += `${glue} "${axis.id}" ${axis.current}`;
 				glue = ",";
 			}
 			return `font-variation-settings:${styles};`;
