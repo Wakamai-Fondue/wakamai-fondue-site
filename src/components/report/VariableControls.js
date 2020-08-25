@@ -22,7 +22,8 @@ export default {
 			this.activeInstance = instance;
 			for (const axis in this.instances[instance]) {
 				const value = this.instances[instance][axis];
-				this.axes[axis].current = value;
+				const targetAxis = this.axes.find(o => o.id === axis);
+				targetAxis.current = value;
 			}
 			this.updateStyles();
 		},
