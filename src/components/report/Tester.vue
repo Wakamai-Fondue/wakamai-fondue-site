@@ -4,9 +4,11 @@
 		<div class="tester-wrapper">
 			<div
 				class="tester"
-				contenteditable
 				spellcheck="false"
+				dir="auto"
+				contenteditable
 				:style="`${variableStyles}${featureStyles}${textStyles}`"
+				:lang="language"
 			>
 				<p v-if="customText">
 					{{ customText }}
@@ -36,7 +38,10 @@
 			</div>
 		</div>
 		<div class="content">
-			<TextControls @updateTextStyles="updateTextStyles" />
+			<TextControls
+				@updateTextStyles="updateTextStyles"
+				@updateLanguage="updateLanguage"
+			/>
 			<FeatureControls
 				:showTitles="false"
 				@updateFeatureStyles="updateFeatureStyles"

@@ -12,7 +12,8 @@ export default {
 	data: () => ({
 		variableStyles: "",
 		featureStyles: "",
-		textStyles: ""
+		textStyles: "",
+		language: ""
 	}),
 	computed: {
 		customText: () => {
@@ -33,6 +34,9 @@ export default {
 		},
 		updateTextStyles: function(updatedStyles) {
 			this.textStyles = updatedStyles;
+		},
+		updateLanguage: function(updatedLanguage) {
+			this.language = updatedLanguage;
 		}
 	}
 };

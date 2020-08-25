@@ -1,8 +1,29 @@
 export default {
 	data: () => ({
 		fontSize: 24,
-		lineHeight: 1.2,
-		textAlign: "left"
+		textAlign: "left",
+		activeLanguage: null,
+		// TODO: get this from engine
+		// Font will contain the OT tags (keys here_
+		// the html + name are added from the ot-to-html-lang.json file
+		languages: {
+			AZE: {
+				html: "azj",
+				name: "Azerbaijani"
+			},
+			CAT: {
+				html: "ca",
+				name: "Catalan"
+			},
+			MOL: {
+				html: "ro-MD",
+				name: "Romanian; Moldova"
+			},
+			NKO: {
+				html: "nqo",
+				name: "N\u2019Ko"
+			}
+		}
 	}),
 	mounted: function() {
 		this.updateStyles();
@@ -17,8 +38,11 @@ export default {
 		},
 		getTextStyles: function() {
 			return `font-size:${this.fontSize}px;
-					line-height:${this.lineHeight};
 					text-align:${this.textAlign};`;
+		},
+		setLanguage: function(language) {
+			language = language || null;
+			this.$emit("updateLanguage", language);
 		}
 	}
 };

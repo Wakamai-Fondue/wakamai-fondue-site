@@ -4,9 +4,13 @@
 	justify-content: space-between;
 }
 
-.text-controls > div {
+.text-controls label {
 	display: flex;
 	align-items: center;
+}
+
+.text-controls label > * {
+	margin-left: 0.25em;
 }
 
 /* TODO: componentalizationreuse */
@@ -27,8 +31,21 @@
 	background-size: 65%;
 }
 
+.button:hover {
+	background-color: var(--unlighterer-grey);
+}
+
 .active {
 	background-color: var(--green);
+}
+
+.initial.active {
+	background: var(--dark-grey);
+	color: white;
+}
+
+.alignment-buttons {
+	white-space: nowrap;
 }
 
 .button:first-child {
