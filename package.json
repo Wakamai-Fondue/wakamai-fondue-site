@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "fondue": "git+ssh://git@github.com/Wakamai-Fondue/old-wakamai-fondue-engine.git#feature/more-font-data",
+    "fondue": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#master",
     "vue": "^2.6.11"
   },
   "devDependencies": {
