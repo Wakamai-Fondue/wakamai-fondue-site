@@ -27,3 +27,11 @@
 	padding: 0 1rem;
 	color: white;
 }
+
+.styles {
+    margin-top: 2rem;
+    /* Temporary code styles, will whip up a site-wide one */
+    background: black;
+    color: white;
+    padding: 2em;
+}

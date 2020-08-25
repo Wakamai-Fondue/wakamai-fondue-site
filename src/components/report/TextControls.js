@@ -37,11 +37,10 @@ export default {
 			this.$emit("updateTextStyles", this.getTextStyles());
 		},
 		getTextStyles: function() {
-			return `font-size:${this.fontSize}px;
-					text-align:${this.textAlign};`;
+			return `font-size: ${this.fontSize}px;
+					text-align: ${this.textAlign};`;
 		},
 		setLanguage: function(language) {
-			language = language || null;
 			this.$emit("updateLanguage", language);
 		}
 	}

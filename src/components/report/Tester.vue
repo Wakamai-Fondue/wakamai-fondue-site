@@ -53,6 +53,28 @@
 				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
 			/>
+			<div class="styles">
+				<code>
+					&lt;div<template v-if="language">
+						lang="{{ language }}"</template
+					>&gt; ... &lt;/div&gt; <br /><br />
+					&lt;style&gt;
+					<br />
+					/* Text styles */
+					<br />
+					{{ textStyles }}
+					<br /><br />
+					/* Variable axes */
+					<br />
+					{{ variableStyles }}
+					<br /><br />
+					/* OpenType features */
+					<br />
+					{{ featureStyles }}
+					<br />
+					&lt;/style&gt;
+				</code>
+			</div>
 		</div>
 	</section>
 </template>
