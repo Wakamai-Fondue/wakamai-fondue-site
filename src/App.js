@@ -1,7 +1,7 @@
 // TODO: Font.js can be defered/lazy loaded, as it will only
 // be needed after user "uploads" a font
 // TODO: deal with multiple fonts
-import "./lib/Font.js/Font.js";
+import { fromDataBuffer } from "fondue/browser";
 import Hero from "./components/Hero.vue";
 import Report from "./components/Report.vue";
 
@@ -15,6 +15,16 @@ export default {
 		dragging: false
 	}),
 	methods: {
+		loadFondue(fileOrBlob, data, fileName, that) {
+			fromDataBuffer(data, fileName).then(fondue => {
+				that.injectStyleSheet(fileOrBlob);
+				that.font = fondue;
+				that.$nextTick(() =>
+					document.getElementById("report").scrollIntoView()
+				);
+				window.font = fondue; // DEV DEBUG ONLY !!
+			});
+		},
 		getFont(e) {
 			e.preventDefault();
 			this.dragging = false;
@@ -25,9 +35,23 @@ export default {
 			let files = e.target.files || e.dataTransfer.files;
 			if (!files) return;
 			[...files].forEach(file => {
-				const filename = file.name;
-				that.loadFont(file, filename, that);
+				this.loadFont(file, file.name, that);
 			});
+		},
+		loadFont(fileOrBlob, filename, that) {
+			const reader = new FileReader();
+
+			reader.onload = function() {
+				const data = reader.result;
+				that.loadFondue(fileOrBlob, data, filename, that);
+			};
+
+			reader.onerror = function(error) {
+				// TODO: error handling
+				console.log(error);
+			};
+
+			reader.readAsArrayBuffer(fileOrBlob);
 		},
 		getExampleFont(filename) {
 			const that = this;
@@ -39,33 +63,8 @@ export default {
 			request.send();
 
 			request.onload = function() {
-				const file = request.response;
-				that.loadFont(file, filename, that);
-			};
-		},
-		loadFont(file, filename, that) {
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = function() {
-				const filedata = reader.result;
-				const font = new window.Font(filename);
-				font.loadFont(filedata, filename);
-				font.onload = e => {
-					that.injectStyleSheet(file);
-					that.font = e.detail.font;
-					that.$nextTick(() =>
-						document.getElementById("report").scrollIntoView()
-					);
-					window.font = e.detail.font; // DEV DEBUG ONLY !!
-				};
-				font.onerror = function(error) {
-					// TODO: error handling
-					console.log(error);
-				};
-			};
-			reader.onerror = function(error) {
-				// TODO: error handling
-				console.log(error);
+				const blob = request.response;
+				that.loadFont(blob, filename, that);
 			};
 		},
 		injectStyleSheet(file) {

@@ -1,7 +1,7 @@
 <template>
 	<main
 		id="app"
-		@drop.prevent="grabFont"
+		@drop.prevent="getFont"
 		@dragover.prevent="dragging = true"
 		@mouseout="dragging = false"
 		:class="{ dragging }"
