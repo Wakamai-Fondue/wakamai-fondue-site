@@ -15,7 +15,7 @@
 			<strong v-if="font.isColor">color &nbsp;</strong>
 
 			font with
-			<strong>{ numCharacters } characters.</strong>
+			<strong>{{ numCharacters }} characters.</strong>
 
 			<template v-if="true">
 				It has
