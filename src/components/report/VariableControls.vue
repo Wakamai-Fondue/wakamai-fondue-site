@@ -5,13 +5,13 @@
 			<ul class="axes-sliders">
 				<li class="axis-slider" v-for="(axis, tag) in axes" :key="tag">
 					<span>
-						<span class="opentype-label">{{ tag }}</span>
+						<span class="opentype-label">{{ axis.id }}</span>
 						<span class="axis-name">{{ axis.name }}</span>
 					</span>
 					<span class="axis-min">{{ axis.min }}</span>
 					<input
 						type="range"
-						:name="tag"
+						:name="axis.id"
 						:min="axis.min"
 						:max="axis.max"
 						v-model.number="axis.current"
