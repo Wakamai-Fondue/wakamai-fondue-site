@@ -17,18 +17,33 @@
 	margin-top: 1em;
 }
 
+.details tr + tr {
+	padding-top: 3px;
+}
+
 .details th {
+	padding-top: 3px;
 	padding-right: 1em;
 	color: var(--red);
 	text-align: left;
 	white-space: nowrap;
 	text-transform: capitalize;
+	vertical-align: top;
 }
 
-.features ul {
-	display: flex;
+.details td {
+	padding-top: 3px;
 }
 
 .features strong {
 	color: var(--red);
+}
+
+.features ul {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.features li {
+	margin-top: 3px;
 }
