@@ -1,10 +1,12 @@
 export default {
 	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
-	data: self => ({
-		activeInstance: "",
-		axes: self.font.variables.axes,
-		instances: self.font.variables.instances
-	}),
+	data() {
+		return {
+			activeInstance: "",
+			axes: this.font.variable.axes,
+			instances: this.font.variable.instances
+		};
+	},
 	computed: {
 		variableStyles() {
 			return this.getVariableStyles(this.axes);

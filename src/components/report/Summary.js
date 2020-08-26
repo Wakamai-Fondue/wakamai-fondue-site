@@ -1,17 +1,12 @@
 export default {
 	props: ["font"],
-	computed: {
-		summary: function() {
-			return this.font.summary;
-		},
-		features: function() {
-			return this.font.features;
-		},
-		fontFormat: function() {
-			return "hello";
-		}
+	data() {
+		return {
+			summary: this.font.summary,
+			features: this.font.features
+		};
 	},
-	methods: {
+	computed: {
 		featureLength() {
 			return Object.keys(this.features).length;
 		}

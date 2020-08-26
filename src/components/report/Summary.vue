@@ -30,10 +30,10 @@
 				color glyphs.
 			</template>
 			It has
-			<strong v-if="featureLength() === 0">no</strong>
-			<strong v-else>{{ featureLength() }}</strong>
+			<strong v-if="featureLength === 0">no</strong>
+			<strong v-else>{{ featureLength }}</strong>
 			<strong>
-				layout feature<template v-if="featureLength() !== 1"
+				layout feature<template v-if="featureLength !== 1"
 					>s</template
 				> </strong
 			>.
