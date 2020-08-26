@@ -2,8 +2,8 @@ export default {
 	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
 	data: self => ({
 		activeInstance: "",
-		axes: self.font.variables.axes,
-		instances: self.font.variables.instances
+		axes: self.font.variable.axes,
+		instances: self.font.variable.instances
 	}),
 	computed: {
 		variableStyles() {
