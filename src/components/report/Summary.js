@@ -4,7 +4,7 @@ export default {
 		return {
 			summary: this.font.summary,
 			features: this.font.features,
-			numCharacters: this.font.supportedCharacters.length
+			charCount: this.font.supportedCharacters.length
 		};
 	},
 	computed: {
