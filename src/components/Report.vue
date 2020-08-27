@@ -5,7 +5,7 @@
 		<Color :font="font" />
 		<Variable v-if="font.isVariable" :font="font" />
 		<Features :font="font" />
-		<Charset v-if="font.isVariable" :font="font" />
+		<CharGrid :font="font" />
 		<Footer />
 	</section>
 </template>

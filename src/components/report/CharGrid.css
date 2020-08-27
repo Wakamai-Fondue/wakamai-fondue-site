@@ -55,7 +55,7 @@
 
 .code .label {
 	text-transform: uppercase;
-	color: var(--unlighter-grey);
+	color: var(--unlighterer-grey);
 }
 
 .feature .label {
