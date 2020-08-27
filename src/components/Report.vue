@@ -2,7 +2,7 @@
 	<section v-if="font" class="report" id="report">
 		<Summary :font="font" />
 		<Tester v-if="font.isVariable" :font="font" />
-		<Color :font="font" />
+		<Color v-if="font.isColor" :font="font" />
 		<Variable v-if="font.isVariable" :font="font" />
 		<Features :font="font" />
 		<CharGrid :font="font" />
