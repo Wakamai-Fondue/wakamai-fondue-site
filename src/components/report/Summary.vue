@@ -6,37 +6,39 @@
 
 			<template v-if="font.format == 'OpenType/CFF'">an</template>
 			<template v-else>a</template>
-			&nbsp;
 
-			<strong>{{ font.format }}</strong>
-			&nbsp;
+			<strong> {{ font.format }}</strong>
 
-			<strong v-if="font.isVariable">variable</strong>
-			<strong v-if="font.isColor">color &nbsp;</strong>
+			<strong v-if="font.isVariable"> variable</strong>
+			<strong v-if="font.isColor"> color</strong>
 
 			font with
-			<strong>{{ charCount }} characters.</strong>
 
-			<template v-if="true">
+			<strong>
+				{{ charCount }}
+				{{ charCount | pluralize("character") }}.
+			</strong>
+
+			<template v-if="font.isVariable">
 				It has
-				<strong>{ numAxes }</strong>
+				<strong>{{ axesCount }}</strong>
+				{{ axesCount | pluralize("axe") }}
 				and
-				<strong>{ numNamedInstances }</strong>.
+				<strong>{{ instancesCount }}</strong>
+				{{ instancesCount | pluralize("instance") }}.
 			</template>
 
-			<template v-if="true">
+			<template v-if="font.isColor">
 				It has
-				<strong>{ listColorFormats }</strong>
+				<strong>{{ this.font.colorFormats | listify }}</strong>
 				color glyphs.
 			</template>
+
 			It has
-			<strong v-if="featureLength === 0">no</strong>
-			<strong v-else>{{ featureLength }}</strong>
 			<strong>
-				layout feature<template v-if="featureLength !== 1"
-					>s</template
-				> </strong
-			>.
+				{{ featureLength }}
+				{{ featureLength | pluralize("layout feature") }}.
+			</strong>
 		</p>
 		<table class="details">
 			<tbody>
