@@ -3,7 +3,10 @@
 		<h2 class="section-title">Color</h2>
 		<div class="content">
 			<p>
-				This font has <strong>{{ colorFormat }}</strong> color glyphs.
+				This font has
+				<strong>{{ this.font.colorFormats | listify }}</strong>
+				color glyphs.
+
 				<template v-if="palettes.length">
 					It has {{ palettes.length }}
 					{{ palettes | pluralize("palette") }}.

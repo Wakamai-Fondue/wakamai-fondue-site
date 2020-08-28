@@ -26,15 +26,5 @@ export default {
 			}
 			return count || "no";
 		}
-	},
-	filters: {
-		pluralize: function(value, word) {
-			return `${word}${value !== 1 ? "s" : ""}`;
-		},
-		listify: function(array) {
-			if (array.length === 1) return array[0];
-			const last = array[array.length - 1];
-			return array.slice(0, array.length - 1).join(", ") + " and " + last;
-		}
 	}
 };

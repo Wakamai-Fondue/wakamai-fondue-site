@@ -18,10 +18,5 @@ export default {
 			result = formats.join(", ") + " and " + result;
 			return result;
 		}
-	},
-	filters: {
-		pluralize: function(value, word) {
-			return `${word}${value !== 1 ? "s" : ""}`;
-		}
 	}
 };
