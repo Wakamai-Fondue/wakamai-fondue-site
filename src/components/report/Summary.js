@@ -13,11 +13,11 @@ export default {
 			return count || "no";
 		},
 		axesCount() {
-			let count = 0;
 			if (this.font.variable) {
-				count = this.font.variable.axes.length;
+				return this.font.variable.axes.length;
+			} else {
+				return "no";
 			}
-			return count || "no";
 		},
 		instancesCount() {
 			let count = 0;
