@@ -23,5 +23,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "engines": {
+		"node": ">=14"
+	}
 }
