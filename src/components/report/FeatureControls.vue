@@ -5,13 +5,13 @@
 			<li
 				v-for="(values, feature) in features"
 				:key="feature"
-				:class="featureStateClass(values.state)"
+				:class="getClass(feature)"
 			>
 				<span>
 					<span class="opentype-label">{{ feature }}</span>
 					<span class="feature-name">{{ values.name }}</span>
 				</span>
-				<span>
+				<span class="buttons">
 					<button
 						type="button"
 						class="button button-on"
@@ -33,6 +33,9 @@
 					>
 						Default
 					</button>
+				</span>
+				<span class="recommendation">
+					Recommended: {{ recommendation(values.state) }}
 				</span>
 			</li>
 		</ul>
