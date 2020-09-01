@@ -1,30 +1,13 @@
 export default {
-	data: () => ({
-		fontSize: 24,
-		textAlign: "left",
-		activeLanguage: null,
-		// TODO: get this from engine
-		// Font will contain the OT tags (keys here_
-		// the html + name are added from the ot-to-html-lang.json file
-		languages: {
-			AZE: {
-				html: "azj",
-				name: "Azerbaijani"
-			},
-			CAT: {
-				html: "ca",
-				name: "Catalan"
-			},
-			MOL: {
-				html: "ro-MD",
-				name: "Romanian; Moldova"
-			},
-			NKO: {
-				html: "nqo",
-				name: "N\u2019Ko"
-			}
-		}
-	}),
+	props: ["font"],
+	data() {
+		return {
+			fontSize: 24,
+			textAlign: "left",
+			activeLanguage: null,
+			languages: this.font.languageSystems
+		};
+	},
 	mounted: function() {
 		this.updateStyles();
 	},

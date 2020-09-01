@@ -39,14 +39,17 @@
 		</div>
 		<div class="content">
 			<TextControls
+				:font="font"
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 			/>
 			<FeatureControls
+				:font="font"
 				:showTitles="false"
 				@updateFeatureStyles="updateFeatureStyles"
 			/>
 			<VariableControls
+				v-if="font.isVariable"
 				:font="font"
 				:showAxes="true"
 				:showTitles="false"
@@ -63,10 +66,12 @@
 					/* Text styles */
 					<br />
 					{{ textStyles }}
-					<br /><br />
-					/* Variable axes */
-					<br />
-					{{ variableStyles }}
+					<template v-if="font.isVariable">
+						<br /><br />
+						/* Variable axes */
+						<br />
+						{{ variableStyles }}
+					</template>
 					<br /><br />
 					/* OpenType features */
 					<br />
