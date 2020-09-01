@@ -19,5 +19,5 @@ jobs:
         with:
           node-version: 14.x
       - run: npm install
-      - run: npm run lint -- --no-fix
+      - run: npm run lint -- --no-fix --max-warnings=0
       - run: npm run build
