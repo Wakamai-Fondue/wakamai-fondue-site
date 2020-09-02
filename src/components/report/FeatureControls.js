@@ -31,19 +31,14 @@ export default {
 		getFeatureStyles: function() {
 			let styles = "";
 			let glue = "";
-			for (const feature in this.features) {
+			for (const feature in this.features.optional) {
 				let state;
 				if (this.currentStates[feature] !== undefined) {
 					// CSS state exists, use it
 					state = this.currentStates[feature];
 				} else {
-					// No CSS state yet, create one based off
-					// the
-					if (this.features[feature].state === "fixed") {
-						state = null;
-					} else {
-						state = this.features[feature].state === "on";
-					}
+					// No CSS state yet, create one based off default state
+					state = this.features.optional[feature].state === "on";
 					this.$set(this.currentStates, feature, state);
 				}
 				if (state === null) continue;
@@ -51,9 +46,6 @@ export default {
 				glue = ",";
 			}
 			return `font-feature-settings:${styles};`;
-		},
-		recommendation: function(value) {
-			return value === "fixed" ? "always on" : value;
 		}
 	}
 };

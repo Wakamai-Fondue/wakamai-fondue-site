@@ -17,7 +17,7 @@
 			</p>
 			<ul class="required-features">
 				<li
-					v-for="(values, feature) in features"
+					v-for="(values, feature) in features.fixed"
 					:key="`reqfeat_${feature}`"
 				>
 					<span class="opentype-label">{{ feature }}</span>
@@ -33,7 +33,7 @@
 			</p>
 
 			<div
-				v-for="(values, feature) in features"
+				v-for="(values, feature) in features.optional"
 				:key="`optfeat_${feature}`"
 				class="feature-demo"
 			>

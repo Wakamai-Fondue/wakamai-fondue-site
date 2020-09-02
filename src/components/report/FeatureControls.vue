@@ -3,7 +3,7 @@
 		<h3 v-if="showTitles">OpenType Layout Features</h3>
 		<ul>
 			<li
-				v-for="(values, feature) in features"
+				v-for="(values, feature) in features.optional"
 				:key="`featcont_${feature}`"
 				:class="getClass(feature)"
 			>
@@ -35,7 +35,7 @@
 					</button>
 				</span>
 				<span class="recommendation">
-					Recommended: {{ recommendation(values.state) }}
+					Recommended: {{ values.state }}
 				</span>
 			</li>
 		</ul>

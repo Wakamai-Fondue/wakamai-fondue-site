@@ -19,7 +19,7 @@ export default {
 				// CSS state exists, use it
 				state = this.currentStates[feature];
 			} else {
-				// No CSS state yet, create one based off
+				// No CSS state yet, create one based off default state
 				this.$set(this.currentStates, feature, 1);
 				state = 1;
 			}

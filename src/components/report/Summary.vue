@@ -51,7 +51,16 @@
 		<div class="features" aria-label="Font layout features">
 			<strong>Layout features</strong>
 			<ul>
-				<li v-for="(featureData, feature) in features" :key="feature">
+				<li
+					v-for="(featureData, feature) in features.fixed"
+					:key="feature"
+				>
+					<span class="opentype-label">{{ feature }}</span>
+				</li>
+				<li
+					v-for="(featureData, feature) in features.optional"
+					:key="feature"
+				>
 					<span class="opentype-label">{{ feature }}</span>
 				</li>
 			</ul>
