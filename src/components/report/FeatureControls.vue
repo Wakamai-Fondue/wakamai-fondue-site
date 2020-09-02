@@ -7,9 +7,11 @@
 				:key="`featcont_${feature}`"
 				:class="getClass(feature)"
 			>
-				<span>
+				<span class="feature-description">
 					<span class="opentype-label">{{ feature }}</span>
-					<span class="feature-name">{{ values.name }}</span>
+					<span class="feature-name" :title="values.name">{{
+						values.name
+					}}</span>
 				</span>
 				<span class="buttons">
 					<button
@@ -33,9 +35,6 @@
 					>
 						Default
 					</button>
-				</span>
-				<span class="recommendation">
-					Recommended: {{ values.state }}
 				</span>
 			</li>
 		</ul>

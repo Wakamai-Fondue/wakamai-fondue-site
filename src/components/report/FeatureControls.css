@@ -8,8 +8,13 @@
 	align-items: center;
 	grid-template-columns:
 		16em /* Match axis name + value width */
-		min-content
 		auto;
+}
+
+.feature-description {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .feature-name {
@@ -70,9 +75,4 @@
 .status-null .button-default {
 	background: var(--dark-grey);
 	color: white;
-}
-
-.recommendation {
-	font-style: italic;
-	color: var(--unlighterer-grey);
 }
