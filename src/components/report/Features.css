@@ -12,6 +12,10 @@
 	margin-top: 4rem;
 }
 
+.required-features li {
+	margin-bottom: 3px;
+}
+
 .feature-demo + .feature-demo {
 	margin-top: 1rem;
 }

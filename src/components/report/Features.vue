@@ -15,18 +15,16 @@
 				language scripts or specific languages, or in certain writing
 				modes.
 			</p>
-			<ul>
+			<ul class="required-features">
 				<li
-					v-for="(status, feature) in features"
+					v-for="(values, feature) in features"
 					:key="`reqfeat_${feature}`"
 				>
 					<span class="opentype-label">{{ feature }}</span>
-					{{ feature }}
-					<!-- TODO: human readable feature label -->
+					{{ values.name }}
 				</li>
 			</ul>
 		</div>
-
 		<div class="content" v-if="optionalFeatures">
 			<h3>Optional layout features</h3>
 			<p>
@@ -35,16 +33,18 @@
 			</p>
 
 			<div
-				v-for="(status, feature) in features"
+				v-for="(values, feature) in features"
 				:key="`optfeat_${feature}`"
 				class="feature-demo"
 			>
 				<div class="feature-control">
 					<span class="opentype-label">{{ feature }}</span>
-					{{ feature }}
-					<!-- TODO: human readable feature label -->
-					<span class="state" :class="on ? 'on' : 'off'">
-						<strong v-if="on">on</strong>
+					{{ values.name }}
+					<span
+						class="state"
+						:class="values.state === 'on' ? 'on' : 'off'"
+					>
+						<strong v-if="values.state === 'on'">on</strong>
 						<strong v-else>off</strong>
 						by default
 					</span>
@@ -56,12 +56,7 @@
 						/>Show
 					</label>
 				</div>
-				<div
-					class="chars"
-					:style="{
-						fontFeatureSettings: `'${feature}' ${status}`
-					}"
-				>
+				<div class="chars" :style="getFeatureStyle(feature)">
 					<template v-for="char in chars">{{ char }}</template>
 				</div>
 			</div>

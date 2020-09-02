@@ -4,7 +4,7 @@
 		<ul>
 			<li
 				v-for="(values, feature) in features"
-				:key="feature"
+				:key="`featcont_${feature}`"
 				:class="getClass(feature)"
 			>
 				<span>

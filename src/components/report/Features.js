@@ -1,27 +1,29 @@
 export default {
 	props: ["font"],
-	data: () => ({
-		chars: ["a", "b", "c", "d", "e", "f"],
-		on: true,
-		requiredFeatures: true,
-		optionalFeatures: true
-	}),
-	computed: {
-		features() {
-			// TODO: use actual features from font, duh
-			//       and set them all to 1
-			//       Example: { "smcp": 1, "salt": 1 }
-			const features = ["smcp", "salt", "ss01"];
-			const states = {};
-			for (let feature of features) {
-				states[feature] = 1;
-			}
-			return states;
-		}
+	data() {
+		return {
+			features: this.font.features,
+			chars: ["a", "b", "c", "d", "e", "f"],
+			requiredFeatures: true,
+			optionalFeatures: true,
+			currentStates: []
+		};
 	},
 	methods: {
 		flipState(feature) {
-			this.features[feature] = 1 - this.features[feature];
+			this.currentStates[feature] = 1 - this.currentStates[feature];
+		},
+		getFeatureStyle: function(feature) {
+			let state;
+			if (this.currentStates[feature] !== undefined) {
+				// CSS state exists, use it
+				state = this.currentStates[feature];
+			} else {
+				// No CSS state yet, create one based off
+				this.$set(this.currentStates, feature, 1);
+				state = 1;
+			}
+			return `font-feature-settings:"${feature}" ${state ? "1" : "0"};`;
 		}
 	}
 };
