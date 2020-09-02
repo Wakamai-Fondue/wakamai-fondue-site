@@ -58,9 +58,11 @@
 			/>
 			<div class="styles">
 				<code>
-					&lt;div<template v-if="language">
-						lang="{{ language }}"</template
-					>&gt; ... &lt;/div&gt; <br /><br />
+					<template v-if="font.hasLanguages">
+						&lt;div<template v-if="language">
+							lang="{{ language }}"</template
+						>&gt; ... &lt;/div&gt; <br /><br />
+					</template>
 					&lt;style&gt;
 					<br />
 					/* Text styles */

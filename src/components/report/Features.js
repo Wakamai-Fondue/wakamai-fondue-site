@@ -4,10 +4,16 @@ export default {
 		return {
 			features: this.font.features,
 			chars: ["a", "b", "c", "d", "e", "f"],
-			requiredFeatures: true,
-			optionalFeatures: true,
 			currentStates: []
 		};
+	},
+	computed: {
+		hasRequiredFeatures() {
+			return Object.keys(this.features.fixed).length > 0;
+		},
+		hasOptionalFeatures() {
+			return Object.keys(this.features.optional).length > 0;
+		}
 	},
 	methods: {
 		flipState(feature) {

@@ -48,7 +48,11 @@
 				</tr>
 			</tbody>
 		</table>
-		<div class="features" aria-label="Font layout features">
+		<div
+			class="features"
+			aria-label="Font layout features"
+			v-if="font.hasFeatures"
+		>
 			<strong>Layout features</strong>
 			<ul>
 				<li

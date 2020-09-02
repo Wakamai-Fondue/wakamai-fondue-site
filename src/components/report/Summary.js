@@ -9,7 +9,9 @@ export default {
 	},
 	computed: {
 		featureLength() {
-			const count = Object.keys(this.features).length;
+			const count =
+				Object.keys(this.features.fixed).length +
+				Object.keys(this.features.optional).length;
 			return count || "no";
 		},
 		axesCount() {

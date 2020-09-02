@@ -1,12 +1,8 @@
 <template>
-	<section
-		class="features"
-		id="features"
-		v-if="requiredFeatures && optionalFeatures"
-	>
+	<section class="features" id="features">
 		<h2 class="section-title">Layout Features</h2>
 
-		<div class="content" v-if="requiredFeatures">
+		<div class="content" v-if="hasRequiredFeatures">
 			<h3>Required layout features</h3>
 			<p>
 				These are always turned on by the system that renders the font.
@@ -25,7 +21,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="content" v-if="optionalFeatures">
+		<div class="content" v-if="hasOptionalFeatures">
 			<h3>Optional layout features</h3>
 			<p>
 				Some are turned on by default, but can be turned off. Others are
