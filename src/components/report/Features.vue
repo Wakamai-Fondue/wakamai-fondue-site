@@ -13,11 +13,11 @@
 			</p>
 			<ul class="required-features">
 				<li
-					v-for="(values, feature) in features.fixed"
-					:key="`reqfeat_${feature}`"
+					v-for="feature in requiredFeatures"
+					:key="`reqfeat_${feature.tag}`"
 				>
-					<span class="opentype-label">{{ feature }}</span>
-					{{ values.name }}
+					<span class="opentype-label">{{ feature.tag }}</span>
+					{{ feature.name }}
 				</li>
 			</ul>
 		</div>
@@ -29,30 +29,35 @@
 			</p>
 
 			<div
-				v-for="(values, feature) in features.optional"
-				:key="`optfeat_${feature}`"
+				v-for="feature in optionalFeatures"
+				:key="`optfeat_${feature.tag}`"
 				class="feature-demo"
 			>
 				<div class="feature-control">
-					<span class="opentype-label">{{ feature }}</span>
-					{{ values.name }}
+					<span class="opentype-label">{{ feature.tag }}</span>
+					{{ feature.name }}
 					<span
 						class="state"
-						:class="values.state === 'on' ? 'on' : 'off'"
+						:class="feature.state === 'on' ? 'on' : 'off'"
 					>
-						<strong v-if="values.state === 'on'">on</strong>
+						<strong v-if="feature.state === 'on'">on</strong>
 						<strong v-else>off</strong>
 						by default
 					</span>
 					<label>
 						<input
 							type="checkbox"
-							@change="flipState(feature)"
+							@change="flipState(feature.tag)"
 							checked
 						/>Show
 					</label>
 				</div>
-				<div class="chars" :style="getFeatureStyle(feature)">
+				<div
+					class="chars"
+					:style="getFeatureStyle(feature.tag)"
+					contenteditable
+					spellcheck="false"
+				>
 					<template v-for="char in chars">{{ char }}</template>
 				</div>
 			</div>

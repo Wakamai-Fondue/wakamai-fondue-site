@@ -11,6 +11,11 @@ export default {
 			currentStates: []
 		};
 	},
+	computed: {
+		optionalFeatures() {
+			return this.features.filter(f => f.state !== "fixed");
+		}
+	},
 	mounted: function() {
 		this.updateStyles();
 	},
@@ -31,18 +36,18 @@ export default {
 		getFeatureStyles: function() {
 			let styles = "";
 			let glue = "";
-			for (const feature in this.features.optional) {
+			for (const feature of this.optionalFeatures) {
 				let state;
-				if (this.currentStates[feature] !== undefined) {
+				if (this.currentStates[feature.tag] !== undefined) {
 					// CSS state exists, use it
-					state = this.currentStates[feature];
+					state = this.currentStates[feature.tag];
 				} else {
 					// No CSS state yet, create one based off default state
-					state = this.features.optional[feature].state === "on";
-					this.$set(this.currentStates, feature, state);
+					state = feature.state === "on";
+					this.$set(this.currentStates, feature.tag, state);
 				}
 				if (state === null) continue;
-				styles += `${glue} "${feature}" ${state ? "1" : "0"}`;
+				styles += `${glue} "${feature.tag}" ${state ? "1" : "0"}`;
 				glue = ",";
 			}
 			return `font-feature-settings:${styles};`;

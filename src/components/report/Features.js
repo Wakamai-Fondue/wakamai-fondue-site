@@ -8,11 +8,17 @@ export default {
 		};
 	},
 	computed: {
+		optionalFeatures() {
+			return this.features.filter(f => f.state !== "fixed");
+		},
+		requiredFeatures() {
+			return this.features.filter(f => f.state === "fixed");
+		},
 		hasRequiredFeatures() {
-			return Object.keys(this.features.fixed).length > 0;
+			return this.optionalFeatures.length > 0;
 		},
 		hasOptionalFeatures() {
-			return Object.keys(this.features.optional).length > 0;
+			return this.requiredFeatures.length > 0;
 		}
 	},
 	methods: {

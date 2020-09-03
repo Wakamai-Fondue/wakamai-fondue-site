@@ -9,10 +9,7 @@ export default {
 	},
 	computed: {
 		featureLength() {
-			const count =
-				Object.keys(this.features.fixed).length +
-				Object.keys(this.features.optional).length;
-			return count || "no";
+			return this.font.features.length || "no";
 		},
 		axesCount() {
 			if (this.font.variable) {
