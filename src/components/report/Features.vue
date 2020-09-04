@@ -1,12 +1,8 @@
 <template>
-	<section
-		class="features"
-		id="features"
-		v-if="requiredFeatures && optionalFeatures"
-	>
+	<section class="features" id="features">
 		<h2 class="section-title">Layout Features</h2>
 
-		<div class="content" v-if="requiredFeatures">
+		<div class="content" v-if="hasRequiredFeatures">
 			<h3>Required layout features</h3>
 			<p>
 				These are always turned on by the system that renders the font.
@@ -15,19 +11,17 @@
 				language scripts or specific languages, or in certain writing
 				modes.
 			</p>
-			<ul>
+			<ul class="required-features">
 				<li
-					v-for="(status, feature) in features"
-					:key="`reqfeat_${feature}`"
+					v-for="feature in requiredFeatures"
+					:key="`reqfeat_${feature.tag}`"
 				>
-					<span class="opentype-label">{{ feature }}</span>
-					{{ feature }}
-					<!-- TODO: human readable feature label -->
+					<span class="opentype-label">{{ feature.tag }}</span>
+					{{ feature.name }}
 				</li>
 			</ul>
 		</div>
-
-		<div class="content" v-if="optionalFeatures">
+		<div class="content" v-if="hasOptionalFeatures">
 			<h3>Optional layout features</h3>
 			<p>
 				Some are turned on by default, but can be turned off. Others are
@@ -35,32 +29,34 @@
 			</p>
 
 			<div
-				v-for="(status, feature) in features"
-				:key="`optfeat_${feature}`"
+				v-for="feature in optionalFeatures"
+				:key="`optfeat_${feature.tag}`"
 				class="feature-demo"
 			>
 				<div class="feature-control">
-					<span class="opentype-label">{{ feature }}</span>
-					{{ feature }}
-					<!-- TODO: human readable feature label -->
-					<span class="state" :class="on ? 'on' : 'off'">
-						<strong v-if="on">on</strong>
+					<span class="opentype-label">{{ feature.tag }}</span>
+					{{ feature.name }}
+					<span
+						class="state"
+						:class="feature.state === 'on' ? 'on' : 'off'"
+					>
+						<strong v-if="feature.state === 'on'">on</strong>
 						<strong v-else>off</strong>
 						by default
 					</span>
 					<label>
 						<input
 							type="checkbox"
-							@change="flipState(feature)"
+							@change="flipState(feature.tag)"
 							checked
 						/>Show
 					</label>
 				</div>
 				<div
 					class="chars"
-					:style="{
-						fontFeatureSettings: `'${feature}' ${status}`
-					}"
+					:style="getFeatureStyle(feature.tag)"
+					contenteditable
+					spellcheck="false"
 				>
 					<template v-for="char in chars">{{ char }}</template>
 				</div>

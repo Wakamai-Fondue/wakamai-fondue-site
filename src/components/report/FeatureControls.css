@@ -11,10 +11,21 @@
 		auto;
 }
 
+.feature-description {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .feature-name {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.buttons {
+	white-space: nowrap;
+	margin-right: 1em;
 }
 
 /* TODO: componentalizationreuse */
@@ -42,7 +53,7 @@
 	border-bottom-right-radius: 0;
 }
 
-.on .button-on {
+.status-true .button-on {
 	background: var(--green);
 	color: white;
 }
@@ -51,7 +62,7 @@
 	border-radius: 0;
 }
 
-.off .button-off {
+.status-false .button-off {
 	background: var(--red);
 	color: white;
 }
@@ -61,7 +72,7 @@
 	border-bottom-left-radius: 0;
 }
 
-.default .button-default {
+.status-null .button-default {
 	background: var(--dark-grey);
 	color: white;
 }

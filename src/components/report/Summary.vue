@@ -21,17 +21,21 @@
 
 			<template v-if="font.isVariable">
 				It has
-				<strong>{{ axesCount }}</strong>
-				{{ axesCount | pluralize("axe") }}
+				<strong>
+					{{ axesCount }} {{ axesCount | pluralize("axe") }}
+				</strong>
 				and
-				<strong>{{ instancesCount }}</strong>
-				{{ instancesCount | pluralize("instance") }}.
+				<strong
+					>{{ instancesCount }}
+					{{ instancesCount | pluralize("instance") }}.
+				</strong>
 			</template>
 
 			<template v-if="font.isColor">
 				It has
-				<strong>{{ this.font.colorFormats | listify }}</strong>
-				color glyphs.
+				<strong>
+					{{ this.font.colorFormats | listify }} color glyphs.
+				</strong>
 			</template>
 
 			It has
@@ -48,14 +52,17 @@
 				</tr>
 			</tbody>
 		</table>
-		<div class="features" aria-label="Font layout features">
+		<div
+			class="features"
+			aria-label="Font layout features"
+			v-if="font.hasFeatures"
+		>
 			<strong>Layout features</strong>
 			<ul>
-				<li v-for="(featureData, feature) in features" :key="feature">
-					<span class="opentype-label">{{ feature }}</span>
+				<li v-for="featureData in features" :key="featureData.tag">
+					<span class="opentype-label">{{ featureData.tag }}</span>
 				</li>
 			</ul>
-			<p v-if="features.length == 0">None.</p>
 		</div>
 	</section>
 </template>

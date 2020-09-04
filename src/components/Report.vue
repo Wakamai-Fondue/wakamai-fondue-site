@@ -4,7 +4,7 @@
 		<Tester :font="font" />
 		<Color v-if="font.isColor" :font="font" />
 		<Variable v-if="font.isVariable" :font="font" />
-		<Features :font="font" />
+		<Features v-if="font.hasFeatures" :font="font" />
 		<CharGrid :font="font" />
 		<Footer />
 	</section>
