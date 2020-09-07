@@ -41,7 +41,7 @@
 	background: none;
 	font-size: 0.85rem;
 	background: var(--green);
-	color: white;
+	color: black;
 	cursor: pointer;
 }
 
@@ -52,21 +52,23 @@
 
 .instances-list ul {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 	grid-gap: 0.25rem;
 }
 
-.instances-list .button {
+.instance-button {
+	width: 100%;
 	background: var(--yellow);
 	transition: background 400ms;
 }
 
-.instances-list .button.active {
+.instance-button.active {
 	background: var(--green);
+	color: white;
 	transition: background 0s;
 }
 
-.instances-list .button > span {
+.instance-button .container {
 	display: flex;
 	align-items: center;
 	text-align: left;
@@ -76,7 +78,7 @@
 	flex: none;
 	font-family: wakamai-fondue, monospace;
 	font-size: 2.5em;
-	margin-right: 0.25em;
+	margin-right: 0.5rem;
 }
 
 .instances-dropdown {
