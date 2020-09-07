@@ -9,21 +9,14 @@ export default {
 		FeatureControls,
 		TextControls
 	},
-	data: () => ({
-		variableStyles: "",
-		featureStyles: "",
-		textStyles: "",
-		language: null
-	}),
-	computed: {
-		customText: () => {
-			// TODO: check if there's a name table
-			// entry 19 and return that
-			const customText = false;
-			if (customText) {
-				return "This is custom text";
-			}
-		}
+	data() {
+		return {
+			customText: this.font.customText,
+			variableStyles: "",
+			featureStyles: "",
+			textStyles: "",
+			language: null
+		};
 	},
 	methods: {
 		updateVariableStyles: function(updatedStyles) {
