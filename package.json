@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "fondue": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#master",
+    "fondue": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#e297a9cd9168bfdff5e494a1af5c7dec29a2a87f",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -25,6 +25,6 @@
     "vue-template-compiler": "^2.6.11"
   },
   "engines": {
-		"node": ">=14"
-	}
+    "node": ">=14"
+  }
 }
