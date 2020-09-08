@@ -31,7 +31,7 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="showInstances === 'list'" class="instances-list">
+		<div v-if="hasIntances && showInstances === 'list'" class="instances-list">
 			<h3 v-if="showTitles">Named instances</h3>
 			<ul>
 				<li v-for="(axes, instance) in instances" :key="instance">
@@ -53,7 +53,7 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="showInstances === 'dropdown'">
+		<div v-if="hasIntances && showInstances === 'dropdown'">
 			<h3 v-if="showTitles">Named instances</h3>
 			<span class="instances-dropdown-label">
 				Named instances:

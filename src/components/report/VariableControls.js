@@ -10,6 +10,9 @@ export default {
 	computed: {
 		variableStyles() {
 			return this.getVariableStyles();
+		},
+		hasIntances() {
+			return Object.entries(this.instances).length > 0;
 		}
 	},
 	mounted: function() {
