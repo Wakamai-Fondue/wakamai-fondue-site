@@ -64,12 +64,12 @@
 				</li>
 			</ul>
 		</div>
-		<div class="language">
+		<div class="language" v-if="font.hasLanguages">
 			<strong class="title">Scripts and languages</strong>
-			<div v-if="font.hasLanguages">
-				The font contains localisation fo:
+			<p>
+				The font contains localisation for:
 				{{ languages | listify }}
-			</div>
+			</p>
 		</div>
 	</section>
 </template>

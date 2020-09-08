@@ -15,6 +15,7 @@
 .title {
 	display: block;
 	margin-top: 2rem;
+	padding-bottom: 3px;
 	color: var(--red);
 }
 
