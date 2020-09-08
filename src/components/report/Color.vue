@@ -15,14 +15,10 @@
 					The colors are hardcoded in the font.
 				</template>
 			</p>
-			<h3 v-if="palettes.length">Palettes</h3>
-			<ul
-				v-for="palette in palettes"
-				:key="`palette_${palette}`"
-				class="palette"
-			>
+			<h3 v-if="true">Palettes</h3>
+			<ul class="palette">
 				<li
-					v-for="color in palette"
+					v-for="color in palettes"
 					:key="color"
 					:style="{ background: color }"
 				>
