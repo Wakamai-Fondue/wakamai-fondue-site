@@ -51,9 +51,12 @@ export default {
 			this.activeInstance = activeInstance;
 		},
 		getVariableStyles: function() {
-			const styles = Object.entries(this.axes)
-				.map(([axis, value]) => `"${axis.id}" ${value.current}`)
-				.join(",");
+			let styles = "";
+			let glue = "";
+			for (const axis of Object.values(this.axes)) {
+				styles += `${glue} "${axis.id}" ${axis.current}`;
+				glue = ",";
+			}
 			return `font-variation-settings:${styles};`;
 		},
 		getInstanceStyles: function(instance) {
