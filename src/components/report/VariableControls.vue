@@ -37,14 +37,14 @@
 				<li v-for="(axes, instance) in instances" :key="instance">
 					<button
 						type="button"
-						class="button"
+						class="button instance-button"
 						:class="{ active: instance == activeInstance }"
 						@click="selectInstance(instance)"
 					>
-						<span>
+						<span class="container">
 							<span
 								class="sample"
-								:style="getVariableStyles(axes)"
+								:style="getInstanceStyles(instance)"
 								>wf</span
 							>
 							{{ instance }}

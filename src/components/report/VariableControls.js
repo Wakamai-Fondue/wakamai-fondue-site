@@ -9,7 +9,7 @@ export default {
 	},
 	computed: {
 		variableStyles() {
-			return this.getVariableStyles(this.axes);
+			return this.getVariableStyles();
 		}
 	},
 	mounted: function() {
@@ -30,18 +30,15 @@ export default {
 			this.updateStyles();
 		},
 		updateStyles: function() {
-			this.$emit(
-				"updateVariableStyles",
-				this.getVariableStyles(this.axes)
-			);
+			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
 		},
 		matchInstance: function() {
 			// Using a simple JSON.stringify to compare an object with the
 			// current axes values, with the axes values of the instances.
 			const currentAxes = {};
-			for (const axis in this.axes) {
-				currentAxes[axis] = this.axes[axis].current;
+			for (const axis of Object.values(this.axes)) {
+				currentAxes[axis.id] = axis.current;
 			}
 			const current = JSON.stringify(currentAxes);
 
@@ -53,13 +50,16 @@ export default {
 			}
 			this.activeInstance = activeInstance;
 		},
-		getVariableStyles: function(axes) {
-			let styles = "";
-			let glue = "";
-			for (const axis of Object.values(axes)) {
-				styles += `${glue} "${axis.id}" ${axis.current}`;
-				glue = ",";
-			}
+		getVariableStyles: function() {
+			const styles = Object.entries(this.axes)
+				.map(([axis, value]) => `"${axis.id}" ${value.current}`)
+				.join(",");
+			return `font-variation-settings:${styles};`;
+		},
+		getInstanceStyles: function(instance) {
+			const styles = Object.entries(this.instances[instance])
+				.map(([axis, value]) => `"${axis}" ${value}`)
+				.join(",");
 			return `font-variation-settings:${styles};`;
 		}
 	}
