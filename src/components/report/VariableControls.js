@@ -51,22 +51,15 @@ export default {
 			this.activeInstance = activeInstance;
 		},
 		getVariableStyles: function() {
-			let styles = "";
-			let glue = "";
-			for (const axis of Object.values(this.axes)) {
-				styles += `${glue} "${axis.id}" ${axis.current}`;
-				glue = ",";
-			}
+			const styles = Object.entries(this.axes)
+				.map(([axis, value]) => `"${axis.id}" ${value.current}`)
+				.join(",");
 			return `font-variation-settings:${styles};`;
 		},
 		getInstanceStyles: function(instance) {
-			const axes = this.instances[instance];
-			let styles = "";
-			let glue = "";
-			for (const axis in axes) {
-				styles += `${glue} "${axis}" ${axes[axis]}`;
-				glue = ",";
-			}
+			const styles = Object.entries(this.instances[instance])
+				.map(([axis, value]) => `"${axis}" ${value}`)
+				.join(",");
 			return `font-variation-settings:${styles};`;
 		}
 	}
