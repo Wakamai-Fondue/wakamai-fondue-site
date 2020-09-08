@@ -57,12 +57,19 @@
 			aria-label="Font layout features"
 			v-if="font.hasFeatures"
 		>
-			<strong>Layout features</strong>
+			<strong class="title">Layout features</strong>
 			<ul>
 				<li v-for="featureData in features" :key="featureData.tag">
 					<span class="opentype-label">{{ featureData.tag }}</span>
 				</li>
 			</ul>
+		</div>
+		<div class="language" v-if="font.hasLanguages">
+			<strong class="title">Scripts and languages</strong>
+			<p>
+				The font contains localisation for:
+				{{ languages | listify }}
+			</p>
 		</div>
 	</section>
 </template>

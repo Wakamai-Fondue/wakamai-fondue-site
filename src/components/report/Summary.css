@@ -12,9 +12,15 @@
     text-align: center;
 }
 
-.features,
+.title {
+	display: block;
+	margin-top: 2rem;
+	padding-bottom: 3px;
+	color: var(--red);
+}
+
 .details {
-	margin-top: 1em;
+	margin-top: 2rem;
 }
 
 .details tr + tr {
@@ -33,10 +39,6 @@
 
 .details td {
 	padding-top: 3px;
-}
-
-.features strong {
-	color: var(--red);
 }
 
 .features ul {
