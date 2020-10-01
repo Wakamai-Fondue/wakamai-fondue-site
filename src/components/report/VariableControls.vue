@@ -31,7 +31,10 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="hasIntances && showInstances === 'list'" class="instances-list">
+		<div
+			v-if="hasIntances && showInstances === 'list'"
+			class="instances-list"
+		>
 			<h3 v-if="showTitles">Named instances</h3>
 			<ul>
 				<li v-for="(axes, instance) in instances" :key="instance">
