@@ -10,12 +10,16 @@ export default {
 		Hero,
 		Report
 	},
-	data: () => ({
-		font: false,
-		dragging: false
-	}),
+	data() {
+		return {
+			font: false,
+			dragging: false
+		};
+	},
 	methods: {
 		loadFondue(fileOrBlob, data, fileName, that) {
+			// Destroy old font prop so Vue picks up change
+			that.font = false;
 			fromDataBuffer(data, fileName).then(fondue => {
 				that.injectStyleSheet(fileOrBlob);
 				that.font = fondue;
