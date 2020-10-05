@@ -9,7 +9,7 @@
 
 				<template v-if="palettes.length">
 					It has {{ palettes.length }}
-					{{ palettes | pluralize("palette") }}.
+					{{ palettes.length | pluralize("palette") }}.
 				</template>
 				<template v-else>
 					The colors are hardcoded in the font.
