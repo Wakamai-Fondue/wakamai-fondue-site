@@ -17,10 +17,14 @@
 			</p>
 			<template v-if="palettes.length">
 				<h3>Palettes</h3>
-				<ul class="palette">
+				<ul
+					class="palette"
+					v-for="(palette, palIndex) in palettes"
+					:key="`pal_${palIndex}`"
+				>
 					<li
-						v-for="color in palettes"
-						:key="color"
+						v-for="(color, colorIndex) in palette"
+						:key="`clr_${palIndex}_${colorIndex}`"
 						:style="{ background: color }"
 					>
 						<span class="label">{{ color }}</span>
