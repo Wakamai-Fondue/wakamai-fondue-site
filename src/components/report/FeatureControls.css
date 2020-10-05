@@ -28,6 +28,10 @@
 	margin-right: 1em;
 }
 
+.buttons .button {
+	display: none;
+}
+
 /* TODO: componentalizationreuse */
 .button {
 	padding: 0.25rem 0.5rem;
@@ -48,31 +52,20 @@
 	background-color: var(--unlighterer-grey);
 }
 
-.button-on {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
 .status-true .button-on {
+	display: inline-block;
 	background: var(--green);
 	color: white;
 }
 
-.button-off {
-	border-radius: 0;
-}
-
 .status-false .button-off {
+	display: inline-block;
 	background: var(--red);
 	color: white;
 }
 
-.button-default {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-
 .status-null .button-default {
+	display: inline-block;
 	background: var(--dark-grey);
 	color: white;
 }
