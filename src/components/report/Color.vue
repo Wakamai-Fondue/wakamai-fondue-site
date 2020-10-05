@@ -9,26 +9,28 @@
 
 				<template v-if="palettes.length">
 					It has {{ palettes.length }}
-					{{ palettes | pluralize("palette") }}.
+					{{ palettes.length | pluralize("palette") }}.
 				</template>
 				<template v-else>
 					The colors are hardcoded in the font.
 				</template>
 			</p>
-			<h3 v-if="palettes.length">Palettes</h3>
-			<ul
-				v-for="palette in palettes"
-				:key="`palette_${palette}`"
-				class="palette"
-			>
-				<li
-					v-for="color in palette"
-					:key="color"
-					:style="{ background: color }"
+			<template v-if="palettes.length">
+				<h3>Palettes</h3>
+				<ul
+					class="palette"
+					v-for="(palette, palIndex) in palettes"
+					:key="`pal_${palIndex}`"
 				>
-					<span class="label">{{ color }}</span>
-				</li>
-			</ul>
+					<li
+						v-for="(color, colorIndex) in palette"
+						:key="`clr_${palIndex}_${colorIndex}`"
+						:style="{ background: color }"
+					>
+						<span class="label">{{ color }}</span>
+					</li>
+				</ul>
+			</template>
 		</div>
 	</section>
 </template>
