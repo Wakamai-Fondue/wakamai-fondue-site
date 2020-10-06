@@ -7,7 +7,7 @@
 				<strong>{{ this.font.colorFormats | listify }}</strong>
 				color glyphs.
 
-				<template v-if="hasPalettes">
+				<template v-if="{{ palettes.length }}">
 					It has {{ palettes.length }}
 					{{ palettes.length | pluralize("palette") }}.
 				</template>
@@ -15,7 +15,7 @@
 					The colors are hardcoded in the font.
 				</template>
 			</p>
-			<template v-if="hasPalettes">
+			<template v-if="{{ palettes.length }}">
 				<h3>Palettes</h3>
 				<ul
 					class="palette"
