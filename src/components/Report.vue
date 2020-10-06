@@ -6,6 +6,7 @@
 		<Variable v-if="font.isVariable" :font="font" />
 		<Features v-if="font.hasFeatures" :font="font" />
 		<CharGrid :font="font" />
+		<Stylesheet :font="font" />
 		<Footer />
 	</section>
 </template>
