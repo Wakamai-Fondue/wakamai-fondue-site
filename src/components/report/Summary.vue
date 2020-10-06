@@ -68,7 +68,7 @@
 			<strong class="title">Scripts and languages</strong>
 			<p>
 				The font contains localisation for:
-				{{ languages | listify }}
+				{{ languages | listify }}.
 			</p>
 		</div>
 	</section>

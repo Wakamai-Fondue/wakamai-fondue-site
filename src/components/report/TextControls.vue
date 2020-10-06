@@ -40,7 +40,7 @@
 					class="button left"
 					:class="{ active: textAlign === 'left' }"
 					@click="align('left')"
-					alt="left align text"
+					title="Left align text"
 				></button>
 				<button
 					v-html="`&nbsp;`"
@@ -48,7 +48,7 @@
 					class="button center"
 					:class="{ active: textAlign === 'center' }"
 					@click="align('center')"
-					alt="center align text"
+					title="Center align text"
 				></button>
 				<button
 					v-html="`&nbsp;`"
@@ -56,7 +56,7 @@
 					class="button right"
 					:class="{ active: textAlign === 'right' }"
 					@click="align('right')"
-					alt="right align text"
+					title="Right align text"
 				></button>
 				<button
 					v-html="`&nbsp;`"
@@ -64,14 +64,14 @@
 					class="button justify"
 					:class="{ active: textAlign === 'justify' }"
 					@click="align('justify')"
-					alt="justify text"
+					title="Justify text"
 				></button>
 				<button
 					type="button"
 					class="button initial"
 					:class="{ active: textAlign === 'initial' }"
 					@click="align('initial')"
-					alt="default alignment"
+					title="Default alignment"
 				>
 					Default
 				</button>
