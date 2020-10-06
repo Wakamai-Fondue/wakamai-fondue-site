@@ -36,6 +36,7 @@ export default {
 		getFeatureStyles: function() {
 			let styles = "";
 			let glue = "";
+			let counter = 2; // First line should be shorter
 			for (const feature of this.optionalFeatures) {
 				let state;
 				if (this.currentStates[feature.tag] !== undefined) {
@@ -49,8 +50,18 @@ export default {
 				if (state === null) continue;
 				styles += `${glue} "${feature.tag}" ${state ? "1" : "0"}`;
 				glue = ",";
+				// Poor man's code formatting
+				if (counter++ > 6) {
+					counter = 0;
+					glue = "";
+					styles += `, \n                      `;
+				}
 			}
-			return `font-feature-settings:${styles};`;
+			if (styles) {
+				return `font-feature-settings:${styles};`;
+			} else {
+				return "";
+			}
 		}
 	}
 };

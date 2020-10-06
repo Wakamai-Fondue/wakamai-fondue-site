@@ -1,8 +1,8 @@
 <template>
 	<section class="stylesheet" id="stylesheet">
 		<h2 class="section-title">CSS</h2>
-		<div class="content styles">
-			<code>{{ css }}</code>
+		<div class="content">
+			<Prism language="css">{{ css }}</Prism>
 		</div>
 	</section>
 </template>
