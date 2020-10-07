@@ -67,4 +67,4 @@
 </template>
 
 <script src="./Tester.js"></script>
-<sryle src="./Tester.css" scoped></sryle>
+<style src="./Tester.css" scoped></style>
