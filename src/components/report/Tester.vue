@@ -56,31 +56,11 @@
 				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
 			/>
-			<div class="styles">
-				<code>
-					<template v-if="font.hasLanguages">
-						&lt;div<template v-if="language">
-							lang="{{ language }}"</template
-						>&gt; ... &lt;/div&gt; <br /><br />
-					</template>
-					&lt;style&gt;
-					<br />
-					/* Text styles */
-					<br />
-					{{ textStyles }}
-					<template v-if="font.isVariable">
-						<br /><br />
-						/* Variable axes */
-						<br />
-						{{ variableStyles }}
-					</template>
-					<br /><br />
-					/* OpenType features */
-					<br />
-					{{ featureStyles }}
-					<br />
-					&lt;/style&gt;
-				</code>
+			<div class="code">
+				<Prism language="html" v-if="font.hasLanguages">{{
+					html
+				}}</Prism>
+				<Prism language="css">{{ styles }}</Prism>
 			</div>
 		</div>
 	</section>

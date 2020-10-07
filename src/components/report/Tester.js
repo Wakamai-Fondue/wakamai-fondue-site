@@ -1,13 +1,15 @@
 import VariableControls from "./VariableControls.vue";
 import FeatureControls from "./FeatureControls.vue";
 import TextControls from "./TextControls.vue";
+import Prism from "vue-prism-component";
 
 export default {
 	props: ["font"],
 	components: {
 		VariableControls,
 		FeatureControls,
-		TextControls
+		TextControls,
+		Prism
 	},
 	data() {
 		return {
@@ -17,6 +19,14 @@ export default {
 			textStyles: "",
 			language: null
 		};
+	},
+	computed: {
+		html() {
+			return this.getHTML();
+		},
+		styles() {
+			return this.getStyles();
+		}
 	},
 	methods: {
 		updateVariableStyles: function(updatedStyles) {
@@ -31,6 +41,23 @@ export default {
 		updateLanguage: function(updatedLanguage) {
 			updatedLanguage = updatedLanguage || null;
 			this.language = updatedLanguage;
+		},
+		getHTML: function() {
+			if (this.language) {
+				return `<div lang="${this.language}"> ... </div>`;
+			} else {
+				return `<div> ... </div>`;
+			}
+		},
+		getStyles: function() {
+			let css = this.textStyles;
+			if (this.featureStyles) {
+				css += `\n\n` + this.featureStyles;
+			}
+			if (this.variableStyles) {
+				css += `\n\n` + this.variableStyles;
+			}
+			return css;
 		}
 	}
 };

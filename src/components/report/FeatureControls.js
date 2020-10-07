@@ -36,6 +36,8 @@ export default {
 		getFeatureStyles: function() {
 			let styles = "";
 			let glue = "";
+			let counter = 0;
+			let maxProps = 7;
 			for (const feature of this.optionalFeatures) {
 				let state;
 				if (this.currentStates[feature.tag] !== undefined) {
@@ -49,8 +51,16 @@ export default {
 				if (state === null) continue;
 				styles += `${glue} "${feature.tag}" ${state ? "1" : "0"}`;
 				glue = ",";
+				// Poor man's code formatting
+				if (++counter % maxProps === 0) {
+					glue = `,\n                      `;
+				}
 			}
-			return `font-feature-settings:${styles};`;
+			if (styles) {
+				return `font-feature-settings:${styles};`;
+			} else {
+				return "";
+			}
 		}
 	}
 };

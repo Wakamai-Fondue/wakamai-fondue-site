@@ -2,7 +2,7 @@ module.exports = {
 	devServer: {
 		disableHostCheck: true,
 		watchOptions: {
-			ignored: [/node_modules([\\]+|\/)+(?!fondue)/]
+			ignored: [/node_modules([\\]+|\/)+(?!@wakamai-fondue\/engine)/]
 		}
 	},
 	configureWebpack: {

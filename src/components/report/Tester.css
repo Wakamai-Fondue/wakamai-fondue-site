@@ -28,10 +28,6 @@
 	color: white;
 }
 
-.styles {
+.code {
     margin-top: 2rem;
-    /* Temporary code styles, will whip up a site-wide one */
-    background: black;
-    color: white;
-    padding: 2em;
 }

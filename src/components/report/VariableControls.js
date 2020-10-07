@@ -1,5 +1,10 @@
+import Prism from "vue-prism-component";
+
 export default {
 	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
+	components: {
+		Prism
+	},
 	data() {
 		return {
 			activeInstance: "",
@@ -56,11 +61,21 @@ export default {
 		getVariableStyles: function() {
 			let styles = "";
 			let glue = "";
+			let counter = 0;
+			let maxProps = 6;
 			for (const axis of Object.values(this.axes)) {
 				styles += `${glue} "${axis.id}" ${axis.current}`;
 				glue = ",";
+				// Poor man's code formatting
+				if (++counter % maxProps === 0) {
+					glue = `,\n                        `;
+				}
 			}
-			return `font-variation-settings:${styles};`;
+			if (styles) {
+				return `font-variation-settings:${styles};`;
+			} else {
+				return "";
+			}
 		},
 		getInstanceStyles: function(instance) {
 			const styles = Object.entries(this.instances[instance])

@@ -74,11 +74,7 @@
 				</option>
 			</select>
 		</div>
-		<div v-if="showStyles" class="variable-styles">
-			<code>
-				{{ variableStyles }}
-			</code>
-		</div>
+		<Prism v-if="showStyles" language="css">{{ variableStyles }}</Prism>
 	</div>
 </template>
 
