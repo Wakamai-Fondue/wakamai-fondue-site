@@ -24,10 +24,10 @@ export default {
 			return `status-${this.currentStates[feature]}`;
 		},
 		flipState(feature, state) {
-			if (this.currentStates[feature] === state) {
-				state = null;
-			}
-			this.currentStates[feature] = state;
+			const states = [true, false, null];
+			const currentIndex = states.indexOf(state);
+			const nextIndex = (currentIndex + 1) % states.length;
+			this.currentStates[feature] = states[nextIndex];
 			this.updateStyles();
 		},
 		updateStyles: function() {
