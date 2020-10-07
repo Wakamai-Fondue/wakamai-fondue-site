@@ -53,7 +53,7 @@ export default {
 				glue = ",";
 				// Poor man's code formatting
 				if (++counter % maxProps === 0) {
-					glue = `, \n                      `;
+					glue = `,\n                      `;
 				}
 			}
 			if (styles) {
