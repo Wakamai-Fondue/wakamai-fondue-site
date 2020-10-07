@@ -61,15 +61,14 @@ export default {
 		getVariableStyles: function() {
 			let styles = "";
 			let glue = "";
-			let counter = 2; // First line should be shorter
+			let counter = 0;
+			let maxProps = 6;
 			for (const axis of Object.values(this.axes)) {
 				styles += `${glue} "${axis.id}" ${axis.current}`;
 				glue = ",";
 				// Poor man's code formatting
-				if (counter++ > 6) {
-					counter = 0;
-					glue = "";
-					styles += `, \n                        `;
+				if (++counter % maxProps === 0) {
+					glue = `, \n                        `;
 				}
 			}
 			if (styles) {
