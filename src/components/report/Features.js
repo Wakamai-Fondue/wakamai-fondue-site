@@ -15,10 +15,10 @@ export default {
 			return this.features.filter(f => f.state === "fixed");
 		},
 		hasRequiredFeatures() {
-			return this.optionalFeatures.length > 0;
+			return this.requiredFeatures.length > 0;
 		},
 		hasOptionalFeatures() {
-			return this.requiredFeatures.length > 0;
+			return this.optionalFeatures.length > 0;
 		}
 	},
 	methods: {
