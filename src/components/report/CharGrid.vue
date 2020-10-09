@@ -4,6 +4,15 @@
 		<div class="content" :class="{ 'show-features': showFeatures }">
 			<div class="char-bar">
 				<span>{{ charCount }} characters</span>
+				<label>
+					<input
+						type="checkbox"
+						name="toggle-categories"
+						checked
+						@change="toggleCategories()"
+					/>Categories
+				</label>
+
 				<label v-if="font.isVariable && hasAxes">
 					<input
 						type="checkbox"
@@ -31,7 +40,40 @@
 				@updateVariableStyles="updateVariableStyles"
 				class="char-sliders"
 			/>
-			<ol class="grid" :style="variableStyles">
+
+			<template v-if="showCategories">
+				<div v-for="(cat, index) in catChars" :key="`cat${index}`">
+					<h3 class="title">
+						{{ cat.category }}
+						<template v-if="cat.subCategory || cat.script">
+							—
+							{{ cat.subCategory }}
+							{{ cat.script | capitalize }}
+						</template>
+					</h3>
+
+					<ol class="grid" :style="variableStyles">
+						<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->
+						<li
+							v-for="char in cat.chars"
+							:key="`${char}`"
+							class="code"
+						>
+							<span class="char" v-html="entitify(char)"></span>
+							<span class="label" v-if="!char.feature">{{
+								char
+							}}</span>
+							<!--
+						<span class="label" v-if="char.feature">{{
+							char.feature
+						}}</span>
+						-->
+						</li>
+					</ol>
+				</div>
+			</template>
+
+			<ol class="grid" :style="variableStyles" v-if="!showCategories">
 				<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->
 				<li v-for="char in chars" :key="char" class="code">
 					<span class="char" v-html="entitify(char)"></span>

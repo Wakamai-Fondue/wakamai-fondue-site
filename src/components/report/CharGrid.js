@@ -8,7 +8,9 @@ export default {
 	data() {
 		return {
 			variableStyles: "",
+			showCategories: true,
 			chars: this.font.supportedCharacters,
+			catChars: this.font.categorisedCharacters,
 			charCount: this.font.supportedCharacters.length,
 			hasAxes: this.font.variable && this.font.variable.axes.length,
 			showAxes: this.font.isVariable,
@@ -19,6 +21,9 @@ export default {
 	methods: {
 		entitify: function(code) {
 			return `&#x${code};`;
+		},
+		toggleCategories: function() {
+			this.showCategories = !this.showCategories;
 		},
 		toggleAxes: function() {
 			this.variableStyles = "";

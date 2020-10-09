@@ -13,3 +13,10 @@ Vue.filter("listify", array => {
 Vue.filter("pluralize", (value, word) => {
 	return `${word}${value !== 1 ? "s" : ""}`;
 });
+
+// Capitalize a word
+Vue.filter("capitalize", function(value) {
+	if (!value) return "";
+	value = value.toString();
+	return value.charAt(0).toUpperCase() + value.slice(1);
+});
