@@ -58,7 +58,7 @@
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	padding-top: 1.5rem;
+	padding-top: 3rem;
 	font-size: 0.9rem;
 	color: rgba(0, 0, 0, 0.6);
 }
@@ -93,6 +93,19 @@
 
 .dragging .upload {
 	transform: scale(1.1);
+}
+
+.errormessage {
+	margin-top: 1.25rem;
+	color: var(--red);
+	font-weight: bold;
+	opacity: 0;
+	transition: opacity 500ms;
+}
+
+.errormessage.show {
+	opacity: 1;
+	transition: none;
 }
 
 @keyframes weeee {

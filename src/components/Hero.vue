@@ -1,6 +1,6 @@
 <template>
 	<header class="hero">
-		<Filedrop />
+		<Filedrop :error="error" />
 		<img src="../img/pixelambacht.svg" alt="" class="logo" />
 	</header>
 </template>

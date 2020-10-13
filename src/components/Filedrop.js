@@ -3,6 +3,7 @@
 // "uploaded" and converted to a JS object in App.js
 
 export default {
+	props: ["error"],
 	methods: {
 		getFont(e) {
 			// Quick and clean way to emit to grandparent
