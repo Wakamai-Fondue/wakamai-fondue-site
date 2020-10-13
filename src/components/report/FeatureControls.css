@@ -2,6 +2,10 @@
 	margin: 2rem 0;
 }
 
+.feature-controls.long ul {
+	columns: 2;
+}
+
 .feature-controls li {
 	margin-bottom: 3px;
 	display: grid;
@@ -15,6 +19,8 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	display: flex;
+	align-items: center;
 }
 
 .feature-name {

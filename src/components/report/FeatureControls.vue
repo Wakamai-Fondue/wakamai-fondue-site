@@ -1,5 +1,5 @@
 <template>
-	<div class="feature-controls">
+	<div class="feature-controls" :class="{ long }">
 		<h3 v-if="showTitles">OpenType Layout Features</h3>
 		<ul>
 			<li
