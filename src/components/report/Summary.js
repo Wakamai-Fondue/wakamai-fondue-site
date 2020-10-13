@@ -8,6 +8,9 @@ export default {
 		};
 	},
 	computed: {
+		hasLocalization() {
+			return this.font.languageSystems.length > 0;
+		},
 		featureLength() {
 			return this.font.features.length || "no";
 		},

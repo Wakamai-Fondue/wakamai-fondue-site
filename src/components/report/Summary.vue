@@ -64,12 +64,18 @@
 				</li>
 			</ul>
 		</div>
-		<div class="language" v-if="font.hasLanguages">
-			<strong class="title">Scripts and languages</strong>
+		<div class="language">
+			<strong class="title">Supported languages</strong>
 			<p>
-				The font contains localisation for:
-				{{ languages | listify }}.
+				{{
+					font.languageSupport
+						| listify("None that Wakamai Fondue could detect")
+				}}.
 			</p>
+			<template v-if="hasLocalization">
+				<strong class="title">Localization</strong>
+				<p>{{ languages | listify }}.</p>
+			</template>
 		</div>
 	</section>
 </template>
