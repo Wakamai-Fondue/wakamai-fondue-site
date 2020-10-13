@@ -14,6 +14,9 @@ export default {
 	computed: {
 		optionalFeatures() {
 			return this.features.filter(f => f.state !== "fixed");
+		},
+		long() {
+			return this.optionalFeatures.length > 8;
 		}
 	},
 	mounted: function() {
