@@ -13,21 +13,34 @@ export default {
 	data() {
 		return {
 			font: false,
-			dragging: false
+			dragging: false,
+			error: false
 		};
 	},
 	methods: {
+		dragStatus(status) {
+			this.dragging = status;
+			if (status) {
+				// If a new file is being dragged, remove any
+				// old error messages so we don't confuse the user
+				this.error = false;
+			}
+		},
 		loadFondue(fileOrBlob, data, fileName, that) {
 			// Destroy old font prop so Vue picks up change
 			that.font = false;
-			fromDataBuffer(data, fileName).then(fondue => {
-				that.injectStyleSheet(fileOrBlob);
-				that.font = fondue;
-				that.$nextTick(() =>
-					document.getElementById("report").scrollIntoView()
-				);
-				window.font = fondue; // DEV DEBUG ONLY !!
-			});
+			fromDataBuffer(data, fileName)
+				.then(fondue => {
+					that.error = false;
+					that.injectStyleSheet(fileOrBlob);
+					that.font = fondue;
+					that.$nextTick(() =>
+						document.getElementById("report").scrollIntoView()
+					);
+				})
+				.catch(function() {
+					that.error = true;
+				});
 		},
 		getFont(e) {
 			e.preventDefault();

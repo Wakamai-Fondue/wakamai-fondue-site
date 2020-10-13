@@ -19,6 +19,9 @@
 				>
 					Try with Bungee!
 				</button>
+				<span class="errormessage" :class="{ show: error }">
+					Oops! I couldn't handle that file.
+				</span>
 			</div>
 		</label>
 	</div>

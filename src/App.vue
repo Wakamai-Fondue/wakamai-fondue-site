@@ -2,11 +2,15 @@
 	<main
 		id="app"
 		@drop.prevent="getFont"
-		@dragover.prevent="dragging = true"
-		@mouseout="dragging = false"
+		@dragover.prevent="dragStatus(true)"
+		@mouseout="dragStatus(false)"
 		:class="{ dragging }"
 	>
-		<Hero v-on:getFont="getFont" v-on:getExampleFont="getExampleFont" />
+		<Hero
+			v-on:getFont="getFont"
+			v-on:getExampleFont="getExampleFont"
+			:error="error"
+		/>
 		<Report :font="font" />
 	</main>
 </template>
