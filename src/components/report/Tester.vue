@@ -1,7 +1,10 @@
 <template>
 	<section id="tester">
 		<h2 class="section-title">Tester</h2>
-		<div class="tester-wrapper">
+		<div class="tester-wrapper" :class="{ light }">
+			<button type="button" class="light-switch" @click="lightSwitch">
+				💡
+			</button>
 			<div
 				class="tester"
 				spellcheck="false"
