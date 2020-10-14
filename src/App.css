@@ -81,7 +81,7 @@ button {
 	display: inline-flex;
 	align-items: center;
 	height: 1.5rem;
-	padding: 0 0.6rem;
+	padding: 0 0.75rem;
 	margin-right: 0.25rem;
 	border-radius: 99999px;
 	background: var(--offwhite);
