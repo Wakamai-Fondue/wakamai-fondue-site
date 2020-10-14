@@ -4,17 +4,20 @@
 import { fromDataBuffer } from "@wakamai-fondue/engine/browser";
 import Hero from "./components/Hero.vue";
 import Report from "./components/Report.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
 	components: {
 		Hero,
-		Report
+		Report,
+		Modal
 	},
 	data() {
 		return {
 			font: false,
 			dragging: false,
-			error: false
+			error: false,
+			showModal: false
 		};
 	},
 	methods: {
@@ -105,6 +108,13 @@ export default {
 					`@font-face { font-family: 'wakamai-fondue'; src: url('${objectURL}'); }`
 				)
 			);
+		},
+		closeModal(forceClose) {
+			if (forceClose) {
+				this.showModal = false;
+			} else {
+				this.showModal = !this.showModal;
+			}
 		}
 	}
 };
