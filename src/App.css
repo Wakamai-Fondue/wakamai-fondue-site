@@ -2,6 +2,7 @@
 	--yellow: #d8b33d;
 	--green: #5f8e5d;
 	--red: #cd4e49;
+	--offwhite: #dfd6b3;
 
 	--dark-grey: #444;
 
@@ -81,6 +82,5 @@ button {
 	margin-right: 0.25rem;
 	border-radius: 99999px;
 	font-family: monospace;
-	background: var(--yellow);
-	color: white;
+	background: var(--offwhite);
 }
