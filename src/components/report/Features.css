@@ -30,6 +30,7 @@
 	color: var(--green);
 }
 
+.required-features li,
 .feature-control {
 	display: flex;
 	align-items: center;
