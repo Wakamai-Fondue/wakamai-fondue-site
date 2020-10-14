@@ -86,3 +86,12 @@ button {
 	border-radius: 99999px;
 	background: var(--offwhite);
 }
+
+@media screen and (prefers-reduced-motion: reduce) {
+    *,
+    *:before,
+    *:after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
