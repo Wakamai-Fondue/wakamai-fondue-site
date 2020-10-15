@@ -57,7 +57,7 @@
 }
 
 .info {
-	position: absolute;
+	position: fixed;
 	z-index: 100;
 	right: 1.5vw;
 	top: 1.5vw;
