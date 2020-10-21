@@ -8,10 +8,13 @@ export default {
 		};
 	},
 	computed: {
+		hasLocalization() {
+			return this.font.languageSystems.length > 0;
+		},
 		featureLength() {
 			return this.font.features.length || "no";
 		},
-		languages() {
+		localizations() {
 			return this.font.languageSystems.map(l => l.name);
 		},
 		axesCount() {

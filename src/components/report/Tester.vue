@@ -60,9 +60,7 @@
 				@updateVariableStyles="updateVariableStyles"
 			/>
 			<div class="code">
-				<Prism language="html" v-if="font.hasLanguages">{{
-					html
-				}}</Prism>
+				<Prism language="html" v-if="hasLocalization">{{ html }}</Prism>
 				<Prism language="css">{{ styles }}</Prism>
 			</div>
 		</div>

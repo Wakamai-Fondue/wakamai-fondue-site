@@ -13,7 +13,7 @@
 				/>
 			</label>
 		</div>
-		<div v-if="font.hasLanguages">
+		<div v-if="hasLocalization">
 			<label>
 				Language
 				<select

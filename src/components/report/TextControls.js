@@ -8,6 +8,11 @@ export default {
 			languages: this.font.languageSystems
 		};
 	},
+	computed: {
+		hasLocalization() {
+			return this.font.languageSystems.length > 0;
+		}
+	},
 	mounted: function() {
 		this.updateStyles();
 	},
