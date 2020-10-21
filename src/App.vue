@@ -4,14 +4,18 @@
 		@drop.prevent="getFont"
 		@dragover.prevent="dragStatus(true)"
 		@mouseout="dragStatus(false)"
+		@keydown.esc="toggleModal(true)"
+		tabindex="0"
 		:class="{ dragging }"
 	>
 		<Hero
 			v-on:getFont="getFont"
 			v-on:getExampleFont="getExampleFont"
+			v-on:toggleModal="toggleModal"
 			:error="error"
 		/>
 		<Report :font="font" />
+		<Modal v-if="showModal" v-on:toggleModal="toggleModal" />
 	</main>
 </template>
 

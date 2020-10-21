@@ -8,7 +8,7 @@ export default {
 		getFont(e) {
 			// Quick and clean way to emit to grandparent
 			// that a file has been picked
-			let vm = this.$parent;
+			let vm = this;
 			while (vm) {
 				vm.$emit("getFont", e);
 				vm = vm.$parent;
@@ -17,7 +17,7 @@ export default {
 		getExampleFont(filename) {
 			// Quick and clean way to emit to grandparent
 			// that a file has been picked
-			let vm = this.$parent;
+			let vm = this;
 			while (vm) {
 				vm.$emit("getExampleFont", filename);
 				vm = vm.$parent;

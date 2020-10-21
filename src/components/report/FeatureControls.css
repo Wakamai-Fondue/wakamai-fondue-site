@@ -8,11 +8,7 @@
 
 .feature-controls li {
 	margin-bottom: 3px;
-	display: grid;
-	align-items: center;
-	grid-template-columns:
-		16em /* Match axis name + value width */
-		auto;
+	display: flex;
 }
 
 .feature-description {
@@ -31,7 +27,7 @@
 
 .buttons {
 	white-space: nowrap;
-	margin-right: 1em;
+	margin-right: 1rem;
 }
 
 .buttons .button {
