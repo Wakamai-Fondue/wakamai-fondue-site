@@ -70,3 +70,10 @@
 	padding: 1em;
 	margin-bottom: 0.25rem;
 }
+
+.title {
+	display: block;
+	margin-top: 2rem;
+	padding-bottom: 3px;
+	color: var(--red);
+}
