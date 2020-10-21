@@ -5,6 +5,7 @@ module.exports = {
 			ignored: [/node_modules([\\]+|\/)+(?!@wakamai-fondue\/engine)/]
 		}
 	},
+	transpileDependencies: ["@wakamai-fondue/engine"],
 	configureWebpack: {
 		resolve: {
 			symlinks: false // npm link
