@@ -11,7 +11,7 @@ export default {
 			// that modal should be opened/closed
 			let vm = this;
 			while (vm) {
-				vm.$emit("closeModal");
+				vm.$emit("toggleModal");
 				vm = vm.$parent;
 			}
 		}

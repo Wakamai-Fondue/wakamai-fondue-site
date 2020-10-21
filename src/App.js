@@ -109,7 +109,7 @@ export default {
 				)
 			);
 		},
-		closeModal(forceClose) {
+		toggleModal(forceClose) {
 			if (forceClose) {
 				this.showModal = false;
 			} else {
