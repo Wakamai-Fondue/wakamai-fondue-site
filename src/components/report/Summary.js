@@ -14,7 +14,7 @@ export default {
 		featureLength() {
 			return this.font.features.length || "no";
 		},
-		languages() {
+		localizations() {
 			return this.font.languageSystems.map(l => l.name);
 		},
 		axesCount() {

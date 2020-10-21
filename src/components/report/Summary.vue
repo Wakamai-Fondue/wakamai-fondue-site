@@ -74,7 +74,7 @@
 			</p>
 			<template v-if="hasLocalization">
 				<strong class="title">Localization</strong>
-				<p>{{ languages | listify }}.</p>
+				<p>{{ localizations | listify }}.</p>
 			</template>
 		</div>
 	</section>
