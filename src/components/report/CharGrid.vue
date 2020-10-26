@@ -73,7 +73,11 @@
 				</div>
 			</template>
 
-			<ol class="grid" :style="variableStyles | inlinestyle" v-if="!showCategories">
+			<ol
+				class="grid"
+				:style="variableStyles | inlinestyle"
+				v-if="!showCategories"
+			>
 				<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->
 				<li v-for="char in chars" :key="char" class="code">
 					<span class="char" v-html="entitify(char)"></span>

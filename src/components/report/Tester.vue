@@ -11,7 +11,8 @@
 				dir="auto"
 				contenteditable
 				:style="
-					`${variableStyles}${featureStyles}${textStyles}` | inlinestyle
+					`${variableStyles}${featureStyles}${textStyles}`
+						| inlinestyle
 				"
 				:lang="language"
 			>
