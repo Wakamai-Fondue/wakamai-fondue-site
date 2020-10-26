@@ -10,7 +10,9 @@
 				spellcheck="false"
 				dir="auto"
 				contenteditable
-				:style="`${variableStyles}${featureStyles}${textStyles}`"
+				:style="
+					`${variableStyles}${featureStyles}${textStyles}` | inlinestyle
+				"
 				:lang="language"
 			>
 				<p v-if="customText">

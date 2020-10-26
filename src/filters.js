@@ -21,3 +21,8 @@ Vue.filter("capitalize", function(value) {
 	value = value.toString();
 	return value.charAt(0).toUpperCase() + value.slice(1);
 });
+
+// Change formatted, human-friendly CSS to inline-friendly CSS
+Vue.filter("inlinestyle", function(value) {
+	return value.replace(/\n/g, "");
+});

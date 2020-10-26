@@ -52,7 +52,7 @@
 						</template>
 					</h3>
 
-					<ol class="grid" :style="variableStyles">
+					<ol class="grid" :style="variableStyles | inlinestyle">
 						<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->
 						<li
 							v-for="char in cat.chars"
@@ -73,7 +73,7 @@
 				</div>
 			</template>
 
-			<ol class="grid" :style="variableStyles" v-if="!showCategories">
+			<ol class="grid" :style="variableStyles | inlinestyle" v-if="!showCategories">
 				<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->
 				<li v-for="char in chars" :key="char" class="code">
 					<span class="char" v-html="entitify(char)"></span>
