@@ -5,7 +5,7 @@
 			<div
 				contenteditable
 				class="variable-tester"
-				:style="variableStyles"
+				:style="variableStyles | inlinestyle"
 			>
 				The melting cheese & bread explode in a quick wave of joy: “1,
 				2, 3… zen!”
