@@ -45,7 +45,7 @@
 	font-size: 1.5rem;
 	background: var(--light-grey);
 	padding: 0.5rem;
-	margin-top: 0.5rem;
+	margin-top: 3px;
 	overflow: hidden;
 }
 
@@ -54,6 +54,6 @@
 	color: var(--unlighterer-grey);
 	background: var(--light-grey);
 	padding: 0.5rem;
-	margin-top: 0.5rem;
+	margin-top: 3px;
 	overflow: hidden;
 }
