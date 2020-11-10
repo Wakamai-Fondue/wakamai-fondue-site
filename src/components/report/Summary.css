@@ -49,3 +49,16 @@
 .features li {
 	margin-top: 3px;
 }
+
+.example-font-shoutout {
+	font-size: 1.25rem;
+	margin-top: 2rem;
+	padding: 2rem;
+	background: var(--offwhite);
+	text-align: center;
+}
+
+.example-font-shoutout a {
+	color: inherit;
+	color: var(--red);
+}

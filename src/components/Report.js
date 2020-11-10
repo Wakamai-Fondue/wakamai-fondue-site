@@ -8,7 +8,7 @@ import Stylesheet from "./report/Stylesheet.vue";
 import Footer from "./Footer.vue";
 
 export default {
-	props: ["font"],
+	props: ["font", "isExamplefont"],
 	components: {
 		Summary,
 		Tester,

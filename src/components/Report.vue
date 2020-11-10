@@ -1,6 +1,6 @@
 <template>
 	<section v-if="font" class="report" id="report">
-		<Summary :font="font" />
+		<Summary :font="font" :isExamplefont="isExamplefont" />
 		<Tester :font="font" />
 		<Color v-if="font.isColor" :font="font" />
 		<Variable v-if="font.isVariable" :font="font" />

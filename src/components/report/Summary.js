@@ -1,5 +1,5 @@
 export default {
-	props: ["font"],
+	props: ["font", "isExamplefont"],
 	data() {
 		return {
 			summary: this.font.summary,
