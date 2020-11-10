@@ -33,9 +33,9 @@
 			</p>
 			<p>
 				Indra Kupferschmid, Bram Stein, Nick Sherman, David Jonathan
-				Ross, Koen Kivits, Chen Hui Jing, Kenneth Ormandy, Zach
-				Leatherman, Mike “Pomax” Kamermans, John Hudson, Robin Rendle,
-				Pascal Widdershoven and Dave Crossland 💖
+				Ross, Koen Kivits, Kenneth Ormandy, Zach Leatherman, Mike
+				“Pomax” Kamermans, John Hudson, Robin Rendle, Pascal
+				Widdershoven and Dave Crossland 💖
 			</p>
 			<hr />
 			<p>

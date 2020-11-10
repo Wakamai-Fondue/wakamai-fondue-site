@@ -10,5 +10,7 @@ module.exports = {
 		resolve: {
 			symlinks: false // npm link
 		}
-	}
+	},
+	// Temporary beta build stuff:
+	// publicPath: "/beta"
 };
