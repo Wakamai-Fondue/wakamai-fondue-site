@@ -12,5 +12,5 @@ module.exports = {
 		}
 	},
 	// Temporary beta build stuff:
-	// publicPath: "/beta"
+	publicPath: "/beta"
 };
