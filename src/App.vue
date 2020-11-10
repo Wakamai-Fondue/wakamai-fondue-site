@@ -14,7 +14,7 @@
 			v-on:toggleModal="toggleModal"
 			:error="error"
 		/>
-		<Report :font="font" />
+		<Report :font="font" :isExamplefont="isExamplefont" />
 		<Modal v-if="showModal" v-on:toggleModal="toggleModal" />
 	</main>
 </template>

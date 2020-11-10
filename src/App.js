@@ -17,7 +17,8 @@ export default {
 			font: false,
 			dragging: false,
 			error: false,
-			showModal: false
+			showModal: false,
+			isExamplefont: false
 		};
 	},
 	methods: {
@@ -86,6 +87,7 @@ export default {
 			request.onload = function() {
 				const blob = request.response;
 				that.loadFont(blob, filename, that);
+				that.isExamplefont = true;
 			};
 		},
 		injectStyleSheet(file) {

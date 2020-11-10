@@ -77,6 +77,18 @@
 				<p>{{ localizations | listify }}.</p>
 			</template>
 		</div>
+
+		<div v-if="isExamplefont" class="example-font-shoutout">
+			<a href="https://djr.com/gimlet/" target="_blank">
+				<strong>Gimlet</strong>
+			</a>
+			by
+			<a href="https://djr.com/" target="_blank">David Jonathan Ross</a>
+			is today’s Wakamai Fondue demo font.
+			<a href="https://djr.com/gimlet/#buy" target="_blank"
+				>Get it here!</a
+			>
+		</div>
 	</section>
 </template>
 

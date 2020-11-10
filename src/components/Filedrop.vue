@@ -5,8 +5,8 @@
 			<input
 				type="file"
 				name="file"
-				v-on:change="getFont"
 				accept=".woff,.woff2,.ttf,.otf"
+				@change="getFont"
 			/>
 			<div class="info">
 				"What can my font do?"
@@ -14,10 +14,10 @@
 				and find out!
 				<button
 					type="button"
-					v-on:click="getExampleFont('Bungee-Regular.ttf')"
 					class="demo-font"
+					@click="getExampleFont('GimletVariable-VF.woff2')"
 				>
-					Try with Bungee!
+					Try with Gimlet!
 				</button>
 				<span class="errormessage" :class="{ show: error }">
 					Oops! I couldn't handle that file.
