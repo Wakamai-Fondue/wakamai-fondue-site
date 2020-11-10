@@ -40,25 +40,40 @@
 						class="state"
 						:class="feature.state === 'on' ? 'on' : 'off'"
 					>
-						<strong v-if="feature.state === 'on'">on</strong>
-						<strong v-else>off</strong>
+						<strong v-if="feature.state === 'on'">On</strong>
+						<strong v-else>Off</strong>
 						by default
 					</span>
-					<label>
+					<label class="flip-state">
 						<input
 							type="checkbox"
 							@change="flipState(feature.tag)"
+							:disabled="!featureChars[feature.tag]"
 							checked
-						/>Show
+						/><span>show</span>
 					</label>
 				</div>
 				<div
+					v-if="featureChars[feature.tag]"
 					class="chars"
 					:style="getFeatureStyle(feature.tag)"
 					contenteditable
 					spellcheck="false"
 				>
-					<template v-for="char in chars">{{ char }}</template>
+					<template v-for="char in featureChars[feature.tag]">
+						{{ char }}
+					</template>
+				</div>
+				<div
+					v-else
+					class="no-chars"
+					:style="getFeatureStyle(feature.tag)"
+				>
+					We couldn’t trace back this feature’s glyphs to characters.
+					This means this feature applies only to characters that have
+					been processed by another layout feature first. (Or, since
+					this is the beta, we have't implemented this lookup type
+					yet!)
 				</div>
 			</div>
 		</div>

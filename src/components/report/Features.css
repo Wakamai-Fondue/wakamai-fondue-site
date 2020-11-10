@@ -30,6 +30,10 @@
 	color: var(--green);
 }
 
+.flip-state [disabled]+span {
+	color: var(--unlighterer-grey);
+}
+
 .required-features li,
 .feature-control {
 	display: flex;
@@ -39,6 +43,15 @@
 .chars {
 	font-family: wakamai-fondue, monospace;
 	font-size: 1.5rem;
+	background: var(--light-grey);
+	padding: 0.5rem;
+	margin-top: 0.5rem;
+	overflow: hidden;
+}
+
+.no-chars {
+	font-style: italic;
+	color: var(--unlighterer-grey);
 	background: var(--light-grey);
 	padding: 0.5rem;
 	margin-top: 0.5rem;
