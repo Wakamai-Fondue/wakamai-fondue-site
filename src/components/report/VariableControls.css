@@ -59,6 +59,7 @@
 .instance-button {
 	width: 100%;
 	background: var(--yellow);
+	color: black;
 	transition: background 400ms;
 }
 
