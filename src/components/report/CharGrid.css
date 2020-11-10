@@ -69,11 +69,13 @@
 	background: var(--light-grey);
 	padding: 1em;
 	margin-bottom: 0.25rem;
+	position: sticky;
+	top: 0;
 }
 
 .title {
 	display: block;
-	margin-top: 2rem;
+	margin-top: 1rem;
 	padding-bottom: 3px;
 	color: var(--red);
 }
