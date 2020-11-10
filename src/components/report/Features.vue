@@ -50,7 +50,7 @@
 							@change="flipState(feature.tag)"
 							:disabled="!featureChars[feature.tag]"
 							checked
-						/><span>show</span>
+						/><span>Show</span>
 					</label>
 				</div>
 				<div

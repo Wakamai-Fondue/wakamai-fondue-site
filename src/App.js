@@ -1,5 +1,3 @@
-// TODO: Font.js can be defered/lazy loaded, as it will only
-// be needed after user "uploads" a font
 // TODO: deal with multiple fonts
 import { fromDataBuffer } from "@wakamai-fondue/engine";
 import Hero from "./components/Hero.vue";

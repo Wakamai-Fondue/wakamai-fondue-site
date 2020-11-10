@@ -16,6 +16,10 @@
 		/>
 		<Report :font="font" :isExamplefont="isExamplefont" />
 		<Modal v-if="showModal" v-on:toggleModal="toggleModal" />
+		<div class="beta-message">
+			Heya! You’re looking at the beta site. Comments, bugs or feedback?
+			<a href="mailto:roel@pixelambacht.nl">Let me know!</a>
+		</div>
 	</main>
 </template>
 
