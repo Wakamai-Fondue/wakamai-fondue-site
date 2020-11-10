@@ -2,23 +2,39 @@ export default {
 	props: ["font"],
 	data() {
 		return {
-			features: this.font.features,
-			chars: ["a", "b", "c", "d", "e", "f"],
 			currentStates: []
 		};
 	},
 	computed: {
 		optionalFeatures() {
-			return this.features.filter(f => f.state !== "fixed");
+			return this.font.features.filter(f => f.state !== "fixed");
 		},
 		requiredFeatures() {
-			return this.features.filter(f => f.state === "fixed");
+			return this.font.features.filter(f => f.state === "fixed");
 		},
 		hasRequiredFeatures() {
 			return this.requiredFeatures.length > 0;
 		},
 		hasOptionalFeatures() {
 			return this.optionalFeatures.length > 0;
+		},
+		featureChars() {
+			// Try to return the "best" layout features
+			if (
+				"DFLT" in this.font.featureChars &&
+				"dflt" in this.font.featureChars["DFLT"]
+			) {
+				return this.font.featureChars["DFLT"]["dflt"];
+			} else if (
+				"latn" in this.font.featureChars &&
+				"dflt" in this.font.featureChars["latn"]
+			) {
+				return this.font.featureChars["latn"]["dflt"];
+			} else {
+				// If all else fails, return first
+				const first = Object.keys(this.font.featureChars)[0];
+				return Object.values(this.font.featureChars[first])[0];
+			}
 		}
 	},
 	methods: {

@@ -79,7 +79,7 @@
 				v-if="!showCategories"
 			>
 				<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->
-				<li v-for="char in chars" :key="char" class="code">
+				<li v-for="char in chars" :key="`${char}`" class="code">
 					<span class="char" v-html="entitify(char)"></span>
 					<span class="label" v-if="!char.feature">{{ char }}</span>
 					<!--
