@@ -67,6 +67,7 @@
 
 .char-sliders {
 	background: var(--light-grey);
+	border-bottom: 0.25rem solid white;
 	padding: 1em;
 	margin-bottom: 0.25rem;
 	position: sticky;
