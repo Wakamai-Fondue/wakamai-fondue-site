@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "prismjs": "^1.21.0",
     "vue": "^2.6.11",
+    "vue-linkify": "^1.0.1",
     "vue-prism-component": "^1.2.0"
   },
   "devDependencies": {

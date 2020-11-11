@@ -59,6 +59,10 @@ button {
 	font-size: inherit;
 }
 
+a {
+	color: inherit;
+}
+
 /* Global styles */
 .content {
 	margin-left: auto;
