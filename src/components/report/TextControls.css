@@ -10,7 +10,7 @@
 }
 
 .text-controls label > * {
-	margin-left: 0.25em;
+	margin-left: var(--small-margin);
 }
 
 /* TODO: componentalizationreuse */

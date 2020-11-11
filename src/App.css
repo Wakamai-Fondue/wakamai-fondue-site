@@ -10,6 +10,10 @@
 	--unlighter-grey: #bbb;
 	--unlight-grey: #ddd;
 	--light-grey: #eee;
+
+	/* Using this as opposed to 0.25em/0.25rem to avoid rounding
+	   weirdness that creates uneven gaps */
+	--small-margin: 4px;
 }
 
 html {
@@ -82,7 +86,7 @@ button {
 	align-items: center;
 	height: 1.5rem;
 	padding: 0 0.75rem;
-	margin-right: 0.25rem;
+	margin-right: var(--small-margin);
 	border-radius: 99999px;
 	background: var(--offwhite);
 }
