@@ -12,13 +12,6 @@
     text-align: center;
 }
 
-.title {
-	display: block;
-	margin-top: 2rem;
-	padding-bottom: var(--small-margin);
-	color: var(--red);
-}
-
 .details {
 	margin-top: 2rem;
 }
@@ -30,7 +23,6 @@
 .details th {
 	padding-top: var(--small-margin);
 	padding-right: 1em;
-	color: var(--red);
 	text-align: left;
 	white-space: nowrap;
 	text-transform: capitalize;

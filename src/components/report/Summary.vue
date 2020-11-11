@@ -57,7 +57,7 @@
 			aria-label="Font layout features"
 			v-if="font.hasFeatures"
 		>
-			<strong class="title">Layout features</strong>
+			<h3>Layout features</h3>
 			<ul>
 				<li v-for="featureData in features" :key="featureData.tag">
 					<span class="opentype-label">{{ featureData.tag }}</span>
@@ -65,7 +65,7 @@
 			</ul>
 		</div>
 		<div class="language">
-			<strong class="title">Supported languages</strong>
+			<h3>Supported languages</h3>
 			<p>
 				{{
 					font.languageSupport
@@ -73,7 +73,7 @@
 				}}.
 			</p>
 			<template v-if="hasLocalization">
-				<strong class="title">Localization</strong>
+				<h3>Localization</h3>
 				<p>{{ localizations | listify }}.</p>
 			</template>
 		</div>

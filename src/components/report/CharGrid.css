@@ -73,10 +73,3 @@
 	position: sticky;
 	top: 0;
 }
-
-.title {
-	display: block;
-	margin-top: 1rem;
-	padding-bottom: var(--small-margin);
-	color: var(--red);
-}

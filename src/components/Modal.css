@@ -18,7 +18,7 @@
     color: white;
 }
 
-.modal-content h2 {
+.modal-title {
     font-size: 4rem;
     margin: 0 0 0.75rem 0;
     line-height: 1;
