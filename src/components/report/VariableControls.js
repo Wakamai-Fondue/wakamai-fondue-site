@@ -82,6 +82,19 @@ export default {
 				.map(([axis, value]) => `"${axis}" ${value}`)
 				.join(",");
 			return `font-variation-settings:${styles};`;
+		},
+		getBestStep: function(axis) {
+			// Step in units of 1 when range is > 1,
+			// Step in units of 0.1 when range is <= 1
+			if (
+				Math.abs(parseInt(axis.max, 10)) -
+					Math.abs(parseInt(axis.min, 10)) <=
+				1
+			) {
+				return "0.1";
+			} else {
+				return "1";
+			}
 		}
 	}
 };
