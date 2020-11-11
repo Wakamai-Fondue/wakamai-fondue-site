@@ -12,6 +12,7 @@
 					<input
 						type="range"
 						:name="axis.id"
+						:step="getBestStep(axis)"
 						:min="axis.min"
 						:max="axis.max"
 						v-model.number="axis.current"

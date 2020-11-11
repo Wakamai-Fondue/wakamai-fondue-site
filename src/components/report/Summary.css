@@ -12,25 +12,17 @@
     text-align: center;
 }
 
-.title {
-	display: block;
-	margin-top: 2rem;
-	padding-bottom: 3px;
-	color: var(--red);
-}
-
 .details {
 	margin-top: 2rem;
 }
 
 .details tr + tr {
-	padding-top: 3px;
+	padding-top: var(--small-margin);
 }
 
 .details th {
-	padding-top: 3px;
+	padding-top: var(--small-margin);
 	padding-right: 1em;
-	color: var(--red);
 	text-align: left;
 	white-space: nowrap;
 	text-transform: capitalize;
@@ -38,7 +30,7 @@
 }
 
 .details td {
-	padding-top: 3px;
+	padding-top: var(--small-margin);
 }
 
 .features ul {
@@ -47,7 +39,7 @@
 }
 
 .features li {
-	margin-top: 3px;
+	margin-top: var(--small-margin);
 }
 
 .example-font-shoutout {

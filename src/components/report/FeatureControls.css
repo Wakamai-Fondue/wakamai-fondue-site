@@ -7,7 +7,7 @@
 }
 
 .feature-controls li {
-	margin-bottom: 3px;
+	margin-bottom: var(--small-margin);
 	display: flex;
 }
 

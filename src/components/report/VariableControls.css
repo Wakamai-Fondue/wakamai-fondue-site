@@ -2,15 +2,8 @@
 	margin-top: 2rem;
 }
 
-.variable-sliders h3 {
-	font-weight: bold;
-	font-size: 1.25rem;
-	color: var(--green);
-	margin: 4rem 0 1rem 0;
-}
-
 .axis-slider {
-	margin-bottom: 3px;
+	margin-bottom: var(--small-margin);
 	display: grid;
 	align-items: center;
 	grid-template-columns:
@@ -53,7 +46,7 @@
 .instances-list ul {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-	grid-gap: 0.25rem;
+	grid-gap: var(--small-margin);
 }
 
 .instance-button {

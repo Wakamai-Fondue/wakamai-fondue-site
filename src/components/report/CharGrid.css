@@ -1,7 +1,7 @@
 .char-bar {
 	background: var(--light-grey);
 	padding: 1em;
-	margin-bottom: 0.25rem;
+	margin-bottom: var(--small-margin);
 	display: flex;
 	align-items: center;
 }
@@ -17,7 +17,7 @@
 .grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
-	grid-gap: 0.25rem;
+	grid-gap: var(--small-margin);
 }
 
 .code,
@@ -67,16 +67,9 @@
 
 .char-sliders {
 	background: var(--light-grey);
-	border-bottom: 0.25rem solid white;
+	border-bottom: var(--small-margin) solid white;
 	padding: 1em;
-	margin-bottom: 0.25rem;
+	margin-bottom: var(--small-margin);
 	position: sticky;
 	top: 0;
-}
-
-.title {
-	display: block;
-	margin-top: 1rem;
-	padding-bottom: 3px;
-	color: var(--red);
 }

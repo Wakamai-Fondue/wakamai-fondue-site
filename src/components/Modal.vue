@@ -4,10 +4,10 @@
 			type="button"
 			aria-label="Info"
 			class="info"
-			v-on:click="toggleModal"
+			@click="toggleModal"
 		></button>
 		<div class="modal-content">
-			<h2>Wakamai Fondue</h2>
+			<p class="modal-title">Wakamai Fondue</p>
 			<p class="version">Version 1.0</p>
 			<hr />
 			<p>

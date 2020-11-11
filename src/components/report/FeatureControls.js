@@ -47,9 +47,8 @@ export default {
 					// CSS state exists, use it
 					state = this.currentStates[feature.tag];
 				} else {
-					// No CSS state yet, create one based off default state
-					state = feature.state === "on";
-					this.$set(this.currentStates, feature.tag, state);
+					// No CSS state yet, set to "default" (null)
+					this.$set(this.currentStates, feature.tag, null);
 				}
 				if (state === null) continue;
 				styles += `${glue} "${feature.tag}" ${state ? "1" : "0"}`;

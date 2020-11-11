@@ -9,13 +9,13 @@
 		:class="{ dragging }"
 	>
 		<Hero
-			v-on:getFont="getFont"
-			v-on:getExampleFont="getExampleFont"
-			v-on:toggleModal="toggleModal"
+			@getFont="getFont"
+			@getExampleFont="getExampleFont"
+			@toggleModal="toggleModal"
 			:error="error"
 		/>
 		<Report :font="font" :isExamplefont="isExamplefont" />
-		<Modal v-if="showModal" v-on:toggleModal="toggleModal" />
+		<Modal v-if="showModal" @toggleModal="toggleModal" />
 		<div class="beta-message">
 			Heya! You’re looking at the beta site. Comments, bugs or feedback?
 			<a href="mailto:roel@pixelambacht.nl">Let me know!</a>

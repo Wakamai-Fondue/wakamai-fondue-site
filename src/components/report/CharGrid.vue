@@ -43,7 +43,7 @@
 
 			<template v-if="showCategories">
 				<div v-for="(cat, index) in catChars" :key="`cat${index}`">
-					<h3 class="title">
+					<h3>
 						{{ cat.category }}
 						<template v-if="cat.subCategory || cat.script">
 							—
