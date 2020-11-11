@@ -48,7 +48,10 @@
 			<tbody>
 				<tr v-for="(value, key) in summary" :key="key">
 					<th scope="row">{{ key }}</th>
-					<td>{{ value }}</td>
+					<td
+						v-html="value"
+						v-linkified:options="{ className: '' }"
+					/>
 				</tr>
 			</tbody>
 		</table>

@@ -63,6 +63,10 @@ button {
 	font-size: inherit;
 }
 
+a {
+	color: inherit;
+}
+
 /* Global styles */
 h2 {
 	font-size: 1.5rem;
