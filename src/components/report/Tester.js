@@ -17,7 +17,6 @@ export default {
 			variableStyles: "",
 			featureStyles: "",
 			textStyles: "",
-			light: false,
 			language: null
 		};
 	},
@@ -62,9 +61,6 @@ export default {
 				css += `\n\n` + this.variableStyles;
 			}
 			return css;
-		},
-		lightSwitch: function() {
-			this.light = !this.light;
 		}
 	}
 };
