@@ -35,7 +35,7 @@
 				Indra Kupferschmid, Bram Stein, Nick Sherman, David Jonathan
 				Ross, Koen Kivits, Kenneth Ormandy, Zach Leatherman, Mike
 				“Pomax” Kamermans, John Hudson, Robin Rendle, Pascal
-				Widdershoven and Dave Crossland 💖
+				Widdershoven, Dave Crossland and Amelia Bellamy-Royds 💖
 			</p>
 			<hr />
 			<p>
@@ -44,8 +44,8 @@
 					>Roel Nieskens/PixelAmbacht</a
 				>
 				using
-				<a href="https://github.com/devongovett/fontkit" target="_blank"
-					>Fontkit</a
+				<a href="https://github.com/Pomax/Font.js" target="_blank"
+					>Font.js</a
 				>
 				and
 				<a href="https://vuejs.org/" target="_blank">Vue.js</a>
