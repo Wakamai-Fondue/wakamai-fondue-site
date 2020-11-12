@@ -35,7 +35,7 @@
 				Indra Kupferschmid, Bram Stein, Nick Sherman, David Jonathan
 				Ross, Koen Kivits, Kenneth Ormandy, Zach Leatherman, Mike
 				“Pomax” Kamermans, John Hudson, Robin Rendle, Pascal
-				Widdershoven and Dave Crossland 💖
+				Widdershoven, Dave Crossland and Amelia Bellamy-Royds 💖
 			</p>
 			<hr />
 			<p>
