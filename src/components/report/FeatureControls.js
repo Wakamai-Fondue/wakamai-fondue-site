@@ -8,7 +8,7 @@ export default {
 	data() {
 		return {
 			features: this.font.features,
-			currentStates: []
+			currentStates: {}
 		};
 	},
 	computed: {
@@ -23,12 +23,9 @@ export default {
 		this.updateStyles();
 	},
 	methods: {
-		getClass(feature) {
-			return `status-${this.currentStates[feature]}`;
-		},
-		flipState(feature, state) {
+		flipState(feature) {
 			const states = [true, false, null];
-			const currentIndex = states.indexOf(state);
+			const currentIndex = states.indexOf(this.currentStates[feature]);
 			const nextIndex = (currentIndex + 1) % states.length;
 			this.currentStates[feature] = states[nextIndex];
 			this.updateStyles();
