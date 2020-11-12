@@ -47,6 +47,7 @@ export default {
 		getFont(e) {
 			e.preventDefault();
 			this.dragging = false;
+			this.isExamplefont = false;
 
 			const that = this;
 
