@@ -3,45 +3,56 @@
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
-				<li class="axis-slider" v-for="(axis, tag) in axes" :key="tag">
-					<span>
+				<li
+					class="axis-slider-container"
+					:class="currentStates[axis.id] === false ? 'disabled' : ''"
+					v-for="(axis, tag) in axes"
+					:key="tag"
+				>
+					<label>
 						<button
 							v-if="currentStates[axis.id] !== false"
 							type="button"
-							@click="flipState(axis.id)"
 							class="button-on"
+							@click="flipState(axis.id)"
 						>
 							On
 						</button>
 						<button
 							v-if="currentStates[axis.id] === false"
 							type="button"
-							@click="flipState(axis.id)"
 							class="button-off"
+							@click="flipState(axis.id)"
 						>
 							Off
 						</button>
 						<span class="opentype-label">{{ axis.id }}</span>
 						<span class="axis-name">{{ axis.name }}</span>
-					</span>
+					</label>
 					<span class="axis-min">{{ axis.min }}</span>
-					<input
-						type="range"
-						:name="axis.id"
-						:step="getBestStep(axis)"
-						:min="axis.min"
-						:max="axis.max"
-						:disabled="currentStates[axis.id] === false"
-						v-model.number="axis.current"
-						@input="updateStyles()"
-					/>
-					<span>{{ axis.max }}</span>
-					<strong>{{ axis.current }}</strong>
+					<span
+						class="axis-slider"
+						@mousedown="flipState(axis.id, true)"
+					>
+						<input
+							type="range"
+							:name="axis.id"
+							:step="getBestStep(axis)"
+							:min="axis.min"
+							:max="axis.max"
+							:disabled="currentStates[axis.id] === false"
+							v-model.number="axis.current"
+							@input="updateStyles()"
+						/>
+					</span>
+					<span class="axis-max">{{ axis.max }}</span>
+					<strong class="axis-current">{{ axis.current }}</strong>
 					<button
 						type="button"
 						class="reset-button"
 						:class="axis.current !== axis.default ? 'show' : 'hide'"
 						:tabindex="axis.current !== axis.default ? 0 : -1"
+						:disabled="currentStates[axis.id] === false"
 						@click="resetAxis(tag)"
 					>
 						Reset

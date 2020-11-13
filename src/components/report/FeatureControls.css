@@ -9,6 +9,7 @@
 .feature-controls label {
 	margin-bottom: var(--small-margin);
 	display: flex;
+	cursor: pointer;
 }
 
 .feature-description {

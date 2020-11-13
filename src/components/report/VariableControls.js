@@ -99,11 +99,11 @@ export default {
 				return "1";
 			}
 		},
-		flipState(axis) {
+		flipState(axis, force) {
 			this.$set(
 				this.currentStates,
 				axis,
-				this.currentStates[axis] === false
+				force || this.currentStates[axis] === false
 			);
 			this.updateStyles();
 		}
