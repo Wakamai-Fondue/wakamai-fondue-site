@@ -5,6 +5,22 @@
 			<ul class="axes-sliders">
 				<li class="axis-slider" v-for="(axis, tag) in axes" :key="tag">
 					<span>
+						<button
+							v-if="currentStates[axis.id] !== false"
+							type="button"
+							@click="flipState(axis.id)"
+							class="button-on"
+						>
+							On
+						</button>
+						<button
+							v-if="currentStates[axis.id] === false"
+							type="button"
+							@click="flipState(axis.id)"
+							class="button-off"
+						>
+							Off
+						</button>
 						<span class="opentype-label">{{ axis.id }}</span>
 						<span class="axis-name">{{ axis.name }}</span>
 					</span>
@@ -15,6 +31,7 @@
 						:step="getBestStep(axis)"
 						:min="axis.min"
 						:max="axis.max"
+						:disabled="currentStates[axis.id] === false"
 						v-model.number="axis.current"
 						@input="updateStyles()"
 					/>
@@ -22,7 +39,7 @@
 					<strong>{{ axis.current }}</strong>
 					<button
 						type="button"
-						class="button"
+						class="reset-button"
 						:class="axis.current !== axis.default ? 'show' : 'hide'"
 						:tabindex="axis.current !== axis.default ? 0 : -1"
 						@click="resetAxis(tag)"

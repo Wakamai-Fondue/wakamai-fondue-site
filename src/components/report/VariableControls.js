@@ -9,7 +9,8 @@ export default {
 		return {
 			activeInstance: "",
 			axes: this.font.variable.axes,
-			instances: this.font.variable.instances
+			instances: this.font.variable.instances,
+			currentStates: {}
 		};
 	},
 	computed: {
@@ -64,11 +65,13 @@ export default {
 			let counter = 0;
 			let maxProps = 6;
 			for (const axis of Object.values(this.axes)) {
-				styles += `${glue} "${axis.id}" ${axis.current}`;
-				glue = ",";
-				// Poor man's code formatting
-				if (++counter % maxProps === 0) {
-					glue = `,\n                        `;
+				if (this.currentStates[axis.id] !== false) {
+					styles += `${glue} "${axis.id}" ${axis.current}`;
+					glue = ",";
+					// Poor man's code formatting
+					if (++counter % maxProps === 0) {
+						glue = `,\n                        `;
+					}
 				}
 			}
 			if (styles) {
@@ -95,6 +98,14 @@ export default {
 			} else {
 				return "1";
 			}
+		},
+		flipState(axis) {
+			this.$set(
+				this.currentStates,
+				axis,
+				this.currentStates[axis] === false
+			);
+			this.updateStyles();
 		}
 	}
 };
