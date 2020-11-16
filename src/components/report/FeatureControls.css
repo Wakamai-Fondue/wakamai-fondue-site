@@ -3,12 +3,13 @@
 }
 
 .feature-controls.long ul {
-	columns: 2;
+	columns: 3;
 }
 
-.feature-controls li {
+.feature-controls label {
 	margin-bottom: var(--small-margin);
 	display: flex;
+	cursor: pointer;
 }
 
 .feature-description {
@@ -25,15 +26,6 @@
 	text-overflow: ellipsis;
 }
 
-.buttons {
-	white-space: nowrap;
-	margin-right: 1rem;
-}
-
-.buttons .button {
-	display: none;
-}
-
 /* TODO: componentalizationreuse */
 .button {
 	padding: 0.25rem 0.5rem;
@@ -48,26 +40,18 @@
 	min-width: 4.75em;
 	transition: background 100ms;
 	user-select: none;
+	color: white;
+	margin-right: var(--small-margin);
 }
 
-.button:hover {
-	background-color: var(--unlighterer-grey);
-}
-
-.status-true .button-on {
-	display: inline-block;
+.button-on {
 	background: var(--green);
-	color: white;
 }
 
-.status-false .button-off {
-	display: inline-block;
+.button-off {
 	background: var(--red);
-	color: white;
 }
 
-.status-null .button-default {
-	display: inline-block;
+.button-default {
 	background: var(--dark-grey);
-	color: white;
 }

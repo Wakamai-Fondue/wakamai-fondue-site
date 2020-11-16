@@ -2,17 +2,27 @@
 	margin-top: 2rem;
 }
 
-.axis-slider {
+.axis-slider-container {
 	margin-bottom: var(--small-margin);
 	display: grid;
 	align-items: center;
 	grid-template-columns:
-		12em
+		18em
 		4em
 		1fr
 		4em
 		4em
 		auto;
+}
+
+.axis-slider-container label {
+	cursor: pointer;
+}
+
+.disabled .axis-min,
+.disabled .axis-max,
+.disabled .axis-current {
+	color: var(--unlighterer-grey);
 }
 
 .axis-name {
@@ -25,8 +35,17 @@
 	text-align: right;
 }
 
+.axis-slider {
+	vertical-align: middle;
+	padding: 0 0.5rem 0 0.25rem;
+}
+
+.axis-slider input {
+	width: 100%;
+}
+
 /* TODO: componentalizationreuse */
-.button {
+.reset-button {
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.2rem;
 	margin: 0;
@@ -37,8 +56,11 @@
 	color: white;
 	cursor: pointer;
 }
+.reset-button[disabled] {
+	background: var(--unlighterer-grey);
+}
 
-.axis-slider button.hide {
+.reset-button.hide {
 	opacity: 0;
 	pointer-events: none;
 }
@@ -50,6 +72,12 @@
 }
 
 .instance-button {
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.2rem;
+	margin: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
 	width: 100%;
 	background: var(--yellow);
 	color: black;
@@ -83,4 +111,31 @@
 .instances-dropdown-label {
 	display: inline-block;
 	width: 16em;
+}
+
+/* TODO: componentalizationreuse */
+.button-on,
+.button-off {
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.2rem;
+	margin: 0;
+	border: 0;
+	background: none;
+	font-size: 0.85rem;
+	background: var(--unlighter-grey);
+	color: var(--dark-grey);
+	cursor: pointer;
+	min-width: 4.75em;
+	transition: background 100ms;
+	user-select: none;
+	color: white;
+	margin-right: var(--small-margin);
+}
+
+.button-on {
+	background: var(--green);
+}
+
+.button-off {
+	background: var(--red);
 }
