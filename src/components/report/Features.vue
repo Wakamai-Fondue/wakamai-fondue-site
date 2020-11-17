@@ -54,13 +54,27 @@
 					</label>
 				</div>
 				<div
-					v-if="featureChars[feature.tag]"
+					v-if="isValidFeature(feature)"
 					class="chars"
 					:style="getFeatureStyle(feature.tag)"
 					contenteditable
 					spellcheck="false"
 				>
-					<template v-for="char in featureChars[feature.tag]">
+					<template v-if="featureChars[feature.tag]['type'] === 3">
+						<span
+							v-for="n in featureChars[feature.tag][
+								'alternateCount'
+							]"
+							:key="n"
+							:style="getFeatureStyle(feature.tag, n)"
+						>
+							{{ featureChars[feature.tag]["input"] }}
+						</span>
+					</template>
+					<template
+						v-else
+						v-for="char in featureChars[feature.tag]['input']"
+					>
 						{{ char }}
 					</template>
 				</div>
