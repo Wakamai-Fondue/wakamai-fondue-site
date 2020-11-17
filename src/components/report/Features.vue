@@ -61,15 +61,21 @@
 					spellcheck="false"
 				>
 					<template v-if="featureChars[feature.tag]['type'] === 3">
-						<span
-							v-for="n in featureChars[feature.tag][
-								'alternateCount'
+						<template
+							v-for="(char, index) in featureChars[feature.tag][
+								'input'
 							]"
-							:key="n"
-							:style="getFeatureStyle(feature.tag, n)"
 						>
-							{{ featureChars[feature.tag]["input"] }}
-						</span>
+							<span
+								v-for="n in featureChars[feature.tag][
+									'alternateCount'
+								][index]"
+								:key="`type3_${char}_${n}`"
+								:style="getFeatureStyle(feature.tag, n)"
+							>
+								{{ char }}
+							</span>
+						</template>
 					</template>
 					<template
 						v-else
