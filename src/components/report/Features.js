@@ -41,7 +41,16 @@ export default {
 		flipState(feature) {
 			this.currentStates[feature] = 1 - this.currentStates[feature];
 		},
-		getFeatureStyle: function(feature) {
+		isValidFeature(feature) {
+			return (
+				this.featureChars[feature.tag] &&
+				this.featureChars[feature.tag]["input"].length
+			);
+		},
+		// Use onState for features that take a specific number
+		// instead of just 0 or 1.
+		getFeatureStyle: function(feature, onState = 1) {
+			const offState = 0;
 			let state;
 			if (this.currentStates[feature] !== undefined) {
 				// CSS state exists, use it
@@ -51,7 +60,9 @@ export default {
 				this.$set(this.currentStates, feature, 1);
 				state = 1;
 			}
-			return `font-feature-settings:"${feature}" ${state ? "1" : "0"};`;
+			return `font-feature-settings:"${feature}" ${
+				state ? onState : offState
+			};`;
 		}
 	}
 };

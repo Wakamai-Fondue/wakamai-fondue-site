@@ -8,7 +8,8 @@ export default {
 	data() {
 		return {
 			features: this.font.features,
-			currentStates: {}
+			currentStates: {},
+			alternateStates: {}
 		};
 	},
 	computed: {
@@ -17,6 +18,24 @@ export default {
 		},
 		long() {
 			return this.optionalFeatures.length > 8;
+		},
+		featureChars() {
+			// Try to return the "best" layout features
+			if (
+				"DFLT" in this.font.featureChars &&
+				"dflt" in this.font.featureChars["DFLT"]
+			) {
+				return this.font.featureChars["DFLT"]["dflt"];
+			} else if (
+				"latn" in this.font.featureChars &&
+				"dflt" in this.font.featureChars["latn"]
+			) {
+				return this.font.featureChars["latn"]["dflt"];
+			} else {
+				// If all else fails, return first
+				const first = Object.keys(this.font.featureChars)[0];
+				return Object.values(this.font.featureChars[first])[0];
+			}
 		}
 	},
 	mounted: function() {
@@ -24,11 +43,35 @@ export default {
 	},
 	methods: {
 		flipState(feature) {
-			const states = [true, false, null];
-			const currentIndex = states.indexOf(this.currentStates[feature]);
+			const states = [1, 0, null];
+			// If feature is on and showing alternates (so it's state >= 1),
+			// treat it as simply being on (1).
+			const currentState =
+				this.currentStates[feature] >= 1
+					? 1
+					: this.currentStates[feature];
+			const currentIndex = states.indexOf(currentState);
 			const nextIndex = (currentIndex + 1) % states.length;
-			this.currentStates[feature] = states[nextIndex];
+			if (states[nextIndex] === 1 && feature in this.alternateStates) {
+				// When turning back on, show previously picked alternate
+				this.currentStates[feature] = this.alternateStates[feature];
+			} else {
+				this.currentStates[feature] = states[nextIndex];
+			}
 			this.updateStyles();
+		},
+		showAlternates(feature) {
+			return this.currentStates[feature] >= 1;
+		},
+		alternateCount(feature) {
+			if (
+				this.featureChars[feature] &&
+				this.featureChars[feature]["alternateCount"].length
+			) {
+				return Math.max(
+					...this.featureChars[feature]["alternateCount"]
+				);
+			}
 		},
 		updateStyles: function() {
 			this.$emit("updateFeatureStyles", this.getFeatureStyles());
@@ -48,7 +91,7 @@ export default {
 					this.$set(this.currentStates, feature.tag, null);
 				}
 				if (state === null) continue;
-				styles += `${glue} "${feature.tag}" ${state ? "1" : "0"}`;
+				styles += `${glue} "${feature.tag}" ${state}`;
 				glue = ",";
 				// Poor man's code formatting
 				if (++counter % maxProps === 0) {
@@ -60,6 +103,11 @@ export default {
 			} else {
 				return "";
 			}
+		},
+		toggleAlternate: function(feature, value) {
+			this.$set(this.currentStates, feature, value);
+			this.$set(this.alternateStates, feature, value);
+			this.updateStyles();
 		}
 	}
 };
