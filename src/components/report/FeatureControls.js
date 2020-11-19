@@ -89,6 +89,7 @@ export default {
 				} else {
 					// No CSS state yet, set to "default" (null)
 					this.$set(this.currentStates, feature.tag, null);
+					state = null;
 				}
 				if (state === null) continue;
 				styles += `${glue} "${feature.tag}" ${state}`;
