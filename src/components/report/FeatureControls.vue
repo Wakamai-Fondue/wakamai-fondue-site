@@ -8,18 +8,18 @@
 			>
 				<label>
 					<button
-						v-if="currentStates[feature.tag] === true"
+						v-if="currentStates[feature.tag] >= 1"
 						type="button"
 						class="button button-on"
-						@click="flipState(feature.tag, true)"
+						@click="flipState(feature.tag, 1)"
 					>
 						On
 					</button>
 					<button
-						v-if="currentStates[feature.tag] === false"
+						v-if="currentStates[feature.tag] === 0"
 						type="button"
 						class="button button-off"
-						@click="flipState(feature.tag, false)"
+						@click="flipState(feature.tag, 0)"
 					>
 						Off
 					</button>
@@ -37,6 +37,18 @@
 							feature.name
 						}}</span>
 					</span>
+					<select
+						v-if="alternateCount(feature.tag) >= 1"
+						@change="
+							toggleAlternate(feature.tag, $event.target.value)
+						"
+					>
+						<option
+							v-for="n in alternateCount(feature.tag)"
+							:key="`featcont_${feature.tag}_${n}`"
+							>{{ n }}</option
+						>
+					</select>
 				</label>
 			</li>
 		</ul>
