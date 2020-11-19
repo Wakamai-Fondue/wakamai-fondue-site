@@ -26,6 +26,11 @@
 	text-overflow: ellipsis;
 }
 
+.alternate-select {
+	min-width: 3em;
+	margin-left: var(--small-margin);
+}
+
 /* TODO: componentalizationreuse */
 .button {
 	padding: 0.25rem 0.5rem;

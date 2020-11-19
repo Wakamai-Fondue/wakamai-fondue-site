@@ -42,6 +42,7 @@
 						@change="
 							toggleAlternate(feature.tag, $event.target.value)
 						"
+						class="alternate-select"
 					>
 						<option
 							v-for="n in alternateCount(feature.tag)"
