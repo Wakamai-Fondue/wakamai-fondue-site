@@ -22,11 +22,29 @@ export default {
 		}
 	},
 	mounted: function() {
+		this.$root.$on("updateOpticalSize", this.linkOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
-		resetAxis: function(axis) {
-			this.axes[axis].current = this.axes[axis].default;
+		linkOpticalSize(fontSize) {
+			const targetAxis = this.axes.find(o => o.id === "opsz");
+			if (targetAxis) {
+				const opszValue = Math.min(
+					Math.max(targetAxis.min, fontSize),
+					targetAxis.max
+				);
+				this.resetAxis("opsz", opszValue);
+			}
+		},
+		resetAxis: function(axis, value) {
+			const targetAxis = this.axes.find(o => o.id === axis);
+			if (value !== undefined) {
+				value = Math.min(
+					Math.max(targetAxis.min, value),
+					targetAxis.max
+				);
+			}
+			targetAxis.current = value || targetAxis.default;
 			this.updateStyles();
 		},
 		selectInstance: function(instance) {

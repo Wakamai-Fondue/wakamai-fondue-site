@@ -23,6 +23,7 @@ export default {
 		},
 		updateStyles: function() {
 			this.$emit("updateTextStyles", this.getTextStyles());
+			this.$root.$emit("updateOpticalSize", this.fontSize);
 		},
 		getTextStyles: function() {
 			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
