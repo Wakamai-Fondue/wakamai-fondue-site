@@ -11,15 +11,17 @@
 					type="range"
 					min="8"
 					max="100"
-					step="0.01"
+					step="1"
 					v-model.number="fontSize"
 					@input="updateStyles()"
 				/>
+
 				<label class="optical-size-link" v-if="hasOpticalSize">
 					<input
 						type="checkbox"
 						name="font-size"
-						v-model="linkOpticalSize"
+						:checked="linkOpticalSize"
+						@input="toggleOpticalSizeLink()"
 					/>
 					Link to optical size
 				</label>

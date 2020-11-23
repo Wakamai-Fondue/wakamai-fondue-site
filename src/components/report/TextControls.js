@@ -21,6 +21,7 @@ export default {
 		}
 	},
 	mounted: function() {
+		this.$root.$on("unlinkOpticalSize", this.unlinkOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
@@ -39,6 +40,13 @@ export default {
 		},
 		setLanguage: function(language) {
 			this.$emit("updateLanguage", language);
+		},
+		toggleOpticalSizeLink() {
+			this.linkOpticalSize = !this.linkOpticalSize;
+			this.updateStyles();
+		},
+		unlinkOpticalSize: function() {
+			this.linkOpticalSize = false;
 		}
 	}
 };

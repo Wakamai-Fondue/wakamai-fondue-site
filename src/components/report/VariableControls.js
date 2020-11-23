@@ -22,29 +22,32 @@ export default {
 		}
 	},
 	mounted: function() {
-		this.$root.$on("updateOpticalSize", this.linkOpticalSize);
+		this.$root.$on("updateOpticalSize", this.updateOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
-		linkOpticalSize(fontSize) {
+		updateOpticalSize(fontSize) {
 			const targetAxis = this.axes.find(o => o.id === "opsz");
 			if (targetAxis) {
 				const opszValue = Math.min(
 					Math.max(targetAxis.min, fontSize),
 					targetAxis.max
 				);
-				this.resetAxis("opsz", opszValue);
+				this.setAxis("opsz", opszValue);
+				// If axis was turned off, linking turns it on again
+				this.$set(this.currentStates, "opsz", true);
+				this.updateStyles();
 			}
 		},
-		resetAxis: function(axis, value) {
-			const targetAxis = this.axes.find(o => o.id === axis);
-			if (value !== undefined) {
-				value = Math.min(
-					Math.max(targetAxis.min, value),
-					targetAxis.max
-				);
+		resetAxis: function(axis) {
+			if (axis === "opsz") {
+				this.$root.$emit("unlinkOpticalSize");
 			}
-			targetAxis.current = value || targetAxis.default;
+			const defaultValue = this.axes.find(o => o.id === axis).default;
+			this.setAxis(axis, defaultValue);
+		},
+		setAxis: function(axis, value) {
+			this.axes.find(o => o.id === axis).current = value;
 			this.updateStyles();
 		},
 		selectInstance: function(instance) {
@@ -56,7 +59,10 @@ export default {
 			}
 			this.updateStyles();
 		},
-		updateStyles: function() {
+		updateStyles: function(axis) {
+			if (axis === "opsz") {
+				this.$root.$emit("unlinkOpticalSize");
+			}
 			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
 		},
@@ -123,6 +129,9 @@ export default {
 				axis,
 				force || this.currentStates[axis] === false
 			);
+			if (axis === "opsz") {
+				this.$root.$emit("unlinkOpticalSize");
+			}
 			this.updateStyles();
 		}
 	}
