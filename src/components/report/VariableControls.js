@@ -27,8 +27,8 @@ export default {
 	},
 	methods: {
 		updateOpticalSize(fontSize) {
-			const targetAxis = this.axes.find(o => o.id === "opsz");
-			if (targetAxis) {
+			if (this.font.hasOpticalSize) {
+				const targetAxis = this.axes.find(o => o.id === "opsz");
 				const opszValue = Math.min(
 					Math.max(targetAxis.min, fontSize),
 					targetAxis.max

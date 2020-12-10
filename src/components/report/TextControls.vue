@@ -16,7 +16,7 @@
 					@input="updateStyles()"
 				/>
 
-				<label class="optical-size-link" v-if="hasOpticalSize">
+				<label class="optical-size-link" v-if="font.hasOpticalSize">
 					<input
 						type="checkbox"
 						name="font-size"

@@ -12,12 +12,6 @@ export default {
 	computed: {
 		hasLocalization() {
 			return this.font.languageSystems.length > 0;
-		},
-		hasOpticalSize() {
-			return (
-				this.font.variable !== undefined &&
-				this.font.variable.axes.find(o => o.id === "opsz") !== undefined
-			);
 		}
 	},
 	mounted: function() {
@@ -31,7 +25,7 @@ export default {
 		},
 		updateStyles: function() {
 			this.$emit("updateTextStyles", this.getTextStyles());
-			if (this.hasOpticalSize && this.linkOpticalSize) {
+			if (this.font.hasOpticalSize && this.linkOpticalSize) {
 				this.$root.$emit("updateOpticalSize", this.fontSize);
 			}
 		},
