@@ -22,11 +22,32 @@ export default {
 		}
 	},
 	mounted: function() {
+		this.$root.$on("updateOpticalSize", this.updateOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
+		updateOpticalSize(fontSize) {
+			if (this.font.hasOpticalSize) {
+				const targetAxis = this.axes.find(o => o.id === "opsz");
+				const opszValue = Math.min(
+					Math.max(targetAxis.min, fontSize),
+					targetAxis.max
+				);
+				this.setAxis("opsz", opszValue);
+				// If axis was turned off, linking turns it on again
+				this.$set(this.currentStates, "opsz", true);
+				this.updateStyles();
+			}
+		},
 		resetAxis: function(axis) {
-			this.axes[axis].current = this.axes[axis].default;
+			if (axis === "opsz") {
+				this.$root.$emit("unlinkOpticalSize");
+			}
+			const defaultValue = this.axes.find(o => o.id === axis).default;
+			this.setAxis(axis, defaultValue);
+		},
+		setAxis: function(axis, value) {
+			this.axes.find(o => o.id === axis).current = value;
 			this.updateStyles();
 		},
 		selectInstance: function(instance) {
@@ -38,7 +59,10 @@ export default {
 			}
 			this.updateStyles();
 		},
-		updateStyles: function() {
+		updateStyles: function(axis) {
+			if (axis === "opsz") {
+				this.$root.$emit("unlinkOpticalSize");
+			}
 			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
 		},
@@ -105,6 +129,9 @@ export default {
 				axis,
 				force || this.currentStates[axis] === false
 			);
+			if (axis === "opsz") {
+				this.$root.$emit("unlinkOpticalSize");
+			}
 			this.updateStyles();
 		}
 	}

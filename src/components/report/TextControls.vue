@@ -1,17 +1,31 @@
 <template>
 	<div class="text-controls">
-		<div>
-			<label>
+		<div class="font-size">
+			<label for="font-size-slider">
 				Font size
+			</label>
+			<div>
 				<input
+					id="font-size-slider"
+					class="font-size-slider"
 					type="range"
 					min="8"
 					max="100"
-					step="0.01"
+					step="1"
 					v-model.number="fontSize"
 					@input="updateStyles()"
 				/>
-			</label>
+
+				<label class="optical-size-link" v-if="font.hasOpticalSize">
+					<input
+						type="checkbox"
+						name="font-size"
+						:checked="linkOpticalSize"
+						@input="toggleOpticalSizeLink()"
+					/>
+					Link to optical size
+				</label>
+			</div>
 		</div>
 		<div v-if="hasLocalization">
 			<label>

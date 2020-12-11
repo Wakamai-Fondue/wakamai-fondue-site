@@ -5,7 +5,8 @@ export default {
 			fontSize: 24,
 			textAlign: "left",
 			activeLanguage: null,
-			languages: this.font.languageSystems
+			languages: this.font.languageSystems,
+			linkOpticalSize: false
 		};
 	},
 	computed: {
@@ -14,6 +15,7 @@ export default {
 		}
 	},
 	mounted: function() {
+		this.$root.$on("unlinkOpticalSize", this.unlinkOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
@@ -23,12 +25,22 @@ export default {
 		},
 		updateStyles: function() {
 			this.$emit("updateTextStyles", this.getTextStyles());
+			if (this.font.hasOpticalSize && this.linkOpticalSize) {
+				this.$root.$emit("updateOpticalSize", this.fontSize);
+			}
 		},
 		getTextStyles: function() {
 			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
 		},
 		setLanguage: function(language) {
 			this.$emit("updateLanguage", language);
+		},
+		toggleOpticalSizeLink() {
+			this.linkOpticalSize = !this.linkOpticalSize;
+			this.updateStyles();
+		},
+		unlinkOpticalSize: function() {
+			this.linkOpticalSize = false;
 		}
 	}
 };

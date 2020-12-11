@@ -13,6 +13,19 @@
 	margin-left: var(--small-margin);
 }
 
+.font-size {
+	display: flex;
+	align-items: flex-start;
+}
+
+.font-size-slider {
+	width: 100%;
+}
+
+.optical-size-link {
+	font-size: 0.85rem;
+}
+
 /* TODO: componentalizationreuse */
 .button {
 	padding: 0.25rem 0.5rem;

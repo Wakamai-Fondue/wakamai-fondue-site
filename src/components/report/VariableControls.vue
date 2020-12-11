@@ -42,7 +42,7 @@
 							:max="axis.max"
 							:disabled="currentStates[axis.id] === false"
 							v-model.number="axis.current"
-							@input="updateStyles()"
+							@input="updateStyles(axis.id)"
 						/>
 					</span>
 					<span class="axis-max">{{ axis.max }}</span>
@@ -53,7 +53,7 @@
 						:class="axis.current !== axis.default ? 'show' : 'hide'"
 						:tabindex="axis.current !== axis.default ? 0 : -1"
 						:disabled="currentStates[axis.id] === false"
-						@click="resetAxis(tag)"
+						@click="resetAxis(axis.id)"
 					>
 						Reset
 					</button>
