@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#daac51d6fa4e3885ee5224f790872617539fbd6b",
+    "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#d72dff9aa31110395eeb5fc95d5e178f1cc29863",
     "core-js": "^3.6.5",
     "prismjs": "^1.21.0",
     "vue": "^2.6.11",
