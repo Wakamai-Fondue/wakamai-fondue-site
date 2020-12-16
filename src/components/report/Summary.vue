@@ -15,8 +15,15 @@
 			font with
 
 			<strong>
-				{{ charCount }}
-				{{ charCount | pluralize("character") }}.
+				{{ font.charCount }}
+				{{ font.charCount | pluralize("character") }}
+			</strong>
+
+			and
+
+			<strong>
+				{{ font.glyphCount }}
+				{{ font.glyphCount | pluralize("glyph") }}.
 			</strong>
 
 			<template v-if="font.isVariable">

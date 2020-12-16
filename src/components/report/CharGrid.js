@@ -11,7 +11,6 @@ export default {
 			showCategories: true,
 			chars: this.font.supportedCharacters,
 			catChars: this.font.categorisedCharacters,
-			charCount: this.font.supportedCharacters.length,
 			hasAxes: this.font.variable && this.font.variable.axes.length,
 			showAxes: this.font.isVariable,
 			hasFeatures: false, // TODO: Should be determined by the font

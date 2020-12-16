@@ -109,8 +109,7 @@
 }
 
 .instances-dropdown-label {
-	display: inline-block;
-	width: 16em;
+	margin-right: var(--small-margin);
 }
 
 /* TODO: componentalizationreuse */

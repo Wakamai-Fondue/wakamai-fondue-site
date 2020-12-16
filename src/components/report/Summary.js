@@ -3,8 +3,7 @@ export default {
 	data() {
 		return {
 			summary: this.font.summary,
-			features: this.font.features,
-			charCount: this.font.supportedCharacters.length
+			features: this.font.features
 		};
 	},
 	computed: {

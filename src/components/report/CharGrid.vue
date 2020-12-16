@@ -3,7 +3,7 @@
 		<h2 class="section-title">Character Set</h2>
 		<div class="content" :class="{ 'show-features': showFeatures }">
 			<div class="char-bar">
-				<span>{{ charCount }} characters</span>
+				<span>{{ font.charCount }} characters</span>
 				<label>
 					<input
 						type="checkbox"
