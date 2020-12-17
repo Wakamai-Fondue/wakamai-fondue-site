@@ -7,6 +7,8 @@
 			<template v-if="font.format == 'OpenType/CFF'">an</template>
 			<template v-else>a</template>
 
+			<strong v-if="font.isHinted"> hinted</strong>
+
 			<strong> {{ font.format }}</strong>
 
 			<strong v-if="font.isVariable"> variable</strong>
