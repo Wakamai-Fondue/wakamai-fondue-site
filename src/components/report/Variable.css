@@ -1,5 +1,5 @@
 .variable-tester {
-	font-family: wakamai-fondue, monospace;
+	font-family: var(--font-stack);
 	padding: 1rem;
 	font-size: 3rem;
 	background: var(--light-grey);

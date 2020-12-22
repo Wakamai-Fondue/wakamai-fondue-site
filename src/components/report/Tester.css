@@ -1,5 +1,5 @@
 .tester {
-	font-family: wakamai-fondue, monospace;
+	font-family: var(--font-stack);
 	max-width: 68rem;
 	margin: 0 auto 0 auto;
 	padding: 1rem;

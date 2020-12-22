@@ -7,7 +7,7 @@
 			@click="toggleModal"
 		></button>
 		<Filedrop :error="error" />
-		<img src="../img/pixelambacht.svg" alt="" class="logo" />
+		<img src="../assets/pixelambacht.svg" alt="" class="logo" />
 	</header>
 </template>
 
