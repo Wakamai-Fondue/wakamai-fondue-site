@@ -1,5 +1,5 @@
 .summary h1 {
-	font-family: wakamai-fondue, monospace;
+	font-family: var(--font-stack);
 	text-align: center;
 	overflow: hidden;
 	text-overflow: ellipsis;

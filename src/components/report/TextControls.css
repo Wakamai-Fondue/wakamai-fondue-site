@@ -72,17 +72,17 @@
 }
 
 .left {
-	background-image: url("../../img/format_align_left-24px.svg");
+	background-image: url("../../assets/format_align_left-24px.svg");
 }
 
 .center {
-	background-image: url("../../img/format_align_center-24px.svg");
+	background-image: url("../../assets/format_align_center-24px.svg");
 }
 
 .right {
-	background-image: url("../../img/format_align_right-24px.svg");
+	background-image: url("../../assets/format_align_right-24px.svg");
 }
 
 .justify {
-	background-image: url("../../img/format_align_justify-24px.svg");
+	background-image: url("../../assets/format_align_justify-24px.svg");
 }

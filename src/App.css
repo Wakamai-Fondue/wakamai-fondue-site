@@ -14,6 +14,13 @@
 	/* Using this as opposed to 0.25em/0.25rem to avoid rounding
 	   weirdness that creates uneven gaps */
 	--small-margin: 4px;
+
+	--font-stack: wakamai-fondue, notdef;
+}
+
+@font-face {
+	font-family: notdef;
+	src: url("assets/AND-Regular.woff2");
 }
 
 html {

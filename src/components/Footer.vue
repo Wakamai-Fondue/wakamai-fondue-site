@@ -8,7 +8,7 @@
 			target="_blank"
 			aria-label="PixelAmbacht"
 		>
-			<img src="../img/pixelambacht.svg" alt="PixelAmbacht logo" />
+			<img src="../assets/pixelambacht.svg" alt="PixelAmbacht logo" />
 		</a>
 		<p>
 			<a href="https://pixelambacht.nl" target="_blank"

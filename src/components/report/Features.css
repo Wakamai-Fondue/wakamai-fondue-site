@@ -35,7 +35,7 @@
 }
 
 .chars {
-	font-family: wakamai-fondue, monospace;
+	font-family: var(--font-stack);
 	font-size: 1.5rem;
 	background: var(--light-grey);
 	padding: 0.5rem;

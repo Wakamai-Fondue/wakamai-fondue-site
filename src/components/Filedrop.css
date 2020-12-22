@@ -34,7 +34,7 @@
 
 .upload::after {
 	content: "";
-	background: url("../img/logo.svg");
+	background: url("../assets/logo.svg");
 	position: absolute;
 	top: -16%;
 	left: -16%;
