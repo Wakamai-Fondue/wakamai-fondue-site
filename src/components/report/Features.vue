@@ -62,7 +62,7 @@
 						:style="getFeatureStyle(feature.tag)"
 						contenteditable
 						spellcheck="false"
-						:data-type="lookup['type']"
+						:data-type="lookup['typeName']"
 					>
 						<template v-if="lookup['type'] === 3">
 							<template v-for="(char, index) in lookup['input']">
