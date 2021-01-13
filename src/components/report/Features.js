@@ -42,11 +42,11 @@ export default {
 			this.currentStates[feature] = 1 - this.currentStates[feature];
 		},
 		isValidFeature(feature) {
-			if(feature) return true; // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			// return (
-			// 	this.featureChars[feature.tag] &&
-			// 	this.featureChars[feature.tag]["input"].length
-			// );
+			return (
+				this.featureChars[feature.tag] &&
+				this.featureChars[feature.tag].length &&
+				this.featureChars[feature.tag][0]["input"].length
+			);
 		},
 		// Use onState for features that take a specific number
 		// instead of just 0 or 1.
