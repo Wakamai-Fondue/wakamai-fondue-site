@@ -50,7 +50,7 @@
 	top: 4px;
 	right: 4px;
 	background: var(--unlighter-grey);
-	font-feature-settings: normal;
+	font-feature-settings: normal !important;
 	font-family: var(--system-font-stack);
 	font-size: 0.75rem;
 	padding: 0 4px 2px 4px;
@@ -58,6 +58,8 @@
 }
 
 .no-chars {
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
 	font-style: italic;
 	color: var(--unlighterer-grey);
 	background: var(--light-grey);
