@@ -56,13 +56,13 @@
 
 				<template v-if="isValidFeature(feature)">
 					<div
-						v-for="(lookup, index) in featureChars[feature.tag]"
+						v-for="(lookup, index) in featureChars[feature.tag]['lookups']"
 						:key="`lookup_${feature.tag}_${index}`"
-						class="chars"
 						:style="getFeatureStyle(feature.tag)"
+						:data-type="lookup['typeName']"
+						class="chars"
 						contenteditable
 						spellcheck="false"
-						:data-type="lookup['typeName']"
 					>
 						<template v-if="lookup['type'] === 3">
 							<template v-for="(char, index) in lookup['input']">
@@ -77,40 +77,11 @@
 						</template>
 
 						<template v-else-if="lookup['type'] === 6">
-							<div
-								v-for="(chars, index) in lookup['input']"
-								:key="`type3_${index}`"
-							>
-								<div>
-									<template
-										v-for="char in lookup['backtrack'][
-											index
-										]"
-									>
-										{{ char }}
-									</template>
-								</div>
-								<div>
-									<template v-for="char in chars">
-										{{ char }}
-									</template>
-								</div>
-
-								<div>
-									<template
-										v-for="char in lookup['lookahead'][
-											index
-										]"
-									>
-										{{ char }}
-									</template>
-								</div>
-								<hr :key="`test_${index}`" />
-							</div>
+							{{ featureChars[feature.tag]['summary'].join(" ") }}
 						</template>
 
-						<template v-else v-for="char in lookup['input']">
-							{{ char }}
+						<template v-else>
+							{{ lookup['input'].join(" ") }}
 						</template>
 					</div>
 				</template>

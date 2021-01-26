@@ -44,7 +44,7 @@
 	overflow: hidden;
 }
 
-.chars[data-type]:hover::before {
+.chars[data-type]::before {
 	content: attr(data-type);
 	position: absolute;
 	top: 4px;
