@@ -64,14 +64,15 @@ export default {
 			return this.currentStates[feature] >= 1;
 		},
 		alternateCount(feature) {
-			if (
-				this.featureChars[feature] &&
-				this.featureChars[feature]["alternateCount"].length
-			) {
-				return Math.max(
-					...this.featureChars[feature]["alternateCount"]
-				);
+			let alternateCount = 0;
+			// Return the highest number of alternates for this feature
+			if (this.featureChars[feature]) {
+				for (const lookup of this.featureChars[feature]["lookups"])
+			    {
+				    alternateCount = Math.max(...lookup["alternateCount"], alternateCount);
+			    }
 			}
+			return alternateCount;
 		},
 		updateStyles: function() {
 			this.$emit("updateFeatureStyles", this.getFeatureStyles());
