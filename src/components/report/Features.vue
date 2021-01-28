@@ -107,7 +107,6 @@
 					>
 						{{ featureChars[feature.tag]["summary"].join(" ") }}
 					</div>
-
 				</template>
 				<div
 					v-else
