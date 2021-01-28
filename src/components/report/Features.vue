@@ -55,16 +55,20 @@
 				</div>
 
 				<template v-if="isValidFeature(feature)">
-					<div
-						v-for="(lookup, index) in featureChars[feature.tag]['lookups']"
-						:key="`lookup_${feature.tag}_${index}`"
-						:style="getFeatureStyle(feature.tag)"
-						:data-type="lookup['typeName']"
-						class="chars"
-						contenteditable
-						spellcheck="false"
+					<template
+						v-for="(lookup, index) in featureChars[feature.tag][
+							'lookups'
+						]"
 					>
-						<template v-if="lookup['type'] === 3">
+						<div
+							v-if="lookup['type'] === 3"
+							:style="getFeatureStyle(feature.tag)"
+							:data-type="lookup['typeName']"
+							:key="`lookup_${feature.tag}_${index}`"
+							class="chars"
+							contenteditable
+							spellcheck="false"
+						>
 							<template v-for="(char, index) in lookup['input']">
 								<span
 									v-for="n in lookup['alternateCount'][index]"
@@ -74,16 +78,36 @@
 									{{ char }}
 								</span>
 							</template>
-						</template>
+						</div>
 
-						<template v-else-if="lookup['type'] === 6">
-							{{ featureChars[feature.tag]['summary'].join(" ") }}
-						</template>
+						<template v-else-if="lookup['type'] === 6"></template>
 
-						<template v-else>
-							{{ lookup['input'].join(" ") }}
-						</template>
+						<div
+							v-else
+							:style="getFeatureStyle(feature.tag)"
+							:data-type="lookup['typeName']"
+							:key="`lookup_${feature.tag}_${index}`"
+							class="chars"
+							contenteditable
+							spellcheck="false"
+						>
+							{{ lookup["input"].join(" ") }}
+						</div>
+					</template>
+
+					<div
+						v-if="featureChars[feature.tag]['summary'].length"
+						:style="getFeatureStyle(feature.tag)"
+						data-type="Chained Contexts Substitution"
+						data-summary="⚠️ This is a randomly generated sample of possible combinations"
+						:key="`lookup_${feature.tag}_{index}`"
+						class="chars summarized"
+						contenteditable
+						spellcheck="false"
+					>
+						{{ featureChars[feature.tag]["summary"].join(" ") }}
 					</div>
+
 				</template>
 				<div
 					v-else

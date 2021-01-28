@@ -39,7 +39,7 @@
 	font-family: var(--font-stack);
 	font-size: 1.5rem;
 	background: var(--light-grey);
-	padding: 0.5rem;
+	padding: 1.5rem 0.5rem 0.5rem 0.5rem;
 	margin-top: var(--small-margin);
 	overflow: hidden;
 }
@@ -47,8 +47,21 @@
 .chars[data-type]::before {
 	content: attr(data-type);
 	position: absolute;
-	top: 4px;
-	right: 4px;
+	top: var(--small-margin);
+	left: var(--small-margin);
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.chars.summarized::after {
+	content: attr(data-summary);
+	position: absolute;
+	top: var(--small-margin);
+	right: var(--small-margin);
 	background: var(--unlighter-grey);
 	font-feature-settings: normal !important;
 	font-family: var(--system-font-stack);
@@ -67,3 +80,53 @@
 	margin-top: var(--small-margin);
 	overflow: hidden;
 }
+
+/*
+
+Committing this as I would like to preserve this
+for when a user can toggle between a Type 6 summary
+and the raw backtrack/input/lookahead
+
+.backtrack::before {
+	content: "Before";
+	display: inline-block;
+
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.input::before {
+	content: "Input";
+	display: inline-block;
+
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.lookahead::before {
+	content: "After";
+	display: inline-block;
+
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.divider {
+	height: 1em;
+	background: white;
+	margin: 1em -1em;
+}
+
+*/
