@@ -67,10 +67,12 @@ export default {
 			let alternateCount = 0;
 			// Return the highest number of alternates for this feature
 			if (this.featureChars[feature]) {
-				for (const lookup of this.featureChars[feature]["lookups"])
-			    {
-				    alternateCount = Math.max(...lookup["alternateCount"], alternateCount);
-			    }
+				for (const lookup of this.featureChars[feature]["lookups"]) {
+					alternateCount = Math.max(
+						...lookup["alternateCount"],
+						alternateCount
+					);
+				}
 			}
 			return alternateCount;
 		},
