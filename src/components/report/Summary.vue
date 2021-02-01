@@ -92,12 +92,7 @@
 
 		<div>
 			<h3>Unicode support</h3>
-			<p>
-				{{
-					font.unicodeRange.join(", ")
-
-				}}.
-			</p>
+			<p>{{ font.unicodeRange.join(", ") }}.</p>
 		</div>
 
 		<div v-if="isExamplefont" class="example-font-shoutout">
