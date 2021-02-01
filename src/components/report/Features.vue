@@ -95,18 +95,84 @@
 						</div>
 					</template>
 
-					<div
-						v-if="featureChars[feature.tag]['summary'].length"
-						:style="getFeatureStyle(feature.tag)"
-						data-type="Chained Contexts Substitution"
-						data-summary="⚠️ This is a randomly generated sample of possible combinations"
-						:key="`lookup_${feature.tag}_{index}`"
-						class="chars summarized"
-						contenteditable
-						spellcheck="false"
+					<template
+						v-if="
+							featureChars[feature.tag]['summary'][
+								'summarizedCombinations'
+							].length
+						"
 					>
-						{{ featureChars[feature.tag]["summary"].join(" ") }}
-					</div>
+						<div
+							v-if="
+								featureChars[feature.tag]['summary'][
+									'allBacktracks'
+								].length
+							"
+							:style="getFeatureStyle(feature.tag)"
+							:key="`btsummary_${feature.tag}_{index}`"
+							data-type="Chained Contexts Substitution"
+							data-summary="Summarized backtrack"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"allBacktracks"
+								].join(" ")
+							}}
+						</div>
+
+						<div
+							:style="getFeatureStyle(feature.tag)"
+							:key="`insummary_${feature.tag}_{index}`"
+							data-summary="Summarized input"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"allInputs"
+								].join(" ")
+							}}
+						</div>
+
+						<div
+							v-if="
+								featureChars[feature.tag]['summary'][
+									'allLookaheads'
+								].length
+							"
+							:style="getFeatureStyle(feature.tag)"
+							:key="`lasummary_${feature.tag}_{index}`"
+							data-summary="Summarized lookahead"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"allLookaheads"
+								].join(" ")
+							}}
+						</div>
+
+						<div
+							:style="getFeatureStyle(feature.tag)"
+							:key="`combsummary_${feature.tag}_{index}`"
+							data-summary="Randomly generated sample of possible combinations"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"summarizedCombinations"
+								].join(" ")
+							}}
+						</div>
+					</template>
 				</template>
 				<div
 					v-else
