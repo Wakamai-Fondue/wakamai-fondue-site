@@ -14,6 +14,7 @@ export default {
 		return {
 			font: false,
 			dragging: false,
+			working: false,
 			error: false,
 			showModal: false,
 			isExamplefont: false
@@ -36,9 +37,10 @@ export default {
 					that.error = false;
 					that.injectStyleSheet(fileOrBlob);
 					that.font = fondue;
-					that.$nextTick(() =>
-						document.getElementById("report").scrollIntoView()
-					);
+					that.$nextTick(() => {
+						that.working = false;
+						document.getElementById("report").scrollIntoView();
+					});
 				})
 				.catch(function() {
 					that.error = true;
@@ -59,6 +61,8 @@ export default {
 			});
 		},
 		loadFont(fileOrBlob, filename, that) {
+			this.working = true;
+
 			const reader = new FileReader();
 
 			reader.onload = function() {
@@ -75,6 +79,8 @@ export default {
 			reader.readAsArrayBuffer(fileOrBlob);
 		},
 		getExampleFont(filename) {
+			this.working = true;
+
 			const that = this;
 
 			// Grab font from server

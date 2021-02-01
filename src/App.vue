@@ -6,7 +6,7 @@
 		@mouseout="dragStatus(false)"
 		@keydown.esc="toggleModal(true)"
 		tabindex="0"
-		:class="{ dragging }"
+		:class="{ dragging, working }"
 	>
 		<Hero
 			@getFont="getFont"
