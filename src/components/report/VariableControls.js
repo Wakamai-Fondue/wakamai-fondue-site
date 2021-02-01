@@ -19,6 +19,9 @@ export default {
 		},
 		hasIntances() {
 			return Object.entries(this.instances).length > 0;
+		},
+		instanceCount() {
+			return Object.entries(this.instances).length;
 		}
 	},
 	mounted: function() {

@@ -88,7 +88,7 @@
 		<div v-if="hasIntances && showInstances === 'dropdown'">
 			<h3 v-if="showTitles">Named instances</h3>
 			<span class="instances-dropdown-label">
-				Named instances
+				{{ instanceCount }} Named instances
 			</span>
 			<select
 				@change="selectInstance($event.target.value)"
