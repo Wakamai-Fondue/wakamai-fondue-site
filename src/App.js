@@ -47,6 +47,8 @@ export default {
 				});
 		},
 		getFont(e) {
+			this.working = true;
+
 			e.preventDefault();
 			this.dragging = false;
 			this.isExamplefont = false;
@@ -61,8 +63,6 @@ export default {
 			});
 		},
 		loadFont(fileOrBlob, filename, that) {
-			this.working = true;
-
 			const reader = new FileReader();
 
 			reader.onload = function() {

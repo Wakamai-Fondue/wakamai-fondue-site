@@ -6,10 +6,16 @@
 	columns: 3;
 }
 
+.feature-controls.long li {
+	list-style: initial;
+	color: transparent;
+}
+
 .feature-controls label {
 	margin-bottom: var(--small-margin);
 	display: flex;
 	cursor: pointer;
+	color: black;
 }
 
 .feature-description {
