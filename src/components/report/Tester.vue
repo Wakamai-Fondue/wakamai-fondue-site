@@ -45,8 +45,6 @@
 					fondue on a very hot silver or metal plate. Do not allow the
 					fondue to remain on the fire after the mixture is set, as,
 					if it boils, it will be entirely spoilt.
-					<br />
-					<br />
 					0123456789 !@#$%^&*(),.?
 				</template>
 			</div>
