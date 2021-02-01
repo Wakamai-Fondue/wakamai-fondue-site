@@ -79,6 +79,7 @@
 	background: none;
 	cursor: pointer;
 	width: 100%;
+	height: 100%;
 	background: var(--yellow);
 	color: black;
 	transition: background 400ms;
