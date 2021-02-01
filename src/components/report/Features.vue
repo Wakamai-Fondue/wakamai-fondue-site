@@ -53,37 +53,127 @@
 						/><span>Show</span>
 					</label>
 				</div>
-				<div
-					v-if="isValidFeature(feature)"
-					class="chars"
-					:style="getFeatureStyle(feature.tag)"
-					contenteditable
-					spellcheck="false"
-				>
-					<template v-if="featureChars[feature.tag]['type'] === 3">
-						<template
-							v-for="(char, index) in featureChars[feature.tag][
-								'input'
-							]"
-						>
-							<span
-								v-for="n in featureChars[feature.tag][
-									'alternateCount'
-								][index]"
-								:key="`type3_${char}_${n}`"
-								:style="getFeatureStyle(feature.tag, n)"
-							>
-								{{ char }}
-							</span>
-						</template>
-					</template>
+
+				<template v-if="isValidFeature(feature)">
 					<template
-						v-else
-						v-for="char in featureChars[feature.tag]['input']"
+						v-for="(lookup, index) in featureChars[feature.tag][
+							'lookups'
+						]"
 					>
-						{{ char }}
+						<div
+							v-if="lookup['type'] === 3"
+							:style="getFeatureStyle(feature.tag)"
+							:data-type="lookup['typeName']"
+							:key="`lookup_${feature.tag}_${index}`"
+							class="chars"
+							contenteditable
+							spellcheck="false"
+						>
+							<template v-for="(char, index) in lookup['input']">
+								<span
+									v-for="n in lookup['alternateCount'][index]"
+									:key="`type3_${char}_${n}`"
+									:style="getFeatureStyle(feature.tag, n)"
+								>
+									{{ char }}
+								</span>
+							</template>
+						</div>
+
+						<template v-else-if="lookup['type'] === 6"></template>
+
+						<div
+							v-else
+							:style="getFeatureStyle(feature.tag)"
+							:data-type="lookup['typeName']"
+							:key="`lookup_${feature.tag}_${index}`"
+							class="chars"
+							contenteditable
+							spellcheck="false"
+						>
+							{{ lookup["input"].join(" ") }}
+						</div>
 					</template>
-				</div>
+
+					<template
+						v-if="
+							featureChars[feature.tag]['summary'][
+								'summarizedCombinations'
+							].length
+						"
+					>
+						<div
+							v-if="
+								featureChars[feature.tag]['summary'][
+									'allBacktracks'
+								].length
+							"
+							:style="getFeatureStyle(feature.tag)"
+							:key="`btsummary_${feature.tag}_{index}`"
+							data-type="Chained Contexts Substitution"
+							data-summary="Summarized backtrack"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"allBacktracks"
+								].join(" ")
+							}}
+						</div>
+
+						<div
+							:style="getFeatureStyle(feature.tag)"
+							:key="`insummary_${feature.tag}_{index}`"
+							data-summary="Summarized input"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"allInputs"
+								].join(" ")
+							}}
+						</div>
+
+						<div
+							v-if="
+								featureChars[feature.tag]['summary'][
+									'allLookaheads'
+								].length
+							"
+							:style="getFeatureStyle(feature.tag)"
+							:key="`lasummary_${feature.tag}_{index}`"
+							data-summary="Summarized lookahead"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"allLookaheads"
+								].join(" ")
+							}}
+						</div>
+
+						<div
+							:style="getFeatureStyle(feature.tag)"
+							:key="`combsummary_${feature.tag}_{index}`"
+							data-summary="Randomly generated sample of possible combinations"
+							class="chars summarized"
+							contenteditable
+							spellcheck="false"
+						>
+							{{
+								featureChars[feature.tag]["summary"][
+									"summarizedCombinations"
+								].join(" ")
+							}}
+						</div>
+					</template>
+				</template>
 				<div
 					v-else
 					class="no-chars"

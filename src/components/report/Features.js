@@ -44,7 +44,8 @@ export default {
 		isValidFeature(feature) {
 			return (
 				this.featureChars[feature.tag] &&
-				this.featureChars[feature.tag]["input"].length
+				this.featureChars[feature.tag]["lookups"].length &&
+				this.featureChars[feature.tag]["lookups"][0]["input"].length
 			);
 		},
 		// Use onState for features that take a specific number

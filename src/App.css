@@ -16,6 +16,8 @@
 	--small-margin: 4px;
 
 	--font-stack: wakamai-fondue, notdef;
+	--system-font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
 }
 
 @font-face {
@@ -27,8 +29,7 @@ html {
 	box-sizing: border-box;
 	min-height: 320px;
 	min-width: 320px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
+	font-family: var(--system-font-stack);
 	scroll-behavior: smooth;
 }
 
