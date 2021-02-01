@@ -17,7 +17,8 @@ export default {
 			variableStyles: "",
 			featureStyles: "",
 			textStyles: "",
-			language: null
+			language: null,
+			sticky: true
 		};
 	},
 	computed: {

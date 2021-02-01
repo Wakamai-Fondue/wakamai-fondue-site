@@ -35,7 +35,8 @@
 				Indra Kupferschmid, Bram Stein, Nick Sherman, David Jonathan
 				Ross, Koen Kivits, Kenneth Ormandy, Zach Leatherman, Mike
 				“Pomax” Kamermans, John Hudson, Robin Rendle, Pascal
-				Widdershoven, Dave Crossland and Amelia Bellamy-Royds 💖
+				Widdershoven, Frank Grießhammer, Dave Crossland and Amelia
+				Bellamy-Royds 💖
 			</p>
 			<hr />
 			<p>
@@ -74,6 +75,40 @@
 					>tweet at me</a
 				>!
 			</p>
+			<hr />
+			<div class="donut">
+				<p>
+					Wakamai Fondue is a labor of love and free for everybody to
+					use. If it made your day a little bit better, consider
+					supporting me with a donation 🍩
+				</p>
+				<form
+					action="https://www.paypal.com/donate"
+					method="post"
+					target="_blank"
+				>
+					<input
+						type="hidden"
+						name="hosted_button_id"
+						value="XZBF85F94XRVC"
+					/>
+					<button
+						class="donut-button"
+						name="submit"
+						title="PayPal - The safer, easier way to pay online!"
+						alt="Donate with PayPal button"
+					>
+						Donate
+					</button>
+					<img
+						alt=""
+						border="0"
+						src="https://www.paypal.com/en_NL/i/scr/pixel.gif"
+						width="1"
+						height="1"
+					/>
+				</form>
+			</div>
 			<hr />
 			<a
 				href="https://pixelambacht.nl"

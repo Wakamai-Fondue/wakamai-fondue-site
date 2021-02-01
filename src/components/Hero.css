@@ -7,9 +7,10 @@
 
 .logo {
 	position: absolute;
-	right: 2vw;
-	bottom: 1.5vw;
-	width: 10vw;
+	left: 1.5vw;
+	top: 1.5vw;
+	width: 12.5vw;
+	z-index: 10;
 }
 
 .info {

@@ -1,9 +1,10 @@
 <template>
 	<section id="tester">
 		<h2 class="section-title">Tester</h2>
-		<div class="content">
+		<div class="content tester-container">
 			<div
 				class="tester"
+				:class="{ sticky }"
 				spellcheck="false"
 				dir="auto"
 				contenteditable
@@ -13,6 +14,16 @@
 				"
 				:lang="language"
 			>
+				<button
+					contenteditable="false"
+					type="button"
+					alt="Pin text"
+					class="sticky-button"
+					:class="{ sticky }"
+					@click="sticky = !sticky"
+				>
+					📌
+				</button>
 				<p v-if="customText">
 					{{ customText }}
 				</p>
@@ -33,10 +44,8 @@
 					cheese, and a good sprinkling of pepper, and serve the
 					fondue on a very hot silver or metal plate. Do not allow the
 					fondue to remain on the fire after the mixture is set, as,
-					if it boils, it will be entirely spoilt.
-					<br />
-					<br />
-					0123456789 !@#$%^&*(),.?
+					if it boils, it will be entirely spoilt. 0123456789
+					!@#$%^&*(),.?
 				</template>
 			</div>
 
