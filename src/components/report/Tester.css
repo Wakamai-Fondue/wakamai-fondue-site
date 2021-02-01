@@ -1,10 +1,20 @@
+.tester-container {
+	position: relative;
+}
+
 .tester {
+	position: relative;
 	font-family: var(--font-stack);
 	max-width: 68rem;
 	margin: 0 auto 0 auto;
 	padding: 1rem;
 	background: var(--light-grey);
 	color: black;
+}
+
+.tester.sticky {
+	position: sticky;
+	top: 0;
 }
 
 .code {
@@ -21,4 +31,17 @@
 	margin: 0;
 	font-size: 2.5rem;
 	cursor: pointer;
+}
+
+.sticky-button {
+	font-family: initial;
+	border: 0;
+	position: absolute;
+	top: var(--small-margin);
+	right: var(--small-margin);
+	opacity: 0.5;
+}
+
+.sticky-button.sticky {
+	opacity: 1;
 }

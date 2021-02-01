@@ -1,9 +1,10 @@
 <template>
 	<section id="tester">
 		<h2 class="section-title">Tester</h2>
-		<div class="content">
+		<div class="content tester-container">
 			<div
 				class="tester"
+				:class="{ sticky }"
 				spellcheck="false"
 				dir="auto"
 				contenteditable
@@ -13,6 +14,16 @@
 				"
 				:lang="language"
 			>
+				<button
+					contenteditable="false"
+					type="button"
+					alt="Pin text"
+					class="sticky-button"
+					:class="{ sticky }"
+					@click="sticky = !sticky"
+				>
+					📌
+				</button>
 				<p v-if="customText">
 					{{ customText }}
 				</p>
