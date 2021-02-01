@@ -36,6 +36,7 @@
 .sticky-button {
 	font-family: initial;
 	border: 0;
+	background: none;
 	position: absolute;
 	top: var(--small-margin);
 	right: var(--small-margin);
