@@ -45,8 +45,8 @@
 					>Roel Nieskens/PixelAmbacht</a
 				>
 				using
-				<a href="https://github.com/Pomax/Font.js" target="_blank"
-					>Font.js</a
+				<a href="https://github.com/Pomax/lib-font" target="_blank"
+					>LibFont</a
 				>
 				and
 				<a href="https://vuejs.org/" target="_blank">Vue.js</a>
