@@ -11,7 +11,8 @@
 
 			font with
 
-			<strong> {{ font.outlines.join(", ") }}</strong>
+			<strong v-if="!font.outlines.length"> no</strong>
+			<strong v-else> {{ font.outlines.join(", ") }}</strong>
 
 			outlines<template v-if="!font.isColor">.</template>
 
