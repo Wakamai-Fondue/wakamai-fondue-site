@@ -57,6 +57,7 @@
 				{{ featureLength | pluralize("layout feature") }}.
 			</strong>
 		</p>
+
 		<table class="details">
 			<tbody>
 				<tr v-for="(value, key) in summary" :key="key">
@@ -68,6 +69,7 @@
 				</tr>
 			</tbody>
 		</table>
+
 		<div
 			class="features"
 			aria-label="Font layout features"
@@ -80,6 +82,7 @@
 				</li>
 			</ul>
 		</div>
+
 		<div>
 			<h3>Supported languages</h3>
 			<p>
