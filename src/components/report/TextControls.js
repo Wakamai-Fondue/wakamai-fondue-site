@@ -3,7 +3,7 @@ export default {
 	data() {
 		return {
 			fontSize: 24,
-			textAlign: "left",
+			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
 			linkOpticalSize: false
