@@ -24,6 +24,10 @@
 	margin-top: 2rem;
 }
 
+.code-styles {
+	position: relative;
+}
+
 .sticky-button {
 	font-family: initial;
 	border: 0;
@@ -32,6 +36,7 @@
 	top: 0;
 	right: 0;
 	opacity: 0.5;
+	font-size: 2rem;
 }
 
 .sticky-button.sticky {

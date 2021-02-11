@@ -1,0 +1,22 @@
+.copy-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.copy-button button {
+	font-family: initial;
+	border: 0;
+	background: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.5rem;
+}
+
+/* Hidden input to hold the content */
+.copy-button input {
+	pointer-events: none;
+	width: 10px;
+	opacity: 0;
+}

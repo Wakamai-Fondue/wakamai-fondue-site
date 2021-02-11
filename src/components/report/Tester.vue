@@ -71,7 +71,12 @@
 			/>
 			<div class="code">
 				<Prism language="html" v-if="hasLocalization">{{ html }}</Prism>
-				<Prism language="css">{{ styles }}</Prism>
+				<div class="code-styles">
+					<CopyToClipboard :content="styles" />
+					<Prism language="css">
+						{{ styles }}
+					</Prism>
+				</div>
 			</div>
 		</div>
 	</section>
