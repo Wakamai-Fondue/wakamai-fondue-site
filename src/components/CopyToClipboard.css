@@ -5,6 +5,7 @@
 }
 
 .copy-button button {
+	padding: var(--small-margin);
 	font-family: initial;
 	border: 0;
 	background: none;
@@ -19,4 +20,27 @@
 	pointer-events: none;
 	width: 10px;
 	opacity: 0;
+}
+
+.success {
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.5rem;
+	padding: var(--small-margin);
+	animation: thumbs-up 700ms ease-out forwards;
+}
+
+@keyframes thumbs-up {
+	0% {
+		transform: translateY(0) scale(0.5);
+	}
+	0%,70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-3rem) scale(1.5);
+	}
 }

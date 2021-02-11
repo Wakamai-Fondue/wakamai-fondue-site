@@ -1,14 +1,17 @@
 <template>
 	<div class="copy-button">
-		<button type="button" @click="copy">📋</button>
 		<input
 			:value="content"
-			ref="copytext"
+			ref="content"
 			type="text"
 			tabindex="-1"
 			aria-hidden="true"
 			readonly
 		/>
+		<button type="button" @click="copy" title="Copy to clipboard">
+			📋
+		</button>
+		<div class="success" ref="success" v-if="show">👍</div>
 	</div>
 </template>
 

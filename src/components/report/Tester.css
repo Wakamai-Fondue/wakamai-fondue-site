@@ -29,6 +29,7 @@
 }
 
 .sticky-button {
+	padding: var(--small-margin);
 	font-family: initial;
 	border: 0;
 	background: none;
