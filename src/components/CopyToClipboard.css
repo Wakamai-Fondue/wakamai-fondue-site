@@ -16,7 +16,7 @@
 }
 
 /* Hidden input to hold the content */
-.copy-button input {
+.copy-button textarea {
 	pointer-events: none;
 	width: 10px;
 	opacity: 0;

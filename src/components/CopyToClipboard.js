@@ -2,22 +2,43 @@ export default {
 	props: ["content"],
 	data() {
 		return {
-			show: false
+			show: false,
+			failMessage: "Oops, sorry! Copying to clipboard failed."
 		};
 	},
 	methods: {
 		copy: function() {
 			try {
-				// Copy conent of hidden input to clipboard
-				this.$refs.content.select();
-				document.execCommand("copy");
-				// Toggle thumbs up animation
-				this.show = false;
-				const that = this;
-				this.$nextTick().then(() => (that.show = true));
+				if (!navigator.clipboard) {
+					console.log("1");
+					// Use old execCommand
+					this.$refs.content.select();
+					document.execCommand("copy");
+					this.copySuccess();
+				} else {
+					console.log("2");
+					// Use mew clipboard API
+					navigator.clipboard
+						.writeText(this.content)
+						.then(() => {
+							this.copySuccess();
+						})
+						.catch(() => {
+							this.copyFail();
+						});
+				}
 			} catch (error) {
-				alert("Oops, sorry! Copying to clipboard failed.");
+				this.copyFail();
 			}
+		},
+		copySuccess: function() {
+			// Toggle thumbs up animation
+			this.show = false;
+			const that = this;
+			this.$nextTick().then(() => (that.show = true));
+		},
+		copyFail: function() {
+			alert(this.failMessage);
 		}
 	}
 };

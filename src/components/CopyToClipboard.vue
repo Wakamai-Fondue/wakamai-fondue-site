@@ -1,6 +1,6 @@
 <template>
 	<div class="copy-button">
-		<input
+		<textarea
 			:value="content"
 			ref="content"
 			type="text"
