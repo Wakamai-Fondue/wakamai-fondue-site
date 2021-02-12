@@ -103,7 +103,10 @@
 				</option>
 			</select>
 		</div>
-		<Prism v-if="showStyles" language="css">{{ variableStyles }}</Prism>
+		<div class="code" v-if="showStyles">
+			<CopyToClipboard :content="variableStyles" />
+			<Prism language="css">{{ variableStyles }}</Prism>
+		</div>
 	</div>
 </template>
 

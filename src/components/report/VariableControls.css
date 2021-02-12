@@ -139,3 +139,7 @@
 .button-off {
 	background: var(--red);
 }
+
+.code {
+	position: relative;
+}
