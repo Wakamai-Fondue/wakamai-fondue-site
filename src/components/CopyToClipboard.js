@@ -10,13 +10,11 @@ export default {
 		copy: function() {
 			try {
 				if (!navigator.clipboard) {
-					console.log("1");
 					// Use old execCommand
 					this.$refs.content.select();
 					document.execCommand("copy");
 					this.copySuccess();
 				} else {
-					console.log("2");
 					// Use mew clipboard API
 					navigator.clipboard
 						.writeText(this.content)
