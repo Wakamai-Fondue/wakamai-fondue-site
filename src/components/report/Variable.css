@@ -1,7 +1,33 @@
+.variable-tester-container {
+	position: relative;
+}
+
 .variable-tester {
+	position: relative;
 	font-family: var(--font-stack);
 	padding: 1rem;
 	font-size: 3rem;
 	background: var(--light-grey);
 	margin-bottom: 2rem;
+}
+
+.variable-tester.sticky {
+	position: sticky;
+	top: 0;
+}
+
+.sticky-button {
+	padding: var(--small-margin);
+	font-family: initial;
+	border: 0;
+	background: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0.5;
+	font-size: 1.5rem;
+}
+
+.sticky-button.sticky {
+	opacity: 1;
 }
