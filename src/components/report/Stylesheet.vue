@@ -23,7 +23,7 @@
 					</button>
 				</div>
 				<div class="code">
-					<CopyToClipboard :content="styles" />
+					<CopyToClipboard :content="css" />
 					<Prism language="css">{{ css }}</Prism>
 				</div>
 			</div>
