@@ -15,7 +15,7 @@ export default {
 					document.execCommand("copy");
 					this.copySuccess();
 				} else {
-					// Use mew clipboard API
+					// Use new clipboard API
 					navigator.clipboard
 						.writeText(this.content)
 						.then(() => {
