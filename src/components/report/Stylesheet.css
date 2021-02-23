@@ -16,6 +16,11 @@
 	justify-content: center;
 	top: 1rem;
 	margin-bottom: 2rem;
+	z-index: 1;
+}
+
+.code {
+	position: relative;
 }
 
 /* TODO: componentalizationreuse */

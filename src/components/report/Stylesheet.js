@@ -1,9 +1,11 @@
 import Prism from "vue-prism-component";
+import CopyToClipboard from "../CopyToClipboard.vue";
 
 export default {
 	props: ["font"],
 	components: {
-		Prism
+		Prism,
+		CopyToClipboard
 	},
 	data() {
 		return {

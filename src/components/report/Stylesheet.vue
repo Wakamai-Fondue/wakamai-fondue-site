@@ -22,7 +22,10 @@
 						Download stylesheet!
 					</button>
 				</div>
-				<Prism language="css">{{ css }}</Prism>
+				<div class="code">
+					<CopyToClipboard :content="css" />
+					<Prism language="css">{{ css }}</Prism>
+				</div>
 			</div>
 			<div v-else>
 				<strong>There is no CSS needed for this font!</strong> You can

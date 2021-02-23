@@ -6,7 +6,8 @@ export default {
 		VariableControls
 	},
 	data: () => ({
-		variableStyles: ""
+		variableStyles: "",
+		sticky: false
 	}),
 	methods: {
 		updateVariableStyles: function(updatedStyles) {

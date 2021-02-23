@@ -24,7 +24,12 @@
 	margin-top: 2rem;
 }
 
+.code-styles {
+	position: relative;
+}
+
 .sticky-button {
+	padding: var(--small-margin);
 	font-family: initial;
 	border: 0;
 	background: none;
@@ -32,6 +37,7 @@
 	top: 0;
 	right: 0;
 	opacity: 0.5;
+	font-size: 1.5rem;
 }
 
 .sticky-button.sticky {
