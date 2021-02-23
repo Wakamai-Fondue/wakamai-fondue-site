@@ -5,9 +5,6 @@
 			<div
 				class="tester"
 				:class="{ sticky }"
-				spellcheck="false"
-				dir="auto"
-				contenteditable
 				:style="
 					`${variableStyles}${featureStyles}${textStyles}`
 						| inlinestyle
@@ -24,10 +21,15 @@
 				>
 					📌
 				</button>
-				<p v-if="customText">
+				<p
+					spellcheck="false"
+					dir="auto"
+					contenteditable
+					v-if="customText"
+				>
 					{{ customText }}
 				</p>
-				<template v-else>
+				<p spellcheck="false" dir="auto" contenteditable v-else>
 					Brillat Savarin’s Fondue (an excellent recipe)
 					<br />
 					<br />
@@ -46,7 +48,7 @@
 					fondue to remain on the fire after the mixture is set, as,
 					if it boils, it will be entirely spoilt. 0123456789
 					!@#$%^&*(),.?
-				</template>
+				</p>
 			</div>
 
 			<TextControls

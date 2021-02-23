@@ -2,19 +2,30 @@
 	<section class="summary content" id="summary">
 		<h1>{{ summary["Font name"] }}</h1>
 		<p class="oneliner">
-			This is
-
-			<template v-if="font.format == 'OpenType/CFF'">an</template>
-			<template v-else>a</template>
+			This is a
 
 			<strong v-if="font.isHinted"> hinted</strong>
-
-			<strong> {{ font.format }}</strong>
 
 			<strong v-if="font.isVariable"> variable</strong>
 			<strong v-if="font.isColor"> color</strong>
 
 			font with
+
+			<strong v-if="!font.outlines.length"> no</strong>
+			<strong v-else> {{ font.outlines.join(", ") }}</strong>
+
+			outlines<template v-if="!font.isColor">.</template>
+
+			<template v-if="font.isColor">
+				and
+				<strong>
+					{{ this.font.colorFormats | listify }} color glyphs.
+				</strong>
+			</template>
+
+			<br />
+
+			It has
 
 			<strong>
 				{{ font.charCount }}
@@ -25,34 +36,28 @@
 
 			<strong>
 				{{ font.glyphCount }}
-				{{ font.glyphCount | pluralize("glyph") }}.
+				{{ font.glyphCount | pluralize("glyph") }},
 			</strong>
 
 			<template v-if="font.isVariable">
-				It has
 				<strong>
 					{{ axesCount }} {{ axesCount | pluralize("axe") }}
 				</strong>
 				and
 				<strong
 					>{{ instancesCount }}
-					{{ instancesCount | pluralize("instance") }}.
+					{{ instancesCount | pluralize("instance") }},
 				</strong>
 			</template>
 
-			<template v-if="font.isColor">
-				It has
-				<strong>
-					{{ this.font.colorFormats | listify }} color glyphs.
-				</strong>
-			</template>
+			and
 
-			It has
 			<strong>
 				{{ featureLength }}
 				{{ featureLength | pluralize("layout feature") }}.
 			</strong>
 		</p>
+
 		<table class="details">
 			<tbody>
 				<tr v-for="(value, key) in summary" :key="key">
@@ -64,6 +69,7 @@
 				</tr>
 			</tbody>
 		</table>
+
 		<div
 			class="features"
 			aria-label="Font layout features"
@@ -76,6 +82,7 @@
 				</li>
 			</ul>
 		</div>
+
 		<div>
 			<h3>Supported languages</h3>
 			<p>
