@@ -1,4 +1,3 @@
-// TODO: deal with multiple fonts
 import { fromDataBuffer } from "@wakamai-fondue/engine";
 import Hero from "./components/Hero.vue";
 import Report from "./components/Report.vue";
