@@ -12,7 +12,7 @@
 		</a>
 		<p>
 			<a href="https://pixelambacht.nl" target="_blank"
-				>© PixelAmbacht 2020 — Made by Roel Nieskens</a
+				>© PixelAmbacht 2021 — Made by Roel Nieskens</a
 			>
 		</p>
 	</footer>
