@@ -16,7 +16,8 @@ export default {
 			working: false,
 			error: false,
 			showModal: false,
-			isExamplefont: false
+			isExamplefont: false,
+			isGooglefont: false
 		};
 	},
 	methods: {
@@ -51,6 +52,7 @@ export default {
 			e.preventDefault();
 			this.dragging = false;
 			this.isExamplefont = false;
+			this.isGooglefont = false;
 
 			const that = this;
 
@@ -77,10 +79,8 @@ export default {
 
 			reader.readAsArrayBuffer(fileOrBlob);
 		},
-		getExampleFont(filename, isExamplefont) {
+		getExternalFont(filename) {
 			this.working = true;
-
-			const that = this;
 
 			// Grab font from server
 			const request = new XMLHttpRequest();
@@ -88,25 +88,28 @@ export default {
 			request.responseType = "blob";
 			request.send();
 
+			const that = this;
 			request.onload = function() {
 				const blob = request.response;
 				that.loadFont(blob, filename, that);
-				that.isExamplefont = isExamplefont;
 			};
 		},
+		getExampleFont(font) {
+			this.isExamplefont = true;
+			this.getExternalFont(font);
+		},
 		getGoogleFont(googleFont) {
-			this.working = true;
-
-			const that = this;
+			this.isGooglefont = true;
 
 			// Grab CSS for this font from Google Fonts
 			const request = new XMLHttpRequest();
 			request.open("GET", googleFont.css, true);
 			request.send();
 
+			const that = this;
 			request.onload = function() {
 				const fontLinks = that.parseGoogleFontCSS(request.response);
-				that.getExampleFont(fontLinks[googleFont.subset], false);
+				that.getExternalFont(fontLinks[googleFont.subset]);
 			};
 		},
 		injectStyleSheet(file) {

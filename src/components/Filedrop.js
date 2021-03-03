@@ -43,7 +43,7 @@ export default {
 				vm = vm.$parent;
 			}
 		},
-		loadGoogleFont(font) {
+		getGoogleFont(font) {
 			// Quick and clean way to emit to grandparent
 			// that a file has been picked
 			let vm = this;

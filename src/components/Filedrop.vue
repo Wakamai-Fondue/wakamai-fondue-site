@@ -29,7 +29,7 @@
 				<div class="google-fonts">
 					Or try a variable font from Google Fonts:
 					<br />
-					<select @change="loadGoogleFont($event.target.value)">
+					<select @change="getGoogleFont($event.target.value)">
 						<option
 							v-for="(axes, family) in expandedGoogleFonts"
 							:key="family"
