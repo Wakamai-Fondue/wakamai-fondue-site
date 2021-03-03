@@ -22,6 +22,9 @@
 						Download stylesheet!
 					</button>
 				</div>
+				<div class="code" v-if="isGooglefont">
+					<Prism language="html">{{ googleFontCSS }}</Prism>
+				</div>
 				<div class="code">
 					<CopyToClipboard :content="css" />
 					<Prism language="css">{{ css }}</Prism>

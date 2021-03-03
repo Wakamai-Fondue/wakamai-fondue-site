@@ -99,7 +99,7 @@ export default {
 			this.getExternalFont(font);
 		},
 		getGoogleFont(googleFont) {
-			this.isGooglefont = true;
+			this.isGooglefont = googleFont.css;
 
 			// Grab CSS for this font from Google Fonts
 			const request = new XMLHttpRequest();
