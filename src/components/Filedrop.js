@@ -1,9 +1,15 @@
+import googleFonts from "../assets/gfcss.json";
+
 // This is visual element that lets users drag and drop
 // or click to upload a font. The actual font gets
 // "uploaded" and converted to a JS object in App.js
-
 export default {
 	props: ["error"],
+	data() {
+		return {
+			googleFonts: googleFonts
+		};
+	},
 	methods: {
 		getFont(e) {
 			// Quick and clean way to emit to grandparent

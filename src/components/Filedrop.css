@@ -43,7 +43,6 @@
 	max-width: 500px;
 	max-height: 500px;
 	transition: transform 150ms;
-	cursor: pointer;
 }
 
 .upload::after {
@@ -82,13 +81,13 @@
 	color: black;
 }
 
-.demo-font {
+.button {
 	/* Stacking tricks to prevent button click
 	   from being seen as label click */
 	position: relative;
 	z-index: 1;
-	padding: 0.25rem 0.5rem;
-	border-radius: 0.2rem;
+	padding: 0.25em 0.5em;
+	border-radius: 0.2em;
 	margin-top: 1.5rem;
 	border: 0;
 	background: none;
@@ -96,6 +95,13 @@
 	background: var(--green);
 	color: white;
 	cursor: pointer;
+}
+
+
+.button.upload-button {
+	font-size: 1.5rem;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 .dragging .filedrop {
@@ -125,4 +131,13 @@
 	to {
 		transform: rotate(-1turn);
 	}
+}
+
+.google-fonts {
+	/* Stacking tricks to prevent button click
+	   from being seen as label click */
+	position: relative;
+	z-index: 1;
+	margin-top: 1.25rem;
+	text-align: center;
 }
