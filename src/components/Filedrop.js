@@ -10,6 +10,20 @@ export default {
 			googleFonts: googleFonts
 		};
 	},
+	computed: {
+		expandedGoogleFonts() {
+			let gf = {};
+			for (const family in googleFonts) {
+				for (const subset of googleFonts[family].subsets) {
+					gf[`${family} (${subset})`] = {
+						css: googleFonts[family].css,
+						subset: subset
+					};
+				}
+			}
+			return gf;
+		}
+	},
 	methods: {
 		getFont(e) {
 			// Quick and clean way to emit to grandparent
@@ -26,6 +40,15 @@ export default {
 			let vm = this;
 			while (vm) {
 				vm.$emit("getExampleFont", filename);
+				vm = vm.$parent;
+			}
+		},
+		loadGoogleFont(font) {
+			// Quick and clean way to emit to grandparent
+			// that a file has been picked
+			let vm = this;
+			while (vm) {
+				vm.$emit("getGoogleFont", this.expandedGoogleFonts[font]);
 				vm = vm.$parent;
 			}
 		}

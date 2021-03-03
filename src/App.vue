@@ -11,6 +11,7 @@
 		<Hero
 			@getFont="getFont"
 			@getExampleFont="getExampleFont"
+			@getGoogleFont="getGoogleFont"
 			@toggleModal="toggleModal"
 			:error="error"
 		/>

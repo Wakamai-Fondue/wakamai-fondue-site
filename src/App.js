@@ -77,21 +77,36 @@ export default {
 
 			reader.readAsArrayBuffer(fileOrBlob);
 		},
-		getExampleFont(filename) {
+		getExampleFont(filename, isExamplefont) {
 			this.working = true;
 
 			const that = this;
 
 			// Grab font from server
 			const request = new XMLHttpRequest();
-			request.open("GET", `/${filename}`, true);
+			request.open("GET", `${filename}`, true);
 			request.responseType = "blob";
 			request.send();
 
 			request.onload = function() {
 				const blob = request.response;
 				that.loadFont(blob, filename, that);
-				that.isExamplefont = true;
+				that.isExamplefont = isExamplefont;
+			};
+		},
+		getGoogleFont(googleFont) {
+			this.working = true;
+
+			const that = this;
+
+			// Grab CSS for this font from Google Fonts
+			const request = new XMLHttpRequest();
+			request.open("GET", googleFont.css, true);
+			request.send();
+
+			request.onload = function() {
+				const fontLinks = that.parseGoogleFontCSS(request.response);
+				that.getExampleFont(fontLinks[googleFont.subset], false);
 			};
 		},
 		injectStyleSheet(file) {
@@ -121,6 +136,20 @@ export default {
 			} else {
 				this.showModal = !this.showModal;
 			}
+		},
+		parseGoogleFontCSS(css) {
+			const chunks = css.split("}\n");
+			let links = {};
+			for (const chunk of chunks) {
+				const name = chunk
+					.split("*/")[0]
+					.replace("/*", "")
+					.trim();
+				if (!name) continue;
+				const fontURL = chunk.split("src: url(")[1].split(")")[0];
+				links[name] = fontURL;
+			}
+			return links;
 		}
 	}
 };
