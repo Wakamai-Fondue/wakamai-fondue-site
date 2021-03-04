@@ -9,11 +9,15 @@ export default {
 	},
 	data() {
 		return {
-			css: this.font.cssString,
 			fontname: this.font.summary["Font name"]
 		};
 	},
 	computed: {
+		css() {
+			const exclude = this.isGooglefont ? "font-face" : "";
+			return this.font.fontCSS(exclude);
+		},
+
 		googleFontCSS() {
 			let css = "";
 			css += `<link rel="preconnect" href="https://fonts.gstatic.com">\n`;
