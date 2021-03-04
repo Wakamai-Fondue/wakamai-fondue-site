@@ -5,11 +5,10 @@
 
 			<div class="info">
 				"What can my font do?"
-				<strong>Drop a font</strong>
-				and find out!
 
 				<label class="button upload-button">
-					Pick a font!
+					<span>Pick a font</span>
+					and find out!
 					<input
 						type="file"
 						name="file"
@@ -18,18 +17,29 @@
 					/>
 				</label>
 
-				<button
-					type="button"
-					class="button"
-					@click="getExampleFont('GimletVariable-VF.woff2')"
-				>
-					Try with Gimlet
-				</button>
+				<div class="secondary">
+					<button
+						type="button"
+						class="button"
+						@click="getExampleFont('GimletVariable-VF.woff2')"
+					>
+						Try with Gimlet
+					</button>
 
-				<div class="google-fonts">
-					Or try a variable font from Google Fonts:
-					<br />
-					<select @change="getGoogleFont($event.target.value)">
+					or
+
+					<button
+						type="button"
+						class="button"
+						@click="toggleGoogleFonts()"
+					>
+						Try Google Fonts
+					</button>
+
+					<select
+						:class="{ show: showGoogleFonts }"
+						@change="getGoogleFont($event.target.value)"
+					>
 						<option
 							v-for="(axes, family) in expandedGoogleFonts"
 							:key="family"

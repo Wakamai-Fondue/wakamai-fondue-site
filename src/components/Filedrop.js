@@ -7,7 +7,8 @@ export default {
 	props: ["error"],
 	data() {
 		return {
-			googleFonts: googleFonts
+			googleFonts: googleFonts,
+			showGoogleFonts: false
 		};
 	},
 	computed: {
@@ -51,6 +52,9 @@ export default {
 				vm.$emit("getGoogleFont", this.expandedGoogleFonts[font]);
 				vm = vm.$parent;
 			}
+		},
+		toggleGoogleFonts() {
+			this.showGoogleFonts = !this.showGoogleFonts;
 		}
 	}
 };

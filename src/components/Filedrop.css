@@ -75,12 +75,6 @@
 	color: rgba(0, 0, 0, 0.6);
 }
 
-.info strong {
-	font-size: 1.5em;
-	margin-top: 1rem;
-	color: black;
-}
-
 .button {
 	/* Stacking tricks to prevent button click
 	   from being seen as label click */
@@ -88,7 +82,6 @@
 	z-index: 1;
 	padding: 0.25em 0.5em;
 	border-radius: 0.2em;
-	margin-top: 1.5rem;
 	border: 0;
 	background: none;
 	font-size: 0.85rem;
@@ -97,11 +90,16 @@
 	cursor: pointer;
 }
 
-
 .button.upload-button {
+	line-height: 1;
+	text-align: center;
+	padding: 0.5rem 2rem;
+	margin: 1.5rem 0 2.5rem 0;
+}
+
+.button.upload-button span {
+	display: block;
 	font-size: 1.5rem;
-	padding-left: 1em;
-	padding-right: 1em;
 }
 
 .dragging .filedrop {
@@ -133,11 +131,23 @@
 	}
 }
 
-.google-fonts {
+.secondary {
 	/* Stacking tricks to prevent button click
 	   from being seen as label click */
 	position: relative;
 	z-index: 1;
-	margin-top: 1.25rem;
 	text-align: center;
+}
+
+.secondary select {
+	opacity: 0;
+	pointer-events: none;
+	margin-top: 1rem;
+	width: 100%;
+	max-width: fit-content;
+}
+
+.secondary select.show {
+	opacity: 1;
+	pointer-events: auto;
 }
