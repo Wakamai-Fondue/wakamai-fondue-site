@@ -11,10 +11,15 @@
 		<Hero
 			@getFont="getFont"
 			@getExampleFont="getExampleFont"
+			@getGoogleFont="getGoogleFont"
 			@toggleModal="toggleModal"
 			:error="error"
 		/>
-		<Report :font="font" :isExamplefont="isExamplefont" />
+		<Report
+			:font="font"
+			:isExamplefont="isExamplefont"
+			:isGooglefont="isGooglefont"
+		/>
 		<Modal v-if="showModal" @toggleModal="toggleModal" />
 		<div class="beta-message">
 			Heya! You’re looking at the beta site. Comments, bugs or feedback?
