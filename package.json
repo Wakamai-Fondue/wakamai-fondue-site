@@ -10,7 +10,7 @@
   "dependencies": {
     "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#50b68ac117a9aa5d907174db1920b4823ed4263e",
     "core-js": "^3.6.5",
-    "prismjs": "^1.21.0",
+    "prismjs": "^1.24.0",
     "vue": "^2.6.11",
     "vue-linkify": "^1.0.1",
     "vue-prism-component": "^1.2.0"
