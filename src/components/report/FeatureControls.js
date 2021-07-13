@@ -31,7 +31,7 @@ export default {
 				"dflt" in this.font.featureChars["latn"]
 			) {
 				return this.font.featureChars["latn"]["dflt"];
-			} else if(Object.keys(this.font.featureChars).length > 0) {
+			} else if (Object.keys(this.font.featureChars).length > 0) {
 				// If all else fails, return first
 				const first = Object.keys(this.font.featureChars)[0];
 				return Object.values(this.font.featureChars[first])[0];
