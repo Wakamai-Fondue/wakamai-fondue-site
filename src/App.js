@@ -43,6 +43,7 @@ export default {
 				})
 				.catch(function() {
 					that.error = true;
+					that.working = false;
 				});
 		},
 		getFont(e) {
