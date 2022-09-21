@@ -9,23 +9,23 @@
   },
   "dependencies": {
     "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#bce8ffabec8449691befa3f5803b90315266b12a",
-    "core-js": "^3.6.5",
-    "prismjs": "^1.24.0",
-    "vue": "^2.6.11",
+    "core-js": "^3.25.2",
+    "prismjs": "^1.29.0",
+    "vue": "^3.2.39",
     "vue-linkify": "^1.0.1",
-    "vue-prism-component": "^1.2.0"
+    "vue-prism-component": "^2.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
+    "@vue/eslint-config-prettier": "^7.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-vue": "^6.2.2",
-    "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.11"
+    "eslint": "^8.23.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.5.1",
+    "prettier": "^2.7.1",
+    "vue-template-compiler": "^2.7.10"
   },
   "engines": {
     "node": ">=14"
