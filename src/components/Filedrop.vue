@@ -1,29 +1,59 @@
 <template>
 	<div class="filedrop">
-		<label class="upload">
+		<div class="upload">
 			<div class="background"></div>
-			<input
-				type="file"
-				name="file"
-				accept=".woff,.woff2,.ttf,.otf"
-				@change="getFont"
-			/>
+
 			<div class="info">
 				"What can my font do?"
-				<strong>Drop a font</strong>
-				and find out!
-				<button
-					type="button"
-					class="demo-font"
-					@click="getExampleFont('GimletVariable-VF.woff2')"
-				>
-					Try with Gimlet!
-				</button>
+
+				<label class="button upload-button">
+					<span>Pick a font</span>
+					and find out!
+					<input
+						type="file"
+						name="file"
+						accept=".woff,.woff2,.ttf,.otf"
+						@change="getFont"
+					/>
+				</label>
+
+				<div class="secondary">
+					<button
+						type="button"
+						class="button"
+						@click="getExampleFont('GimletVariable-VF.woff2')"
+					>
+						Try with Gimlet
+					</button>
+
+					or
+
+					<button
+						type="button"
+						class="button"
+						@click="toggleGoogleFonts()"
+					>
+						Try Google Fonts
+					</button>
+
+					<select
+						:class="{ show: showGoogleFonts }"
+						@change="getGoogleFont($event.target.value)"
+					>
+						<option
+							v-for="(axes, family) in expandedGoogleFonts"
+							:key="family"
+						>
+							{{ family }}
+						</option>
+					</select>
+				</div>
+
 				<span class="errormessage" :class="{ show: error }">
 					Oops! I couldn't handle that file.
 				</span>
 			</div>
-		</label>
+		</div>
 	</div>
 </template>
 
