@@ -4,6 +4,12 @@ import Report from "./components/Report.vue";
 import Modal from "./components/Modal.vue";
 
 export default {
+	created: function() {
+		if (window.location.pathname == "/bungee") {
+			this.getExampleFont("Bungee-Regular.ttf");
+			document.getElementById("report").scrollIntoView();
+		}
+	},
 	components: {
 		Hero,
 		Report,
