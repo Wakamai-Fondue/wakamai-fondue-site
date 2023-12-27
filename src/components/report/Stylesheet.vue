@@ -37,5 +37,5 @@
 	</section>
 </template>
 
-<script src="./Stylesheet.js"></script>
-<style src="./Stylesheet.css" scoped></style>
+<script src="./StyleSheet.js"></script>
+<style src="./StyleSheet.css" scoped></style>

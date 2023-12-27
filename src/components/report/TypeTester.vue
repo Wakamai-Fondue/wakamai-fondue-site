@@ -80,5 +80,5 @@
 	</section>
 </template>
 
-<script src="./Tester.js"></script>
-<style src="./Tester.css" scoped></style>
+<script src="./TypeTester.js"></script>
+<style src="./TypeTester.css" scoped></style>

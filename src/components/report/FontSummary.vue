@@ -116,5 +116,5 @@
 	</section>
 </template>
 
-<script src="./Summary.js"></script>
-<style src="./Summary.css" scoped></style>
+<script src="./FontSummary.js"></script>
+<style src="./FontSummary.css" scoped></style>

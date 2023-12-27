@@ -12,11 +12,11 @@
 		</a>
 		<p>
 			<a href="https://pixelambacht.nl" target="_blank"
-				>© PixelAmbacht 2021 — Made by Roel Nieskens</a
+				>© PixelAmbacht {{ new Date().getFullYear() }} — Made by Roel Nieskens</a
 			>
 		</p>
 	</footer>
 </template>
 
-<script src="./Footer.js"></script>
-<style src="./Footer.css" scoped></style>
+<script src="./SiteFooter.js"></script>
+<style src="./SiteFooter.css" scoped></style>

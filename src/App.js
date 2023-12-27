@@ -1,13 +1,13 @@
 import { fromDataBuffer } from "@wakamai-fondue/engine";
-import Hero from "./components/Hero.vue";
-import Report from "./components/Report.vue";
-import Modal from "./components/Modal.vue";
+import TheFondue from "./components/TheFondue.vue";
+import FontReport from "./components/FontReport.vue";
+import InfoModal from "./components/InfoModal.vue";
 
 export default {
 	components: {
-		Hero,
-		Report,
-		Modal
+		TheFondue,
+		FontReport,
+		InfoModal
 	},
 	data() {
 		return {
@@ -15,7 +15,7 @@ export default {
 			dragging: false,
 			working: false,
 			error: false,
-			showModal: false,
+			showInfoModal: false,
 			isExamplefont: false
 		};
 	},
@@ -38,7 +38,7 @@ export default {
 					that.font = fondue;
 					that.$nextTick(() => {
 						that.working = false;
-						document.getElementById("report").scrollIntoView();
+						document.getElementById("Fontreport").scrollIntoView();
 					});
 				})
 				.catch(function() {
@@ -116,11 +116,11 @@ export default {
 				)
 			);
 		},
-		toggleModal(forceClose) {
+		toggleInfoModal(forceClose) {
 			if (forceClose) {
-				this.showModal = false;
+				this.showInfoModal = false;
 			} else {
-				this.showModal = !this.showModal;
+				this.showInfoModal = !this.showInfoModal;
 			}
 		}
 	}

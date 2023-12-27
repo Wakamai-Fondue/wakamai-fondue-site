@@ -27,5 +27,5 @@
 	</div>
 </template>
 
-<script src="./Filedrop.js"></script>
-<style src="./Filedrop.css" scoped></style>
+<script src="./FileDrop.js"></script>
+<style src="./FileDrop.css" scoped></style>

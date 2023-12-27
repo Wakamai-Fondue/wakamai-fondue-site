@@ -34,5 +34,5 @@
 	</section>
 </template>
 
-<script src="./Variable.js"></script>
-<style src="./Variable.css" scoped></style>
+<script src="./VariableFont.js"></script>
+<style src="./VariableFont.css" scoped></style>

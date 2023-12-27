@@ -187,5 +187,5 @@
 	</section>
 </template>
 
-<script src="./Features.js"></script>
-<style src="./Features.css" scoped></style>
+<script src="./OpenTypeFeatures.js"></script>
+<style src="./OpenTypeFeatures.css" scoped></style>

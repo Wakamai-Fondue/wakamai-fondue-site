@@ -121,5 +121,5 @@
 	</div>
 </template>
 
-<script src="./Modal.js"></script>
-<style src="./Modal.css" scoped></style>
+<script src="./InfoModal.js"></script>
+<style src="./InfoModal.css" scoped></style>

@@ -1,17 +1,17 @@
 <template>
-	<header class="hero">
+	<header class="fondue">
 		<button
 			type="button"
 			aria-label="Info"
 			class="info"
 			@click="toggleModal"
 		></button>
-		<Filedrop :error="error" />
+		<FileDrop :error="error" />
 		<a href="https://pixelambacht.nl" target="_blank" class="logo"
 			><img src="../assets/pixelambacht.svg" alt=""
 		/></a>
 	</header>
 </template>
 
-<script src="./Hero.js"></script>
-<style src="./Hero.css" scoped></style>
+<script src="./TheFondue.js"></script>
+<style src="./TheFondue.css" scoped></style>

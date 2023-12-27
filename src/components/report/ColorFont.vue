@@ -35,5 +35,5 @@
 	</section>
 </template>
 
-<script src="./Color.js"></script>
-<style src="./Color.css" scoped></style>
+<script src="./ColorFont.js"></script>
+<style src="./ColorFont.css" scoped></style>
