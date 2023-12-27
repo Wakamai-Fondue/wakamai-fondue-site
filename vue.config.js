@@ -1,9 +1,9 @@
 module.exports = {
 	devServer: {
-		disableHostCheck: true,
-		watchOptions: {
-			ignored: [/node_modules([\\]+|\/)+(?!@wakamai-fondue\/engine)/]
-		}
+		// disableHostCheck: true,
+		// watchOptions: {
+		// 	ignored: [/node_modules([\\]+|\/)+(?!@wakamai-fondue\/engine)/]
+		// }
 	},
 	transpileDependencies: ["@wakamai-fondue/engine", "lib-font"],
 	configureWebpack: {
