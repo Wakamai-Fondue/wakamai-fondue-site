@@ -8,9 +8,12 @@ module.exports = {
 	transpileDependencies: ["@wakamai-fondue/engine", "lib-font"],
 	configureWebpack: {
 		resolve: {
-            fallback: {
+			fallback: {
+                assert: require.resolve("assert/"),
                 fs: false,
-                zlib: false
+                stream: require.resolve("stream-browserify"),
+                util: require.resolve("util/"),
+                zlib: require.resolve("browserify-zlib")
             },
 			symlinks: false // npm link
 		}

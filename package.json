@@ -16,15 +16,18 @@
     "vue-prism-component": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.23.3",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
-    "@babel/eslint-parser": "^7.23.3",
     "@vue/eslint-config-prettier": "^7.0.0",
+    "browserify-zlib": "^0.2.0",
     "eslint": "^8.23.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.5.1",
     "prettier": "^2.7.1",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5",
     "vue-template-compiler": "^2.7.10"
   },
   "engines": {
