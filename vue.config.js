@@ -9,8 +9,11 @@ module.exports = {
 	configureWebpack: {
 		resolve: {
 			fallback: {
+				assert: require.resolve("assert/"),
 				fs: false,
-				zlib: false,
+				stream: require.resolve("stream-browserify"),
+				util: require.resolve("util/"),
+				zlib: require.resolve("browserify-zlib"),
 			},
 			symlinks: false, // npm link
 		},
