@@ -16,11 +16,8 @@
 
 import Vue from "vue";
 import App from "./App.vue";
-import linkify from "vue-linkify";
 import "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
-
-Vue.directive("linkified", linkify);
 
 Vue.config.productionTip = false;
 Vue.config.globalProperties.$filters = {
