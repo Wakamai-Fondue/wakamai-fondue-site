@@ -5,16 +5,16 @@ export default {
 	props: ["font"],
 	components: {
 		Prism,
-		CopyToClipboard
+		CopyToClipboard,
 	},
 	data() {
 		return {
 			css: this.font.cssString,
-			fontname: this.font.summary["Font name"]
+			fontname: this.font.summary["Font name"],
 		};
 	},
 	methods: {
-		getFontCSSLink: function() {
+		getFontCSSLink: function () {
 			const filename = `${this.font.slug}-wakamai-fondue.css`;
 			let temp = document.createElement("a");
 			temp.setAttribute(
@@ -31,6 +31,6 @@ export default {
 			} else {
 				temp.click();
 			}
-		}
-	}
+		},
+	},
 };

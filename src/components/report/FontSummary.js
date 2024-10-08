@@ -3,7 +3,7 @@ export default {
 	data() {
 		return {
 			summary: this.font.summary,
-			features: this.font.features
+			features: this.font.features,
 		};
 	},
 	computed: {
@@ -14,7 +14,7 @@ export default {
 			return this.font.features.length || "no";
 		},
 		localizations() {
-			return this.font.languageSystems.map(l => l.name);
+			return this.font.languageSystems.map((l) => l.name);
 		},
 		axesCount() {
 			if (this.font.variable) {
@@ -29,6 +29,6 @@ export default {
 				count = Object.keys(this.font.variable.instances).length;
 			}
 			return count || "no";
-		}
-	}
+		},
+	},
 };

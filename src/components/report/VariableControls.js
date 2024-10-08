@@ -5,14 +5,14 @@ export default {
 	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
 	components: {
 		Prism,
-		CopyToClipboard
+		CopyToClipboard,
 	},
 	data() {
 		return {
 			activeInstance: "",
 			axes: this.font.variable.axes,
 			instances: this.font.variable.instances,
-			currentStates: {}
+			currentStates: {},
 		};
 	},
 	computed: {
@@ -24,16 +24,16 @@ export default {
 		},
 		instanceCount() {
 			return Object.entries(this.instances).length;
-		}
+		},
 	},
-	mounted: function() {
+	mounted: function () {
 		this.$root.$on("updateOpticalSize", this.updateOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
 		updateOpticalSize(fontSize) {
 			if (this.font.hasOpticalSize) {
-				const targetAxis = this.axes.find(o => o.id === "opsz");
+				const targetAxis = this.axes.find((o) => o.id === "opsz");
 				const opszValue = Math.min(
 					Math.max(targetAxis.min, fontSize),
 					targetAxis.max
@@ -44,34 +44,34 @@ export default {
 				this.updateStyles();
 			}
 		},
-		resetAxis: function(axis) {
+		resetAxis: function (axis) {
 			if (axis === "opsz") {
 				this.$root.$emit("unlinkOpticalSize");
 			}
-			const defaultValue = this.axes.find(o => o.id === axis).default;
+			const defaultValue = this.axes.find((o) => o.id === axis).default;
 			this.setAxis(axis, defaultValue);
 		},
-		setAxis: function(axis, value) {
-			this.axes.find(o => o.id === axis).current = value;
+		setAxis: function (axis, value) {
+			this.axes.find((o) => o.id === axis).current = value;
 			this.updateStyles();
 		},
-		selectInstance: function(instance) {
+		selectInstance: function (instance) {
 			this.activeInstance = instance;
 			for (const axis in this.instances[instance]) {
 				const value = this.instances[instance][axis];
-				const targetAxis = this.axes.find(o => o.id === axis);
+				const targetAxis = this.axes.find((o) => o.id === axis);
 				targetAxis.current = value;
 			}
 			this.updateStyles();
 		},
-		updateStyles: function(axis) {
+		updateStyles: function (axis) {
 			if (axis === "opsz") {
 				this.$root.$emit("unlinkOpticalSize");
 			}
 			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
 		},
-		matchInstance: function() {
+		matchInstance: function () {
 			// Using a simple JSON.stringify to compare an object with the
 			// current axes values, with the axes values of the instances.
 			const currentAxes = {};
@@ -88,7 +88,7 @@ export default {
 			}
 			this.activeInstance = activeInstance;
 		},
-		getVariableStyles: function() {
+		getVariableStyles: function () {
 			let styles = "";
 			let glue = "";
 			let counter = 0;
@@ -109,13 +109,13 @@ export default {
 				return "";
 			}
 		},
-		getInstanceStyles: function(instance) {
+		getInstanceStyles: function (instance) {
 			const styles = Object.entries(this.instances[instance])
 				.map(([axis, value]) => `"${axis}" ${value}`)
 				.join(",");
 			return `font-variation-settings:${styles};`;
 		},
-		getBestStep: function(axis) {
+		getBestStep: function (axis) {
 			// Step in units of 1 when range is > 1,
 			// Step in units of 0.1 when range is <= 1
 			if (
@@ -138,6 +138,6 @@ export default {
 				this.$root.$emit("unlinkOpticalSize");
 			}
 			this.updateStyles();
-		}
-	}
+		},
+	},
 };

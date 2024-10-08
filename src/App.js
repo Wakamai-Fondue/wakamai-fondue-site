@@ -7,7 +7,7 @@ export default {
 	components: {
 		TheFondue,
 		FontReport,
-		InfoModal
+		InfoModal,
 	},
 	data() {
 		return {
@@ -16,7 +16,7 @@ export default {
 			working: false,
 			error: false,
 			showInfoModal: false,
-			isExamplefont: false
+			isExamplefont: false,
 		};
 	},
 	methods: {
@@ -32,7 +32,7 @@ export default {
 			// Destroy old font prop so Vue picks up change
 			that.font = false;
 			fromDataBuffer(data, fileName)
-				.then(fondue => {
+				.then((fondue) => {
 					that.error = false;
 					that.injectStyleSheet(fileOrBlob);
 					that.font = fondue;
@@ -41,7 +41,7 @@ export default {
 						document.getElementById("Fontreport").scrollIntoView();
 					});
 				})
-				.catch(function() {
+				.catch(function () {
 					that.error = true;
 					that.working = false;
 				});
@@ -58,19 +58,19 @@ export default {
 			// Loop over all uploaded files
 			let files = e.target.files || e.dataTransfer.files;
 			if (!files) return;
-			[...files].forEach(file => {
+			[...files].forEach((file) => {
 				this.loadFont(file, file.name, that);
 			});
 		},
 		loadFont(fileOrBlob, filename, that) {
 			const reader = new FileReader();
 
-			reader.onload = function() {
+			reader.onload = function () {
 				const data = reader.result;
 				that.loadFondue(fileOrBlob, data, filename, that);
 			};
 
-			reader.onerror = function(error) {
+			reader.onerror = function (error) {
 				// TODO: error handling
 				// eslint-disable-next-line no-console
 				console.log(error);
@@ -89,7 +89,7 @@ export default {
 			request.responseType = "blob";
 			request.send();
 
-			request.onload = function() {
+			request.onload = function () {
 				const blob = request.response;
 				that.loadFont(blob, filename, that);
 				that.isExamplefont = true;
@@ -122,6 +122,6 @@ export default {
 			} else {
 				this.showInfoModal = !this.showInfoModal;
 			}
-		}
-	}
+		},
+	},
 };

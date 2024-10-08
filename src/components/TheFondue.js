@@ -5,6 +5,6 @@ export default {
 	mixins: [toggleModal],
 	props: ["error"],
 	components: {
-		FileDrop
-	}
+		FileDrop,
+	},
 };

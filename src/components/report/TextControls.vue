@@ -1,9 +1,7 @@
 <template>
 	<div class="text-controls">
 		<div class="font-size">
-			<label for="font-size-slider">
-				Font size
-			</label>
+			<label for="font-size-slider"> Font size </label>
 			<div>
 				<input
 					id="font-size-slider"

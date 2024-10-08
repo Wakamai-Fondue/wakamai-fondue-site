@@ -12,7 +12,8 @@
 		</a>
 		<p>
 			<a href="https://pixelambacht.nl" target="_blank"
-				>© PixelAmbacht {{ new Date().getFullYear() }} — Made by Roel Nieskens</a
+				>© PixelAmbacht {{ new Date().getFullYear() }} — Made by Roel
+				Nieskens</a
 			>
 		</p>
 	</footer>

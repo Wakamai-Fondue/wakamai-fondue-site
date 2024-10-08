@@ -16,13 +16,13 @@ Vue.filter("pluralize", (value, word) => {
 });
 
 // Capitalize a word
-Vue.filter("capitalize", function(value) {
+Vue.filter("capitalize", function (value) {
 	if (!value) return "";
 	value = value.toString();
 	return value.charAt(0).toUpperCase() + value.slice(1);
 });
 
 // Change formatted, human-friendly CSS to inline-friendly CSS
-Vue.filter("inlinestyle", function(value) {
+Vue.filter("inlinestyle", function (value) {
 	return value.replace(/\n/g, "");
 });

@@ -17,6 +17,6 @@ export default {
 		OpenTypeFeatures,
 		CharGrid,
 		StyleSheet,
-		SiteFooter
-	}
+		SiteFooter,
+	},
 };

@@ -1,84 +1,84 @@
 .features p {
-	margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 .features .content + .content {
-	margin-top: 4rem;
+  margin-top: 4rem;
 }
 
 .required-features li {
-	margin-bottom: var(--small-margin);
+  margin-bottom: var(--small-margin);
 }
 
 .feature-demo + .feature-demo {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .state {
-	margin-left: auto;
-	margin-right: 0.5em;
-	color: var(--yellow);
+  margin-left: auto;
+  margin-right: 0.5em;
+  color: var(--yellow);
 }
 
 .state.on {
-	color: var(--green);
+  color: var(--green);
 }
 
-.flip-state [disabled]+span {
-	color: var(--unlighterer-grey);
+.flip-state [disabled] + span {
+  color: var(--unlighterer-grey);
 }
 
 .required-features li,
 .feature-control {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .chars {
-	position: relative;
-	font-family: var(--font-stack);
-	font-size: 1.5rem;
-	background: var(--light-grey);
-	padding: 1.5rem 0.5rem 0.5rem 0.5rem;
-	margin-top: var(--small-margin);
-	overflow: hidden;
+  position: relative;
+  font-family: var(--font-stack);
+  font-size: 1.5rem;
+  background: var(--light-grey);
+  padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+  margin-top: var(--small-margin);
+  overflow: hidden;
 }
 
 .chars[data-type]::before {
-	content: attr(data-type);
-	position: absolute;
-	top: var(--small-margin);
-	left: var(--small-margin);
-	background: var(--unlighter-grey);
-	font-feature-settings: normal !important;
-	font-family: var(--system-font-stack);
-	font-size: 0.75rem;
-	padding: 0 4px 2px 4px;
-	border-radius: 2px;
+  content: attr(data-type);
+  position: absolute;
+  top: var(--small-margin);
+  left: var(--small-margin);
+  background: var(--unlighter-grey);
+  font-feature-settings: normal !important;
+  font-family: var(--system-font-stack);
+  font-size: 0.75rem;
+  padding: 0 4px 2px 4px;
+  border-radius: 2px;
 }
 
 .chars.summarized::after {
-	content: attr(data-summary);
-	position: absolute;
-	top: var(--small-margin);
-	right: var(--small-margin);
-	background: var(--unlighter-grey);
-	font-feature-settings: normal !important;
-	font-family: var(--system-font-stack);
-	font-size: 0.75rem;
-	padding: 0 4px 2px 4px;
-	border-radius: 2px;
+  content: attr(data-summary);
+  position: absolute;
+  top: var(--small-margin);
+  right: var(--small-margin);
+  background: var(--unlighter-grey);
+  font-feature-settings: normal !important;
+  font-family: var(--system-font-stack);
+  font-size: 0.75rem;
+  padding: 0 4px 2px 4px;
+  border-radius: 2px;
 }
 
 .no-chars {
-	font-feature-settings: normal !important;
-	font-family: var(--system-font-stack);
-	font-style: italic;
-	color: var(--unlighterer-grey);
-	background: var(--light-grey);
-	padding: 0.5rem;
-	margin-top: var(--small-margin);
-	overflow: hidden;
+  font-feature-settings: normal !important;
+  font-family: var(--system-font-stack);
+  font-style: italic;
+  color: var(--unlighterer-grey);
+  background: var(--light-grey);
+  padding: 0.5rem;
+  margin-top: var(--small-margin);
+  overflow: hidden;
 }
 
 /*

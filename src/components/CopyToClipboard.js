@@ -3,11 +3,11 @@ export default {
 	data() {
 		return {
 			show: false,
-			failMessage: "Oops, sorry! Copying to clipboard failed."
+			failMessage: "Oops, sorry! Copying to clipboard failed.",
 		};
 	},
 	methods: {
-		copy: function() {
+		copy: function () {
 			try {
 				if (!navigator.clipboard) {
 					// Use old execCommand
@@ -29,14 +29,14 @@ export default {
 				this.copyFail();
 			}
 		},
-		copySuccess: function() {
+		copySuccess: function () {
 			// Toggle thumbs up animation
 			this.show = false;
 			const that = this;
 			this.$nextTick().then(() => (that.show = true));
 		},
-		copyFail: function() {
+		copyFail: function () {
 			alert(this.failMessage);
-		}
-	}
+		},
+	},
 };

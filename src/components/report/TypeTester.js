@@ -11,7 +11,7 @@ export default {
 		FeatureControls,
 		TextControls,
 		Prism,
-		CopyToClipboard
+		CopyToClipboard,
 	},
 	data() {
 		return {
@@ -20,7 +20,7 @@ export default {
 			featureStyles: "",
 			textStyles: "",
 			language: null,
-			sticky: false
+			sticky: false,
 		};
 	},
 	computed: {
@@ -32,30 +32,30 @@ export default {
 		},
 		hasLocalization() {
 			return this.font.languageSystems.length > 0;
-		}
+		},
 	},
 	methods: {
-		updateVariableStyles: function(updatedStyles) {
+		updateVariableStyles: function (updatedStyles) {
 			this.variableStyles = updatedStyles;
 		},
-		updateFeatureStyles: function(updatedStyles) {
+		updateFeatureStyles: function (updatedStyles) {
 			this.featureStyles = updatedStyles;
 		},
-		updateTextStyles: function(updatedStyles) {
+		updateTextStyles: function (updatedStyles) {
 			this.textStyles = updatedStyles;
 		},
-		updateLanguage: function(updatedLanguage) {
+		updateLanguage: function (updatedLanguage) {
 			updatedLanguage = updatedLanguage || null;
 			this.language = updatedLanguage;
 		},
-		getHTML: function() {
+		getHTML: function () {
 			if (this.language) {
 				return `<div lang="${this.language}"> ... </div>`;
 			} else {
 				return `<div> ... </div>`;
 			}
 		},
-		getStyles: function() {
+		getStyles: function () {
 			let css = this.textStyles;
 			if (this.featureStyles) {
 				css += `\n\n` + this.featureStyles;
@@ -64,6 +64,6 @@ export default {
 				css += `\n\n` + this.variableStyles;
 			}
 			return css;
-		}
-	}
+		},
+	},
 };

@@ -9,12 +9,12 @@ export default {
 		return {
 			features: this.font.features,
 			currentStates: {},
-			alternateStates: {}
+			alternateStates: {},
 		};
 	},
 	computed: {
 		optionalFeatures() {
-			return this.features.filter(f => f.state !== "fixed");
+			return this.features.filter((f) => f.state !== "fixed");
 		},
 		long() {
 			return this.optionalFeatures.length > 8;
@@ -38,9 +38,9 @@ export default {
 			} else {
 				return {};
 			}
-		}
+		},
 	},
-	mounted: function() {
+	mounted: function () {
 		this.updateStyles();
 	},
 	methods: {
@@ -78,10 +78,10 @@ export default {
 			}
 			return alternateCount;
 		},
-		updateStyles: function() {
+		updateStyles: function () {
 			this.$emit("updateFeatureStyles", this.getFeatureStyles());
 		},
-		getFeatureStyles: function() {
+		getFeatureStyles: function () {
 			let styles = "";
 			let glue = "";
 			let counter = 0;
@@ -110,10 +110,10 @@ export default {
 				return "";
 			}
 		},
-		toggleAlternate: function(feature, value) {
+		toggleAlternate: function (feature, value) {
 			this.$set(this.currentStates, feature, value);
 			this.$set(this.alternateStates, feature, value);
 			this.updateStyles();
-		}
-	}
+		},
+	},
 };

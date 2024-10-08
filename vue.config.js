@@ -8,9 +8,9 @@ module.exports = {
 	transpileDependencies: ["@wakamai-fondue/engine", "lib-font"],
 	configureWebpack: {
 		resolve: {
-			symlinks: false // npm link
-		}
-	}
+			symlinks: false, // npm link
+		},
+	},
 	// Temporary beta build stuff:
 	// publicPath: "/beta"
 };

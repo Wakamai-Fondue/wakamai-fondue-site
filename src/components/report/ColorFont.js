@@ -3,7 +3,7 @@ export default {
 	props: ["font"],
 	data() {
 		return {
-			palettes: this.font.colorPalettes
+			palettes: this.font.colorPalettes,
 		};
-	}
+	},
 };

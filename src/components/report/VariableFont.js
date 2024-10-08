@@ -3,15 +3,15 @@ import VariableControls from "./VariableControls.vue";
 export default {
 	props: ["font"],
 	components: {
-		VariableControls
+		VariableControls,
 	},
 	data: () => ({
 		variableStyles: "",
-		sticky: false
+		sticky: false,
 	}),
 	methods: {
-		updateVariableStyles: function(updatedStyles) {
+		updateVariableStyles: function (updatedStyles) {
 			this.variableStyles = updatedStyles;
-		}
-	}
+		},
+	},
 };

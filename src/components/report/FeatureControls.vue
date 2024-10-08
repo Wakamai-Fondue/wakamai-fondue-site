@@ -47,8 +47,9 @@
 						<option
 							v-for="n in alternateCount(feature.tag)"
 							:key="`featcont_${feature.tag}_${n}`"
-							>{{ n }}</option
 						>
+							{{ n }}
+						</option>
 					</select>
 				</label>
 			</li>

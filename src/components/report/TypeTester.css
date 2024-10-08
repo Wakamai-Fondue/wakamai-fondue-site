@@ -1,45 +1,45 @@
 .tester-container {
-	position: relative;
+  position: relative;
 }
 
 .tester {
-	position: relative;
-	font-family: var(--font-stack);
-	max-width: 68rem;
-	margin: 0 auto 0 auto;
-	background: var(--light-grey);
-	color: black;
+  position: relative;
+  font-family: var(--font-stack);
+  max-width: 68rem;
+  margin: 0 auto 0 auto;
+  background: var(--light-grey);
+  color: black;
 }
 
 .tester p {
-	padding: 1rem;
+  padding: 1rem;
 }
 
 .tester.sticky {
-	position: sticky;
-	top: 0;
+  position: sticky;
+  top: 0;
 }
 
 .code {
-	margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .code-styles {
-	position: relative;
+  position: relative;
 }
 
 .sticky-button {
-	padding: var(--small-margin);
-	font-family: sans-serif;
-	border: 0;
-	background: none;
-	position: absolute;
-	top: 0;
-	right: 0;
-	opacity: 0.5;
-	font-size: 1.5rem;
+  padding: var(--small-margin);
+  font-family: sans-serif;
+  border: 0;
+  background: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  font-size: 1.5rem;
 }
 
 .sticky-button.sticky {
-	opacity: 1;
+  opacity: 1;
 }

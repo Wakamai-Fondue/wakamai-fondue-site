@@ -2,15 +2,15 @@ export default {
 	props: ["font"],
 	data() {
 		return {
-			currentStates: []
+			currentStates: [],
 		};
 	},
 	computed: {
 		optionalFeatures() {
-			return this.font.features.filter(f => f.state !== "fixed");
+			return this.font.features.filter((f) => f.state !== "fixed");
 		},
 		requiredFeatures() {
-			return this.font.features.filter(f => f.state === "fixed");
+			return this.font.features.filter((f) => f.state === "fixed");
 		},
 		hasRequiredFeatures() {
 			return this.requiredFeatures.length > 0;
@@ -37,7 +37,7 @@ export default {
 			} else {
 				return {};
 			}
-		}
+		},
 	},
 	methods: {
 		flipState(feature) {
@@ -52,7 +52,7 @@ export default {
 		},
 		// Use onState for features that take a specific number
 		// instead of just 0 or 1.
-		getFeatureStyle: function(feature, onState = 1) {
+		getFeatureStyle: function (feature, onState = 1) {
 			const offState = 0;
 			let state;
 			if (this.currentStates[feature] !== undefined) {
@@ -66,6 +66,6 @@ export default {
 			return `font-feature-settings:"${feature}" ${
 				state ? onState : offState
 			};`;
-		}
-	}
+		},
+	},
 };

@@ -3,7 +3,7 @@ import VariableControls from "./VariableControls.vue";
 export default {
 	props: ["font"],
 	components: {
-		VariableControls
+		VariableControls,
 	},
 	data() {
 		return {
@@ -14,25 +14,25 @@ export default {
 			hasAxes: this.font.variable && this.font.variable.axes.length,
 			showAxes: this.font.isVariable,
 			hasFeatures: false, // TODO: Should be determined by the font
-			showFeatures: false // TODO: Should be determined by the font
+			showFeatures: false, // TODO: Should be determined by the font
 		};
 	},
 	methods: {
-		entitify: function(code) {
+		entitify: function (code) {
 			return `&#x${code};`;
 		},
-		toggleCategories: function() {
+		toggleCategories: function () {
 			this.showCategories = !this.showCategories;
 		},
-		toggleAxes: function() {
+		toggleAxes: function () {
 			this.variableStyles = "";
 			this.showAxes = !this.showAxes;
 		},
 		// toggleFeatures: function() {
 		// 	this.showFeatures = !this.showFeatures;
 		// },
-		updateVariableStyles: function(updatedStyles) {
+		updateVariableStyles: function (updatedStyles) {
 			this.variableStyles = updatedStyles;
-		}
-	}
+		},
+	},
 };

@@ -22,6 +22,6 @@ export default {
 				vm.$emit("getExampleFont", filename);
 				vm = vm.$parent;
 			}
-		}
-	}
+		},
+	},
 };

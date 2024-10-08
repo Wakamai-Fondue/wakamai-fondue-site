@@ -8,6 +8,6 @@ export default {
 				vm.$emit("toggleModal");
 				vm = vm.$parent;
 			}
-		}
-	}
+		},
+	},
 };
