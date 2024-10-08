@@ -8,6 +8,10 @@ module.exports = {
 	transpileDependencies: ["@wakamai-fondue/engine", "lib-font"],
 	configureWebpack: {
 		resolve: {
+			fallback: {
+				fs: false,
+				zlib: false,
+			},
 			symlinks: false, // npm link
 		},
 	},
