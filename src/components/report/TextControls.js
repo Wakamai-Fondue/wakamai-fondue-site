@@ -15,7 +15,7 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.$root.$on("unlinkOpticalSize", this.unlinkOpticalSize);
+		// this.$root.$on("unlinkOpticalSize", this.unlinkOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
@@ -26,7 +26,7 @@ export default {
 		updateStyles: function () {
 			this.$emit("updateTextStyles", this.getTextStyles());
 			if (this.font.hasOpticalSize && this.linkOpticalSize) {
-				this.$root.$emit("updateOpticalSize", this.fontSize);
+				this.$emit("updateOpticalSize", this.fontSize);
 			}
 		},
 		getTextStyles: function () {

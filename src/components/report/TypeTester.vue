@@ -56,6 +56,7 @@
 				:font="font"
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
+				@updateOpticalSize="updateOpticalSize"
 			/>
 			<FeatureControls
 				:font="font"
@@ -69,6 +70,7 @@
 				:showTitles="false"
 				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
+				@unlinkOpticalSize="unlinkOpticalSize"
 			/>
 			<div class="code">
 				<Prism language="html" v-if="hasLocalization">{{ html }}</Prism>
