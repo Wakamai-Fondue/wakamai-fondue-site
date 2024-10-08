@@ -60,7 +60,7 @@ export default {
 				state = this.currentStates[feature];
 			} else {
 				// No CSS state yet, create one based off default state
-				this.$set(this.currentStates, feature, 1);
+				this.currentStates[feature] = 1;
 				state = 1;
 			}
 			return `font-feature-settings:"${feature}" ${

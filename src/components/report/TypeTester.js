@@ -35,6 +35,12 @@ export default {
 		},
 	},
 	methods: {
+		updateOpticalSize: function () {
+			this.$refs.VariableControls.updateOpticalSize();
+		},
+		unlinkOpticalSize: function () {
+			this.$refs.TextControls.unlinkOpticalSize();
+		},
 		updateVariableStyles: function (updatedStyles) {
 			this.variableStyles = updatedStyles;
 		},

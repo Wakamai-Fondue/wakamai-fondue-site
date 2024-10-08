@@ -6,7 +6,7 @@
 				<p
 					spellcheck="false"
 					contenteditable
-					:style="variableStyles | inlinestyle"
+					:style="$filters.inlinestyle(variableStyles)"
 				>
 					The melting cheese & bread explode in a quick wave of joy:
 					“1, 2, 3… zen!”

@@ -19,7 +19,7 @@
 			<template v-if="font.isColor">
 				and
 				<strong>
-					{{ this.font.colorFormats | listify }} color glyphs.
+					{{ $filters.listify(this.font.colorFormats) }} color glyphs.
 				</strong>
 			</template>
 
@@ -29,24 +29,24 @@
 
 			<strong>
 				{{ font.charCount }}
-				{{ font.charCount | pluralize("character") }}
+				{{ $filters.pluralize(font.charCount, "character") }}
 			</strong>
 
 			and
 
 			<strong>
 				{{ font.glyphCount }}
-				{{ font.glyphCount | pluralize("glyph") }},
+				{{ $filters.pluralize(font.glyphCount, "glyph") }},
 			</strong>
 
 			<template v-if="font.isVariable">
 				<strong>
-					{{ axesCount }} {{ axesCount | pluralize("axe") }}
+					{{ axesCount }} {{ $filters.pluralize(axesCount, "axe") }}
 				</strong>
 				and
 				<strong
 					>{{ instancesCount }}
-					{{ instancesCount | pluralize("instance") }},
+					{{ $filters.pluralize(instancesCount, "instance") }},
 				</strong>
 			</template>
 
@@ -54,7 +54,7 @@
 
 			<strong>
 				{{ featureLength }}
-				{{ featureLength | pluralize("layout feature") }}.
+				{{ $filters.pluralize(featureLength, "layout feature") }}.
 			</strong>
 		</p>
 
@@ -62,10 +62,7 @@
 			<tbody>
 				<tr v-for="(value, key) in summary" :key="key">
 					<th scope="row">{{ key }}</th>
-					<td
-						v-html="value"
-						v-linkified:options="{ className: '' }"
-					/>
+					<td v-html="value" />
 				</tr>
 			</tbody>
 		</table>
@@ -87,13 +84,15 @@
 			<h3>Supported languages</h3>
 			<p>
 				{{
-					font.languageSupport
-						| listify("None that Wakamai Fondue could detect")
+					$filters.listify(
+						font.languageSupport,
+						"None that Wakamai Fondue could detect"
+					)
 				}}.
 			</p>
 			<template v-if="hasLocalization">
 				<h3>Localization</h3>
-				<p>{{ localizations | listify }}.</p>
+				<p>{{ $filters.listify(localizations) }}.</p>
 			</template>
 		</div>
 

@@ -27,7 +27,7 @@ export default {
 		},
 	},
 	mounted: function () {
-		this.$root.$on("updateOpticalSize", this.updateOpticalSize);
+		// this.$root.$on("updateOpticalSize", this.updateOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
@@ -40,13 +40,13 @@ export default {
 				);
 				this.setAxis("opsz", opszValue);
 				// If axis was turned off, linking turns it on again
-				this.$set(this.currentStates, "opsz", true);
+				this.currentStates["opsz"] = true;
 				this.updateStyles();
 			}
 		},
 		resetAxis: function (axis) {
 			if (axis === "opsz") {
-				this.$root.$emit("unlinkOpticalSize");
+				this.$emit("unlinkOpticalSize");
 			}
 			const defaultValue = this.axes.find((o) => o.id === axis).default;
 			this.setAxis(axis, defaultValue);
@@ -66,7 +66,7 @@ export default {
 		},
 		updateStyles: function (axis) {
 			if (axis === "opsz") {
-				this.$root.$emit("unlinkOpticalSize");
+				this.$emit("unlinkOpticalSize");
 			}
 			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
@@ -129,13 +129,10 @@ export default {
 			}
 		},
 		flipState(axis, force) {
-			this.$set(
-				this.currentStates,
-				axis,
-				force || this.currentStates[axis] === false
-			);
+			this.currentStates[axis] =
+				force || this.currentStates[axis] === false;
 			if (axis === "opsz") {
-				this.$root.$emit("unlinkOpticalSize");
+				this.$emit("unlinkOpticalSize");
 			}
 			this.updateStyles();
 		},
