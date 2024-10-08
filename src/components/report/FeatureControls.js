@@ -93,7 +93,7 @@ export default {
 					state = this.currentStates[feature.tag];
 				} else {
 					// No CSS state yet, set to "default" (null)
-					this.$set(this.currentStates, feature.tag, null);
+					this.currentStates[feature.tag] = null;
 					state = null;
 				}
 				if (state === null) continue;
@@ -111,8 +111,9 @@ export default {
 			}
 		},
 		toggleAlternate: function (feature, value) {
-			this.$set(this.currentStates, feature, value);
-			this.$set(this.alternateStates, feature, value);
+			this.currentStates[feature] = value;
+			this.alternateStates[feature] = value;
+
 			this.updateStyles();
 		},
 	},

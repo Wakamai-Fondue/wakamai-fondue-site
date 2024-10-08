@@ -40,7 +40,7 @@ export default {
 				);
 				this.setAxis("opsz", opszValue);
 				// If axis was turned off, linking turns it on again
-				this.$set(this.currentStates, "opsz", true);
+				this.currentStates["opsz"] = true;
 				this.updateStyles();
 			}
 		},
@@ -129,11 +129,8 @@ export default {
 			}
 		},
 		flipState(axis, force) {
-			this.$set(
-				this.currentStates,
-				axis,
-				force || this.currentStates[axis] === false
-			);
+			this.currentStates[axis] =
+				force || this.currentStates[axis] === false;
 			if (axis === "opsz") {
 				this.$emit("unlinkOpticalSize");
 			}
