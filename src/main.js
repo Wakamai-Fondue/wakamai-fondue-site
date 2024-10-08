@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-import Vue from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
 import "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 
-Vue.config.productionTip = false;
-Vue.config.globalProperties.$filters = {
+const app = createApp(App);
+
+app.config.productionTip = false;
+
+app.config.globalProperties.$filters = {
 	listify(array, emptyWord) {
 		if (array.length === 0) return emptyWord;
 		if (array.length === 1) return array[0];
@@ -43,6 +46,4 @@ Vue.config.globalProperties.$filters = {
 	},
 };
 
-new Vue({
-	render: (h) => h(App),
-}).$mount("#app");
+app.mount("#app");
