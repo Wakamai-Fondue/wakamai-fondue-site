@@ -19,7 +19,8 @@
 			<template v-if="font.isColor">
 				and
 				<strong>
-					{{ this.font.colorFormats | listify }} color glyphs.
+					{{ this.font.colorFormats | $filters.listify }} color
+					glyphs.
 				</strong>
 			</template>
 
@@ -29,24 +30,24 @@
 
 			<strong>
 				{{ font.charCount }}
-				{{ font.charCount | pluralize("character") }}
+				{{ font.charCount | $filters.pluralize("character") }}
 			</strong>
 
 			and
 
 			<strong>
 				{{ font.glyphCount }}
-				{{ font.glyphCount | pluralize("glyph") }},
+				{{ font.glyphCount | $filters.pluralize("glyph") }},
 			</strong>
 
 			<template v-if="font.isVariable">
 				<strong>
-					{{ axesCount }} {{ axesCount | pluralize("axe") }}
+					{{ axesCount }} {{ axesCount | $filters.pluralize("axe") }}
 				</strong>
 				and
 				<strong
 					>{{ instancesCount }}
-					{{ instancesCount | pluralize("instance") }},
+					{{ instancesCount | $filters.pluralize("instance") }},
 				</strong>
 			</template>
 
@@ -54,7 +55,7 @@
 
 			<strong>
 				{{ featureLength }}
-				{{ featureLength | pluralize("layout feature") }}.
+				{{ featureLength | $filters.pluralize("layout feature") }}.
 			</strong>
 		</p>
 
@@ -93,7 +94,7 @@
 			</p>
 			<template v-if="hasLocalization">
 				<h3>Localization</h3>
-				<p>{{ localizations | listify }}.</p>
+				<p>{{ localizations | $filters.listify }}.</p>
 			</template>
 		</div>
 

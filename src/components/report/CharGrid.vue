@@ -48,11 +48,14 @@
 						<template v-if="cat.subCategory || cat.script">
 							—
 							{{ cat.subCategory }}
-							{{ cat.script | capitalize }}
+							{{ cat.script | $filters.capitalize }}
 						</template>
 					</h3>
 
-					<ol class="grid" :style="variableStyles | inlinestyle">
+					<ol
+						class="grid"
+						:style="variableStyles | $filters.inlinestyle"
+					>
 						<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->
 						<li
 							v-for="char in cat.chars"
@@ -75,7 +78,7 @@
 
 			<ol
 				class="grid"
-				:style="variableStyles | inlinestyle"
+				:style="variableStyles | $filters.inlinestyle"
 				v-if="!showCategories"
 			>
 				<!-- Put this back → :class="char.feature ? 'feature' : 'code'" -->

@@ -7,7 +7,7 @@
 				:class="{ sticky }"
 				:style="
 					`${variableStyles}${featureStyles}${textStyles}`
-						| inlinestyle
+						| $filters.inlinestyle
 				"
 				:lang="language"
 			>
