@@ -17,13 +17,34 @@
 import Vue from "vue";
 import App from "./App.vue";
 import linkify from "vue-linkify";
-import "./filters";
 import "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 
 Vue.directive("linkified", linkify);
 
 Vue.config.productionTip = false;
+Vue.config.globalProperties.$filters = {
+	listify(array, emptyWord) {
+		if (array.length === 0) return emptyWord;
+		if (array.length === 1) return array[0];
+		const last = array[array.length - 1];
+		return array.slice(0, array.length - 1).join(", ") + " and " + last;
+	},
+
+	pluralize(value, word) {
+		return `${word}${value !== 1 ? "s" : ""}`;
+	},
+
+	capitalize(value) {
+		if (!value) return "";
+		value = value.toString();
+		return value.charAt(0).toUpperCase() + value.slice(1);
+	},
+
+	inlinestyle(value) {
+		return value.replace(/\n/g, "");
+	},
+};
 
 new Vue({
 	render: (h) => h(App),
