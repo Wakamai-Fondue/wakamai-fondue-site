@@ -4,12 +4,12 @@
 		<div class="content">
 			<p>
 				This font has
-				<strong>{{ this.font.colorFormats | $filters.listify }}</strong>
+				<strong>{{ $filters.listify(this.font.colorFormats) }}</strong>
 				color glyphs.
 
 				<template v-if="palettes.length">
 					It has {{ palettes.length }}
-					{{ palettes.length | $filters.pluralize("palette") }}.
+					{{ $filters.pluralize(palettes.length, "palette") }}.
 				</template>
 				<template v-else>
 					The colors are hardcoded in the font.

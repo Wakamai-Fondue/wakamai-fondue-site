@@ -6,8 +6,9 @@
 				class="tester"
 				:class="{ sticky }"
 				:style="
-					`${variableStyles}${featureStyles}${textStyles}`
-						| $filters.inlinestyle
+					$filters.inlinestyle(
+						`${variableStyles}${featureStyles}${textStyles}`
+					)
 				"
 				:lang="language"
 			>
