@@ -8,15 +8,15 @@ import StyleSheet from "./report/StyleSheet.vue";
 import SiteFooter from "./SiteFooter.vue";
 
 export default {
-  props: ["font", "isExamplefont"],
-  components: {
-    FontSummary,
-    TypeTester,
-    ColorFont,
-    VariableFont,
-    OpenTypeFeatures,
-    CharGrid,
-    StyleSheet,
-    SiteFooter,
-  },
+	props: ["font", "isExamplefont"],
+	components: {
+		FontSummary,
+		TypeTester,
+		ColorFont,
+		VariableFont,
+		OpenTypeFeatures,
+		CharGrid,
+		StyleSheet,
+		SiteFooter,
+	},
 };
