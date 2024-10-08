@@ -1,58 +1,58 @@
 .summary h1 {
-	font-family: var(--font-stack);
-	text-align: center;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	padding: 2rem 0;
-	margin: 0;
-	font-size: 4rem;
+  font-family: var(--font-stack);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2rem 0;
+  margin: 0;
+  font-size: 4rem;
 }
 
 .oneliner {
-    text-align: center;
+  text-align: center;
 }
 
 .details {
-	margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .details tr + tr {
-	padding-top: var(--small-margin);
+  padding-top: var(--small-margin);
 }
 
 .details th {
-	padding-top: var(--small-margin);
-	padding-right: 1em;
-	text-align: left;
-	white-space: nowrap;
-	text-transform: capitalize;
-	vertical-align: top;
+  padding-top: var(--small-margin);
+  padding-right: 1em;
+  text-align: left;
+  white-space: nowrap;
+  text-transform: capitalize;
+  vertical-align: top;
 }
 
 .details td {
-	padding-top: var(--small-margin);
-	white-space: pre-line;
+  padding-top: var(--small-margin);
+  white-space: pre-line;
 }
 
 .features ul {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .features li {
-	margin-top: var(--small-margin);
+  margin-top: var(--small-margin);
 }
 
 .example-font-shoutout {
-	font-size: 1.25rem;
-	margin-top: 2rem;
-	padding: 2rem;
-	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 100 20'%3E%3Cpath fill='%23dfd6b3' d='M99.72 2.89c-.1-.86-.25-1.82-.9-2.34-.5-.41-1.18-.45-1.81-.47-4.2-.12-8.95.44-13.16.44C57.56.56 32.52.08 6.28.08 4.4.07 1.28-.29.42.62c-.45.48-.44 1.25-.4 1.92.27 4.33-.13 9.25.14 13.58.04.57.02 1.78.08 2.34.1.89.36 1.46 1.19 1.48 12.39.27 25.42-.32 37.81-.05 6.44.14 14.11-.34 20.86-.25 12.48.17 23.14.3 37.03.3.71 0 1.47-.22 1.93-.8.39-.49.45-1.17.49-1.81.31-5.15.74-9.32.17-14.44z'/%3E%3C/svg%3E");
-	background-size: cover;
-	text-align: center;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 100 20'%3E%3Cpath fill='%23dfd6b3' d='M99.72 2.89c-.1-.86-.25-1.82-.9-2.34-.5-.41-1.18-.45-1.81-.47-4.2-.12-8.95.44-13.16.44C57.56.56 32.52.08 6.28.08 4.4.07 1.28-.29.42.62c-.45.48-.44 1.25-.4 1.92.27 4.33-.13 9.25.14 13.58.04.57.02 1.78.08 2.34.1.89.36 1.46 1.19 1.48 12.39.27 25.42-.32 37.81-.05 6.44.14 14.11-.34 20.86-.25 12.48.17 23.14.3 37.03.3.71 0 1.47-.22 1.93-.8.39-.49.45-1.17.49-1.81.31-5.15.74-9.32.17-14.44z'/%3E%3C/svg%3E");
+  background-size: cover;
+  text-align: center;
 }
 
 .example-font-shoutout a {
-	color: inherit;
-	color: var(--red);
+  color: inherit;
+  color: var(--red);
 }

@@ -1,68 +1,68 @@
 .feature-controls {
-	margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 .feature-controls.long ul {
-	columns: 3;
+  columns: 3;
 }
 
 .feature-controls.long li {
-	list-style: initial;
-	color: transparent;
+  list-style: initial;
+  color: transparent;
 }
 
 .feature-controls label {
-	margin-bottom: var(--small-margin);
-	display: flex;
-	cursor: pointer;
-	color: black;
+  margin-bottom: var(--small-margin);
+  display: flex;
+  cursor: pointer;
+  color: black;
 }
 
 .feature-description {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: flex;
-	align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
 }
 
 .feature-name {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .alternate-select {
-	min-width: 3em;
-	margin-left: var(--small-margin);
+  min-width: 3em;
+  margin-left: var(--small-margin);
 }
 
 /* TODO: componentalizationreuse */
 .button {
-	padding: 0.25rem 0.5rem;
-	border-radius: 0.2rem;
-	margin: 0;
-	border: 0;
-	background: none;
-	font-size: 0.85rem;
-	background: var(--unlighter-grey);
-	color: var(--dark-grey);
-	cursor: pointer;
-	min-width: 4.75em;
-	transition: background 100ms;
-	user-select: none;
-	color: white;
-	margin-right: var(--small-margin);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
+  margin: 0;
+  border: 0;
+  background: none;
+  font-size: 0.85rem;
+  background: var(--unlighter-grey);
+  color: var(--dark-grey);
+  cursor: pointer;
+  min-width: 4.75em;
+  transition: background 100ms;
+  user-select: none;
+  color: white;
+  margin-right: var(--small-margin);
 }
 
 .button-on {
-	background: var(--green);
+  background: var(--green);
 }
 
 .button-off {
-	background: var(--red);
+  background: var(--red);
 }
 
 .button-default {
-	background: var(--dark-grey);
+  background: var(--dark-grey);
 }

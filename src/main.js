@@ -26,5 +26,5 @@ Vue.directive("linkified", linkify);
 Vue.config.productionTip = false;
 
 new Vue({
-	render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

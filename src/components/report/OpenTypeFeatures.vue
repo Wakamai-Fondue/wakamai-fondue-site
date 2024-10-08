@@ -1,190 +1,164 @@
 <template>
-	<section class="features" id="features">
-		<h2 class="section-title">Layout Features</h2>
+  <section class="features" id="features">
+    <h2 class="section-title">Layout Features</h2>
 
-		<div class="content" v-if="hasRequiredFeatures">
-			<h3>Required layout features</h3>
-			<p>
-				These are always turned on by the system that renders the font.
-				You can’t turn them off — in fact, you're not supposed to!
-				Required layout features may be applicable only to certain
-				language scripts or specific languages, or in certain writing
-				modes.
-			</p>
-			<ul class="required-features">
-				<li
-					v-for="feature in requiredFeatures"
-					:key="`reqfeat_${feature.tag}`"
-				>
-					<span class="opentype-label">{{ feature.tag }}</span>
-					{{ feature.name }}
-				</li>
-			</ul>
-		</div>
-		<div class="content" v-if="hasOptionalFeatures">
-			<h3>Optional layout features</h3>
-			<p>
-				Some are turned on by default, but can be turned off. Others are
-				turned off by default, but can be turned on.
-			</p>
+    <div class="content" v-if="hasRequiredFeatures">
+      <h3>Required layout features</h3>
+      <p>
+        These are always turned on by the system that renders the font. You
+        can’t turn them off — in fact, you're not supposed to! Required layout
+        features may be applicable only to certain language scripts or specific
+        languages, or in certain writing modes.
+      </p>
+      <ul class="required-features">
+        <li v-for="feature in requiredFeatures" :key="`reqfeat_${feature.tag}`">
+          <span class="opentype-label">{{ feature.tag }}</span>
+          {{ feature.name }}
+        </li>
+      </ul>
+    </div>
+    <div class="content" v-if="hasOptionalFeatures">
+      <h3>Optional layout features</h3>
+      <p>
+        Some are turned on by default, but can be turned off. Others are turned
+        off by default, but can be turned on.
+      </p>
 
-			<div
-				v-for="feature in optionalFeatures"
-				:key="`optfeat_${feature.tag}`"
-				class="feature-demo"
-			>
-				<div class="feature-control">
-					<span class="opentype-label">{{ feature.tag }}</span>
-					{{ feature.name }}
-					<span
-						class="state"
-						:class="feature.state === 'on' ? 'on' : 'off'"
-					>
-						<strong v-if="feature.state === 'on'">On</strong>
-						<strong v-else>Off</strong>
-						by default
-					</span>
-					<label class="flip-state">
-						<input
-							type="checkbox"
-							@change="flipState(feature.tag)"
-							:disabled="!featureChars[feature.tag]"
-							checked
-						/><span>Show</span>
-					</label>
-				</div>
+      <div
+        v-for="feature in optionalFeatures"
+        :key="`optfeat_${feature.tag}`"
+        class="feature-demo"
+      >
+        <div class="feature-control">
+          <span class="opentype-label">{{ feature.tag }}</span>
+          {{ feature.name }}
+          <span class="state" :class="feature.state === 'on' ? 'on' : 'off'">
+            <strong v-if="feature.state === 'on'">On</strong>
+            <strong v-else>Off</strong>
+            by default
+          </span>
+          <label class="flip-state">
+            <input
+              type="checkbox"
+              @change="flipState(feature.tag)"
+              :disabled="!featureChars[feature.tag]"
+              checked
+            /><span>Show</span>
+          </label>
+        </div>
 
-				<template v-if="isValidFeature(feature)">
-					<template
-						v-for="(lookup, index) in featureChars[feature.tag][
-							'lookups'
-						]"
-					>
-						<div
-							v-if="lookup['type'] === 3"
-							:style="getFeatureStyle(feature.tag)"
-							:data-type="lookup['typeName']"
-							:key="`lookup_${feature.tag}_${index}`"
-							class="chars"
-							contenteditable
-							spellcheck="false"
-						>
-							<template v-for="(char, index) in lookup['input']">
-								<span
-									v-for="n in lookup['alternateCount'][index]"
-									:key="`type3_${char}_${n}`"
-									:style="getFeatureStyle(feature.tag, n)"
-								>
-									{{ char }}
-								</span>
-							</template>
-						</div>
+        <template v-if="isValidFeature(feature)">
+          <template
+            v-for="(lookup, index) in featureChars[feature.tag]['lookups']"
+          >
+            <div
+              v-if="lookup['type'] === 3"
+              :style="getFeatureStyle(feature.tag)"
+              :data-type="lookup['typeName']"
+              :key="`lookup_${feature.tag}_${index}`"
+              class="chars"
+              contenteditable
+              spellcheck="false"
+            >
+              <template v-for="(char, index) in lookup['input']">
+                <span
+                  v-for="n in lookup['alternateCount'][index]"
+                  :key="`type3_${char}_${n}`"
+                  :style="getFeatureStyle(feature.tag, n)"
+                >
+                  {{ char }}
+                </span>
+              </template>
+            </div>
 
-						<template v-else-if="lookup['type'] === 6"></template>
+            <template v-else-if="lookup['type'] === 6"></template>
 
-						<div
-							v-else
-							:style="getFeatureStyle(feature.tag)"
-							:data-type="lookup['typeName']"
-							:key="`lookup_${feature.tag}_${index}`"
-							class="chars"
-							contenteditable
-							spellcheck="false"
-						>
-							{{ lookup["input"].join(" ") }}
-						</div>
-					</template>
+            <div
+              v-else
+              :style="getFeatureStyle(feature.tag)"
+              :data-type="lookup['typeName']"
+              :key="`lookup_${feature.tag}_${index}`"
+              class="chars"
+              contenteditable
+              spellcheck="false"
+            >
+              {{ lookup["input"].join(" ") }}
+            </div>
+          </template>
 
-					<template
-						v-if="
-							featureChars[feature.tag]['summary'][
-								'summarizedCombinations'
-							].length
-						"
-					>
-						<div
-							v-if="
-								featureChars[feature.tag]['summary'][
-									'allBacktracks'
-								].length
-							"
-							:style="getFeatureStyle(feature.tag)"
-							:key="`btsummary_${feature.tag}_{index}`"
-							data-type="Chained Contexts Substitution"
-							data-summary="Summarized backtrack"
-							class="chars summarized"
-							contenteditable
-							spellcheck="false"
-						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"allBacktracks"
-								].join(" ")
-							}}
-						</div>
+          <template
+            v-if="
+              featureChars[feature.tag]['summary']['summarizedCombinations']
+                .length
+            "
+          >
+            <div
+              v-if="
+                featureChars[feature.tag]['summary']['allBacktracks'].length
+              "
+              :style="getFeatureStyle(feature.tag)"
+              :key="`btsummary_${feature.tag}_{index}`"
+              data-type="Chained Contexts Substitution"
+              data-summary="Summarized backtrack"
+              class="chars summarized"
+              contenteditable
+              spellcheck="false"
+            >
+              {{
+                featureChars[feature.tag]["summary"]["allBacktracks"].join(" ")
+              }}
+            </div>
 
-						<div
-							:style="getFeatureStyle(feature.tag)"
-							:key="`insummary_${feature.tag}_{index}`"
-							data-summary="Summarized input"
-							class="chars summarized"
-							contenteditable
-							spellcheck="false"
-						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"allInputs"
-								].join(" ")
-							}}
-						</div>
+            <div
+              :style="getFeatureStyle(feature.tag)"
+              :key="`insummary_${feature.tag}_{index}`"
+              data-summary="Summarized input"
+              class="chars summarized"
+              contenteditable
+              spellcheck="false"
+            >
+              {{ featureChars[feature.tag]["summary"]["allInputs"].join(" ") }}
+            </div>
 
-						<div
-							v-if="
-								featureChars[feature.tag]['summary'][
-									'allLookaheads'
-								].length
-							"
-							:style="getFeatureStyle(feature.tag)"
-							:key="`lasummary_${feature.tag}_{index}`"
-							data-summary="Summarized lookahead"
-							class="chars summarized"
-							contenteditable
-							spellcheck="false"
-						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"allLookaheads"
-								].join(" ")
-							}}
-						</div>
+            <div
+              v-if="
+                featureChars[feature.tag]['summary']['allLookaheads'].length
+              "
+              :style="getFeatureStyle(feature.tag)"
+              :key="`lasummary_${feature.tag}_{index}`"
+              data-summary="Summarized lookahead"
+              class="chars summarized"
+              contenteditable
+              spellcheck="false"
+            >
+              {{
+                featureChars[feature.tag]["summary"]["allLookaheads"].join(" ")
+              }}
+            </div>
 
-						<div
-							:style="getFeatureStyle(feature.tag)"
-							:key="`combsummary_${feature.tag}_{index}`"
-							data-summary="Randomly generated sample of possible combinations"
-							class="chars summarized"
-							contenteditable
-							spellcheck="false"
-						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"summarizedCombinations"
-								].join(" ")
-							}}
-						</div>
-					</template>
-				</template>
-				<div
-					v-else
-					class="no-chars"
-					:style="getFeatureStyle(feature.tag)"
-				>
-					This feature appears to only modify glyphs generated by
-					other features.
-				</div>
-			</div>
-		</div>
-	</section>
+            <div
+              :style="getFeatureStyle(feature.tag)"
+              :key="`combsummary_${feature.tag}_{index}`"
+              data-summary="Randomly generated sample of possible combinations"
+              class="chars summarized"
+              contenteditable
+              spellcheck="false"
+            >
+              {{
+                featureChars[feature.tag]["summary"][
+                  "summarizedCombinations"
+                ].join(" ")
+              }}
+            </div>
+          </template>
+        </template>
+        <div v-else class="no-chars" :style="getFeatureStyle(feature.tag)">
+          This feature appears to only modify glyphs generated by other
+          features.
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script src="./OpenTypeFeatures.js"></script>
