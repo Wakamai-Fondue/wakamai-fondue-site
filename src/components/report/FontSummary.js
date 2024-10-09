@@ -4,6 +4,7 @@ export default {
 		return {
 			summary: this.font.summary,
 			features: this.font.features,
+			hasLocalization: this.font.languageSystems.length > 0,
 		};
 	},
 	computed: {

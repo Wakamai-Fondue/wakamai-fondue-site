@@ -90,7 +90,7 @@
 					)
 				}}.
 			</p>
-			<template v-if="localizations.length > 0">
+			<template v-if="hasLocalization">
 				<h3>Localization</h3>
 				<p>{{ $filters.listify(localizations) }}.</p>
 			</template>
