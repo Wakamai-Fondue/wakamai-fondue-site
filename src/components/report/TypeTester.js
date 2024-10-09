@@ -21,6 +21,7 @@ export default {
 			textStyles: "",
 			language: null,
 			sticky: false,
+			hasLocalization: this.font.languageSystems.length > 0,
 		};
 	},
 	computed: {
@@ -29,9 +30,6 @@ export default {
 		},
 		styles() {
 			return this.getStyles();
-		},
-		hasLocalization() {
-			return this.font.languageSystems.length > 0;
 		},
 	},
 	methods: {
