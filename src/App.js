@@ -38,7 +38,7 @@ export default {
 					that.font = fondue;
 					that.$nextTick(() => {
 						that.working = false;
-						document.getElementById("Fontreport").scrollIntoView();
+						document.getElementById("report").scrollIntoView();
 					});
 				})
 				.catch(function () {

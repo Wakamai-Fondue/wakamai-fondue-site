@@ -19,6 +19,11 @@ export default {
 		long() {
 			return this.optionalFeatures.length > 8;
 		},
+	},
+	mounted: function () {
+		this.updateStyles();
+	},
+	methods: {
 		featureChars() {
 			// Try to return the "best" layout features
 			if (
@@ -39,11 +44,6 @@ export default {
 				return {};
 			}
 		},
-	},
-	mounted: function () {
-		this.updateStyles();
-	},
-	methods: {
 		flipState(feature) {
 			const states = [1, 0, null];
 			// If feature is on and showing alternates (so it's state >= 1),

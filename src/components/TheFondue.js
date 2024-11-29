@@ -1,8 +1,8 @@
-import toggleModal from "../mixins/toggleModal.js";
+import toggleInfoModal from "../mixins/toggleInfoModal.js";
 import FileDrop from "./FileDrop.vue";
 
 export default {
-	mixins: [toggleModal],
+	mixins: [toggleInfoModal],
 	props: ["error"],
 	components: {
 		FileDrop,

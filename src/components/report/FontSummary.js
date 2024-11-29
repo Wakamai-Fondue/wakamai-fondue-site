@@ -7,9 +7,6 @@ export default {
 		};
 	},
 	computed: {
-		hasLocalization() {
-			return this.font.languageSystems.length > 0;
-		},
 		featureLength() {
 			return this.font.features.length || "no";
 		},
@@ -29,6 +26,11 @@ export default {
 				count = Object.keys(this.font.variable.instances).length;
 			}
 			return count || "no";
+		},
+	},
+	methods: {
+		hasLocalization() {
+			return this.font.languageSystems.length > 0;
 		},
 	},
 };

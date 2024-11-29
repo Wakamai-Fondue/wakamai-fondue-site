@@ -3,6 +3,13 @@ export default {
 	data() {
 		return {
 			currentStates: [],
+			hasOptionalFeatures:
+				this.font.features.filter((f) => f.state !== "fixed").length >
+				0,
+			hasRequiredFeatures:
+				this.font.features.filter((f) => f.state === "fixed").length >
+				0,
+			featureChars: this.getFeatureChars(),
 		};
 	},
 	computed: {
@@ -12,13 +19,9 @@ export default {
 		requiredFeatures() {
 			return this.font.features.filter((f) => f.state === "fixed");
 		},
-		hasRequiredFeatures() {
-			return this.requiredFeatures.length > 0;
-		},
-		hasOptionalFeatures() {
-			return this.optionalFeatures.length > 0;
-		},
-		featureChars() {
+	},
+	methods: {
+		getFeatureChars() {
 			// Try to return the "best" layout features
 			if (
 				"DFLT" in this.font.featureChars &&
@@ -38,8 +41,6 @@ export default {
 				return {};
 			}
 		},
-	},
-	methods: {
 		flipState(feature) {
 			this.currentStates[feature] = 1 - this.currentStates[feature];
 		},

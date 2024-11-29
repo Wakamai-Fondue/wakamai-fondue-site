@@ -7,13 +7,10 @@ export default {
 			activeLanguage: null,
 			languages: this.font.languageSystems,
 			linkOpticalSize: false,
+			hasLocalization: this.font.languageSystems.length > 0,
 		};
 	},
-	computed: {
-		hasLocalization() {
-			return this.font.languageSystems.length > 0;
-		},
-	},
+
 	mounted: function () {
 		// this.$root.$on("unlinkOpticalSize", this.unlinkOpticalSize);
 		this.updateStyles();

@@ -4,7 +4,7 @@
 			type="button"
 			aria-label="Info"
 			class="info"
-			@click="toggleModal"
+			@click="toggleInfoModal"
 		></button>
 		<FileDrop :error="error" />
 		<a href="https://pixelambacht.nl" target="_blank" class="logo"
