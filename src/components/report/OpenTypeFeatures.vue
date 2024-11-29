@@ -64,7 +64,7 @@
 							v-if="lookup['type'] === 3"
 							:style="getFeatureStyle(feature.tag)"
 							:data-type="lookup['typeName']"
-							:key="`lookup_${feature.tag}_${index}`"
+							:key="`lookup_3_${feature.tag}_${index}`"
 							class="chars"
 							contenteditable
 							spellcheck="false"
@@ -86,7 +86,7 @@
 							v-else
 							:style="getFeatureStyle(feature.tag)"
 							:data-type="lookup['typeName']"
-							:key="`lookup_${feature.tag}_${index}`"
+							:key="`lookup_6_${feature.tag}_${index}`"
 							class="chars"
 							contenteditable
 							spellcheck="false"
