@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#bce8ffabec8449691befa3f5803b90315266b12a",
-    "core-js": "^3.25.2",
+    "core-js": "^3.39.0",
     "prismjs": "^1.29.0",
-    "vue": "^3.2.39",
+    "vue": "^3.5.13",
     "vue-prism-component": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.23.3",
+    "@babel/eslint-parser": "^7.25.9",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
@@ -25,13 +25,13 @@
     "browserify-zlib": "^0.2.0",
     "eslint": "^8.23.1",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.5.1",
+    "eslint-plugin-vue": "^9.31.0",
     "prettier": "^2.7.1",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5",
-    "vue-template-compiler": "^2.7.10"
+    "vue-template-compiler": "^2.7.16"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=22"
   }
 }
