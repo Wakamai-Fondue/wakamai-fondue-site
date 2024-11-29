@@ -4,6 +4,12 @@ import FontReport from "./components/FontReport.vue";
 import InfoModal from "./components/InfoModal.vue";
 
 export default {
+	created: function() {
+		if (window.location.pathname == "/bungee") {
+			this.getExampleFont("Bungee-Regular.ttf");
+			document.getElementById("report").scrollIntoView();
+		}
+	},
 	components: {
 		TheFondue,
 		FontReport,
