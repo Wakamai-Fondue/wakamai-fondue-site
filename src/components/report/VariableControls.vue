@@ -105,7 +105,9 @@
 		</div>
 		<div class="code" v-if="showStyles">
 			<CopyToClipboard :content="variableStyles" />
-			<Prism language="css">{{ variableStyles }}</Prism>
+			<Prism language="css" :key="{ variableStyles }">{{
+				variableStyles
+			}}</Prism>
 		</div>
 	</div>
 </template>

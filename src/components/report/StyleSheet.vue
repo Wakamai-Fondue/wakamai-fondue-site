@@ -24,7 +24,7 @@
 				</div>
 				<div class="code">
 					<CopyToClipboard :content="css" />
-					<Prism language="css">{{ css }}</Prism>
+					<Prism language="css" :key="{ css }">{{ css }}</Prism>
 				</div>
 			</div>
 			<div v-else>

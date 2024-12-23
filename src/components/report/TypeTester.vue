@@ -73,10 +73,12 @@
 				@unlinkOpticalSize="unlinkOpticalSize"
 			/>
 			<div class="code">
-				<Prism language="html" v-if="hasLocalization">{{ html }}</Prism>
+				<Prism language="html" v-if="hasLocalization" :key="{ html }">{{
+					html
+				}}</Prism>
 				<div class="code-styles">
 					<CopyToClipboard :content="styles" />
-					<Prism language="css">{{ styles }}</Prism>
+					<Prism language="css" :key="{ styles }">{{ styles }}</Prism>
 				</div>
 			</div>
 		</div>
