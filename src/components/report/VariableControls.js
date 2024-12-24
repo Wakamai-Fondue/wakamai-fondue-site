@@ -2,7 +2,14 @@ import Prism from "vue-prism-component";
 import CopyToClipboard from "../CopyToClipboard.vue";
 
 export default {
-	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
+	props: [
+		"font",
+		"showAxes",
+		"showInstances",
+		"showTitles",
+		"showStyles",
+		"linkOpticalSize",
+	],
 	components: {
 		Prism,
 		CopyToClipboard,
@@ -32,6 +39,9 @@ export default {
 	},
 	methods: {
 		updateOpticalSize(fontSize) {
+			console.log(
+				"updateOpticalSizeupdateOpticalSizeupdateOpticalSizeupdateOpticalSizeupdateOpticalSizeupdateOpticalSizeupdateOpticalSizeupdateOpticalSize"
+			);
 			if (this.font.hasOpticalSize) {
 				const targetAxis = this.axes.find((o) => o.id === "opsz");
 				const opszValue = Math.min(
@@ -66,7 +76,8 @@ export default {
 		},
 		updateStyles: function (axis) {
 			if (axis === "opsz") {
-				this.$emit("unlinkOpticalSize");
+				console.log("okee, unlinken");
+				this.$emit("unlinkOpticalSize", false);
 			}
 			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
