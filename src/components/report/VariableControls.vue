@@ -2,6 +2,7 @@
 	<div class="variable-sliders">
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
+			{{ linkOpticalSize }}
 			<ul class="axes-sliders">
 				<li
 					class="axis-slider-container"

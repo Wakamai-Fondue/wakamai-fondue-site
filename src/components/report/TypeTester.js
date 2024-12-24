@@ -21,6 +21,7 @@ export default {
 			textStyles: "",
 			language: null,
 			sticky: false,
+			linkOpticalSize: false,
 		};
 	},
 	computed: {
@@ -33,10 +34,17 @@ export default {
 	},
 	methods: {
 		updateOpticalSize: function () {
-			this.$refs.VariableControls.updateOpticalSize();
+			console.log("updateOpticalSize");
+			this.linkOpticalSize = !this.linkOpticalSize;
+			// this.$refs.VariableControls.updateOpticalSize();
+			// this.$emit("updateOpticalSize");
 		},
-		unlinkOpticalSize: function () {
-			this.$refs.TextControls.unlinkOpticalSize();
+		unlinkOpticalSize: function (linked) {
+			// this.$refs.TextControls.unlinkOpticalSize();
+			// console.log("unlinkOpticalSize", x);
+			// this.$emit("unlinkOpticalSize");
+			// console.log(linked);
+			this.linkOpticalSize = linked;
 		},
 		updateVariableStyles: function (updatedStyles) {
 			this.variableStyles = updatedStyles;

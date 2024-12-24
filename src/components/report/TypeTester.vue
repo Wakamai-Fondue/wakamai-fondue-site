@@ -57,6 +57,8 @@
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@updateOpticalSize="updateOpticalSize"
+				@unlinkOpticalSize="unlinkOpticalSize"
+				:linkOpticalSize
 			/>
 			<FeatureControls
 				:font="font"
@@ -68,8 +70,10 @@
 				:font="font"
 				:showAxes="true"
 				:showTitles="false"
+				:linkOpticalSize
 				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
+				@updateOpticalSize="updateOpticalSize"
 				@unlinkOpticalSize="unlinkOpticalSize"
 			/>
 			<div class="code">

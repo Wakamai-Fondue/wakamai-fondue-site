@@ -1,12 +1,12 @@
 export default {
-	props: ["font"],
+	props: ["font", "linkOpticalSize"],
 	data() {
 		return {
 			fontSize: 24,
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
-			linkOpticalSize: false,
+			// linkOpticalSize: false,
 			hasLocalization: this.font.languageSystems.length > 0,
 		};
 	},
@@ -22,9 +22,9 @@ export default {
 		},
 		updateStyles: function () {
 			this.$emit("updateTextStyles", this.getTextStyles());
-			if (this.font.hasOpticalSize && this.linkOpticalSize) {
-				this.$emit("updateOpticalSize", this.fontSize);
-			}
+			// if (this.font.hasOpticalSize && this.linkOpticalSize) {
+			// 	this.$emit("updateOpticalSize", this.fontSize);
+			// }
 		},
 		getTextStyles: function () {
 			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
@@ -33,10 +33,12 @@ export default {
 			this.$emit("updateLanguage", language);
 		},
 		toggleOpticalSizeLink() {
-			this.linkOpticalSize = !this.linkOpticalSize;
+			// this.linkOpticalSize = !this.linkOpticalSize;
+			this.$emit("unlinkOpticalSize", !this.linkOpticalSize);
 			this.updateStyles();
 		},
 		unlinkOpticalSize: function () {
+			console.log("unlink in textcontrols");
 			this.linkOpticalSize = false;
 		},
 	},
