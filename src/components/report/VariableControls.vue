@@ -2,7 +2,6 @@
 	<div class="variable-sliders">
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
-			{{ linkOpticalSize }}
 			<ul class="axes-sliders">
 				<li
 					class="axis-slider-container"
@@ -10,7 +9,7 @@
 					v-for="(axis, tag) in axes"
 					:key="tag"
 				>
-					<label>
+					<span>
 						<button
 							v-if="currentStates[axis.id] !== false"
 							type="button"
@@ -29,7 +28,7 @@
 						</button>
 						<span class="opentype-label">{{ axis.id }}</span>
 						<span class="axis-name">{{ axis.name }}</span>
-					</label>
+					</span>
 					<span class="axis-min">{{ axis.min }}</span>
 					<span
 						class="axis-slider"

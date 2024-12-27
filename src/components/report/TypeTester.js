@@ -22,6 +22,7 @@ export default {
 			language: null,
 			sticky: false,
 			linkOpticalSize: false,
+			fontSize: 24,
 		};
 	},
 	computed: {
@@ -33,17 +34,10 @@ export default {
 		},
 	},
 	methods: {
-		updateOpticalSize: function () {
-			console.log("updateOpticalSize");
-			this.linkOpticalSize = !this.linkOpticalSize;
-			// this.$refs.VariableControls.updateOpticalSize();
-			// this.$emit("updateOpticalSize");
+		updateOpticalSize: function (size) {
+			this.fontSize = size;
 		},
 		unlinkOpticalSize: function (linked) {
-			// this.$refs.TextControls.unlinkOpticalSize();
-			// console.log("unlinkOpticalSize", x);
-			// this.$emit("unlinkOpticalSize");
-			// console.log(linked);
 			this.linkOpticalSize = linked;
 		},
 		updateVariableStyles: function (updatedStyles) {

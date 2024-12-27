@@ -19,7 +19,7 @@
 						type="checkbox"
 						name="font-size"
 						:checked="linkOpticalSize"
-						@input="toggleOpticalSizeLink()"
+						@input="unlinkOpticalSize()"
 					/>
 					Link to optical size
 				</label>
