@@ -32,17 +32,18 @@
 }
 
 .alignment-buttons .button {
-	border-radius: 0;
+  border-radius: 0;
+  min-width: 0;
 }
 
 .button.left,
 .button.center,
 .button.right,
 .button.justify {
-	display: grid;
-	place-items: center;
-	padding: 0.325rem;
-	min-width: 2rem;
+  display: grid;
+  place-items: center;
+  padding: 0.325rem;
+  min-width: 1.75rem;
 }
 
 .alignment-buttons svg {
