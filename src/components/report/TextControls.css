@@ -26,63 +26,43 @@
   font-size: 0.85rem;
 }
 
-/* TODO: componentalizationreuse */
-.button {
-  padding: 0.25rem 0.5rem;
-  margin: 0;
-  border: 0;
-  background: none;
-  font-size: 0.85rem;
-  background: var(--unlighter-grey);
-  color: var(--dark-grey);
-  cursor: pointer;
-  transition: background 100ms;
-  user-select: none;
-  min-width: 2em;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 65%;
-}
-
-.button:hover {
-  background-color: var(--unlighterer-grey);
-}
-
-.active {
-  background-color: var(--green);
-}
-
-.initial.active {
-  background: var(--dark-grey);
-  color: white;
-}
 
 .alignment-buttons {
-  white-space: nowrap;
+  display: flex;
+  align-items: flex-start;
 }
 
-.button:first-child {
+.alignment-buttons .button {
+  border-radius: 0;
+}
+
+.button.left,
+.button.center,
+.button.right,
+.button.justify {
+  display: grid;
+  place-items: center;
+  padding: 0.325rem;
+  min-width: 2rem;
+}
+
+.alignment-buttons svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+}
+
+.alignment-buttons span {
+  padding-top: 0.125rem;
+  margin-right: var(--small-margin);
+}
+
+.alignment-buttons .button:first-of-type {
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
 }
 
-.button:last-child {
+.alignment-buttons .button:last-of-type {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
-}
-
-.left {
-  background-image: url("../../assets/format_align_left-24px.svg");
-}
-
-.center {
-  background-image: url("../../assets/format_align_center-24px.svg");
-}
-
-.right {
-  background-image: url("../../assets/format_align_right-24px.svg");
-}
-
-.justify {
-  background-image: url("../../assets/format_align_justify-24px.svg");
 }

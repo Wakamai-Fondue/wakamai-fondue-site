@@ -13,7 +13,7 @@
 						<button
 							v-if="currentStates[axis.id] !== false"
 							type="button"
-							class="button-on"
+							class="button on"
 							@click="flipState(axis.id)"
 						>
 							On
@@ -21,7 +21,7 @@
 						<button
 							v-if="currentStates[axis.id] === false"
 							type="button"
-							class="button-off"
+							class="button off"
 							@click="flipState(axis.id)"
 						>
 							Off
@@ -49,7 +49,7 @@
 					<strong class="axis-current">{{ axis.current }}</strong>
 					<button
 						type="button"
-						class="reset-button"
+						class="button active"
 						:class="axis.current !== axis.default ? 'show' : 'hide'"
 						:tabindex="axis.current !== axis.default ? 0 : -1"
 						:disabled="currentStates[axis.id] === false"
@@ -69,7 +69,7 @@
 				<li v-for="(axes, instance) in instances" :key="instance">
 					<button
 						type="button"
-						class="button instance-button"
+						class="instance-button"
 						:class="{ active: instance == activeInstance }"
 						@click="selectInstance(instance)"
 					>
