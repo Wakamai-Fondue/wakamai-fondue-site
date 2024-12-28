@@ -101,31 +101,31 @@ h3 {
 
 .opentype-label {
   font-family: monospace;
+  border-radius: 0.2rem;
   display: inline-flex;
   align-items: center;
   height: 1.5rem;
   padding: 0 0.75rem;
   margin-right: var(--small-margin);
-  border-radius: 99999px;
   background: var(--offwhite);
 }
 
 .button {
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.2rem;
+  padding: 0.25rem 1rem;
+  border-radius: 99999px;
   margin: 0;
   border: 0;
   background: none;
   font-size: 0.85rem;
   background: var(--unlighter-grey);
   cursor: pointer;
-  min-width: 4.75em;
+  min-width: 6em;
   user-select: none;
   color: black;
 }
 
 .button:hover {
-  border-image: fill 0 linear-gradient(#0002,#0002);
+  box-shadow: inset 0 0 999px rgba(0, 0, 0, 0.15);
 }
 
 .button[disabled] {
@@ -135,6 +135,10 @@ h3 {
 .button.active {
   background: var(--dark-grey);
   color: white;
+}
+
+.button.active:hover {
+  box-shadow: inset 0 0 999px rgba(0, 0, 0, 0.4);
 }
 
 .button.on {

@@ -34,6 +34,7 @@
 
 .alignment-buttons .button {
   border-radius: 0;
+  min-width: 0;
 }
 
 .button.left,
@@ -43,7 +44,7 @@
   display: grid;
   place-items: center;
   padding: 0.325rem;
-  min-width: 2rem;
+  min-width: 1.75rem;
 }
 
 .alignment-buttons svg {
