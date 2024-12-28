@@ -110,21 +110,6 @@ h3 {
   background: var(--offwhite);
 }
 
-.beta-message {
-  position: fixed;
-  z-index: 200;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.5em 2em;
-  text-align: center;
-  background: var(--yellow);
-}
-
-.beta-message a {
-  color: inherit;
-}
-
 @media screen and (prefers-reduced-motion: reduce) {
   *,
   *:before,
