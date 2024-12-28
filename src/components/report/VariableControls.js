@@ -2,7 +2,15 @@ import Prism from "vue-prism-component";
 import CopyToClipboard from "../CopyToClipboard.vue";
 
 export default {
-	props: ["font", "showAxes", "showInstances", "showTitles", "showStyles"],
+	props: [
+		"font",
+		"showAxes",
+		"showInstances",
+		"showTitles",
+		"showStyles",
+		"linkOpticalSize",
+		"fontSize",
+	],
 	components: {
 		Prism,
 		CopyToClipboard,
@@ -27,8 +35,17 @@ export default {
 		},
 	},
 	mounted: function () {
-		// this.$root.$on("updateOpticalSize", this.updateOpticalSize);
 		this.updateStyles();
+	},
+	watch: {
+		fontSize: function (size) {
+			this.updateOpticalSize(size);
+		},
+		linkOpticalSize: function (linked) {
+			if (linked) {
+				this.updateOpticalSize(this.fontSize);
+			}
+		},
 	},
 	methods: {
 		updateOpticalSize(fontSize) {
@@ -66,7 +83,7 @@ export default {
 		},
 		updateStyles: function (axis) {
 			if (axis === "opsz") {
-				this.$emit("unlinkOpticalSize");
+				this.$emit("unlinkOpticalSize", false);
 			}
 			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
@@ -131,7 +148,7 @@ export default {
 		flipState(axis, force) {
 			this.currentStates[axis] =
 				force || this.currentStates[axis] === false;
-			if (axis === "opsz") {
+			if (axis === "opsz" && !force) {
 				this.$emit("unlinkOpticalSize");
 			}
 			this.updateStyles();

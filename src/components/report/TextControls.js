@@ -1,18 +1,16 @@
 export default {
-	props: ["font"],
+	props: ["font", "linkOpticalSize"],
 	data() {
 		return {
 			fontSize: 24,
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
-			linkOpticalSize: false,
 			hasLocalization: this.font.languageSystems.length > 0,
 		};
 	},
 
 	mounted: function () {
-		// this.$root.$on("unlinkOpticalSize", this.unlinkOpticalSize);
 		this.updateStyles();
 	},
 	methods: {
@@ -32,12 +30,8 @@ export default {
 		setLanguage: function (language) {
 			this.$emit("updateLanguage", language);
 		},
-		toggleOpticalSizeLink() {
-			this.linkOpticalSize = !this.linkOpticalSize;
-			this.updateStyles();
-		},
 		unlinkOpticalSize: function () {
-			this.linkOpticalSize = false;
+			this.$emit("unlinkOpticalSize", !this.linkOpticalSize);
 		},
 	},
 };

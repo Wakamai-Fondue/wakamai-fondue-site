@@ -21,6 +21,8 @@ export default {
 			textStyles: "",
 			language: null,
 			sticky: false,
+			linkOpticalSize: false,
+			fontSize: 24,
 		};
 	},
 	computed: {
@@ -32,11 +34,11 @@ export default {
 		},
 	},
 	methods: {
-		updateOpticalSize: function () {
-			this.$refs.VariableControls.updateOpticalSize();
+		updateOpticalSize: function (size) {
+			this.fontSize = size;
 		},
-		unlinkOpticalSize: function () {
-			this.$refs.TextControls.unlinkOpticalSize();
+		unlinkOpticalSize: function (linked) {
+			this.linkOpticalSize = linked;
 		},
 		updateVariableStyles: function (updatedStyles) {
 			this.variableStyles = updatedStyles;

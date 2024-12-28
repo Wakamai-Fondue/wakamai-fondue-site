@@ -54,9 +54,12 @@
 
 			<TextControls
 				:font="font"
+				:fontSize
+				:linkOpticalSize
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@updateOpticalSize="updateOpticalSize"
+				@unlinkOpticalSize="unlinkOpticalSize"
 			/>
 			<FeatureControls
 				:font="font"
@@ -66,6 +69,8 @@
 			<VariableControls
 				v-if="font.isVariable"
 				:font="font"
+				:fontSize
+				:linkOpticalSize
 				:showAxes="true"
 				:showTitles="false"
 				showInstances="dropdown"
