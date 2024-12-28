@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.opentype-label {
+  margin-left: var(--small-margin);
+}
+
 .disabled .axis-min,
 .disabled .axis-max,
 .disabled .axis-current {
@@ -44,23 +48,7 @@
   width: 100%;
 }
 
-/* TODO: componentalizationreuse */
-.reset-button {
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.2rem;
-  margin: 0;
-  border: 0;
-  background: none;
-  font-size: 0.85rem;
-  background: var(--green);
-  color: white;
-  cursor: pointer;
-}
-.reset-button[disabled] {
-  background: var(--unlighterer-grey);
-}
-
-.reset-button.hide {
+.button.hide {
   opacity: 0;
   pointer-events: none;
 }
@@ -111,33 +99,6 @@
 
 .instances-dropdown-label {
   margin-right: var(--small-margin);
-}
-
-/* TODO: componentalizationreuse */
-.button-on,
-.button-off {
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.2rem;
-  margin: 0;
-  border: 0;
-  background: none;
-  font-size: 0.85rem;
-  background: var(--unlighter-grey);
-  color: var(--dark-grey);
-  cursor: pointer;
-  min-width: 4.75em;
-  transition: background 100ms;
-  user-select: none;
-  color: white;
-  margin-right: var(--small-margin);
-}
-
-.button-on {
-  background: var(--green);
-}
-
-.button-off {
-  background: var(--red);
 }
 
 .code {

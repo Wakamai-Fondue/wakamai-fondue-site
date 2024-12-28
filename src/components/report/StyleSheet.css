@@ -19,24 +19,11 @@
   z-index: 1;
 }
 
-.code {
-  position: relative;
+.css-button-container button {
+  padding: 0.5em 1em;
+  font-size: 1.5rem;
 }
 
-/* TODO: componentalizationreuse */
-.button {
-  padding: 0.5em 1em;
-  border-radius: 0.2rem;
-  margin: 0;
-  border: 0;
-  background: none;
-  font-size: 1.5rem;
-  background: var(--red);
-  color: var(--dark-grey);
-  cursor: pointer;
-  min-width: 4.75em;
-  transition: background 100ms;
-  user-select: none;
-  color: white;
-  margin-right: var(--small-margin);
+.code {
+  position: relative;
 }

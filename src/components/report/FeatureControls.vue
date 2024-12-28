@@ -10,7 +10,7 @@
 					<button
 						v-if="currentStates[feature.tag] >= 1"
 						type="button"
-						class="button button-on"
+						class="button on"
 						@click="flipState(feature.tag, 1)"
 					>
 						On
@@ -18,7 +18,7 @@
 					<button
 						v-if="currentStates[feature.tag] === 0"
 						type="button"
-						class="button button-off"
+						class="button off"
 						@click="flipState(feature.tag, 0)"
 					>
 						Off
@@ -26,7 +26,7 @@
 					<button
 						v-if="currentStates[feature.tag] === null"
 						type="button"
-						class="button button-default"
+						class="button active"
 						@click="flipState(feature.tag, null)"
 					>
 						Default
