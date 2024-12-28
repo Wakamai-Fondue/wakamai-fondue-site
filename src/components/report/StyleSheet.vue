@@ -18,7 +18,11 @@
 					multiple layout features together.
 				</p>
 				<div class="css-button-container">
-					<button @click="getFontCSSLink()" class="button">
+					<button
+						type="button"
+						class="button off"
+						@click="getFontCSSLink()"
+					>
 						Download stylesheet!
 					</button>
 				</div>

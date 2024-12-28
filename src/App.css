@@ -110,6 +110,43 @@ h3 {
   background: var(--offwhite);
 }
 
+.button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
+  margin: 0;
+  border: 0;
+  background: none;
+  font-size: 0.85rem;
+  background: var(--unlighter-grey);
+  cursor: pointer;
+  min-width: 4.75em;
+  user-select: none;
+  color: black;
+}
+
+.button:hover {
+  border-image: fill 0 linear-gradient(#0002,#0002);
+}
+
+.button[disabled] {
+  background: var(--unlighterer-grey);
+}
+
+.button.active {
+  background: var(--dark-grey);
+  color: white;
+}
+
+.button.on {
+  background: var(--green);
+  color: white;
+}
+
+.button.off {
+  background: var(--red);
+  color: white;
+}
+
 @media screen and (prefers-reduced-motion: reduce) {
   *,
   *:before,
