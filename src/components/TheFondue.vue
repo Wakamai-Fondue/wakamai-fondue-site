@@ -8,7 +8,7 @@
 		></button>
 		<FileDrop :error="error" />
 		<a href="https://pixelambacht.nl" target="_blank" class="logo"
-			><img src="../assets/pixelambacht.svg" alt=""
+			><img src="@/assets/pixelambacht.svg" alt=""
 		/></a>
 	</header>
 </template>

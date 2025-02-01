@@ -1,4 +1,4 @@
-import toggleInfoModal from "../mixins/toggleInfoModal.js";
+import toggleInfoModal from "@/mixins/toggleInfoModal.js";
 
 export default {
 	mixins: [toggleInfoModal],

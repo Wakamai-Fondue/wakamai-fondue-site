@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vite serve -c ./vite.config.js ./src",
-    "build": "vite build -c ./vite.config.js ./src",
+    "serve": "vite serve",
+    "build": "vite build",
     "lint:check": "eslint --no-fix --max-warnings=0",
     "lint": "eslint"
   },
@@ -31,6 +31,7 @@
     "prettier": "^2.7.1",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5",
+    "vite-plugin-node-polyfills": "^0.23.0",
     "vue-template-compiler": "^2.7.16"
   },
   "engines": {
