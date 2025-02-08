@@ -4,6 +4,24 @@ import { defineConfig } from "vite";
 import vue from '@vitejs/plugin-vue';
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
+import { dependencies } from './package.json';
+
+delete dependencies["@wakamai-fondue/engine"];
+const vendors = ["vue"];
+
+// Kudos https://sambitsahoo.com/blog/vite-code-splitting-that-works.html
+function renderChunks(deps) {
+  const chunks = {};
+  Object.keys(deps).forEach((key) => {
+    if (vendors.includes(key)) {
+        return;
+    }
+
+    chunks[key] = [key];
+  });
+  return chunks;
+}
+
 export default defineConfig({
     build: {
         assetsDir: 'js',
@@ -26,6 +44,10 @@ export default defineConfig({
 
                     return assetInfo.name;
                 },
+                manualChunks: {
+                    vendor: vendors,
+                    ...renderChunks(dependencies),
+                  },
             }
         },
         sourcemap: true,

@@ -12,7 +12,6 @@
     "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#bce8ffabec8449691befa3f5803b90315266b12a",
     "core-js": "^3.39.0",
     "prismjs": "^1.29.0",
-    "vite": "^6.0.7",
     "vue": "^3.5.13",
     "vue-prism-component": "^2.0.0"
   },
@@ -31,6 +30,7 @@
     "prettier": "^2.7.1",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5",
+    "vite": "^6.1.0",
     "vite-plugin-node-polyfills": "^0.23.0",
     "vue-template-compiler": "^2.7.16"
   },
