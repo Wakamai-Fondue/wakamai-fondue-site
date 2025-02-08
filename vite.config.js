@@ -1,7 +1,8 @@
 import path from 'node:path';
 
-import { defineConfig } from "vite";
 import vue from '@vitejs/plugin-vue';
+import { defineConfig } from "vite";
+import { analyzer } from 'vite-bundle-analyzer'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 import { dependencies } from './package.json';
@@ -63,6 +64,10 @@ export default defineConfig({
             }
         }),
         vue(),
+        analyzer({
+            analyzerMode: 'static',
+            openAnalyzer: false
+        }),
     ],
     resolve: {
         alias: {
