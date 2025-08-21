@@ -50,9 +50,9 @@
 				class="button left"
 				:class="{ active: textAlign === 'left' }"
 				@click="align('left')"
-				title="Left align text"
+				aria-label="Left align text"
 			>
-				<svg viewBox="0 0 18 18">
+				<svg aria-hidden="true" viewBox="0 0 18 18">
 					<path
 						d="M12 12H0v2h12zm0-8H0v2h12zM0 10h18V8H0zm0 8h18v-2H0zM0 0v2h18V0z"
 					/>
@@ -63,9 +63,9 @@
 				class="button center"
 				:class="{ active: textAlign === 'center' }"
 				@click="align('center')"
-				title="Center align text"
+				aria-label="Center align text"
 			>
-				<svg viewBox="0 0 18 18">
+				<svg aria-hidden="true" viewBox="0 0 18 18">
 					<path
 						d="M4 12v2h10v-2zm-4 6h18v-2H0zm0-8h18V8H0zm4-6v2h10V4zM0 0v2h18V0z"
 					/>
@@ -76,9 +76,9 @@
 				class="button right"
 				:class="{ active: textAlign === 'right' }"
 				@click="align('right')"
-				title="Right align text"
+				aria-label="Right align text"
 			>
-				<svg viewBox="0 0 18 18">
+				<svg aria-hidden="true" viewBox="0 0 18 18">
 					<path
 						d="M0 18h18v-2H0zm6-4h12v-2H6zm-6-4h18V8H0zm6-4h12V4H6zM0 0v2h18V0z"
 					/>
@@ -89,9 +89,9 @@
 				class="button justify"
 				:class="{ active: textAlign === 'justify' }"
 				@click="align('justify')"
-				title="Justify text"
+				aria-label="Justify text"
 			>
-				<svg viewBox="0 0 18 18">
+				<svg aria-hidden="true" viewBox="0 0 18 18">
 					<path
 						d="M0 18h18v-2H0zm0-4h18v-2H0zm0-4h18V8H0zm0-4h18V4H0zm0-6v2h18V0z"
 					/>
@@ -102,7 +102,7 @@
 				class="button initial"
 				:class="{ active: textAlign === 'initial' }"
 				@click="align('initial')"
-				title="Default alignment"
+				aria-label="Default alignment"
 			>
 				Default
 			</button>
