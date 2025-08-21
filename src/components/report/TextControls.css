@@ -66,21 +66,3 @@
 	border-top-right-radius: 0.2rem;
 	border-bottom-right-radius: 0.2rem;
 }
-
-/* TODO ROEL: this was injected after the Vite update, and I have
-   no idea why my old CSS didn't contain them (anymore). To figure out! */
-.left {
-	background-image: url('@/assets/format_align_left-24px.svg');
-}
-
-.center {
-	background-image: url('@/assets/format_align_center-24px.svg');
-}
-
-.right {
-	background-image: url('@/assets/format_align_right-24px.svg');
-}
-
-.justify {
-	background-image: url('@/assets/format_align_justify-24px.svg');
-}
