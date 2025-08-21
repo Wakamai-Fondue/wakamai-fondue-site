@@ -95,8 +95,7 @@
 					<button
 						class="donut-button"
 						name="submit"
-						title="PayPal - The safer, easier way to pay online!"
-						alt="Donate with PayPal button"
+						aria-label="Donate with PayPal button"
 					>
 						Donate
 					</button>

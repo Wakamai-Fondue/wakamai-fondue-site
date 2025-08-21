@@ -14,7 +14,7 @@
 				and find out!
 				<button
 					type="button"
-					class="demo-font"
+					class="button on"
 					@click="getExampleFont('GimletVariable-VF.woff2')"
 				>
 					Try with Gimlet!

@@ -1,128 +1,120 @@
 .filedrop {
-  position: relative;
-  z-index: 10; /* Must be above all other elements */
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background 150ms;
+	position: relative;
+	z-index: 10; /* Must be above all other elements */
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background 150ms;
 }
 
 .working .filedrop {
-  pointer-events: none;
+	pointer-events: none;
 }
 
 .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3e%3cpath fill='%23dfd6b3' d='M421.7 799.7c-91.3 0-180.8-26.1-257.2-76.2-32.9-21.6-63-46.7-87.3-77.8-22.9-29.4-40.9-62.6-53.9-97.5C10.2 512.9 2.1 475.6.3 438c-2-40.6 5.4-80.9 12.5-120.8 4-22.3 9.2-44.4 17.3-65.6 8.1-21.2 19-41.5 31.2-60.6 10.7-16.7 22.6-32.5 34.5-48.4 12.5-16.8 24.3-33.7 39.9-47.8 27.7-25.1 61.5-42.2 95.8-56.3 19.6-8 38.6-18 58.5-25.3 21.4-7.9 43.7-9.2 66.3-10.8C376.5 1 396.7.2 416.9.3c20.9.1 43.3-.9 63.7 3.8 43.4 10 87.1 21.1 126.4 42.7C676.6 85.2 728.4 150.4 759 223c16.4 38.9 27.1 80 33.4 121.6 6.6 43.4 9.9 88.3 5.3 132.1-7.9 75.3-47.3 145.8-97.8 201-13.8 15.1-28.6 29.2-44.2 42.3-15.5 13.1-31.6 26.5-49.8 35.6-18.6 9.3-38.6 15.5-58.5 21.5-21.9 6.6-43.6 14.6-66.3 18.3-19.5 3.4-39.5 4.3-59.4 4.3z'/%3e%3c/svg%3e");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  animation: weeee 20s linear infinite reverse;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3e%3cpath fill='%23dfd6b3' d='M421.7 799.7c-91.3 0-180.8-26.1-257.2-76.2-32.9-21.6-63-46.7-87.3-77.8-22.9-29.4-40.9-62.6-53.9-97.5C10.2 512.9 2.1 475.6.3 438c-2-40.6 5.4-80.9 12.5-120.8 4-22.3 9.2-44.4 17.3-65.6 8.1-21.2 19-41.5 31.2-60.6 10.7-16.7 22.6-32.5 34.5-48.4 12.5-16.8 24.3-33.7 39.9-47.8 27.7-25.1 61.5-42.2 95.8-56.3 19.6-8 38.6-18 58.5-25.3 21.4-7.9 43.7-9.2 66.3-10.8C376.5 1 396.7.2 416.9.3c20.9.1 43.3-.9 63.7 3.8 43.4 10 87.1 21.1 126.4 42.7C676.6 85.2 728.4 150.4 759 223c16.4 38.9 27.1 80 33.4 121.6 6.6 43.4 9.9 88.3 5.3 132.1-7.9 75.3-47.3 145.8-97.8 201-13.8 15.1-28.6 29.2-44.2 42.3-15.5 13.1-31.6 26.5-49.8 35.6-18.6 9.3-38.6 15.5-58.5 21.5-21.9 6.6-43.6 14.6-66.3 18.3-19.5 3.4-39.5 4.3-59.4 4.3z'/%3e%3c/svg%3e");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	animation: weeee 20s linear infinite reverse;
 }
 
 .working .background {
-  animation-duration: 1s;
-  animation-direction: normal;
+	animation-duration: 1s;
+	animation-direction: normal;
 }
 
 .working .upload::after {
-  animation-duration: 1s;
-  animation-direction: reverse;
+	animation-duration: 1s;
+	animation-direction: reverse;
 }
 
 .upload {
-  position: relative;
-  width: 50vmin;
-  height: 50vmin;
-  max-width: 500px;
-  max-height: 500px;
-  transition: transform 150ms;
-  cursor: pointer;
+	position: relative;
+	width: 50vmin;
+	height: 50vmin;
+	max-width: 500px;
+	max-height: 500px;
+	transition: transform 150ms;
+	cursor: pointer;
 }
 
 .upload::after {
-  content: "";
-  background: url("@/assets/logo.svg");
-  position: absolute;
-  top: -16%;
-  left: -16%;
-  width: 132%;
-  height: 132%;
-  animation: weeee 38s linear infinite;
+	content: '';
+	background: url('@/assets/logo.svg');
+	position: absolute;
+	top: -16%;
+	left: -16%;
+	width: 132%;
+	height: 132%;
+	animation: weeee 38s linear infinite;
 }
 
 .upload input {
-  position: absolute;
-  width: 0;
-  height: 0;
-  opacity: 0;
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
 }
 
 .info {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding-top: 4.5rem;
-  font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.6);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	padding-top: 4.5rem;
+	font-size: 0.9rem;
+	color: rgba(0, 0, 0, 0.6);
 }
 
 .info strong {
-  font-size: 1.5em;
-  margin-top: 1rem;
-  color: black;
+	font-size: 1.5em;
+	margin-top: 1rem;
+	color: black;
 }
 
-.demo-font {
-  /* Stacking tricks to prevent button click
-	   from being seen as label click */
-  position: relative;
-  z-index: 1;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.2rem;
-  margin-top: 1.5rem;
-  border: 0;
-  background: none;
-  font-size: 0.85rem;
-  background: var(--green);
-  color: white;
-  cursor: pointer;
+.info button {
+	margin-top: 1.5rem;
+	/* Stacking tricks to prevent button click
+    from being seen as label click */
+	position: relative;
+	z-index: 1;
 }
 
 .dragging .filedrop {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(7.5px);
+	position: fixed;
+	background: rgba(0, 0, 0, 0.75);
+	backdrop-filter: blur(7.5px);
 }
 
 .dragging .upload {
-  transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .errormessage {
-  margin-top: 1.25rem;
-  color: var(--red);
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 500ms;
+	margin-top: 1.25rem;
+	color: var(--red);
+	font-weight: bold;
+	opacity: 0;
+	transition: opacity 500ms;
 }
 
 .errormessage.show {
-  opacity: 1;
-  transition: none;
+	opacity: 1;
+	transition: none;
 }
 
 @keyframes weeee {
-  to {
-    transform: rotate(-1turn);
-  }
+	to {
+		transform: rotate(-1turn);
+	}
 }

@@ -16,10 +16,6 @@
 		/>
 		<FontReport :font="font" :isExamplefont="isExamplefont" />
 		<InfoModal v-if="showInfoModal" @toggleInfoModal="toggleInfoModal" />
-		<div class="beta-message">
-			Heya! You’re looking at the beta site. Comments, bugs or feedback?
-			<a href="mailto:roel@pixelambacht.nl">Let me know!</a>
-		</div>
 	</main>
 </template>
 
