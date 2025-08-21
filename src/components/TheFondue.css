@@ -1,6 +1,6 @@
 .fondue {
   position: relative;
-  background: url("../assets/fondue.jpg") center;
+  background: url("@/assets/fondue.jpg") center;
   background-size: cover;
   height: 100vh;
 }

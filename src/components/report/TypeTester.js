@@ -1,7 +1,7 @@
 import VariableControls from "./VariableControls.vue";
 import FeatureControls from "./FeatureControls.vue";
 import TextControls from "./TextControls.vue";
-import CopyToClipboard from "../CopyToClipboard.vue";
+import CopyToClipboard from "@/components/CopyToClipboard.vue";
 import Prism from "vue-prism-component";
 
 export default {

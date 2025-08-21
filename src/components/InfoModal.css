@@ -51,7 +51,7 @@
   width: 12rem;
   height: 5.5rem;
   background: white;
-  mask-image: url("../assets/pixelambacht.svg");
+  mask-image: url("@/assets/pixelambacht.svg");
   mask-position: center;
   mask-repeat: no-repeat;
 }
