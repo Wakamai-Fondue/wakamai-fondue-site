@@ -28,9 +28,4 @@ export default {
 			return count || "no";
 		},
 	},
-	methods: {
-		hasLocalization() {
-			return this.font.languageSystems.length > 0;
-		},
-	},
 };
