@@ -41,7 +41,7 @@
 
 			<template v-if="font.isVariable">
 				<strong>
-					{{ axesCount }} {{ $filters.pluralize(axesCount, "axe") }}
+					{{ axesCount }} {{ axesCount === 1 ? "axis" : "axes" }}
 				</strong>
 				and
 				<strong
