@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vite serve",
     "build": "vite build",
-    "lint:check": "eslint --no-fix --max-warnings=0",
-    "lint": "eslint"
+    "lint:check": "eslint \"src/**/*.{js,vue}\" --no-fix --max-warnings=0",
+    "lint": "eslint \"src/**/*.{js,vue}\" --fix"
   },
   "dependencies": {
     "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#bce8ffabec8449691befa3f5803b90315266b12a",
