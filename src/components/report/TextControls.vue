@@ -25,7 +25,7 @@
 				</label>
 			</div>
 		</div>
-		<div v-if="hasLocalization">
+		<div v-if="languages.length > 0">
 			<label>
 				Language
 				<select

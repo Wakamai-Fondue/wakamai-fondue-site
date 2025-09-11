@@ -6,7 +6,6 @@ export default {
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
-			hasLocalization: this.font.languageSystems.length > 0,
 		};
 	},
 
