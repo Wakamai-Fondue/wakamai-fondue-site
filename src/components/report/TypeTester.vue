@@ -90,5 +90,130 @@
 	</section>
 </template>
 
-<script src="./TypeTester.js"></script>
-<style src="./TypeTester.css" scoped></style>
+<script>
+import VariableControls from "./VariableControls.vue";
+import FeatureControls from "./FeatureControls.vue";
+import TextControls from "./TextControls.vue";
+import CopyToClipboard from "@/components/CopyToClipboard.vue";
+import Prism from "vue-prism-component";
+
+export default {
+	props: ["font"],
+	components: {
+		VariableControls,
+		FeatureControls,
+		TextControls,
+		Prism,
+		CopyToClipboard,
+	},
+	data() {
+		return {
+			customText: this.font.customText,
+			variableStyles: "",
+			featureStyles: "",
+			textStyles: "",
+			language: null,
+			sticky: false,
+			linkOpticalSize: false,
+			fontSize: 24,
+		};
+	},
+	computed: {
+		html() {
+			return this.getHTML();
+		},
+		styles() {
+			return this.getStyles();
+		},
+	},
+	methods: {
+		updateOpticalSize: function (size) {
+			this.fontSize = size;
+		},
+		unlinkOpticalSize: function (linked) {
+			this.linkOpticalSize = linked;
+		},
+		updateVariableStyles: function (updatedStyles) {
+			this.variableStyles = updatedStyles;
+		},
+		updateFeatureStyles: function (updatedStyles) {
+			this.featureStyles = updatedStyles;
+		},
+		updateTextStyles: function (updatedStyles) {
+			this.textStyles = updatedStyles;
+		},
+		updateLanguage: function (updatedLanguage) {
+			updatedLanguage = updatedLanguage || null;
+			this.language = updatedLanguage;
+		},
+		getHTML: function () {
+			if (this.language) {
+				return `<div lang="${this.language}"> ... </div>`;
+			} else {
+				return `<div> ... </div>`;
+			}
+		},
+		getStyles: function () {
+			let css = this.textStyles;
+			if (this.featureStyles) {
+				css += `\n\n` + this.featureStyles;
+			}
+			if (this.variableStyles) {
+				css += `\n\n` + this.variableStyles;
+			}
+			return css;
+		},
+		hasLocalization() {
+			return this.font.languageSystems.length > 0;
+		},
+	},
+};
+</script>
+
+<style scoped>
+.tester-container {
+	position: relative;
+}
+
+.tester {
+	position: relative;
+	font-family: var(--font-stack);
+	max-width: 68rem;
+	margin: 0 auto 0 auto;
+	background: var(--light-grey);
+	color: black;
+}
+
+.tester p {
+	padding: 1rem;
+}
+
+.tester.sticky {
+	position: sticky;
+	top: 0;
+}
+
+.code {
+	margin-top: 2rem;
+}
+
+.code-styles {
+	position: relative;
+}
+
+.sticky-button {
+	padding: var(--small-margin);
+	font-family: sans-serif;
+	border: 0;
+	background: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0.5;
+	font-size: 1.5rem;
+}
+
+.sticky-button.sticky {
+	opacity: 1;
+}
+</style>
