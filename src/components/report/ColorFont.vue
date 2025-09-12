@@ -35,5 +35,38 @@
 	</section>
 </template>
 
-<script src="./ColorFont.js"></script>
-<style src="./ColorFont.css" scoped></style>
+<script>
+// TODO: report on number of strikes + their sizes
+export default {
+	props: ["font"],
+	data() {
+		return {
+			palettes: this.font.colorPalettes,
+		};
+	},
+};
+</script>
+
+<style scoped>
+.palette {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 1rem;
+}
+
+.palette li {
+	min-width: 7rem;
+	padding: 2.5rem 0 1rem 0;
+	text-align: center;
+}
+
+.label {
+	flex: none;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	background: var(--unlighter-grey);
+	color: black;
+	padding: 0 0.5em;
+	border-radius: 0.25em;
+}
+</style>

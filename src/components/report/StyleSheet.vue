@@ -41,5 +41,73 @@
 	</section>
 </template>
 
-<script src="./StyleSheet.js"></script>
-<style src="./StyleSheet.css" scoped></style>
+<script>
+import Prism from "vue-prism-component";
+import CopyToClipboard from "@/components/CopyToClipboard.vue";
+
+export default {
+	props: ["font"],
+	components: {
+		Prism,
+		CopyToClipboard,
+	},
+	data() {
+		return {
+			css: this.font.cssString,
+			fontname: this.font.summary["Font name"],
+		};
+	},
+	methods: {
+		getFontCSSLink: function () {
+			const filename = `${this.font.slug}-wakamai-fondue.css`;
+			let temp = document.createElement("a");
+			temp.setAttribute(
+				"href",
+				"data:text/plain;charset=utf-8," +
+					encodeURIComponent(this.font.cssString)
+			);
+			temp.setAttribute("download", filename);
+
+			if (document.createEvent) {
+				let event = document.createEvent("MouseEvents");
+				event.initEvent("click", true, true);
+				temp.dispatchEvent(event);
+			} else {
+				temp.click();
+			}
+		},
+	},
+};
+</script>
+
+<style scoped>
+.css-output {
+	position: relative;
+}
+
+.css-output p {
+	margin-bottom: 1rem;
+}
+
+.css-output a {
+	color: var(--red);
+}
+
+.css-button-container {
+	position: sticky;
+	display: flex;
+	justify-content: center;
+	top: 1rem;
+	margin-bottom: 2rem;
+	z-index: 1;
+}
+
+.css-button-container button {
+	padding: 0.5em 1em;
+	font-size: 1.5rem;
+}
+
+.code {
+	position: relative;
+}
+</style>

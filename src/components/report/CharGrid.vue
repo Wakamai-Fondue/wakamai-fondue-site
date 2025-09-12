@@ -96,5 +96,121 @@
 	</section>
 </template>
 
-<script src="./CharGrid.js"></script>
-<style src="./CharGrid.css" scoped></style>
+<script>
+import VariableControls from "./VariableControls.vue";
+
+export default {
+	props: ["font"],
+	components: {
+		VariableControls,
+	},
+	data() {
+		return {
+			variableStyles: "",
+			showCategories: true,
+			chars: this.font.supportedCharacters,
+			catChars: this.font.categorisedCharacters,
+			hasAxes: this.font.variable && this.font.variable.axes.length,
+			showAxes: this.font.isVariable,
+			hasFeatures: false, // TODO: Should be determined by the font
+			showFeatures: false, // TODO: Should be determined by the font
+		};
+	},
+	methods: {
+		entitify: function (code) {
+			return `&#x${code};`;
+		},
+		toggleCategories: function () {
+			this.showCategories = !this.showCategories;
+		},
+		toggleAxes: function () {
+			this.variableStyles = "";
+			this.showAxes = !this.showAxes;
+		},
+		// toggleFeatures: function() {
+		// 	this.showFeatures = !this.showFeatures;
+		// },
+		updateVariableStyles: function (updatedStyles) {
+			this.variableStyles = updatedStyles;
+		},
+	},
+};
+</script>
+
+<style scoped>
+.char-bar {
+	background: var(--light-grey);
+	padding: 1em;
+	margin-bottom: var(--small-margin);
+	display: flex;
+	align-items: center;
+}
+
+.char-bar span {
+	margin-right: auto;
+}
+
+.char-bar label {
+	margin-left: 1rem;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+	grid-gap: var(--small-margin);
+}
+
+.code,
+.feature {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.75rem 0 0.25rem 0;
+}
+
+.code {
+	background: var(--light-grey);
+}
+
+.feature {
+	background: var(--unlight-grey);
+	display: none;
+}
+
+.show-features .feature {
+	display: flex;
+}
+
+.char {
+	font-family: var(--font-stack);
+	font-size: 2rem;
+	flex: auto;
+}
+
+.label {
+	flex: none;
+	font-size: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.code .label {
+	text-transform: uppercase;
+	color: var(--unlighterer-grey);
+}
+
+.feature .label {
+	background: var(--unlighter-grey);
+	color: var(--light-grey);
+	padding: 0 0.5em;
+	border-radius: 0.25em;
+}
+
+.char-sliders {
+	background: var(--light-grey);
+	border-bottom: var(--small-margin) solid white;
+	padding: 1em;
+	margin-bottom: var(--small-margin);
+	position: sticky;
+	top: 0;
+}
+</style>

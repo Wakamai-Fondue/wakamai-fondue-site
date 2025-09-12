@@ -19,5 +19,25 @@
 	</footer>
 </template>
 
-<script src="./SiteFooter.js"></script>
-<style src="./SiteFooter.css" scoped></style>
+<style scoped>
+footer {
+	background: black;
+	color: #dfd6b3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 16rem;
+	margin-top: 8rem;
+}
+
+footer img {
+	width: 16rem;
+	margin-bottom: 2rem;
+}
+
+footer a {
+	text-decoration: none;
+	color: inherit;
+}
+</style>

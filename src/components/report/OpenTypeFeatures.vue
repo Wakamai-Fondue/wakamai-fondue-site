@@ -187,5 +187,212 @@
 	</section>
 </template>
 
-<script src="./OpenTypeFeatures.js"></script>
-<style src="./OpenTypeFeatures.css" scoped></style>
+<script>
+export default {
+	props: ["font"],
+	data() {
+		return {
+			currentStates: [],
+			hasOptionalFeatures:
+				this.font.features.filter((f) => f.state !== "fixed").length >
+				0,
+			hasRequiredFeatures:
+				this.font.features.filter((f) => f.state === "fixed").length >
+				0,
+			featureChars: this.getFeatureChars(),
+		};
+	},
+	computed: {
+		optionalFeatures() {
+			return this.font.features.filter((f) => f.state !== "fixed");
+		},
+		requiredFeatures() {
+			return this.font.features.filter((f) => f.state === "fixed");
+		},
+	},
+	methods: {
+		getFeatureChars() {
+			// Try to return the "best" layout features
+			if (
+				"DFLT" in this.font.featureChars &&
+				"dflt" in this.font.featureChars["DFLT"]
+			) {
+				return this.font.featureChars["DFLT"]["dflt"];
+			} else if (
+				"latn" in this.font.featureChars &&
+				"dflt" in this.font.featureChars["latn"]
+			) {
+				return this.font.featureChars["latn"]["dflt"];
+			} else if (Object.keys(this.font.featureChars).length > 0) {
+				// If all else fails, return first
+				const first = Object.keys(this.font.featureChars)[0];
+				return Object.values(this.font.featureChars[first])[0];
+			} else {
+				return {};
+			}
+		},
+		flipState(feature) {
+			this.currentStates[feature] = 1 - this.currentStates[feature];
+		},
+		isValidFeature(feature) {
+			return (
+				this.featureChars[feature.tag] &&
+				this.featureChars[feature.tag]["lookups"].length &&
+				this.featureChars[feature.tag]["lookups"][0]["input"].length
+			);
+		},
+		// Use onState for features that take a specific number
+		// instead of just 0 or 1.
+		getFeatureStyle: function (feature, onState = 1) {
+			const offState = 0;
+			let state;
+			if (this.currentStates[feature] !== undefined) {
+				// CSS state exists, use it
+				state = this.currentStates[feature];
+			} else {
+				// No CSS state yet, create one based off default state
+				this.currentStates[feature] = 1;
+				state = 1;
+			}
+			return `font-feature-settings:"${feature}" ${
+				state ? onState : offState
+			};`;
+		},
+	},
+};
+</script>
+
+<style scoped>
+.features p {
+	margin: 1rem 0;
+}
+
+.features .content + .content {
+	margin-top: 4rem;
+}
+
+.required-features li {
+	margin-bottom: var(--small-margin);
+}
+
+.feature-demo + .feature-demo {
+	margin-top: 1rem;
+}
+
+.state {
+	margin-left: auto;
+	margin-right: 0.5em;
+	color: var(--yellow);
+}
+
+.state.on {
+	color: var(--green);
+}
+
+.flip-state [disabled] + span {
+	color: var(--unlighterer-grey);
+}
+
+.required-features li,
+.feature-control {
+	display: flex;
+	align-items: center;
+}
+
+.chars {
+	position: relative;
+	font-family: var(--font-stack);
+	font-size: 1.5rem;
+	background: var(--light-grey);
+	padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+	margin-top: var(--small-margin);
+	overflow: hidden;
+}
+
+.chars[data-type]::before {
+	content: attr(data-type);
+	position: absolute;
+	top: var(--small-margin);
+	left: var(--small-margin);
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.chars.summarized::after {
+	content: attr(data-summary);
+	position: absolute;
+	top: var(--small-margin);
+	right: var(--small-margin);
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.no-chars {
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-style: italic;
+	color: var(--unlighterer-grey);
+	background: var(--light-grey);
+	padding: 0.5rem;
+	margin-top: var(--small-margin);
+	overflow: hidden;
+}
+
+/*
+
+Committing this as I would like to preserve this
+for when a user can toggle between a Type 6 summary
+and the raw backtrack/input/lookahead
+
+.backtrack::before {
+	content: "Before";
+	display: inline-block;
+
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.input::before {
+	content: "Input";
+	display: inline-block;
+
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.lookahead::before {
+	content: "After";
+	display: inline-block;
+
+	background: var(--unlighter-grey);
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	padding: 0 4px 2px 4px;
+	border-radius: 2px;
+}
+
+.divider {
+	height: 1em;
+	background: white;
+	margin: 1em -1em;
+}
+
+*/
+</style>

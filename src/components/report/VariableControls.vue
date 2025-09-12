@@ -112,5 +112,271 @@
 	</div>
 </template>
 
-<script src="./VariableControls.js"></script>
-<style src="./VariableControls.css" scoped></style>
+<script>
+import Prism from "vue-prism-component";
+import CopyToClipboard from "@/components/CopyToClipboard.vue";
+
+export default {
+	props: [
+		"font",
+		"showAxes",
+		"showInstances",
+		"showTitles",
+		"showStyles",
+		"linkOpticalSize",
+		"fontSize",
+	],
+	components: {
+		Prism,
+		CopyToClipboard,
+	},
+	data() {
+		return {
+			activeInstance: "",
+			axes: this.font.variable.axes,
+			instances: this.font.variable.instances,
+			currentStates: {},
+		};
+	},
+	computed: {
+		variableStyles() {
+			return this.getVariableStyles();
+		},
+		hasIntances() {
+			return Object.entries(this.instances).length > 0;
+		},
+		instanceCount() {
+			return Object.entries(this.instances).length;
+		},
+	},
+	mounted: function () {
+		this.updateStyles();
+	},
+	watch: {
+		fontSize: function (size) {
+			this.updateOpticalSize(size);
+		},
+		linkOpticalSize: function (linked) {
+			if (linked) {
+				this.updateOpticalSize(this.fontSize);
+			}
+		},
+	},
+	methods: {
+		updateOpticalSize(fontSize) {
+			if (this.font.hasOpticalSize) {
+				const targetAxis = this.axes.find((o) => o.id === "opsz");
+				const opszValue = Math.min(
+					Math.max(targetAxis.min, fontSize),
+					targetAxis.max
+				);
+				this.setAxis("opsz", opszValue);
+				// If axis was turned off, linking turns it on again
+				this.currentStates["opsz"] = true;
+				this.updateStyles();
+			}
+		},
+		resetAxis: function (axis) {
+			if (axis === "opsz") {
+				this.$emit("unlinkOpticalSize");
+			}
+			const defaultValue = this.axes.find((o) => o.id === axis).default;
+			this.setAxis(axis, defaultValue);
+		},
+		setAxis: function (axis, value) {
+			this.axes.find((o) => o.id === axis).current = value;
+			this.updateStyles();
+		},
+		selectInstance: function (instance) {
+			this.activeInstance = instance;
+			for (const axis in this.instances[instance]) {
+				const value = this.instances[instance][axis];
+				const targetAxis = this.axes.find((o) => o.id === axis);
+				targetAxis.current = value;
+			}
+			this.updateStyles();
+		},
+		updateStyles: function (axis) {
+			if (axis === "opsz") {
+				this.$emit("unlinkOpticalSize", false);
+			}
+			this.$emit("updateVariableStyles", this.getVariableStyles());
+			this.matchInstance();
+		},
+		matchInstance: function () {
+			// Using a simple JSON.stringify to compare an object with the
+			// current axes values, with the axes values of the instances.
+			const currentAxes = {};
+			for (const axis of Object.values(this.axes)) {
+				currentAxes[axis.id] = axis.current;
+			}
+			const current = JSON.stringify(currentAxes);
+
+			let activeInstance = "";
+			for (const instance in this.instances) {
+				if (current === JSON.stringify(this.instances[instance])) {
+					activeInstance = instance;
+				}
+			}
+			this.activeInstance = activeInstance;
+		},
+		getVariableStyles: function () {
+			let styles = "";
+			let glue = "";
+			let counter = 0;
+			let maxProps = 6;
+			for (const axis of Object.values(this.axes)) {
+				if (this.currentStates[axis.id] !== false) {
+					styles += `${glue} "${axis.id}" ${axis.current}`;
+					glue = ",";
+					// Poor man's code formatting
+					if (++counter % maxProps === 0) {
+						glue = `,\n                        `;
+					}
+				}
+			}
+			if (styles) {
+				return `font-variation-settings:${styles};`;
+			} else {
+				return "";
+			}
+		},
+		getInstanceStyles: function (instance) {
+			const styles = Object.entries(this.instances[instance])
+				.map(([axis, value]) => `"${axis}" ${value}`)
+				.join(",");
+			return `font-variation-settings:${styles};`;
+		},
+		getBestStep: function (axis) {
+			// Step in units of 1 when range is > 1,
+			// Step in units of 0.1 when range is <= 1
+			if (
+				Math.abs(parseInt(axis.max, 10)) -
+					Math.abs(parseInt(axis.min, 10)) <=
+				1
+			) {
+				return "0.1";
+			} else {
+				return "1";
+			}
+		},
+		flipState(axis, force) {
+			this.currentStates[axis] =
+				force || this.currentStates[axis] === false;
+			if (axis === "opsz" && !force) {
+				this.$emit("unlinkOpticalSize");
+			}
+			this.updateStyles();
+		},
+	},
+};
+</script>
+
+<style scoped>
+.variable-sliders div + div {
+	margin-top: 2rem;
+}
+
+.axis-slider-container {
+	margin-bottom: var(--small-margin);
+	display: grid;
+	align-items: center;
+	grid-template-columns:
+		18em
+		4em
+		1fr
+		4em
+		4em
+		auto;
+}
+
+.axis-slider-container label {
+	cursor: pointer;
+}
+
+.opentype-label {
+	margin-left: var(--small-margin);
+}
+
+.disabled .axis-min,
+.disabled .axis-max,
+.disabled .axis-current {
+	color: var(--unlighterer-grey);
+}
+
+.axis-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.axis-min {
+	text-align: right;
+}
+
+.axis-slider {
+	vertical-align: middle;
+	padding: 0 0.5rem 0 0.25rem;
+}
+
+.axis-slider input {
+	width: 100%;
+}
+
+.button.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.instances-list ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+	grid-gap: var(--small-margin);
+}
+
+.instance-button {
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.2rem;
+	margin: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	background: var(--yellow);
+	color: black;
+	transition: background 400ms;
+}
+
+.instance-button.active {
+	background: var(--green);
+	color: white;
+	transition: background 0s;
+}
+
+.instance-button .container {
+	display: flex;
+	align-items: center;
+	text-align: left;
+}
+
+.instances-list .sample {
+	flex: none;
+	font-family: var(--font-stack);
+	font-size: 2.5em;
+	margin-right: 0.5rem;
+	min-width: 1.5em;
+}
+
+.instances-dropdown {
+	display: flex;
+}
+
+.instances-dropdown-label {
+	margin-right: var(--small-margin);
+}
+
+.code {
+	position: relative;
+}
+</style>

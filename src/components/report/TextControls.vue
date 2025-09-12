@@ -110,5 +110,112 @@
 	</div>
 </template>
 
-<script src="./TextControls.js"></script>
-<style src="./TextControls.css" scoped></style>
+<script>
+export default {
+	props: ["font", "linkOpticalSize"],
+	data() {
+		return {
+			fontSize: 24,
+			textAlign: "initial",
+			activeLanguage: null,
+			languages: this.font.languageSystems,
+		};
+	},
+
+	mounted: function () {
+		this.updateStyles();
+	},
+	methods: {
+		align: function (alignment) {
+			this.textAlign = alignment;
+			this.updateStyles();
+		},
+		updateStyles: function () {
+			this.$emit("updateTextStyles", this.getTextStyles());
+			if (this.font.hasOpticalSize && this.linkOpticalSize) {
+				this.$emit("updateOpticalSize", this.fontSize);
+			}
+		},
+		getTextStyles: function () {
+			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
+		},
+		setLanguage: function (language) {
+			this.$emit("updateLanguage", language);
+		},
+		unlinkOpticalSize: function () {
+			this.$emit("unlinkOpticalSize", !this.linkOpticalSize);
+		},
+	},
+};
+</script>
+
+<style scoped>
+.text-controls {
+	margin: 2rem 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.text-controls label {
+	display: flex;
+	align-items: center;
+}
+
+.text-controls label > * {
+	margin-left: var(--small-margin);
+}
+
+.font-size {
+	display: flex;
+	align-items: flex-start;
+}
+
+.font-size-slider {
+	width: 100%;
+}
+
+.optical-size-link {
+	font-size: 0.85rem;
+}
+
+.alignment-buttons {
+	display: flex;
+	align-items: flex-start;
+}
+
+.alignment-buttons .button {
+	border-radius: 0;
+	min-width: 0;
+}
+
+.button.left,
+.button.center,
+.button.right,
+.button.justify {
+	display: grid;
+	place-items: center;
+	padding: 0.325rem;
+	min-width: 1.75rem;
+}
+
+.alignment-buttons svg {
+	width: 0.85rem;
+	height: 0.85rem;
+	fill: currentColor;
+}
+
+.alignment-buttons span {
+	padding-top: 0.125rem;
+	margin-right: var(--small-margin);
+}
+
+.alignment-buttons .button:first-of-type {
+	border-top-left-radius: 0.2rem;
+	border-bottom-left-radius: 0.2rem;
+}
+
+.alignment-buttons .button:last-of-type {
+	border-top-right-radius: 0.2rem;
+	border-bottom-right-radius: 0.2rem;
+}
+</style>
