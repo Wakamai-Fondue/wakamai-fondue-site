@@ -65,7 +65,7 @@ export default {
 	transition: background 150ms;
 }
 
-.working .filedrop {
+:global(.working) .filedrop {
 	pointer-events: none;
 }
 
@@ -82,12 +82,12 @@ export default {
 	animation: weeee 20s linear infinite reverse;
 }
 
-.working .background {
+:global(.working) .background {
 	animation-duration: 1s;
 	animation-direction: normal;
 }
 
-.working .upload::after {
+:global(.working) .upload::after {
 	animation-duration: 1s;
 	animation-direction: reverse;
 }
@@ -146,13 +146,13 @@ export default {
 	z-index: 1;
 }
 
-.dragging .filedrop {
+:global(.dragging) .filedrop {
 	position: fixed;
 	background: rgba(0, 0, 0, 0.75);
 	backdrop-filter: blur(7.5px);
 }
 
-.dragging .upload {
+:global(.dragging) .upload {
 	transform: scale(1.1);
 }
 
