@@ -57,11 +57,13 @@ export default {
 
 			const that = this;
 
-			// Loop over all uploaded files
-			let files = e.target.files || e.dataTransfer.files;
-			if (!files) return;
-			[...files].forEach((file) => {
-				this.loadFont(file, file.name, that);
+			requestAnimationFrame(() => {
+				// Loop over all uploaded files
+				let files = e.target.files || e.dataTransfer.files;
+				if (!files) return;
+				[...files].forEach((file) => {
+					this.loadFont(file, file.name, that);
+				});
 			});
 		},
 		loadFont(fileOrBlob, filename, that) {
@@ -85,17 +87,19 @@ export default {
 
 			const that = this;
 
-			// Grab font from server
-			const request = new XMLHttpRequest();
-			request.open("GET", `/${filename}`, true);
-			request.responseType = "blob";
-			request.send();
+			requestAnimationFrame(() => {
+				// Grab font from server
+				const request = new XMLHttpRequest();
+				request.open("GET", `/${filename}`, true);
+				request.responseType = "blob";
+				request.send();
 
-			request.onload = function () {
-				const blob = request.response;
-				that.loadFont(blob, filename, that);
-				that.isExamplefont = true;
-			};
+				request.onload = function () {
+					const blob = request.response;
+					that.loadFont(blob, filename, that);
+					that.isExamplefont = true;
+				};
+			});
 		},
 		injectStyleSheet(file) {
 			// Use the "uploaded" font on the page

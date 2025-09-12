@@ -91,7 +91,8 @@ export default {
 	left: -16%;
 	width: 132%;
 	height: 132%;
-	animation: weeee var(--duration, 38s) linear infinite var(--direction, normal);
+	animation: weeee var(--duration, 38s) linear infinite
+		var(--direction, normal);
 }
 
 .upload input {
