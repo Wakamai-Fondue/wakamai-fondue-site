@@ -49,7 +49,7 @@ export default {
 		};
 	},
 	methods: {
-		updateVariableStyles: function (updatedStyles) {
+		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
 		},
 	},

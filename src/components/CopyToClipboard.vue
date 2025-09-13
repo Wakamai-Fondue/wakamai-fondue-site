@@ -25,7 +25,7 @@ export default {
 		};
 	},
 	methods: {
-		copy: function () {
+		copy() {
 			try {
 				if (!navigator.clipboard) {
 					// Use old execCommand
@@ -47,13 +47,13 @@ export default {
 				this.copyFail();
 			}
 		},
-		copySuccess: function () {
+		copySuccess() {
 			// Toggle thumbs up animation
 			this.show = false;
 			const that = this;
 			this.$nextTick().then(() => (that.show = true));
 		},
-		copyFail: function () {
+		copyFail() {
 			alert(this.failMessage);
 		},
 	},

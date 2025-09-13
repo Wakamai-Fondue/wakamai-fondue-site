@@ -243,7 +243,7 @@ export default {
 		},
 		// Use onState for features that take a specific number
 		// instead of just 0 or 1.
-		getFeatureStyle: function (feature, onState = 1) {
+		getFeatureStyle(feature, onState = 1) {
 			const offState = 0;
 			let state;
 			if (this.currentStates[feature] !== undefined) {

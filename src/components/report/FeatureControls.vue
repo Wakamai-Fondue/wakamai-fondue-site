@@ -81,7 +81,7 @@ export default {
 			return this.optionalFeatures.length > 8;
 		},
 	},
-	mounted: function () {
+	mounted() {
 		this.updateStyles();
 	},
 	methods: {
@@ -139,10 +139,10 @@ export default {
 			}
 			return alternateCount;
 		},
-		updateStyles: function () {
+		updateStyles() {
 			this.$emit("updateFeatureStyles", this.getFeatureStyles());
 		},
-		getFeatureStyles: function () {
+		getFeatureStyles() {
 			let styles = "";
 			let glue = "";
 			let counter = 0;
@@ -171,7 +171,7 @@ export default {
 				return "";
 			}
 		},
-		toggleAlternate: function (feature, value) {
+		toggleAlternate(feature, value) {
 			this.currentStates[feature] = value;
 			this.alternateStates[feature] = value;
 

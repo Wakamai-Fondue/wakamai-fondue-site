@@ -128,27 +128,27 @@ export default {
 		};
 	},
 
-	mounted: function () {
+	mounted() {
 		this.updateStyles();
 	},
 	methods: {
-		align: function (alignment) {
+		align(alignment) {
 			this.textAlign = alignment;
 			this.updateStyles();
 		},
-		updateStyles: function () {
+		updateStyles() {
 			this.$emit("updateTextStyles", this.getTextStyles());
 			if (this.font.hasOpticalSize && this.linkOpticalSize) {
 				this.$emit("updateOpticalSize", this.fontSize);
 			}
 		},
-		getTextStyles: function () {
+		getTextStyles() {
 			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
 		},
-		setLanguage: function (language) {
+		setLanguage(language) {
 			this.$emit("updateLanguage", language);
 		},
-		unlinkOpticalSize: function () {
+		unlinkOpticalSize() {
 			this.$emit("unlinkOpticalSize", !this.linkOpticalSize);
 		},
 	},
