@@ -6,7 +6,11 @@
 			class="info"
 			@click="toggleInfoModal"
 		></button>
-		<FileDrop :error="error" />
+		<FileDrop
+			:error="error"
+			@getFont="$emit('getFont', $event)"
+			@getExampleFont="$emit('getExampleFont', $event)"
+		/>
 		<a href="https://pixelambacht.nl" target="_blank" class="logo"
 			><img src="@/assets/pixelambacht.svg" alt=""
 		/></a>
@@ -20,6 +24,7 @@ import FileDrop from "./FileDrop.vue";
 export default {
 	mixins: [toggleInfoModal],
 	props: ["error"],
+	emits: ["getFont", "getExampleFont"],
 	components: {
 		FileDrop,
 	},

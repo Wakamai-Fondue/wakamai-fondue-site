@@ -6,7 +6,7 @@
 				type="file"
 				name="file"
 				accept=".woff,.woff2,.ttf,.otf"
-				@change="getFont"
+				@change="$emit('getFont', $event)"
 			/>
 			<div class="info">
 				"What can my font do?"
@@ -15,7 +15,7 @@
 				<button
 					type="button"
 					class="button on"
-					@click="getExampleFont('GimletVariable-VF.woff2')"
+					@click="$emit('getExampleFont', 'GimletVariable-VF.woff2')"
 				>
 					Try with Gimlet!
 				</button>
@@ -30,26 +30,7 @@
 <script>
 export default {
 	props: ["error"],
-	methods: {
-		getFont(e) {
-			// Quick and clean way to emit to grandparent
-			// that a file has been picked
-			let vm = this;
-			while (vm) {
-				vm.$emit("getFont", e);
-				vm = vm.$parent;
-			}
-		},
-		getExampleFont(filename) {
-			// Quick and clean way to emit to grandparent
-			// that a file has been picked
-			let vm = this;
-			while (vm) {
-				vm.$emit("getExampleFont", filename);
-				vm = vm.$parent;
-			}
-		},
-	},
+	emits: ["getFont", "getExampleFont"],
 };
 </script>
 
@@ -88,8 +69,8 @@ export default {
 }
 
 .working .upload::after {
-	animation-duration: 1s;
-	animation-direction: reverse;
+	--duration: 1s;
+	--direction: reverse;
 }
 
 .upload {
@@ -110,7 +91,8 @@ export default {
 	left: -16%;
 	width: 132%;
 	height: 132%;
-	animation: weeee 38s linear infinite;
+	animation: weeee var(--duration, 38s) linear infinite
+		var(--direction, normal);
 }
 
 .upload input {
