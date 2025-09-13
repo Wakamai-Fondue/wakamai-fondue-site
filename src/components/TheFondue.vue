@@ -24,7 +24,7 @@ import FileDrop from "./FileDrop.vue";
 export default {
 	mixins: [toggleInfoModal],
 	props: ["error"],
-	emits: ["getFont", "getExampleFont"],
+	emits: ["getFont", "getExampleFont", "toggleInfoModal"],
 	components: {
 		FileDrop,
 	},
