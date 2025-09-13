@@ -126,6 +126,7 @@ export default {
 		"linkOpticalSize",
 		"fontSize",
 	],
+	emits: ["updateVariableStyles", "unlinkOpticalSize"],
 	components: {
 		Prism,
 		CopyToClipboard,

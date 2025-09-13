@@ -65,6 +65,7 @@
 
 export default {
 	props: ["font", "showTitles"],
+	emits: ["updateFeatureStyles"],
 	data() {
 		return {
 			features: this.font.features,
