@@ -42,10 +42,12 @@ export default {
 	components: {
 		VariableControls,
 	},
-	data: () => ({
-		variableStyles: "",
-		sticky: false,
-	}),
+	data() {
+		return {
+			variableStyles: "",
+			sticky: false,
+		};
+	},
 	methods: {
 		updateVariableStyles: function (updatedStyles) {
 			this.variableStyles = updatedStyles;

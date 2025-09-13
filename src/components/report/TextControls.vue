@@ -113,7 +113,12 @@
 <script>
 export default {
 	props: ["font", "linkOpticalSize"],
-	emits: ["updateTextStyles", "updateOpticalSize", "updateLanguage", "unlinkOpticalSize"],
+	emits: [
+		"updateTextStyles",
+		"updateOpticalSize",
+		"updateLanguage",
+		"unlinkOpticalSize",
+	],
 	data() {
 		return {
 			fontSize: 24,
