@@ -58,7 +58,7 @@ export default {
 		};
 	},
 	methods: {
-		getFontCSSLink: function () {
+		getFontCSSLink() {
 			const filename = `${this.font.slug}-wakamai-fondue.css`;
 			let temp = document.createElement("a");
 			temp.setAttribute(

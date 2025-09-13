@@ -150,14 +150,14 @@ export default {
 			return Object.entries(this.instances).length;
 		},
 	},
-	mounted: function () {
+	mounted() {
 		this.updateStyles();
 	},
 	watch: {
-		fontSize: function (size) {
+		fontSize(size) {
 			this.updateOpticalSize(size);
 		},
-		linkOpticalSize: function (linked) {
+		linkOpticalSize(linked) {
 			if (linked) {
 				this.updateOpticalSize(this.fontSize);
 			}
@@ -177,18 +177,18 @@ export default {
 				this.updateStyles();
 			}
 		},
-		resetAxis: function (axis) {
+		resetAxis(axis) {
 			if (axis === "opsz") {
 				this.$emit("unlinkOpticalSize");
 			}
 			const defaultValue = this.axes.find((o) => o.id === axis).default;
 			this.setAxis(axis, defaultValue);
 		},
-		setAxis: function (axis, value) {
+		setAxis(axis, value) {
 			this.axes.find((o) => o.id === axis).current = value;
 			this.updateStyles();
 		},
-		selectInstance: function (instance) {
+		selectInstance(instance) {
 			this.activeInstance = instance;
 			for (const axis in this.instances[instance]) {
 				const value = this.instances[instance][axis];
@@ -197,14 +197,14 @@ export default {
 			}
 			this.updateStyles();
 		},
-		updateStyles: function (axis) {
+		updateStyles(axis) {
 			if (axis === "opsz") {
 				this.$emit("unlinkOpticalSize", false);
 			}
 			this.$emit("updateVariableStyles", this.getVariableStyles());
 			this.matchInstance();
 		},
-		matchInstance: function () {
+		matchInstance() {
 			// Using a simple JSON.stringify to compare an object with the
 			// current axes values, with the axes values of the instances.
 			const currentAxes = {};
@@ -221,7 +221,7 @@ export default {
 			}
 			this.activeInstance = activeInstance;
 		},
-		getVariableStyles: function () {
+		getVariableStyles() {
 			let styles = "";
 			let glue = "";
 			let counter = 0;
@@ -242,13 +242,13 @@ export default {
 				return "";
 			}
 		},
-		getInstanceStyles: function (instance) {
+		getInstanceStyles(instance) {
 			const styles = Object.entries(this.instances[instance])
 				.map(([axis, value]) => `"${axis}" ${value}`)
 				.join(",");
 			return `font-variation-settings:${styles};`;
 		},
-		getBestStep: function (axis) {
+		getBestStep(axis) {
 			// Step in units of 1 when range is > 1,
 			// Step in units of 0.1 when range is <= 1
 			if (

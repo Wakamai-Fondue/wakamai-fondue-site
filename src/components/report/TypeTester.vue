@@ -127,33 +127,33 @@ export default {
 		},
 	},
 	methods: {
-		updateOpticalSize: function (size) {
+		updateOpticalSize(size) {
 			this.fontSize = size;
 		},
-		unlinkOpticalSize: function (linked) {
+		unlinkOpticalSize(linked) {
 			this.linkOpticalSize = linked;
 		},
-		updateVariableStyles: function (updatedStyles) {
+		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
 		},
-		updateFeatureStyles: function (updatedStyles) {
+		updateFeatureStyles(updatedStyles) {
 			this.featureStyles = updatedStyles;
 		},
-		updateTextStyles: function (updatedStyles) {
+		updateTextStyles(updatedStyles) {
 			this.textStyles = updatedStyles;
 		},
-		updateLanguage: function (updatedLanguage) {
+		updateLanguage(updatedLanguage) {
 			updatedLanguage = updatedLanguage || null;
 			this.language = updatedLanguage;
 		},
-		getHTML: function () {
+		getHTML() {
 			if (this.language) {
 				return `<div lang="${this.language}"> ... </div>`;
 			} else {
 				return `<div> ... </div>`;
 			}
 		},
-		getStyles: function () {
+		getStyles() {
 			let css = this.textStyles;
 			if (this.featureStyles) {
 				css += `\n\n` + this.featureStyles;

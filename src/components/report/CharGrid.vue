@@ -42,7 +42,7 @@
 			/>
 
 			<template v-if="showCategories">
-				<div v-for="(cat, index) in catChars" :key="`cat${index}`">
+				<div v-for="cat in catChars" :key="`cat_${cat.category}`">
 					<h3>
 						{{ cat.category }}
 						<template v-if="cat.subCategory || cat.script">
@@ -117,20 +117,20 @@ export default {
 		};
 	},
 	methods: {
-		entitify: function (code) {
+		entitify(code) {
 			return `&#x${code};`;
 		},
-		toggleCategories: function () {
+		toggleCategories() {
 			this.showCategories = !this.showCategories;
 		},
-		toggleAxes: function () {
+		toggleAxes() {
 			this.variableStyles = "";
 			this.showAxes = !this.showAxes;
 		},
-		// toggleFeatures: function() {
+		// toggleFeatures() {
 		// 	this.showFeatures = !this.showFeatures;
 		// },
-		updateVariableStyles: function (updatedStyles) {
+		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
 		},
 	},
