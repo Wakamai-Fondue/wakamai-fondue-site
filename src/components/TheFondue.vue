@@ -18,15 +18,18 @@
 </template>
 
 <script>
-import toggleInfoModal from "@/mixins/toggleInfoModal.js";
 import FileDrop from "./FileDrop.vue";
 
 export default {
-	mixins: [toggleInfoModal],
 	props: ["error"],
 	emits: ["getFont", "getExampleFont", "toggleInfoModal"],
 	components: {
 		FileDrop,
+	},
+	methods: {
+		toggleInfoModal() {
+			this.$emit("toggleInfoModal");
+		},
 	},
 };
 </script>

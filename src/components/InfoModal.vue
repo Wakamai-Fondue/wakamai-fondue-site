@@ -121,11 +121,13 @@
 </template>
 
 <script>
-import toggleInfoModal from "@/mixins/toggleInfoModal.js";
-
 export default {
-	mixins: [toggleInfoModal],
 	emits: ["toggleInfoModal"],
+	methods: {
+		toggleInfoModal() {
+			this.$emit("toggleInfoModal");
+		},
+	},
 };
 </script>
 
