@@ -78,10 +78,14 @@ export default {
 
 			const that = this;
 
+			let files = e.target.files || e.dataTransfer.files;
+			if (!files) {
+				this.working = false;
+				return;
+			}
+
 			requestAnimationFrame(() => {
 				// Loop over all uploaded files
-				let files = e.target.files || e.dataTransfer.files;
-				if (!files) return;
 				[...files].forEach((file) => {
 					this.loadFont(file, file.name, that);
 				});
