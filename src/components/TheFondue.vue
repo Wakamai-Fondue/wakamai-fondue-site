@@ -11,7 +11,11 @@
 			@getFont="$emit('getFont', $event)"
 			@getExampleFont="$emit('getExampleFont', $event)"
 		/>
-		<a href="https://pixelambacht.nl" target="_blank" class="logo"
+		<a
+			href="https://pixelambacht.nl"
+			target="_blank"
+			class="logo"
+			aria-label="PixelAmbacht"
 			><img src="@/assets/pixelambacht.svg" alt=""
 		/></a>
 	</header>
