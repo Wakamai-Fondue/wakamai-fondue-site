@@ -70,10 +70,10 @@ export default defineConfig({
 			},
 		}),
 		vue(),
-		analyzer({
-			analyzerMode: "static",
-			openAnalyzer: false,
-		}),
+		// analyzer({
+		// 	analyzerMode: "static",
+		// 	openAnalyzer: false,
+		// }),
 	],
 	resolve: {
 		alias: {
