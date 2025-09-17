@@ -53,7 +53,7 @@ export default defineConfig({
 			},
 			external: ["vite-plugin-node-polyfills/shims/global"],
 		},
-		sourcemap: true,
+		sourcemap: false,
 	},
 	plugins: [
 		nodePolyfills({
