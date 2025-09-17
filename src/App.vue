@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import { fromDataBuffer } from "@wakamai-fondue/engine";
-
 import TheFondue from "./components/TheFondue.vue";
 import FontReport from "./components/FontReport.vue";
 import InfoModal from "./components/InfoModal.vue";
@@ -40,7 +38,18 @@ export default {
 			error: false,
 			showInfoModal: false,
 			isExamplefont: false,
+			fromDataBuffer: null,
 		};
+	},
+	async mounted() {
+		// Load engine after upload UI is in place
+		try {
+			const engine = await import("@wakamai-fondue/engine");
+			this.fromDataBuffer = engine.fromDataBuffer;
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error(error);
+		}
 	},
 	methods: {
 		dragStatus(status) {
@@ -54,7 +63,15 @@ export default {
 		loadFondue(fileOrBlob, data, fileName, that) {
 			// Destroy old font prop so Vue picks up change
 			that.font = false;
-			fromDataBuffer(data, fileName)
+
+			// Bail if engine hasn't loaded yet
+			if (!that.fromDataBuffer) {
+				that.error = true;
+				that.working = false;
+				return;
+			}
+
+			that.fromDataBuffer(data, fileName)
 				.then((fondue) => {
 					that.error = false;
 					that.injectStyleSheet(fileOrBlob);
