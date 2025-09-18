@@ -53,7 +53,7 @@ export default defineConfig({
 			},
 			external: ["vite-plugin-node-polyfills/shims/global"],
 		},
-		sourcemap: true,
+		sourcemap: false,
 	},
 	plugins: [
 		nodePolyfills({
@@ -70,10 +70,10 @@ export default defineConfig({
 			},
 		}),
 		vue(),
-		analyzer({
-			analyzerMode: "static",
-			openAnalyzer: false,
-		}),
+		// analyzer({
+		// 	analyzerMode: "static",
+		// 	openAnalyzer: false,
+		// }),
 	],
 	resolve: {
 		alias: {
