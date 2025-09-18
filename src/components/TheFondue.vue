@@ -1,5 +1,10 @@
 <template>
 	<header class="fondue">
+		<picture>
+			<source srcset="@/assets/fondue.avif" type="image/avif" />
+			<source srcset="@/assets/fondue.webp" type="image/webp" />
+			<img src="@/assets/fondue.jpg" alt="" />
+		</picture>
 		<button
 			type="button"
 			aria-label="Info"
@@ -41,9 +46,19 @@ export default {
 <style scoped>
 .fondue {
 	position: relative;
-	background: url("@/assets/fondue.jpg") center;
-	background-size: cover;
 	height: 100vh;
+}
+
+.fondue picture {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+.fondue picture img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .logo {
