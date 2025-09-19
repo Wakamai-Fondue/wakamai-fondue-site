@@ -1,3 +1,150 @@
+<script setup>
+import { nextTick, onMounted, ref } from "vue";
+
+import TheFondue from "./components/TheFondue.vue";
+import FontReport from "./components/FontReport.vue";
+import InfoModal from "./components/InfoModal.vue";
+
+const font = ref(false);
+const dragging = ref(false);
+const working = ref(false);
+const error = ref(false);
+const showInfoModal = ref(false);
+const isExamplefont = ref(false);
+const fromDataBuffer = ref(null);
+
+onMounted(async () => {
+	// Load engine after upload UI is in place
+	try {
+		const engine = await import("@wakamai-fondue/engine");
+		fromDataBuffer.value = engine.fromDataBuffer;
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error(error);
+	}
+});
+
+function dragStatus(status) {
+	dragging.value = status;
+	if (status) {
+		// If a new file is being dragged, remove any
+		// old error messages so we don't confuse the user
+		error.value = false;
+	}
+}
+
+async function loadFondue(fileOrBlob, data, fileName) {
+	// Destroy old font prop so Vue picks up change
+	font.value = false;
+
+	// Bail if engine hasn't loaded yet
+	if (!fromDataBuffer.value) {
+		error.value = true;
+		working.value = false;
+		return;
+	}
+
+	try {
+		const fondue = await fromDataBuffer.value(data, fileName);
+		error.value = false;
+		injectStyleSheet(fileOrBlob);
+		font.value = fondue;
+
+		await nextTick();
+		working.value = false;
+	} catch (exc) {
+		console.error(exc);
+		error.value = true;
+		working.value = false;
+	}
+}
+
+function getFont(e) {
+	working.value = true;
+
+	e.preventDefault();
+	dragging.value = false;
+	isExamplefont.value = false;
+
+	let files = e.target.files || e.dataTransfer.files;
+	if (!files) {
+		working.value = false;
+		return;
+	}
+
+	requestAnimationFrame(() => {
+		// Loop over all uploaded files
+		[...files].forEach((file) => {
+			loadFont(file, file.name);
+		});
+	});
+}
+
+function loadFont(fileOrBlob, filename) {
+	const reader = new FileReader();
+
+	reader.onload = function () {
+		loadFondue(fileOrBlob, reader.result, filename);
+	};
+
+	reader.onerror = function (error) {
+		// TODO: error handling
+		// eslint-disable-next-line no-console
+		console.log(error);
+	};
+
+	reader.readAsArrayBuffer(fileOrBlob);
+}
+
+function getExampleFont(filename) {
+	working.value = true;
+
+	requestAnimationFrame(() => {
+		// Grab font from server
+		const request = new XMLHttpRequest();
+		request.open("GET", `/${filename}`, true);
+		request.responseType = "blob";
+		request.send();
+
+		request.onload = function () {
+			const blob = request.response;
+			loadFont(blob, filename);
+			isExamplefont.value = true;
+		};
+	});
+}
+
+function injectStyleSheet(file) {
+	// Use the "uploaded" font on the page
+	const id = "wakamai-fondue-custom-stylesheet";
+	let style = document.getElementById(id);
+
+	// Clean up previous instance of stylesheet
+	if (!style) {
+		style = document.createElement("style");
+		style.id = id;
+		document.head.appendChild(style);
+	}
+
+	// Inject new stylesheet
+	const objectURL = URL.createObjectURL(file);
+	style.innerHTML = "";
+	style.appendChild(
+		document.createTextNode(
+			`@font-face { font-family: 'wakamai-fondue'; src: url('${objectURL}'); }`
+		)
+	);
+}
+
+function toggleInfoModal(forceClose) {
+	if (forceClose) {
+		showInfoModal.value = false;
+	} else {
+		showInfoModal.value = !showInfoModal.value;
+	}
+}
+</script>
+
 <template>
 	<main
 		id="app"
@@ -18,162 +165,6 @@
 		<InfoModal v-if="showInfoModal" @toggleInfoModal="toggleInfoModal" />
 	</main>
 </template>
-
-<script>
-import TheFondue from "./components/TheFondue.vue";
-import FontReport from "./components/FontReport.vue";
-import InfoModal from "./components/InfoModal.vue";
-
-export default {
-	components: {
-		TheFondue,
-		FontReport,
-		InfoModal,
-	},
-	data() {
-		return {
-			font: false,
-			dragging: false,
-			working: false,
-			error: false,
-			showInfoModal: false,
-			isExamplefont: false,
-			fromDataBuffer: null,
-		};
-	},
-	async mounted() {
-		// Load engine after upload UI is in place
-		try {
-			const engine = await import("@wakamai-fondue/engine");
-			this.fromDataBuffer = engine.fromDataBuffer;
-		} catch (error) {
-			// eslint-disable-next-line no-console
-			console.error(error);
-		}
-	},
-	methods: {
-		dragStatus(status) {
-			this.dragging = status;
-			if (status) {
-				// If a new file is being dragged, remove any
-				// old error messages so we don't confuse the user
-				this.error = false;
-			}
-		},
-		loadFondue(fileOrBlob, data, fileName, that) {
-			// Destroy old font prop so Vue picks up change
-			that.font = false;
-
-			// Bail if engine hasn't loaded yet
-			if (!that.fromDataBuffer) {
-				that.error = true;
-				that.working = false;
-				return;
-			}
-
-			that.fromDataBuffer(data, fileName)
-				.then((fondue) => {
-					that.error = false;
-					that.injectStyleSheet(fileOrBlob);
-					that.font = fondue;
-					that.$nextTick(() => {
-						that.working = false;
-						document.getElementById("report").scrollIntoView();
-					});
-				})
-				.catch(function () {
-					that.error = true;
-					that.working = false;
-				});
-		},
-		getFont(e) {
-			this.working = true;
-
-			e.preventDefault();
-			this.dragging = false;
-			this.isExamplefont = false;
-
-			const that = this;
-
-			let files = e.target.files || e.dataTransfer.files;
-			if (!files) {
-				this.working = false;
-				return;
-			}
-
-			requestAnimationFrame(() => {
-				// Loop over all uploaded files
-				[...files].forEach((file) => {
-					this.loadFont(file, file.name, that);
-				});
-			});
-		},
-		loadFont(fileOrBlob, filename, that) {
-			const reader = new FileReader();
-
-			reader.onload = function () {
-				const data = reader.result;
-				that.loadFondue(fileOrBlob, data, filename, that);
-			};
-
-			reader.onerror = function (error) {
-				// TODO: error handling
-				// eslint-disable-next-line no-console
-				console.log(error);
-			};
-
-			reader.readAsArrayBuffer(fileOrBlob);
-		},
-		getExampleFont(filename) {
-			this.working = true;
-
-			const that = this;
-
-			requestAnimationFrame(() => {
-				// Grab font from server
-				const request = new XMLHttpRequest();
-				request.open("GET", `/${filename}`, true);
-				request.responseType = "blob";
-				request.send();
-
-				request.onload = function () {
-					const blob = request.response;
-					that.loadFont(blob, filename, that);
-					that.isExamplefont = true;
-				};
-			});
-		},
-		injectStyleSheet(file) {
-			// Use the "uploaded" font on the page
-			const id = "wakamai-fondue-custom-stylesheet";
-			let style = document.getElementById(id);
-
-			// Clean up previous instance of stylesheet
-			if (!style) {
-				style = document.createElement("style");
-				style.id = id;
-				document.head.appendChild(style);
-			}
-
-			// Inject new stylesheet
-			const objectURL = URL.createObjectURL(file);
-			style.innerHTML = "";
-			style.appendChild(
-				document.createTextNode(
-					`@font-face { font-family: 'wakamai-fondue'; src: url('${objectURL}'); }`
-				)
-			);
-		},
-		toggleInfoModal(forceClose) {
-			if (forceClose) {
-				this.showInfoModal = false;
-			} else {
-				this.showInfoModal = !this.showInfoModal;
-			}
-		},
-	},
-};
-</script>
 
 <style>
 :root {
