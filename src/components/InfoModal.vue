@@ -76,39 +76,6 @@
 				>!
 			</p>
 			<hr />
-			<div class="donut">
-				<p>
-					Wakamai Fondue is a labor of love and free for everybody to
-					use. If it made your day a little bit better, consider
-					supporting me with a donation 🍩
-				</p>
-				<form
-					action="https://www.paypal.com/donate"
-					method="post"
-					target="_blank"
-				>
-					<input
-						type="hidden"
-						name="hosted_button_id"
-						value="XZBF85F94XRVC"
-					/>
-					<button
-						class="donut-button"
-						name="submit"
-						aria-label="Donate with PayPal button"
-					>
-						Donate
-					</button>
-					<img
-						alt=""
-						border="0"
-						src="https://www.paypal.com/en_NL/i/scr/pixel.gif"
-						width="1"
-						height="1"
-					/>
-				</form>
-			</div>
-			<hr />
 			<a
 				href="https://pixelambacht.nl"
 				target="_blank"
@@ -208,25 +175,5 @@ export default {
 	background-repeat: no-repeat;
 	background-size: 45%;
 	cursor: pointer;
-}
-
-.donut-button {
-	/* Stacking tricks to prevent button click
-	   from being seen as label click */
-	position: relative;
-	z-index: 1;
-	padding: 0.25rem 0.5rem;
-	border-radius: 0.2rem;
-	border: 0;
-	background: none;
-	font-size: 0.85rem;
-	background: var(--yellow);
-	color: black;
-	cursor: pointer;
-}
-
-.donut {
-	padding: 0 4rem;
-	text-align: center;
 }
 </style>
