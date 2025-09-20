@@ -9,18 +9,19 @@
 				@change="$emit('getFont', $event)"
 			/>
 			<div class="info">
-				"What can my font do?"
-				<strong>Drop a font</strong>
-				and find out!
+				<strong>Drop a font!</strong>
 				<button
 					type="button"
 					class="button on"
 					@click="$emit('getExampleFont', 'GimletVariable-VF.woff2')"
 				>
-					Try with Gimlet!
+					Try with Gimlet
 				</button>
 				<span class="errormessage" :class="{ show: error }">
-					Oops! I couldn't handle that file.
+					<strong>Oops! I couldn't handle that file.</strong>
+					<a href="mailto:brokenfonts@pixelambacht.nl"
+						>Tell me about it so I can fix it</a
+					>
 				</span>
 			</div>
 		</label>
@@ -68,11 +69,6 @@ export default {
 	animation-direction: normal;
 }
 
-.working .upload::after {
-	--duration: 1s;
-	--direction: reverse;
-}
-
 .upload {
 	position: relative;
 	width: 50vmin;
@@ -95,6 +91,11 @@ export default {
 		var(--direction, normal);
 }
 
+.working .upload::after {
+	--duration: 1s;
+	--direction: reverse;
+}
+
 .upload input {
 	position: absolute;
 	width: 0;
@@ -109,15 +110,16 @@ export default {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	padding-top: 4.5rem;
-	font-size: 0.9rem;
-	color: rgba(0, 0, 0, 0.6);
+	padding-top: 4rem;
+	color: black;
 }
 
-.info strong {
+.working .info {
+	opacity: 0.25;
+}
+
+.info > strong {
 	font-size: 1.5em;
-	margin-top: 1rem;
-	color: black;
 }
 
 .info button {
@@ -141,14 +143,19 @@ export default {
 .errormessage {
 	margin-top: 1.25rem;
 	color: var(--red);
-	font-weight: bold;
 	opacity: 0;
-	transition: opacity 500ms;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
+
+.errormessage strong {
+	display: block;
+	margin-bottom: 0.25em;
 }
 
 .errormessage.show {
 	opacity: 1;
-	transition: none;
 }
 
 @keyframes weeee {
