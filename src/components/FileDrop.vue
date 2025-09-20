@@ -9,15 +9,13 @@
 				@change="$emit('getFont', $event)"
 			/>
 			<div class="info">
-				"What can my font do?"
-				<strong>Drop a font</strong>
-				and find out!
+				<strong>Drop a font!</strong>
 				<button
 					type="button"
 					class="button on"
 					@click="$emit('getExampleFont', 'GimletVariable-VF.woff2')"
 				>
-					Try with Gimlet!
+					Try with Gimlet
 				</button>
 				<span class="errormessage" :class="{ show: error }">
 					Oops! I couldn't handle that file.
@@ -109,9 +107,8 @@ export default {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	padding-top: 4.5rem;
-	font-size: 0.9rem;
-	color: rgba(0, 0, 0, 0.6);
+	padding-top: 3.5rem;
+	color: black;
 }
 
 .working .info {
@@ -120,8 +117,6 @@ export default {
 
 .info strong {
 	font-size: 1.5em;
-	margin-top: 1rem;
-	color: black;
 }
 
 .info button {
