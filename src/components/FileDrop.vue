@@ -68,11 +68,6 @@ export default {
 	animation-direction: normal;
 }
 
-.working .upload::after {
-	--duration: 1s;
-	--direction: reverse;
-}
-
 .upload {
 	position: relative;
 	width: 50vmin;
@@ -95,6 +90,11 @@ export default {
 		var(--direction, normal);
 }
 
+.working .upload::after {
+	--duration: 1s;
+	--direction: reverse;
+}
+
 .upload input {
 	position: absolute;
 	width: 0;
@@ -112,6 +112,10 @@ export default {
 	padding-top: 4.5rem;
 	font-size: 0.9rem;
 	color: rgba(0, 0, 0, 0.6);
+}
+
+.working .info {
+	opacity: 0.25;
 }
 
 .info strong {
