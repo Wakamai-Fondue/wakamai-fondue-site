@@ -110,7 +110,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	padding-top: 3.5rem;
+	padding-top: 4rem;
 	color: black;
 }
 
