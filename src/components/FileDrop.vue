@@ -18,7 +18,10 @@
 					Try with Gimlet
 				</button>
 				<span class="errormessage" :class="{ show: error }">
-					Oops! I couldn't handle that file.
+					<strong>Oops! I couldn't handle that file.</strong>
+					<a href="mailto:brokenfonts@pixelambacht.nl"
+						>Tell me about it so I can fix it</a
+					>
 				</span>
 			</div>
 		</label>
@@ -115,7 +118,7 @@ export default {
 	opacity: 0.25;
 }
 
-.info strong {
+.info > strong {
 	font-size: 1.5em;
 }
 
@@ -140,14 +143,19 @@ export default {
 .errormessage {
 	margin-top: 1.25rem;
 	color: var(--red);
-	font-weight: bold;
 	opacity: 0;
-	transition: opacity 500ms;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
+
+.errormessage strong {
+	display: block;
+	margin-bottom: 0.25em;
 }
 
 .errormessage.show {
 	opacity: 1;
-	transition: none;
 }
 
 @keyframes weeee {
