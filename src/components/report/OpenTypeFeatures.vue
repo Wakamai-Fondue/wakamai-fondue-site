@@ -60,14 +60,15 @@
 							'lookups'
 						]"
 					>
-						<div
+						<span
 							v-if="lookup['type'] === 3"
 							:style="getFeatureStyle(feature.tag)"
 							:data-type="lookup['typeName']"
 							:key="`lookup_3_${feature.tag}_${index}`"
 							class="chars"
-							contenteditable
+							contenteditable="plaintext-only"
 							spellcheck="false"
+							autocorrect="off"
 						>
 							<template v-for="(char, index) in lookup['input']">
 								<span
@@ -78,21 +79,22 @@
 									{{ char }}
 								</span>
 							</template>
-						</div>
+						</span>
 
 						<template v-else-if="lookup['type'] === 6"></template>
 
-						<div
+						<span
 							v-else
 							:style="getFeatureStyle(feature.tag)"
 							:data-type="lookup['typeName']"
 							:key="`lookup_6_${feature.tag}_${index}`"
 							class="chars"
-							contenteditable
+							contenteditable="plaintext-only"
 							spellcheck="false"
+							autocorrect="off"
 						>
 							{{ lookup["input"].join(" ") }}
-						</div>
+						</span>
 					</template>
 
 					<template
@@ -102,20 +104,21 @@
 							].length
 						"
 					>
-						<div
+						<span
 							:style="getFeatureStyle(feature.tag)"
 							:key="`combsummary_${feature.tag}_{index}`"
 							data-summary="Randomly generated sample of possible combinations"
 							class="chars summarized"
-							contenteditable
+							contenteditable="plaintext-only"
 							spellcheck="false"
+							autocorrect="off"
 						>
 							{{
 								featureChars[feature.tag]["summary"][
 									"uniqueCombinations"
 								].join(" ")
 							}}
-						</div>
+						</span>
 					</template>
 				</template>
 				<div
@@ -244,6 +247,7 @@ export default {
 }
 
 .chars {
+	display: block;
 	position: relative;
 	font-family: var(--font-stack);
 	font-size: 1.5rem;
