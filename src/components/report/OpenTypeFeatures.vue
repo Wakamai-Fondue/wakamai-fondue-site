@@ -113,11 +113,7 @@
 							spellcheck="false"
 							autocorrect="off"
 						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"uniqueCombinations"
-								].join(" ")
-							}}
+							{{ getCombinations(feature) }}
 						</span>
 					</template>
 				</template>
@@ -204,6 +200,46 @@ export default {
 			return `font-feature-settings:"${feature}" ${
 				state ? onState : offState
 			};`;
+		},
+		getCombinations(feature) {
+			if (feature.tag === "frac") {
+				// Use a custom test string for `frac`, and check if these
+				// are actually in the font.
+				const fracExamples = [
+					"1/2",
+					"3/4",
+					"5/6",
+					"7/8",
+					"9/10",
+					"12/34",
+					"567/890",
+					"12345/67890",
+				];
+				const allowedChars = new Set(
+					this.featureChars[feature.tag]["summary"][
+						"uniqueCombinations"
+					]
+				);
+				const filtered = fracExamples.filter((example) =>
+					[...example].every((char) => allowedChars.has(char))
+				);
+				if (fracExamples.length !== filtered.length) {
+					// If one or more example strings got lost, add the uniqueCombinations
+					// to we can show what might deviate from `frac` expectations
+					return [
+						...this.featureChars[feature.tag]["summary"][
+							"uniqueCombinations"
+						],
+						...filtered,
+					].join(" ");
+				} else {
+					return filtered.join(" ");
+				}
+			} else {
+				this.featureChars[feature.tag]["summary"][
+					"uniqueCombinations"
+				].join(" ");
+			}
 		},
 	},
 };
