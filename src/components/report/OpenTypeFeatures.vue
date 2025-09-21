@@ -98,66 +98,10 @@
 					<template
 						v-if="
 							featureChars[feature.tag]['summary'][
-								'summarizedCombinations'
+								'uniqueCombinations'
 							].length
 						"
 					>
-						<div
-							v-if="
-								featureChars[feature.tag]['summary'][
-									'allBacktracks'
-								].length
-							"
-							:style="getFeatureStyle(feature.tag)"
-							:key="`btsummary_${feature.tag}_{index}`"
-							data-type="Chained Contexts Substitution"
-							data-summary="Summarized backtrack"
-							class="chars summarized"
-							contenteditable
-							spellcheck="false"
-						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"allBacktracks"
-								].join(" ")
-							}}
-						</div>
-
-						<div
-							:style="getFeatureStyle(feature.tag)"
-							:key="`insummary_${feature.tag}_{index}`"
-							data-summary="Summarized input"
-							class="chars summarized"
-							contenteditable
-							spellcheck="false"
-						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"allInputs"
-								].join(" ")
-							}}
-						</div>
-
-						<div
-							v-if="
-								featureChars[feature.tag]['summary'][
-									'allLookaheads'
-								].length
-							"
-							:style="getFeatureStyle(feature.tag)"
-							:key="`lasummary_${feature.tag}_{index}`"
-							data-summary="Summarized lookahead"
-							class="chars summarized"
-							contenteditable
-							spellcheck="false"
-						>
-							{{
-								featureChars[feature.tag]["summary"][
-									"allLookaheads"
-								].join(" ")
-							}}
-						</div>
-
 						<div
 							:style="getFeatureStyle(feature.tag)"
 							:key="`combsummary_${feature.tag}_{index}`"
@@ -168,7 +112,7 @@
 						>
 							{{
 								featureChars[feature.tag]["summary"][
-									"summarizedCombinations"
+									"uniqueCombinations"
 								].join(" ")
 							}}
 						</div>
