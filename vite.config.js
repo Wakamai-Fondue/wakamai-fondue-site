@@ -24,7 +24,7 @@ function renderChunks(deps) {
 }
 
 export default defineConfig({
-	base: "/beta/",
+	base: "",
 	build: {
 		assetsDir: "js",
 		emptyOutDir: true,
