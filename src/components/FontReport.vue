@@ -33,5 +33,10 @@ export default {
 		StyleSheet,
 		SiteFooter,
 	},
+	updated() {
+		if (this.font) {
+			document.getElementById("report")?.scrollIntoView();
+		}
+	},
 };
 </script>
