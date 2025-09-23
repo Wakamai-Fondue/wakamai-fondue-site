@@ -12,7 +12,9 @@
 					“1, 2, 3… zen!”
 				</p>
 				<button
-					contenteditable="false"
+					contenteditable="plaintext-only"
+					spellcheck="false"
+					autocorrect="off"
 					type="button"
 					alt="Pin text"
 					class="sticky-button"

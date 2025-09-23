@@ -23,9 +23,10 @@
 					📌
 				</button>
 				<p
-					spellcheck="false"
 					dir="auto"
-					contenteditable
+					contenteditable="plaintext-only"
+					spellcheck="false"
+					autocorrect="off"
 					v-if="customText"
 				>
 					{{ customText }}
