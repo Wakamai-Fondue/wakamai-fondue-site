@@ -118,7 +118,7 @@ export default {
 			reader.onerror = function (error) {
 				// TODO: error handling
 				// eslint-disable-next-line no-console
-				console.log(error);
+				console.error(error);
 			};
 
 			reader.readAsArrayBuffer(fileOrBlob);

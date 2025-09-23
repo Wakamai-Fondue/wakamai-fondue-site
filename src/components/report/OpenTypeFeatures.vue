@@ -246,7 +246,7 @@ export default {
 					return filtered.join(" ");
 				}
 			} else {
-				this.featureChars[feature.tag]["summary"][
+				return this.featureChars[feature.tag]["summary"][
 					"uniqueCombinations"
 				].join(" ");
 			}
