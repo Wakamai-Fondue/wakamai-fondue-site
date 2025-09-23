@@ -141,6 +141,7 @@ export default {
 }
 
 .errormessage {
+	pointer-events: none;
 	margin-top: 1.25rem;
 	color: var(--red);
 	opacity: 0;
@@ -155,6 +156,7 @@ export default {
 }
 
 .errormessage.show {
+	pointer-events: auto;
 	opacity: 1;
 }
 
