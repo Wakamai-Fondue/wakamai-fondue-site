@@ -206,6 +206,16 @@ export default {
 				// Use a custom test string for `frac`, and check if these
 				// are actually in the font.
 				const fracExamples = [
+					"1/1",
+					"1/2",
+					"1/3",
+					"1/4",
+					"1/5",
+					"1/6",
+					"1/7",
+					"1/8",
+					"1/9",
+					"1/0",
 					"1/2",
 					"3/4",
 					"5/6",
