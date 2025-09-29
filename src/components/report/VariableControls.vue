@@ -1,5 +1,11 @@
 <template>
 	<div class="variable-sliders">
+		<div class="code" v-if="showStyles">
+			<CopyToClipboard :content="variableStyles" />
+			<Prism language="css" :key="{ variableStyles }">{{
+				variableStyles
+			}}</Prism>
+		</div>
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
@@ -102,12 +108,6 @@
 					{{ instance }}
 				</option>
 			</select>
-		</div>
-		<div class="code" v-if="showStyles">
-			<CopyToClipboard :content="variableStyles" />
-			<Prism language="css" :key="{ variableStyles }">{{
-				variableStyles
-			}}</Prism>
 		</div>
 	</div>
 </template>

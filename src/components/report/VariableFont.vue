@@ -12,7 +12,7 @@
 					“1, 2, 3… zen!”
 				</p>
 				<button
-					contenteditable="plaintext-only"
+					contenteditable="false"
 					spellcheck="false"
 					autocorrect="off"
 					type="button"
