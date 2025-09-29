@@ -29,7 +29,7 @@
 				:showAxes="true"
 				:showTitles="false"
 				:showStyles="true"
-				showInstances="list"
+				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
 			/>
 		</div>
