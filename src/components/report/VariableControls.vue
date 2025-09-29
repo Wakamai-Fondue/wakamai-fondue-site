@@ -1,5 +1,5 @@
 <template>
-	<div class="variable-sliders">
+	<div class="variable-controls">
 		<div class="code" v-if="showStyles">
 			<CopyToClipboard :content="variableStyles" />
 			<Prism language="css" :key="{ variableStyles }">{{
@@ -101,7 +101,7 @@
 				:value="activeInstance"
 			>
 				<option
-					v-for="(axes, instance) in instances"
+					v-for="(_, instance) in instances"
 					:key="instance"
 					:selected="instance === activeInstance"
 				>
@@ -274,7 +274,7 @@ export default {
 </script>
 
 <style scoped>
-.variable-sliders div + div {
+.variable-controls div + div {
 	margin-top: 2rem;
 }
 
