@@ -1,6 +1,5 @@
 <template>
-	<main
-		id="app"
+	<div
 		@drop.prevent="getFont"
 		@dragover.prevent="dragStatus(true)"
 		@mouseout="dragStatus(false)"
@@ -16,7 +15,7 @@
 		/>
 		<FontReport :font="font" :isExamplefont="isExamplefont" />
 		<InfoModal v-if="showInfoModal" @toggleInfoModal="toggleInfoModal" />
-	</main>
+	</div>
 </template>
 
 <script>
