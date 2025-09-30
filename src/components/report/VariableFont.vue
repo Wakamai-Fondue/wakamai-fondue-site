@@ -30,6 +30,7 @@
 				:showTitles="false"
 				:showStyles="true"
 				showInstances="dropdown"
+				showPreviewButton="true"
 				@updateVariableStyles="updateVariableStyles"
 			/>
 		</div>

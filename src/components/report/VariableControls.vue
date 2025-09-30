@@ -72,7 +72,7 @@
 		>
 			<h3 v-if="showTitles">Named instances</h3>
 			<ul>
-				<li v-for="(axes, instance) in instances" :key="instance">
+				<li v-for="(_, instance) in instances" :key="instance">
 					<button
 						type="button"
 						class="instance-button"
@@ -91,7 +91,10 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="hasIntances && showInstances === 'dropdown'">
+		<div
+			v-if="hasIntances && showInstances === 'dropdown'"
+			class="named-instances"
+		>
 			<h3 v-if="showTitles">Named instances</h3>
 			<span class="instances-dropdown-label">
 				{{ instanceCount }} Named instances
@@ -108,7 +111,32 @@
 					{{ instance }}
 				</option>
 			</select>
+			<button
+				type="button"
+				class="button"
+				v-if="showPreviewButton && showPreviews"
+				@click="showPreviews = false"
+			>
+				Hide previews
+			</button>
+			<button
+				type="button"
+				class="button"
+				v-if="showPreviewButton && !showPreviews"
+				@click="showPreviews = true"
+			>
+				Preview all
+			</button>
 		</div>
+		<ul v-if="showPreviews" class="large-samples">
+			<li v-for="(_, instance) in instances" :key="instance">
+				{{ instance }}
+				<p class="large-sample" :style="getInstanceStyles(instance)">
+					The melting cheese & bread explode in a quick wave of joy:
+					“1, 2, 3… zen!”
+				</p>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -123,6 +151,7 @@ export default {
 		"showInstances",
 		"showTitles",
 		"showStyles",
+		"showPreviewButton",
 		"linkOpticalSize",
 		"fontSize",
 	],
@@ -137,6 +166,7 @@ export default {
 			axes: this.font.variable.axes,
 			instances: this.font.variable.instances,
 			currentStates: {},
+			showPreviews: false,
 		};
 	},
 	computed: {
@@ -329,6 +359,10 @@ export default {
 	pointer-events: none;
 }
 
+.named-instances button {
+	margin-left: var(--small-margin);
+}
+
 .instances-list ul {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
@@ -367,6 +401,20 @@ export default {
 	font-size: 2.5em;
 	margin-right: 0.5rem;
 	min-width: 1.5em;
+}
+
+.large-samples {
+	margin-top: 2rem;
+	overflow: hidden;
+	width: calc(
+		(100dvw - (var(--scrollbar-width) / 2) - ((100dvw - 100%) / 2))
+	);
+}
+
+.large-sample {
+	font-family: var(--font-stack);
+	font-size: 5vw;
+	white-space: nowrap;
 }
 
 .instances-dropdown {

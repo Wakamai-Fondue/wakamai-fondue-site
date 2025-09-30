@@ -6,6 +6,7 @@
 		@keydown.esc="toggleInfoModal(true)"
 		tabindex="0"
 		:class="{ dragging, working }"
+		:style="{ '--scrollbar-width': scrollBarWidth }"
 	>
 		<TheFondue
 			@getFont="getFont"
@@ -38,6 +39,8 @@ export default {
 			showInfoModal: false,
 			isExamplefont: false,
 			fromDataBuffer: null,
+			scrollBarWidth:
+				window.innerWidth - document.body.clientWidth + "px",
 		};
 	},
 	async mounted() {
@@ -208,6 +211,7 @@ html {
 	min-width: 320px;
 	font-family: var(--system-font-stack);
 	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
 }
 
 *,
@@ -294,7 +298,7 @@ h3 {
 	border: 0;
 	background: none;
 	font-size: 0.85rem;
-	background: var(--unlighter-grey);
+	background: var(--unlight-grey);
 	cursor: pointer;
 	min-width: 6em;
 	user-select: none;
