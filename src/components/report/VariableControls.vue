@@ -134,6 +134,12 @@
 				<p class="large-sample" :style="getInstanceStyles(instance)">
 					{{ previewText || "\u00A0" }}
 				</p>
+				<div class="code instance-css">
+					<CopyToClipboard :content="getInstanceStyles(instance)" />
+					<Prism language="css" :key="instance">{{
+						getInstanceStyles(instance)
+					}}</Prism>
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -411,10 +417,18 @@ export default {
 	);
 }
 
+.large-samples li + li {
+	margin-top: 4rem;
+}
+
 .large-sample {
 	font-family: var(--font-stack);
-	font-size: 5vw;
+	font-size: 9vw;
 	white-space: nowrap;
+}
+
+.instance-css {
+	max-width: calc(var(--max-content-width) - 2rem);
 }
 
 .instances-dropdown {

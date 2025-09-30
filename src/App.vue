@@ -198,6 +198,8 @@ export default {
 	--system-font-stack: system-ui, -apple-system, BlinkMacSystemFont,
 		"Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell,
 		sans-serif;
+
+	--max-content-width: 68rem;
 }
 
 @font-face {
@@ -276,7 +278,7 @@ h3 {
 .content {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 68rem;
+	max-width: var(--max-content-width);
 	padding: 0 1rem;
 }
 
