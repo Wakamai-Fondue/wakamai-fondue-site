@@ -4,12 +4,13 @@
 		<div class="content variable-tester-container">
 			<div class="variable-tester" :class="{ sticky }">
 				<p
+					contenteditable="plaintext-only"
 					spellcheck="false"
-					contenteditable
+					autocorrect="off"
 					:style="$filters.inlinestyle(variableStyles)"
+					@input="updatePreviewText"
 				>
-					The melting cheese & bread explode in a quick wave of joy:
-					“1, 2, 3… zen!”
+					{{ previewText }}
 				</p>
 				<button
 					contenteditable="false"
@@ -31,6 +32,7 @@
 				:showStyles="true"
 				showInstances="dropdown"
 				showPreviewButton="true"
+				:previewText="previewText"
 				@updateVariableStyles="updateVariableStyles"
 			/>
 		</div>
@@ -49,11 +51,16 @@ export default {
 		return {
 			variableStyles: "",
 			sticky: false,
+			previewText:
+				'The melting cheese & bread explode in a quick wave of joy: "1, 2, 3… zen!"',
 		};
 	},
 	methods: {
 		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
+		},
+		updatePreviewText(event) {
+			this.previewText = event.target.textContent;
 		},
 	},
 };

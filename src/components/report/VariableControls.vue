@@ -132,8 +132,7 @@
 			<li v-for="(_, instance) in instances" :key="instance">
 				{{ instance }}
 				<p class="large-sample" :style="getInstanceStyles(instance)">
-					The melting cheese & bread explode in a quick wave of joy:
-					“1, 2, 3… zen!”
+					{{ previewText || "\u00A0" }}
 				</p>
 			</li>
 		</ul>
@@ -154,6 +153,7 @@ export default {
 		"showPreviewButton",
 		"linkOpticalSize",
 		"fontSize",
+		"previewText",
 	],
 	emits: ["updateVariableStyles", "unlinkOpticalSize"],
 	components: {
