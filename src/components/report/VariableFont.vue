@@ -83,6 +83,7 @@ export default {
 .variable-tester.sticky {
 	position: sticky;
 	top: 0;
+	z-index: 1;
 }
 
 .sticky-button {
