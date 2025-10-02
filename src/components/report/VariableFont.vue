@@ -28,10 +28,10 @@
 			<VariableControls
 				:font="font"
 				:showAxes="true"
-				:showTitles="false"
+				:showTitles="true"
 				:showStyles="true"
 				showInstances="dropdown"
-				showPreviewButton="true"
+				showInstancesPreviews="true"
 				:previewText="previewText"
 				@updateVariableStyles="updateVariableStyles"
 			/>

@@ -111,37 +111,29 @@
 					{{ instance }}
 				</option>
 			</select>
-			<button
-				type="button"
-				class="button"
-				v-if="showPreviewButton && showPreviews"
-				@click="showPreviews = false"
-			>
-				Hide previews
-			</button>
-			<button
-				type="button"
-				class="button"
-				v-if="showPreviewButton && !showPreviews"
-				@click="showPreviews = true"
-			>
-				Preview all
-			</button>
 		</div>
-		<ul v-if="showPreviews" class="large-samples">
-			<li v-for="(_, instance) in instances" :key="instance">
-				{{ instance }}
-				<p class="large-sample" :style="getInstanceStyles(instance)">
-					{{ previewText || "\u00A0" }}
-				</p>
-				<div class="code instance-css">
-					<CopyToClipboard :content="getInstanceStyles(instance)" />
-					<Prism language="css" :key="instance">{{
-						getInstanceStyles(instance)
-					}}</Prism>
-				</div>
-			</li>
-		</ul>
+		<div class="named-instances-preview">
+			<h3 v-if="showTitles">Named instances previews</h3>
+			<ul v-if="showInstancesPreviews" class="large-samples">
+				<li v-for="(_, instance) in instances" :key="instance">
+					{{ instance }}
+					<p
+						class="large-sample"
+						:style="getInstanceStyles(instance)"
+					>
+						{{ previewText || "\u00A0" }}
+					</p>
+					<div class="code instance-css">
+						<CopyToClipboard
+							:content="getInstanceStyles(instance)"
+						/>
+						<Prism language="css" :key="instance">{{
+							getInstanceStyles(instance)
+						}}</Prism>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </template>
 
@@ -156,7 +148,7 @@ export default {
 		"showInstances",
 		"showTitles",
 		"showStyles",
-		"showPreviewButton",
+		"showInstancesPreviews",
 		"linkOpticalSize",
 		"fontSize",
 		"previewText",
@@ -172,7 +164,6 @@ export default {
 			axes: this.font.variable.axes,
 			instances: this.font.variable.instances,
 			currentStates: {},
-			showPreviews: false,
 		};
 	},
 	computed: {
@@ -410,7 +401,6 @@ export default {
 }
 
 .large-samples {
-	margin-top: 2rem;
 	overflow: hidden;
 	width: calc(
 		(100dvw - (var(--scrollbar-width) / 2) - ((100dvw - 100%) / 2))
@@ -418,13 +408,15 @@ export default {
 }
 
 .large-samples li + li {
-	margin-top: 4rem;
+	margin-top: 2rem;
 }
 
 .large-sample {
 	font-family: var(--font-stack);
-	font-size: 9vw;
+	font-size: 8vw;
 	white-space: nowrap;
+	background: var(--light-grey);
+	margin-top: var(--small-margin);
 }
 
 .instance-css {
