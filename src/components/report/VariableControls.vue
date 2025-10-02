@@ -421,6 +421,7 @@ export default {
 
 .instance-css {
 	max-width: calc(var(--max-content-width) - 2rem);
+	margin-right: 1rem;
 }
 
 .instances-dropdown {
