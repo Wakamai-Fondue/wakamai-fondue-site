@@ -6,7 +6,7 @@
 		@keydown.esc="toggleInfoModal(true)"
 		tabindex="0"
 		:class="{ dragging, working }"
-		:style="{ '--scrollbar-width': scrollBarWidth }"
+		:style="{ '--scrollbar-width': scrollbarWidth }"
 	>
 		<TheFondue
 			@getFont="getFont"
@@ -39,7 +39,7 @@ export default {
 			showInfoModal: false,
 			isExamplefont: false,
 			fromDataBuffer: null,
-			scrollBarWidth:
+			scrollbarWidth:
 				window.innerWidth - document.body.clientWidth + "px",
 		};
 	},
