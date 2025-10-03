@@ -1,12 +1,12 @@
 <template>
-	<main
-		id="app"
+	<div
 		@drop.prevent="getFont"
 		@dragover.prevent="dragStatus(true)"
 		@mouseout="dragStatus(false)"
 		@keydown.esc="toggleInfoModal(true)"
 		tabindex="0"
 		:class="{ dragging, working }"
+		:style="{ '--scrollbar-width': scrollbarWidth }"
 	>
 		<TheFondue
 			@getFont="getFont"
@@ -16,7 +16,7 @@
 		/>
 		<FontReport :font="font" :isExamplefont="isExamplefont" />
 		<InfoModal v-if="showInfoModal" @toggleInfoModal="toggleInfoModal" />
-	</main>
+	</div>
 </template>
 
 <script>
@@ -39,6 +39,8 @@ export default {
 			showInfoModal: false,
 			isExamplefont: false,
 			fromDataBuffer: null,
+			scrollbarWidth:
+				window.innerWidth - document.body.clientWidth + "px",
 		};
 	},
 	async mounted() {
@@ -196,6 +198,8 @@ export default {
 	--system-font-stack: system-ui, -apple-system, BlinkMacSystemFont,
 		"Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell,
 		sans-serif;
+
+	--max-content-width: 68rem;
 }
 
 @font-face {
@@ -209,6 +213,7 @@ html {
 	min-width: 320px;
 	font-family: var(--system-font-stack);
 	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
 }
 
 *,
@@ -273,7 +278,7 @@ h3 {
 .content {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 68rem;
+	max-width: var(--max-content-width);
 	padding: 0 1rem;
 }
 
@@ -295,7 +300,7 @@ h3 {
 	border: 0;
 	background: none;
 	font-size: 0.85rem;
-	background: var(--unlighter-grey);
+	background: var(--unlight-grey);
 	cursor: pointer;
 	min-width: 6em;
 	user-select: none;

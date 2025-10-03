@@ -179,7 +179,7 @@ export default {
 .tester {
 	position: relative;
 	font-family: var(--font-stack);
-	max-width: 68rem;
+	max-width: var(--max-content-width);
 	margin: 0 auto 0 auto;
 	background: var(--light-grey);
 	color: black;

@@ -4,15 +4,19 @@
 		<div class="content variable-tester-container">
 			<div class="variable-tester" :class="{ sticky }">
 				<p
+					contenteditable="plaintext-only"
 					spellcheck="false"
-					contenteditable
-					:style="$filters.inlinestyle(variableStyles)"
+					autocorrect="off"
+					:style="
+						$filters.inlinestyle(variableStyles) +
+						` font-size: ${fontSize}px;`
+					"
+					@input="updatePreviewText"
 				>
-					The melting cheese & bread explode in a quick wave of joy:
-					“1, 2, 3… zen!”
+					{{ previewText }}
 				</p>
 				<button
-					contenteditable="plaintext-only"
+					contenteditable="false"
 					spellcheck="false"
 					autocorrect="off"
 					type="button"
@@ -27,10 +31,17 @@
 			<VariableControls
 				:font="font"
 				:showAxes="true"
-				:showTitles="false"
+				:showTitles="true"
 				:showStyles="true"
-				showInstances="list"
+				:showFontSizeSlider="true"
+				showInstances="dropdown"
+				showInstancesPreviews="true"
+				:previewText="previewText"
+				:fontSize="fontSize"
+				:linkOpticalSize="linkOpticalSize"
 				@updateVariableStyles="updateVariableStyles"
+				@updateFontSize="updateFontSize"
+				@unlinkOpticalSize="unlinkOpticalSize"
 			/>
 		</div>
 	</section>
@@ -48,11 +59,28 @@ export default {
 		return {
 			variableStyles: "",
 			sticky: false,
+			previewText:
+				'The melting cheese & bread explode in a quick wave of joy: "1, 2, 3… zen!"',
+			fontSize: 48,
+			linkOpticalSize: false,
 		};
 	},
 	methods: {
 		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
+		},
+		updatePreviewText(event) {
+			this.previewText = event.target.textContent;
+		},
+		updateFontSize(newSize) {
+			this.fontSize = newSize;
+		},
+		unlinkOpticalSize(value) {
+			if (value === false) {
+				this.linkOpticalSize = false;
+			} else {
+				this.linkOpticalSize = !this.linkOpticalSize;
+			}
 		},
 	},
 };
@@ -69,12 +97,12 @@ export default {
 	padding: 1rem;
 	font-size: 3rem;
 	background: var(--light-grey);
-	margin-bottom: 2rem;
 }
 
 .variable-tester.sticky {
 	position: sticky;
 	top: 0;
+	z-index: 1;
 }
 
 .sticky-button {

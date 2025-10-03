@@ -1,30 +1,12 @@
 <template>
 	<div class="text-controls">
-		<div class="font-size">
-			<label for="font-size-slider"> Font size </label>
-			<div>
-				<input
-					id="font-size-slider"
-					class="font-size-slider"
-					type="range"
-					min="8"
-					max="100"
-					step="1"
-					v-model.number="fontSize"
-					@input="updateStyles()"
-				/>
-
-				<label class="optical-size-link" v-if="font.hasOpticalSize">
-					<input
-						type="checkbox"
-						name="font-size"
-						:checked="linkOpticalSize"
-						@input="unlinkOpticalSize()"
-					/>
-					Link to optical size
-				</label>
-			</div>
-		</div>
+		<FontSizeSlider
+			v-model="fontSize"
+			:showOpticalSizeLink="font.hasOpticalSize"
+			:linkOpticalSize="linkOpticalSize"
+			@update:modelValue="updateStyles()"
+			@toggleOpticalSize="unlinkOpticalSize()"
+		/>
 		<div v-if="languages.length > 0">
 			<label>
 				Language
@@ -111,8 +93,13 @@
 </template>
 
 <script>
+import FontSizeSlider from "@/components/FontSizeSlider.vue";
+
 export default {
 	props: ["font", "linkOpticalSize"],
+	components: {
+		FontSizeSlider,
+	},
 	emits: [
 		"updateTextStyles",
 		"updateOpticalSize",
@@ -169,19 +156,6 @@ export default {
 
 .text-controls label > * {
 	margin-left: var(--small-margin);
-}
-
-.font-size {
-	display: flex;
-	align-items: flex-start;
-}
-
-.font-size-slider {
-	width: 100%;
-}
-
-.optical-size-link {
-	font-size: 0.85rem;
 }
 
 .alignment-buttons {
