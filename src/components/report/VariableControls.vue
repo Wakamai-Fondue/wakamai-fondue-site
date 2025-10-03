@@ -119,9 +119,27 @@
 					{{ instance }}
 				</option>
 			</select>
+			<button
+				type="button"
+				class="button"
+				v-if="showPreviews"
+				@click="showPreviews = false"
+			>
+				Hide previews
+			</button>
+			<button
+				type="button"
+				class="button"
+				v-if="!showPreviews"
+				@click="showPreviews = true"
+			>
+				Preview all
+			</button>
 		</div>
-		<div class="named-instances-preview" v-if="showInstancesPreviews">
-			<h3 v-if="showTitles">Named instances previews</h3>
+		<div
+			class="named-instances-preview"
+			v-if="showInstancesPreviews && showPreviews"
+		>
 			<ul class="large-samples" :style="`--font-size: ${fontSize}px;`">
 				<li v-for="(_, instance) in instances" :key="instance">
 					{{ instance }}
@@ -175,6 +193,7 @@ export default {
 			axes: this.font.variable.axes,
 			instances: this.font.variable.instances,
 			currentStates: {},
+			showPreviews: false,
 		};
 	},
 	computed: {
