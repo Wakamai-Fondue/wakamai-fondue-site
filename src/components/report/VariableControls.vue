@@ -6,6 +6,14 @@
 				variableStyles
 			}}</Prism>
 		</div>
+		<FontSizeSlider
+			v-if="showFontSizeSlider"
+			:modelValue="fontSize"
+			:showOpticalSizeLink="font.hasOpticalSize"
+			:linkOpticalSize="linkOpticalSize"
+			@update:modelValue="$emit('updateFontSize', $event)"
+			@toggleOpticalSize="$emit('unlinkOpticalSize')"
+		/>
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
@@ -112,9 +120,9 @@
 				</option>
 			</select>
 		</div>
-		<div class="named-instances-preview">
+		<div class="named-instances-preview" v-if="showInstancesPreviews">
 			<h3 v-if="showTitles">Named instances previews</h3>
-			<ul v-if="showInstancesPreviews" class="large-samples">
+			<ul class="large-samples" :style="`--font-size: ${fontSize}px;`">
 				<li v-for="(_, instance) in instances" :key="instance">
 					{{ instance }}
 					<p
@@ -140,6 +148,7 @@
 <script>
 import Prism from "vue-prism-component";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
+import FontSizeSlider from "@/components/FontSizeSlider.vue";
 
 export default {
 	props: [
@@ -149,14 +158,16 @@ export default {
 		"showTitles",
 		"showStyles",
 		"showInstancesPreviews",
+		"showFontSizeSlider",
 		"linkOpticalSize",
 		"fontSize",
 		"previewText",
 	],
-	emits: ["updateVariableStyles", "unlinkOpticalSize"],
+	emits: ["updateVariableStyles", "unlinkOpticalSize", "updateFontSize"],
 	components: {
 		Prism,
 		CopyToClipboard,
+		FontSizeSlider,
 	},
 	data() {
 		return {
@@ -182,7 +193,9 @@ export default {
 	},
 	watch: {
 		fontSize(size) {
-			this.updateOpticalSize(size);
+			if (this.linkOpticalSize) {
+				this.updateOpticalSize(size);
+			}
 		},
 		linkOpticalSize(linked) {
 			if (linked) {
@@ -413,7 +426,7 @@ export default {
 
 .large-sample {
 	font-family: var(--font-stack);
-	font-size: 8vw;
+	font-size: var(--font-size, 8vw);
 	white-space: nowrap;
 	background: var(--light-grey);
 	margin-top: var(--small-margin);

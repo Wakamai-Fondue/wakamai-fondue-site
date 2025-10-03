@@ -7,7 +7,10 @@
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
-					:style="$filters.inlinestyle(variableStyles)"
+					:style="
+						$filters.inlinestyle(variableStyles) +
+						` font-size: ${fontSize}px;`
+					"
 					@input="updatePreviewText"
 				>
 					{{ previewText }}
@@ -30,10 +33,15 @@
 				:showAxes="true"
 				:showTitles="true"
 				:showStyles="true"
+				:showFontSizeSlider="true"
 				showInstances="dropdown"
 				showInstancesPreviews="true"
 				:previewText="previewText"
+				:fontSize="fontSize"
+				:linkOpticalSize="linkOpticalSize"
 				@updateVariableStyles="updateVariableStyles"
+				@updateFontSize="updateFontSize"
+				@unlinkOpticalSize="unlinkOpticalSize"
 			/>
 		</div>
 	</section>
@@ -53,6 +61,8 @@ export default {
 			sticky: false,
 			previewText:
 				'The melting cheese & bread explode in a quick wave of joy: "1, 2, 3… zen!"',
+			fontSize: 48,
+			linkOpticalSize: false,
 		};
 	},
 	methods: {
@@ -61,6 +71,16 @@ export default {
 		},
 		updatePreviewText(event) {
 			this.previewText = event.target.textContent;
+		},
+		updateFontSize(newSize) {
+			this.fontSize = newSize;
+		},
+		unlinkOpticalSize(value) {
+			if (value === false) {
+				this.linkOpticalSize = false;
+			} else {
+				this.linkOpticalSize = !this.linkOpticalSize;
+			}
 		},
 	},
 };
@@ -77,7 +97,6 @@ export default {
 	padding: 1rem;
 	font-size: 3rem;
 	background: var(--light-grey);
-	margin-bottom: 2rem;
 }
 
 .variable-tester.sticky {
