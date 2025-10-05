@@ -1,12 +1,12 @@
 <template>
 	<div class="font-size-control">
-		<label :for="id">Font size</label>
+		<label>Font size</label>
 		<input
 			class="font-size-slider"
 			type="range"
-			:min="min"
-			:max="max"
-			:step="step"
+			:min="min || 4"
+			:max="max || 120"
+			:step="step || 1"
 			:value="modelValue"
 			@input="$emit('update:modelValue', Number($event.target.value))"
 		/>

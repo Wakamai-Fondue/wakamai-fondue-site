@@ -388,6 +388,10 @@ export default {
 	pointer-events: none;
 }
 
+.named-instances > * {
+	vertical-align: middle;
+}
+
 .named-instances button {
 	margin-left: var(--small-margin);
 }
