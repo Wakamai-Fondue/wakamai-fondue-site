@@ -1,5 +1,19 @@
 <template>
-	<div class="variable-sliders">
+	<div class="variable-controls">
+		<div class="code" v-if="showStyles">
+			<CopyToClipboard :content="variableStyles" />
+			<Prism language="css" :key="{ variableStyles }">{{
+				variableStyles
+			}}</Prism>
+		</div>
+		<FontSizeSlider
+			v-if="showFontSizeSlider"
+			:modelValue="fontSize"
+			:showOpticalSizeLink="font.hasOpticalSize"
+			:linkOpticalSize="linkOpticalSize"
+			@update:modelValue="$emit('updateFontSize', $event)"
+			@toggleOpticalSize="$emit('unlinkOpticalSize')"
+		/>
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
@@ -66,7 +80,7 @@
 		>
 			<h3 v-if="showTitles">Named instances</h3>
 			<ul>
-				<li v-for="(axes, instance) in instances" :key="instance">
+				<li v-for="(_, instance) in instances" :key="instance">
 					<button
 						type="button"
 						class="instance-button"
@@ -85,7 +99,10 @@
 				</li>
 			</ul>
 		</div>
-		<div v-if="hasIntances && showInstances === 'dropdown'">
+		<div
+			v-if="hasIntances && showInstances === 'dropdown'"
+			class="named-instances"
+		>
 			<h3 v-if="showTitles">Named instances</h3>
 			<span class="instances-dropdown-label">
 				{{ instanceCount }} Named instances
@@ -95,19 +112,53 @@
 				:value="activeInstance"
 			>
 				<option
-					v-for="(axes, instance) in instances"
+					v-for="(_, instance) in instances"
 					:key="instance"
 					:selected="instance === activeInstance"
 				>
 					{{ instance }}
 				</option>
 			</select>
+			<button
+				type="button"
+				class="button"
+				v-if="showPreviews"
+				@click="showPreviews = false"
+			>
+				Hide previews
+			</button>
+			<button
+				type="button"
+				class="button"
+				v-if="!showPreviews"
+				@click="showPreviews = true"
+			>
+				Preview all
+			</button>
 		</div>
-		<div class="code" v-if="showStyles">
-			<CopyToClipboard :content="variableStyles" />
-			<Prism language="css" :key="{ variableStyles }">{{
-				variableStyles
-			}}</Prism>
+		<div
+			class="named-instances-preview"
+			v-if="showInstancesPreviews && showPreviews"
+		>
+			<ul class="large-samples" :style="`--font-size: ${fontSize}px;`">
+				<li v-for="(_, instance) in instances" :key="instance">
+					{{ instance }}
+					<p
+						class="large-sample"
+						:style="getInstanceStyles(instance)"
+					>
+						{{ previewText || "\u00A0" }}
+					</p>
+					<div class="code instance-css">
+						<CopyToClipboard
+							:content="getInstanceStyles(instance)"
+						/>
+						<Prism language="css" :key="instance">{{
+							getInstanceStyles(instance)
+						}}</Prism>
+					</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
@@ -115,6 +166,7 @@
 <script>
 import Prism from "vue-prism-component";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
+import FontSizeSlider from "@/components/FontSizeSlider.vue";
 
 export default {
 	props: [
@@ -123,13 +175,17 @@ export default {
 		"showInstances",
 		"showTitles",
 		"showStyles",
+		"showInstancesPreviews",
+		"showFontSizeSlider",
 		"linkOpticalSize",
 		"fontSize",
+		"previewText",
 	],
-	emits: ["updateVariableStyles", "unlinkOpticalSize"],
+	emits: ["updateVariableStyles", "unlinkOpticalSize", "updateFontSize"],
 	components: {
 		Prism,
 		CopyToClipboard,
+		FontSizeSlider,
 	},
 	data() {
 		return {
@@ -137,6 +193,7 @@ export default {
 			axes: this.font.variable.axes,
 			instances: this.font.variable.instances,
 			currentStates: {},
+			showPreviews: false,
 		};
 	},
 	computed: {
@@ -155,7 +212,9 @@ export default {
 	},
 	watch: {
 		fontSize(size) {
-			this.updateOpticalSize(size);
+			if (this.linkOpticalSize) {
+				this.updateOpticalSize(size);
+			}
 		},
 		linkOpticalSize(linked) {
 			if (linked) {
@@ -274,7 +333,7 @@ export default {
 </script>
 
 <style scoped>
-.variable-sliders div + div {
+.variable-controls div + div {
 	margin-top: 2rem;
 }
 
@@ -329,6 +388,14 @@ export default {
 	pointer-events: none;
 }
 
+.named-instances > * {
+	vertical-align: middle;
+}
+
+.named-instances button {
+	margin-left: var(--small-margin);
+}
+
 .instances-list ul {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
@@ -367,6 +434,30 @@ export default {
 	font-size: 2.5em;
 	margin-right: 0.5rem;
 	min-width: 1.5em;
+}
+
+.large-samples {
+	overflow: hidden;
+	width: calc(
+		(100dvw - (var(--scrollbar-width) / 2) - ((100dvw - 100%) / 2))
+	);
+}
+
+.large-samples li + li {
+	margin-top: 2rem;
+}
+
+.large-sample {
+	font-family: var(--font-stack);
+	font-size: var(--font-size, 8vw);
+	white-space: nowrap;
+	background: var(--light-grey);
+	margin-top: var(--small-margin);
+}
+
+.instance-css {
+	max-width: calc(var(--max-content-width) - 2rem);
+	margin-right: 1rem;
 }
 
 .instances-dropdown {
