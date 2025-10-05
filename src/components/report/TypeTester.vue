@@ -75,7 +75,7 @@
 				:font="font"
 				:fontSize
 				:autoOpticalSizing
-				:showAxes="true"
+				:showAxes="false"
 				:showTitles="false"
 				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
