@@ -10,9 +10,11 @@
 			v-if="showFontSizeSlider"
 			:modelValue="fontSize"
 			:showOpticalSizeLink="font.hasOpticalSize"
-			:linkOpticalSize="linkOpticalSize"
+			:autoOpticalSizing="autoOpticalSizing"
 			@update:modelValue="$emit('updateFontSize', $event)"
-			@toggleOpticalSize="$emit('unlinkOpticalSize')"
+			@toggleOpticalSize="
+				$emit('updateAutoOpticalSizing', !autoOpticalSizing)
+			"
 		/>
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
@@ -158,11 +160,15 @@ export default {
 		"showStyles",
 		"showInstancesPreviews",
 		"showFontSizeSlider",
-		"linkOpticalSize",
+		"autoOpticalSizing",
 		"fontSize",
 		"previewText",
 	],
-	emits: ["updateVariableStyles", "unlinkOpticalSize", "updateFontSize"],
+	emits: [
+		"updateVariableStyles",
+		"updateAutoOpticalSizing",
+		"updateFontSize",
+	],
 	components: {
 		Prism,
 		CopyToClipboard,
@@ -189,38 +195,21 @@ export default {
 		},
 	},
 	mounted() {
+		if (this.font.hasOpticalSize) {
+			this.currentStates["opsz"] = !this.autoOpticalSizing;
+		}
 		this.updateStyles();
 	},
 	watch: {
-		fontSize(size) {
-			if (this.linkOpticalSize) {
-				this.updateOpticalSize(size);
-			}
-		},
-		linkOpticalSize(linked) {
-			if (linked) {
-				this.updateOpticalSize(this.fontSize);
+		autoOpticalSizing(enabled) {
+			if (this.font.hasOpticalSize) {
+				this.currentStates["opsz"] = !enabled;
+				this.updateStyles();
 			}
 		},
 	},
 	methods: {
-		updateOpticalSize(fontSize) {
-			if (this.font.hasOpticalSize) {
-				const targetAxis = this.axes.find((o) => o.id === "opsz");
-				const opszValue = Math.min(
-					Math.max(targetAxis.min, fontSize),
-					targetAxis.max
-				);
-				this.setAxis("opsz", opszValue);
-				// If axis was turned off, linking turns it on again
-				this.currentStates["opsz"] = true;
-				this.updateStyles();
-			}
-		},
 		resetAxis(axis) {
-			if (axis === "opsz") {
-				this.$emit("unlinkOpticalSize");
-			}
 			const defaultValue = this.axes.find((o) => o.id === axis).default;
 			this.setAxis(axis, defaultValue);
 		},
@@ -302,10 +291,10 @@ export default {
 			}
 		},
 		flipState(axis, force) {
-			this.currentStates[axis] =
-				force || this.currentStates[axis] === false;
-			if (axis === "opsz" && !force) {
-				this.$emit("unlinkOpticalSize");
+			const newState = force || this.currentStates[axis] === false;
+			this.currentStates[axis] = newState;
+			if (axis === "opsz") {
+				this.$emit("updateAutoOpticalSizing", !newState);
 			}
 			this.updateStyles();
 		},
@@ -341,8 +330,13 @@ export default {
 
 .disabled .axis-min,
 .disabled .axis-max,
-.disabled .axis-current {
+.disabled .axis-current,
+.disabled .axis-name {
 	color: var(--unlighterer-grey);
+}
+
+.disabled .opentype-label {
+	opacity: 0.5;
 }
 
 .axis-name {

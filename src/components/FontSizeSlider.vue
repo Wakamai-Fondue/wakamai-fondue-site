@@ -13,10 +13,10 @@
 		<label class="optical-size-link" v-if="showOpticalSizeLink">
 			<input
 				type="checkbox"
-				:checked="linkOpticalSize"
+				:checked="autoOpticalSizing"
 				@change="$emit('toggleOpticalSize')"
 			/>
-			Link to optical size
+			Automatic optical sizing
 		</label>
 	</div>
 </template>
@@ -29,7 +29,7 @@ export default {
 		"max",
 		"step",
 		"showOpticalSizeLink",
-		"linkOpticalSize",
+		"autoOpticalSizing",
 	],
 	emits: ["update:modelValue", "toggleOpticalSize"],
 };
@@ -45,9 +45,5 @@ export default {
 .font-size-slider {
 	flex: auto;
 	max-width: 20rem;
-}
-
-.optical-size-link {
-	font-size: 0.85rem;
 }
 </style>

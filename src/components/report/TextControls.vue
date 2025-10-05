@@ -3,9 +3,9 @@
 		<FontSizeSlider
 			v-model="fontSize"
 			:showOpticalSizeLink="font.hasOpticalSize"
-			:linkOpticalSize="linkOpticalSize"
+			:autoOpticalSizing="autoOpticalSizing"
 			@update:modelValue="updateStyles()"
-			@toggleOpticalSize="unlinkOpticalSize()"
+			@toggleOpticalSize="updateAutoOpticalSizing()"
 		/>
 		<div v-if="languages.length > 0">
 			<label>
@@ -96,7 +96,7 @@
 import FontSizeSlider from "@/components/FontSizeSlider.vue";
 
 export default {
-	props: ["font", "linkOpticalSize"],
+	props: ["font", "autoOpticalSizing"],
 	components: {
 		FontSizeSlider,
 	},
@@ -104,7 +104,7 @@ export default {
 		"updateTextStyles",
 		"updateOpticalSize",
 		"updateLanguage",
-		"unlinkOpticalSize",
+		"updateAutoOpticalSizing",
 	],
 	data() {
 		return {
@@ -125,7 +125,7 @@ export default {
 		},
 		updateStyles() {
 			this.$emit("updateTextStyles", this.getTextStyles());
-			if (this.font.hasOpticalSize && this.linkOpticalSize) {
+			if (this.font.hasOpticalSize && this.autoOpticalSizing) {
 				this.$emit("updateOpticalSize", this.fontSize);
 			}
 		},
@@ -135,8 +135,8 @@ export default {
 		setLanguage(language) {
 			this.$emit("updateLanguage", language);
 		},
-		unlinkOpticalSize() {
-			this.$emit("unlinkOpticalSize", !this.linkOpticalSize);
+		updateAutoOpticalSizing() {
+			this.$emit("updateAutoOpticalSizing", !this.autoOpticalSizing);
 		},
 	},
 };
