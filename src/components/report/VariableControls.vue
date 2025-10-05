@@ -119,13 +119,11 @@
 					{{ instance }}
 				</option>
 			</select>
-			<button
-				type="button"
-				class="button active"
-				@click="showPreviews = !showPreviews"
-			>
-				{{ showPreviews ? "Hide previews" : "Preview all" }}
-			</button>
+			<label class="flip-state">
+				<input type="checkbox" v-model="showPreviews" /><span
+					>Show previews</span
+				>
+			</label>
 		</div>
 		<div
 			class="named-instances-preview"
@@ -375,7 +373,7 @@ export default {
 	vertical-align: middle;
 }
 
-.named-instances button {
+.named-instances .flip-state {
 	margin-left: var(--small-margin);
 }
 
