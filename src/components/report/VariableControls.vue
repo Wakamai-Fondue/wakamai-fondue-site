@@ -149,14 +149,6 @@
 					>
 						{{ previewText || "\u00A0" }}
 					</p>
-					<div class="code instance-css">
-						<CopyToClipboard
-							:content="getInstanceStyles(instance)"
-						/>
-						<Prism language="css" :key="instance">{{
-							getInstanceStyles(instance)
-						}}</Prism>
-					</div>
 				</li>
 			</ul>
 		</div>
@@ -436,13 +428,6 @@ export default {
 	min-width: 1.5em;
 }
 
-.large-samples {
-	overflow: hidden;
-	width: calc(
-		(100dvw - (var(--scrollbar-width) / 2) - ((100dvw - 100%) / 2))
-	);
-}
-
 .large-samples li + li {
 	margin-top: 2rem;
 }
@@ -450,18 +435,9 @@ export default {
 .large-sample {
 	font-family: var(--font-stack);
 	font-size: var(--font-size, 8vw);
-	white-space: nowrap;
 	background: var(--light-grey);
 	margin-top: var(--small-margin);
-}
-
-.instance-css {
-	max-width: calc(var(--max-content-width) - 2rem);
-	margin-right: 1rem;
-}
-
-.instances-dropdown {
-	display: flex;
+	padding: 1rem;
 }
 
 .instances-dropdown-label {
