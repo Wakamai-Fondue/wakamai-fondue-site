@@ -121,19 +121,10 @@
 			</select>
 			<button
 				type="button"
-				class="button"
-				v-if="showPreviews"
-				@click="showPreviews = false"
+				class="button active"
+				@click="showPreviews = !showPreviews"
 			>
-				Hide previews
-			</button>
-			<button
-				type="button"
-				class="button"
-				v-if="!showPreviews"
-				@click="showPreviews = true"
-			>
-				Preview all
+				{{ showPreviews ? "Hide previews" : "Preview all" }}
 			</button>
 		</div>
 		<div
