@@ -7,7 +7,10 @@
 				:class="{ sticky }"
 				:style="
 					$filters.inlinestyle(
-						`${variableStyles}${featureStyles}${textStyles}`
+						`${variableStyles}${featureStyles}${textStyles}` +
+							(autoOpticalSizing
+								? ''
+								: 'font-optical-sizing: none;')
 					)
 				"
 				:lang="language"
@@ -56,11 +59,11 @@
 			<TextControls
 				:font="font"
 				:fontSize
-				:linkOpticalSize
+				:autoOpticalSizing
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@updateOpticalSize="updateOpticalSize"
-				@unlinkOpticalSize="unlinkOpticalSize"
+				@updateAutoOpticalSizing="updateAutoOpticalSizing"
 			/>
 			<FeatureControls
 				:font="font"
@@ -71,12 +74,12 @@
 				v-if="font.isVariable"
 				:font="font"
 				:fontSize
-				:linkOpticalSize
-				:showAxes="true"
+				:autoOpticalSizing
+				:showAxes="false"
 				:showTitles="false"
 				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
-				@unlinkOpticalSize="unlinkOpticalSize"
+				@updateAutoOpticalSizing="updateAutoOpticalSizing"
 			/>
 			<div class="code">
 				<Prism language="html" v-if="hasLocalization" :key="{ html }">{{
@@ -115,7 +118,7 @@ export default {
 			textStyles: "",
 			language: null,
 			sticky: false,
-			linkOpticalSize: false,
+			autoOpticalSizing: true,
 			fontSize: 24,
 		};
 	},
@@ -131,8 +134,8 @@ export default {
 		updateOpticalSize(size) {
 			this.fontSize = size;
 		},
-		unlinkOpticalSize(linked) {
-			this.linkOpticalSize = linked;
+		updateAutoOpticalSizing(enabled) {
+			this.autoOpticalSizing = enabled;
 		},
 		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
