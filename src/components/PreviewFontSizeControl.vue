@@ -55,4 +55,9 @@ export default {
 .preview-font-size-control input {
 	width: min(15vw, 200px);
 }
+
+.font-size-value {
+	min-width: 5ch;
+	text-align: right;
+}
 </style>
