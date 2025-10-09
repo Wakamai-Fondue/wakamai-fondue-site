@@ -34,6 +34,7 @@
 				:showAxes="true"
 				:showTitles="true"
 				:showStyles="true"
+				:showOpticalSizeToggle="true"
 				showInstances="dropdown"
 				showInstancesPreviews="true"
 				:previewText="previewText"

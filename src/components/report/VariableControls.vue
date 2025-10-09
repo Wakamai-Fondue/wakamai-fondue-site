@@ -6,6 +6,14 @@
 				variableStyles
 			}}</Prism>
 		</div>
+		<label v-if="showOpticalSizeToggle && font.hasOpticalSize">
+			<input
+				type="checkbox"
+				:checked="autoOpticalSizing"
+				@change="$emit('updateAutoOpticalSizing', !autoOpticalSizing)"
+			/>
+			Automatic optical sizing
+		</label>
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
@@ -148,6 +156,7 @@ export default {
 		"showTitles",
 		"showStyles",
 		"showInstancesPreviews",
+		"showOpticalSizeToggle",
 		"autoOpticalSizing",
 		"previewText",
 	],
