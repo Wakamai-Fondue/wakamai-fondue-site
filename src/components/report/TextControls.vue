@@ -1,12 +1,5 @@
 <template>
 	<div class="text-controls">
-		<FontSizeSlider
-			v-model="fontSize"
-			:showOpticalSizeLink="font.hasOpticalSize"
-			:autoOpticalSizing="autoOpticalSizing"
-			@update:modelValue="updateStyles()"
-			@toggleOpticalSize="updateAutoOpticalSizing()"
-		/>
 		<div v-if="languages.length > 0">
 			<label>
 				Language
@@ -93,22 +86,11 @@
 </template>
 
 <script>
-import FontSizeSlider from "@/components/FontSizeSlider.vue";
-
 export default {
 	props: ["font", "autoOpticalSizing"],
-	components: {
-		FontSizeSlider,
-	},
-	emits: [
-		"updateTextStyles",
-		"updateOpticalSize",
-		"updateLanguage",
-		"updateAutoOpticalSizing",
-	],
+	emits: ["updateTextStyles", "updateLanguage", "updateAutoOpticalSizing"],
 	data() {
 		return {
-			fontSize: 24,
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
@@ -125,12 +107,9 @@ export default {
 		},
 		updateStyles() {
 			this.$emit("updateTextStyles", this.getTextStyles());
-			if (this.font.hasOpticalSize && this.autoOpticalSizing) {
-				this.$emit("updateOpticalSize", this.fontSize);
-			}
 		},
 		getTextStyles() {
-			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
+			return `font-size: var(--preview-font-size, 24px);\ntext-align: ${this.textAlign};`;
 		},
 		setLanguage(language) {
 			this.$emit("updateLanguage", language);
