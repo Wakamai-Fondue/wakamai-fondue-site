@@ -1,14 +1,17 @@
 <template>
 	<div class="preview-font-size-control">
-		<label>Font size</label>
+		<label for="preview-font-size-slider">Font size</label>
 		<input
+			id="preview-font-size-slider"
 			type="range"
 			min="4"
 			max="120"
 			step="1"
 			:value="fontSize"
+			aria-label="Preview font size"
 			@input="updateFontSize"
 		/>
+		<span class="font-size-value" aria-live="polite">{{ fontSize }}px</span>
 	</div>
 </template>
 
