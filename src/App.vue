@@ -201,7 +201,7 @@ export default {
 
 	--max-content-width: 68rem;
 
-	--nav-height: 3.25rem;
+	--nav-height: 4rem;
 }
 
 @font-face {
