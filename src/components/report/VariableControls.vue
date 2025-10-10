@@ -6,16 +6,14 @@
 				variableStyles
 			}}</Prism>
 		</div>
-		<FontSizeSlider
-			v-if="showFontSizeSlider"
-			:modelValue="fontSize"
-			:showOpticalSizeLink="font.hasOpticalSize"
-			:autoOpticalSizing="autoOpticalSizing"
-			@update:modelValue="$emit('updateFontSize', $event)"
-			@toggleOpticalSize="
-				$emit('updateAutoOpticalSizing', !autoOpticalSizing)
-			"
-		/>
+		<label v-if="showOpticalSizeToggle && font.hasOpticalSize">
+			<input
+				type="checkbox"
+				:checked="autoOpticalSizing"
+				@change="$emit('updateAutoOpticalSizing', !autoOpticalSizing)"
+			/>
+			Automatic optical sizing
+		</label>
 		<div v-if="showAxes" class="axes">
 			<h3 v-if="showTitles">Variable axes</h3>
 			<ul class="axes-sliders">
@@ -131,7 +129,7 @@
 			class="named-instances-preview"
 			v-if="showInstancesPreviews && showPreviews"
 		>
-			<ul class="large-samples" :style="`--font-size: ${fontSize}px;`">
+			<ul class="large-samples">
 				<li v-for="(_, instance) in instances" :key="instance">
 					{{ instance }}
 					<p
@@ -149,7 +147,6 @@
 <script>
 import Prism from "vue-prism-component";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
-import FontSizeSlider from "@/components/FontSizeSlider.vue";
 
 export default {
 	props: [
@@ -159,20 +156,14 @@ export default {
 		"showTitles",
 		"showStyles",
 		"showInstancesPreviews",
-		"showFontSizeSlider",
+		"showOpticalSizeToggle",
 		"autoOpticalSizing",
-		"fontSize",
 		"previewText",
 	],
-	emits: [
-		"updateVariableStyles",
-		"updateAutoOpticalSizing",
-		"updateFontSize",
-	],
+	emits: ["updateVariableStyles", "updateAutoOpticalSizing"],
 	components: {
 		Prism,
 		CopyToClipboard,
-		FontSizeSlider,
 	},
 	data() {
 		return {
@@ -417,7 +408,7 @@ export default {
 
 .large-sample {
 	font-family: var(--font-stack);
-	font-size: var(--font-size, 8vw);
+	font-size: var(--preview-font-size, 24px);
 	background: var(--light-grey);
 	margin-top: var(--small-margin);
 	padding: 1rem;

@@ -97,7 +97,7 @@ export default {
 	position: sticky;
 	display: flex;
 	justify-content: center;
-	top: 1rem;
+	top: calc(var(--nav-height) + 1rem);
 	margin-bottom: 2rem;
 	z-index: 1;
 }

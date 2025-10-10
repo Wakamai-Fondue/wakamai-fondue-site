@@ -58,11 +58,9 @@
 
 			<TextControls
 				:font="font"
-				:fontSize
 				:autoOpticalSizing
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
-				@updateOpticalSize="updateOpticalSize"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"
 			/>
 			<FeatureControls
@@ -73,7 +71,6 @@
 			<VariableControls
 				v-if="font.isVariable"
 				:font="font"
-				:fontSize
 				:autoOpticalSizing
 				:showAxes="false"
 				:showTitles="false"
@@ -119,7 +116,6 @@ export default {
 			language: null,
 			sticky: false,
 			autoOpticalSizing: true,
-			fontSize: 24,
 		};
 	},
 	computed: {
@@ -131,9 +127,6 @@ export default {
 		},
 	},
 	methods: {
-		updateOpticalSize(size) {
-			this.fontSize = size;
-		},
 		updateAutoOpticalSizing(enabled) {
 			this.autoOpticalSizing = enabled;
 		},

@@ -9,7 +9,7 @@
 					autocorrect="off"
 					:style="
 						$filters.inlinestyle(variableStyles) +
-						` font-size: ${fontSize}px;` +
+						` font-size: var(--preview-font-size, 24px);` +
 						(autoOpticalSizing ? '' : ' font-optical-sizing: none;')
 					"
 					@input="updatePreviewText"
@@ -34,14 +34,12 @@
 				:showAxes="true"
 				:showTitles="true"
 				:showStyles="true"
-				:showFontSizeSlider="true"
+				:showOpticalSizeToggle="true"
 				showInstances="dropdown"
 				showInstancesPreviews="true"
 				:previewText="previewText"
-				:fontSize="fontSize"
 				:autoOpticalSizing="autoOpticalSizing"
 				@updateVariableStyles="updateVariableStyles"
-				@updateFontSize="updateFontSize"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"
 			/>
 		</div>
@@ -62,7 +60,6 @@ export default {
 			sticky: false,
 			previewText:
 				'The melting cheese & bread explode in a quick wave of joy: "1, 2, 3… zen!"',
-			fontSize: 48,
 			autoOpticalSizing: true,
 		};
 	},
@@ -72,9 +69,6 @@ export default {
 		},
 		updatePreviewText(event) {
 			this.previewText = event.target.textContent;
-		},
-		updateFontSize(newSize) {
-			this.fontSize = newSize;
 		},
 		updateAutoOpticalSizing(newValue) {
 			this.autoOpticalSizing = newValue;

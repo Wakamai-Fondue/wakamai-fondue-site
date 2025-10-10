@@ -1,5 +1,6 @@
 <template>
 	<section v-if="font" class="report" id="report">
+		<FontReportNavigation />
 		<FontSummary :font="font" :isExamplefont="isExamplefont" />
 		<TypeTester :font="font" />
 		<ColorFont v-if="font.isColor" :font="font" />
@@ -20,6 +21,7 @@ import OpenTypeFeatures from "./report/OpenTypeFeatures.vue";
 import CharGrid from "./report/CharGrid.vue";
 import StyleSheet from "./report/StyleSheet.vue";
 import SiteFooter from "./SiteFooter.vue";
+import FontReportNavigation from "./FontReportNavigation.vue";
 
 export default {
 	props: ["font", "isExamplefont"],
@@ -32,6 +34,7 @@ export default {
 		CharGrid,
 		StyleSheet,
 		SiteFooter,
+		FontReportNavigation,
 	},
 	updated() {
 		if (this.font) {

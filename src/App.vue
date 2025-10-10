@@ -200,6 +200,8 @@ export default {
 		sans-serif;
 
 	--max-content-width: 68rem;
+
+	--nav-height: 4rem;
 }
 
 @font-face {
@@ -214,6 +216,7 @@ html {
 	font-family: var(--system-font-stack);
 	scroll-behavior: smooth;
 	scrollbar-gutter: stable;
+	scroll-padding-top: var(--nav-height);
 }
 
 *,
