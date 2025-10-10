@@ -41,7 +41,8 @@ export default {
 
 <style scoped>
 .preview-font-size-control {
-	position: fixed;
+	position: sticky;
+	top: 0;
 	right: 0;
 	z-index: 1;
 	display: flex;

@@ -8,7 +8,6 @@
 		:class="{ dragging, working }"
 		:style="{ '--scrollbar-width': scrollbarWidth }"
 	>
-		<PreviewFontSizeControl v-if="font" />
 		<TheFondue
 			@getFont="getFont"
 			@getExampleFont="getExampleFont"
@@ -24,14 +23,12 @@
 import TheFondue from "./components/TheFondue.vue";
 import FontReport from "./components/FontReport.vue";
 import InfoModal from "./components/InfoModal.vue";
-import PreviewFontSizeControl from "./components/PreviewFontSizeControl.vue";
 
 export default {
 	components: {
 		TheFondue,
 		FontReport,
 		InfoModal,
-		PreviewFontSizeControl,
 	},
 	data() {
 		return {
