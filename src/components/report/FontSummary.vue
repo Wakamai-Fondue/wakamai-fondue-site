@@ -157,7 +157,7 @@ export default {
 	text-overflow: ellipsis;
 	padding: 2rem 0;
 	margin: 0;
-	font-size: var(--preview-font-size, 4rem);
+	font-size: 4rem;
 }
 
 .oneliner {
