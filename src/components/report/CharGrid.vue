@@ -214,6 +214,6 @@ export default {
 	padding: 1em;
 	margin-bottom: var(--small-margin);
 	position: sticky;
-	top: 0;
+	top: var(--nav-height);
 }
 </style>
