@@ -10,7 +10,7 @@
 			:value="fontSize"
 			@input="updateFontSize"
 		/>
-		<span class="font-size-value" aria-live="polite">{{ fontSize }}px</span>
+		<!-- <span class="font-size-value" aria-live="polite">{{ fontSize }}px</span> -->
 	</div>
 </template>
 
@@ -41,15 +41,9 @@ export default {
 
 <style scoped>
 .preview-font-size-control {
-	position: sticky;
-	top: 0;
-	right: 0;
-	z-index: 1;
 	display: flex;
 	align-items: center;
 	gap: var(--small-margin);
-	background: var(--yellow);
-	padding: 1em;
 }
 
 .preview-font-size-control input {
