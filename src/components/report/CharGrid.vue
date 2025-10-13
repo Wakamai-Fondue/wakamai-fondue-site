@@ -156,7 +156,10 @@ export default {
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(calc(var(--preview-font-size, 2rem) * 2), 1fr)
+	);
 	grid-gap: var(--small-margin);
 }
 
@@ -183,7 +186,7 @@ export default {
 
 .char {
 	font-family: var(--font-stack);
-	font-size: 2rem;
+	font-size: var(--preview-font-size, 2rem);
 	flex: auto;
 }
 
@@ -211,6 +214,6 @@ export default {
 	padding: 1em;
 	margin-bottom: var(--small-margin);
 	position: sticky;
-	top: 0;
+	top: var(--nav-height);
 }
 </style>
