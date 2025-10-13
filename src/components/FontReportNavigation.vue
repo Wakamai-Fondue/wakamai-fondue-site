@@ -27,19 +27,20 @@ export default {
 .font-report-navigation {
 	background: var(--yellow);
 	padding: 0 1em;
-	height: var(--nav-height);
+	min-height: var(--nav-height);
 	position: sticky;
 	top: 0;
 	z-index: 1;
 	display: grid;
 	grid-template-columns: 1fr auto;
+	font-size: 1.25rem;
 }
 
 nav {
 	display: flex;
-	gap: 1em;
+	flex-wrap: wrap;
+	gap: 0 1em;
 	align-items: center;
-	font-size: 1.25rem;
 }
 
 nav a {
