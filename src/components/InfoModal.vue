@@ -83,6 +83,13 @@
 				class="logo-link"
 			>
 			</a>
+			<p class="ps">
+				PS. If you have a hard time remembering
+				<a href="https://wakamaifondue.com">wakamaifondue.com</a>, you
+				can also use
+				<a href="https://whatcanmyfontdo.com">whatcanmyfontdo.com</a>
+				(but say them both out loud first)
+			</p>
 		</div>
 	</div>
 </template>
@@ -175,5 +182,11 @@ export default {
 	background-repeat: no-repeat;
 	background-size: 45%;
 	cursor: pointer;
+}
+
+.ps {
+	font-size: 0.8em;
+	text-wrap: balance;
+	text-align: center;
 }
 </style>
