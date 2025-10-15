@@ -71,8 +71,8 @@
 				>
 					submit an issue</a
 				>, or
-				<a href="https://twitter.com/pixelambacht" target="_blank"
-					>tweet at me</a
+				<a href="https://typo.social/@pixelambacht" target="_blank"
+					>find me on the Fediverse</a
 				>!
 			</p>
 			<hr />
