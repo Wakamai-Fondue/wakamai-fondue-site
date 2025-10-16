@@ -88,7 +88,7 @@
 				<a href="https://wakamaifondue.com">wakamaifondue.com</a>, you
 				can also use
 				<a href="https://whatcanmyfontdo.com">whatcanmyfontdo.com</a>
-				(but say them both out loud first)
+				(but not before you say them both out loud)
 			</p>
 		</div>
 	</div>
