@@ -101,7 +101,7 @@
 						v-if="
 							featureChars[feature.tag]['summary'][
 								'uniqueCombinations'
-							].length
+							]?.length
 						"
 					>
 						<span
