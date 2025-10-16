@@ -133,6 +133,8 @@ export default {
 .text-controls {
 	margin: 2rem 0;
 	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
 	justify-content: space-between;
 }
 
