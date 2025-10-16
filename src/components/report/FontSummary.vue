@@ -171,7 +171,6 @@ export default {
 	padding-top: var(--small-margin);
 	padding-right: 1em;
 	text-align: left;
-	white-space: nowrap;
 	text-transform: capitalize;
 	vertical-align: top;
 }
