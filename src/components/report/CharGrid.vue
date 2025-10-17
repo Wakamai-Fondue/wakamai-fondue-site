@@ -12,7 +12,7 @@
 						@change="toggleCategories()"
 					/>Categories
 				</label>
-
+				<!--
 				<label v-if="font.isVariable && hasAxes">
 					<input
 						type="checkbox"
@@ -20,7 +20,7 @@
 						checked
 						@change="toggleAxes()"
 					/>Variable axes
-				</label>
+				</label> -->
 				<!--
 				<label>
 					<input
@@ -32,14 +32,14 @@
 				</label>
 				-->
 			</div>
-			<VariableControls
+			<!-- <VariableControls
 				v-if="showAxes"
 				:font="font"
 				:showAxes="true"
 				:showTitles="false"
 				@updateVariableStyles="updateVariableStyles"
 				class="char-sliders"
-			/>
+			/> -->
 
 			<template v-if="showCategories">
 				<div v-for="cat in catChars" :key="`cat_${cat.category}`">
@@ -97,13 +97,13 @@
 </template>
 
 <script>
-import VariableControls from "./VariableControls.vue";
+// import VariableControls from "./VariableControls.vue";
 
 export default {
 	props: ["font"],
-	components: {
-		VariableControls,
-	},
+	// components: {
+	// 	VariableControls,
+	// },
 	data() {
 		return {
 			variableStyles: "",
