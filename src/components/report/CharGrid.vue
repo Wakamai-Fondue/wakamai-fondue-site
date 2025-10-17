@@ -205,7 +205,7 @@ export default {
 	background: var(--unlighter-grey);
 	color: var(--light-grey);
 	padding: 0 0.5em;
-	border-radius: 0.25em;
+	border-radius: 0.2em;
 }
 
 .char-sliders {

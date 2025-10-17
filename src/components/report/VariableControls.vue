@@ -61,11 +61,22 @@
 							:max="axis.max"
 							:disabled="currentStates[axis.id] === false"
 							v-model.number="axis.current"
-							@input="updateStyles(axis.id)"
+							@input="handleSliderChange(axis)"
 						/>
 					</span>
 					<span class="axis-max">{{ axis.max }}</span>
-					<strong class="axis-current">{{ axis.current }}</strong>
+					<input
+						type="text"
+						name="current-axis-value"
+						class="axis-current"
+						pattern="[0-9.-]*"
+						v-model="axisInputValues[axis.id]"
+						:disabled="currentStates[axis.id] === false"
+						@input="handleInputChange(axis)"
+						@focus="selectInputText"
+						@keydown.enter="commitInputValue($event, axis)"
+						@keydown.escape="$event.target.blur()"
+					/>
 					<button
 						type="button"
 						class="button active"
@@ -177,6 +188,8 @@ export default {
 			instances: this.font.variable.instances,
 			currentStates: {},
 			showPreviews: false,
+			axisInputValues: {},
+			inputTimeouts: {},
 		};
 	},
 	computed: {
@@ -191,6 +204,9 @@ export default {
 		},
 	},
 	mounted() {
+		for (const axis of Object.values(this.axes)) {
+			this.axisInputValues[axis.id] = axis.current;
+		}
 		if (this.font.hasOpticalSize) {
 			this.currentStates["opsz"] = !this.autoOpticalSizing;
 		}
@@ -205,12 +221,43 @@ export default {
 		},
 	},
 	methods: {
+		handleSliderChange(axis) {
+			this.axisInputValues[axis.id] = axis.current;
+			this.updateStyles(axis.id);
+		},
+		handleInputChange(axis) {
+			if (this.inputTimeouts[axis.id]) {
+				clearTimeout(this.inputTimeouts[axis.id]);
+			}
+			this.inputTimeouts[axis.id] = setTimeout(() => {
+				this.applyInputValue(axis);
+			}, 500);
+		},
+		selectInputText(event) {
+			event.target.select();
+		},
+		applyInputValue(axis) {
+			const numValue = parseFloat(this.axisInputValues[axis.id]);
+			if (!isNaN(numValue)) {
+				axis.current = Math.max(axis.min, Math.min(axis.max, numValue));
+				this.axisInputValues[axis.id] = axis.current;
+				this.updateStyles(axis.id);
+			}
+		},
+		commitInputValue(event, axis) {
+			if (this.inputTimeouts[axis.id]) {
+				clearTimeout(this.inputTimeouts[axis.id]);
+			}
+			this.applyInputValue(axis);
+			event.target.blur();
+		},
 		resetAxis(axis) {
 			const defaultValue = this.axes.find((o) => o.id === axis).default;
 			this.setAxis(axis, defaultValue);
 		},
 		setAxis(axis, value) {
 			this.axes.find((o) => o.id === axis).current = value;
+			this.axisInputValues[axis] = value;
 			this.updateStyles();
 		},
 		selectInstance(instance) {
@@ -219,6 +266,7 @@ export default {
 				const value = this.instances[instance][axis];
 				const targetAxis = this.axes.find((o) => o.id === axis);
 				targetAxis.current = value;
+				this.axisInputValues[axis] = value;
 			}
 			this.updateStyles();
 		},
@@ -357,6 +405,15 @@ export default {
 
 .axis-slider input {
 	width: 100%;
+}
+
+.axis-current {
+	font-size: inherit;
+	border-width: 1px;
+	border-radius: 0.2em;
+	background: none;
+	font-weight: bold;
+	width: 3em;
 }
 
 .button.hide {

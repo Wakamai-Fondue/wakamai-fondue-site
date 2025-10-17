@@ -67,6 +67,6 @@ export default {
 	background: var(--unlighter-grey);
 	color: black;
 	padding: 0 0.5em;
-	border-radius: 0.25em;
+	border-radius: 0.2em;
 }
 </style>
