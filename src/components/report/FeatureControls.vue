@@ -26,7 +26,7 @@
 					<button
 						v-if="currentStates[feature.tag] === null"
 						type="button"
-						class="button active"
+						class="button"
 						@click="flipState(feature.tag, null)"
 					>
 						Default
