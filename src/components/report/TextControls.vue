@@ -1,13 +1,5 @@
 <template>
 	<div class="text-controls">
-		<label v-if="font.hasOpticalSize">
-			<input
-				type="checkbox"
-				:checked="autoOpticalSizing"
-				@change="updateAutoOpticalSizing()"
-			/>
-			Automatic optical sizing
-		</label>
 		<div v-if="languages.length > 0">
 			<label>
 				Language

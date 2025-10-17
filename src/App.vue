@@ -184,6 +184,7 @@ export default {
 	--offwhite: #dfd6b3;
 
 	--dark-grey: #444;
+	--medium-grey: #888;
 
 	--unlighterer-grey: #aaa;
 	--unlighter-grey: #bbb;
@@ -287,7 +288,7 @@ h3 {
 
 .opentype-label {
 	font-family: monospace;
-	border-radius: 0.2rem;
+	border-radius: 99999px;
 	display: inline-flex;
 	align-items: center;
 	height: 1.5rem;
@@ -298,16 +299,17 @@ h3 {
 
 .button {
 	padding: 0.25rem 1rem;
-	border-radius: 99999px;
+	border-radius: 0.2rem;
 	margin: 0;
-	border: 0;
-	background: none;
 	font-size: 0.85rem;
 	background: var(--unlight-grey);
 	cursor: pointer;
 	min-width: 6em;
 	user-select: none;
 	color: black;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-right: 1px solid rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .button:hover {
@@ -319,7 +321,7 @@ h3 {
 }
 
 .button.active {
-	background: var(--dark-grey);
+	background: var(--medium-grey);
 	color: white;
 }
 

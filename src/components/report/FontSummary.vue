@@ -96,11 +96,6 @@
 			</template>
 		</div>
 
-		<div>
-			<h3>Unicode support</h3>
-			<p>{{ font.unicodeRange.join(", ") }}.</p>
-		</div>
-
 		<div v-if="isExamplefont" class="example-font-shoutout">
 			<a href="https://djr.com/gimlet/" target="_blank">
 				<strong>Gimlet</strong>
