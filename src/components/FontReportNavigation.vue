@@ -31,8 +31,9 @@ export default {
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	display: grid;
-	grid-template-columns: 1fr auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	font-size: 1.25rem;
 }
 
@@ -40,7 +41,7 @@ nav {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0 1em;
-	align-items: center;
+	margin-right: 2em;
 }
 
 nav a {

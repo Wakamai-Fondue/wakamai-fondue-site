@@ -5,7 +5,7 @@
 			id="font-size-slider"
 			type="range"
 			min="4"
-			max="120"
+			max="180"
 			step="1"
 			:value="fontSize"
 			@input="updateFontSize"
@@ -41,6 +41,10 @@ export default {
 	display: flex;
 	align-items: center;
 	gap: var(--small-margin);
+	font-size: 1rem;
+	background: var(--offwhite);
+	padding: 0.75em 1em;
+	border-radius: 0.4em;
 }
 
 .font-size-slider input {
