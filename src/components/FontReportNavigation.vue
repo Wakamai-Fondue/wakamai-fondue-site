@@ -9,16 +9,16 @@
 			<a href="#charset">Characters</a>
 			<a href="#stylesheet" class="css">CSS</a>
 		</nav>
-		<PreviewFontSizeControl />
+		<FontSizeSlider />
 	</div>
 </template>
 
 <script>
-import PreviewFontSizeControl from "./PreviewFontSizeControl.vue";
+import FontSizeSlider from "./FontSizeSlider.vue";
 
 export default {
 	components: {
-		PreviewFontSizeControl,
+		FontSizeSlider,
 	},
 };
 </script>

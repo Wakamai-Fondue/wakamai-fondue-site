@@ -1,8 +1,8 @@
 <template>
-	<div class="preview-font-size-control">
-		<label for="preview-font-size-slider">Font size</label>
+	<div class="font-size-slider">
+		<label for="font-size-slider">Font size</label>
 		<input
-			id="preview-font-size-slider"
+			id="font-size-slider"
 			type="range"
 			min="4"
 			max="120"
@@ -15,38 +15,35 @@
 </template>
 
 <script>
+import { usePreferences } from "@/composables/usePreferences.js";
+
 export default {
-	data() {
+	setup() {
+		const { fontSize, setFontSize } = usePreferences();
 		return {
-			fontSize: 24,
+			fontSize,
+			setFontSize,
 		};
 	},
 	mounted() {
-		this.setCSSVariable();
+		this.setFontSize(this.fontSize);
 	},
 	methods: {
 		updateFontSize(event) {
-			this.fontSize = Number(event.target.value);
-			this.setCSSVariable();
-		},
-		setCSSVariable() {
-			document.body.style.setProperty(
-				"--preview-font-size",
-				`${this.fontSize}px`
-			);
+			this.setFontSize(Number(event.target.value));
 		},
 	},
 };
 </script>
 
 <style scoped>
-.preview-font-size-control {
+.font-size-slider {
 	display: flex;
 	align-items: center;
 	gap: var(--small-margin);
 }
 
-.preview-font-size-control input {
+.font-size-slider input {
 	width: min(15vw, 200px);
 }
 

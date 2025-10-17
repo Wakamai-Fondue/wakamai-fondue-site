@@ -48,18 +48,23 @@
 
 <script>
 import VariableControls from "./VariableControls.vue";
+import { usePreferences } from "@/composables/usePreferences.js";
 
 export default {
 	props: ["font"],
 	components: {
 		VariableControls,
 	},
+	setup() {
+		const { previewText } = usePreferences();
+		return {
+			previewText,
+		};
+	},
 	data() {
 		return {
 			variableStyles: "",
 			sticky: false,
-			previewText:
-				'The melting cheese & bread explode in a quick wave of joy: "1, 2, 3… zen!"',
 			autoOpticalSizing: true,
 		};
 	},

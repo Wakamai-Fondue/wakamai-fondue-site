@@ -41,8 +41,7 @@
 					autocorrect="off"
 					v-else
 				>
-					The melting cheese & bread explode in a quick wave of joy:
-					"1, 2, 3… zen!"
+					{{ previewText }}
 				</p>
 			</div>
 
@@ -88,6 +87,7 @@ import FeatureControls from "./FeatureControls.vue";
 import TextControls from "./TextControls.vue";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
 import Prism from "vue-prism-component";
+import { usePreferences } from "@/composables/usePreferences.js";
 
 export default {
 	props: ["font"],
@@ -97,6 +97,12 @@ export default {
 		TextControls,
 		Prism,
 		CopyToClipboard,
+	},
+	setup() {
+		const { previewText } = usePreferences();
+		return {
+			previewText,
+		};
 	},
 	data() {
 		return {
