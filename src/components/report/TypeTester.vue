@@ -74,6 +74,7 @@
 				:autoOpticalSizing
 				:showAxes="false"
 				:showTitles="false"
+				:showInstancesPreviews="false"
 				showInstances="dropdown"
 				@updateVariableStyles="updateVariableStyles"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"

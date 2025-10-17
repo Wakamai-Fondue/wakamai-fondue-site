@@ -135,7 +135,7 @@
 					{{ instance }}
 				</option>
 			</select>
-			<label class="flip-state">
+			<label class="flip-state" v-if="showInstancesPreviews">
 				<input type="checkbox" v-model="showPreviews" /><span
 					>Show previews</span
 				>
