@@ -351,17 +351,24 @@ export default {
 	margin-top: 2rem;
 }
 
-.axis-slider-container {
-	margin-bottom: var(--small-margin);
+.axes-sliders {
 	display: grid;
 	align-items: center;
 	grid-template-columns:
-		18em
-		4em
+		auto
+		2.5em
 		1fr
-		4em
-		4em
+		2.5em
+		auto
 		auto;
+	gap: var(--small-margin) 1rem;
+}
+
+.axis-slider-container {
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: subgrid;
+	align-items: center;
 }
 
 .axis-slider-container label {
