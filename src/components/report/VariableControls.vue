@@ -409,7 +409,8 @@ export default {
 
 .axis-current {
 	font-size: inherit;
-	border: none;
+	border-width: 1px;
+	border-radius: 0.2em;
 	background: none;
 	font-weight: bold;
 	width: 3em;
