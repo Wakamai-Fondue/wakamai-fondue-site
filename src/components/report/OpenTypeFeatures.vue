@@ -130,6 +130,19 @@
 						substitutions for this feature, only showing the first
 						1000.
 					</div>
+
+					<div class="code">
+						<CopyToClipboard
+							:content="getFeatureCode(feature.tag)"
+						/>
+						<Prism
+							language="css"
+							:key="`code_${feature.tag}_${
+								currentStates[feature.tag]
+							}`"
+							>{{ getFeatureCode(feature.tag) }}</Prism
+						>
+					</div>
 				</template>
 				<div
 					v-else
@@ -145,8 +158,15 @@
 </template>
 
 <script>
+import Prism from "vue-prism-component";
+import CopyToClipboard from "@/components/CopyToClipboard.vue";
+
 export default {
 	props: ["font"],
+	components: {
+		Prism,
+		CopyToClipboard,
+	},
 	data() {
 		return {
 			currentStates: [],
@@ -214,6 +234,15 @@ export default {
 			return `font-feature-settings:"${feature}" ${
 				state ? onState : offState
 			};`;
+		},
+		getFeatureCode(feature) {
+			let state;
+			if (this.currentStates[feature] !== undefined) {
+				state = this.currentStates[feature];
+			} else {
+				state = 1;
+			}
+			return `font-feature-settings: "${feature}" ${state};`;
 		},
 		getCombinations(feature) {
 			if (feature.tag === "frac") {
@@ -283,7 +312,7 @@ export default {
 }
 
 .feature-demo + .feature-demo {
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 
 .state {
@@ -326,5 +355,9 @@ export default {
 	padding: 0.5rem;
 	margin-top: var(--small-margin);
 	overflow: hidden;
+}
+
+.code {
+	position: relative;
 }
 </style>
