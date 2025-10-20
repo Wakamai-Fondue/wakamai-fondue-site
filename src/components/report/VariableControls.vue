@@ -125,12 +125,14 @@
 					{{ instanceCount }} Named instances
 				</span>
 				<select
+					name="Named instances"
 					@change="selectInstance($event.target.value)"
 					:value="activeInstance"
 				>
 					<option
 						v-for="(_, instance) in instances"
 						:key="instance"
+						:value="instance"
 						:selected="instance === activeInstance"
 					>
 						{{ instance }}

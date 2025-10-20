@@ -38,6 +38,7 @@
 						}}</span>
 					</span>
 					<select
+						name="Alternates"
 						v-if="alternateCount(feature.tag) >= 1"
 						@change="
 							toggleAlternate(feature.tag, $event.target.value)
@@ -47,6 +48,7 @@
 						<option
 							v-for="n in alternateCount(feature.tag)"
 							:key="`featcont_${feature.tag}_${n}`"
+							:value="n"
 						>
 							{{ n }}
 						</option>
