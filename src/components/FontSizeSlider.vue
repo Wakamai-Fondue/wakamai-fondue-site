@@ -1,49 +1,58 @@
 <template>
-	<div class="font-size-control">
-		<label>Font size</label>
+	<div class="font-size-slider">
+		<label for="font-size-slider">Font size</label>
 		<input
-			class="font-size-slider"
+			id="font-size-slider"
 			type="range"
-			:min="min || 4"
-			:max="max || 120"
-			:step="step || 1"
-			:value="modelValue"
-			@input="$emit('update:modelValue', Number($event.target.value))"
+			min="4"
+			max="180"
+			step="1"
+			:value="fontSize"
+			@input="updateFontSize"
 		/>
-		<label class="optical-size-link" v-if="showOpticalSizeLink">
-			<input
-				type="checkbox"
-				:checked="autoOpticalSizing"
-				@change="$emit('toggleOpticalSize')"
-			/>
-			Automatic optical sizing
-		</label>
+		<!-- <span class="font-size-value" aria-live="polite">{{ fontSize }}px</span> -->
 	</div>
 </template>
 
 <script>
+import { usePreferences } from "@/composables/usePreferences.js";
+
 export default {
-	props: [
-		"modelValue",
-		"min",
-		"max",
-		"step",
-		"showOpticalSizeLink",
-		"autoOpticalSizing",
-	],
-	emits: ["update:modelValue", "toggleOpticalSize"],
+	setup() {
+		const { fontSize, setFontSize } = usePreferences();
+		return {
+			fontSize,
+			setFontSize,
+		};
+	},
+	mounted() {
+		this.setFontSize(this.fontSize);
+	},
+	methods: {
+		updateFontSize(event) {
+			this.setFontSize(Number(event.target.value));
+		},
+	},
 };
 </script>
 
 <style scoped>
-.font-size-control {
+.font-size-slider {
 	display: flex;
 	align-items: center;
 	gap: var(--small-margin);
+	font-size: 1rem;
+	background: var(--offwhite);
+	padding: 0.75em 1em;
+	border-radius: 0.4em;
 }
 
-.font-size-slider {
-	flex: auto;
-	max-width: 20rem;
+.font-size-slider input {
+	width: min(15vw, 200px);
+}
+
+.font-size-value {
+	min-width: 5ch;
+	text-align: right;
 }
 </style>

@@ -120,26 +120,30 @@
 			class="named-instances"
 		>
 			<h3 v-if="showTitles">Named instances</h3>
-			<span class="instances-dropdown-label">
-				{{ instanceCount }} Named instances
-			</span>
-			<select
-				@change="selectInstance($event.target.value)"
-				:value="activeInstance"
-			>
-				<option
-					v-for="(_, instance) in instances"
-					:key="instance"
-					:selected="instance === activeInstance"
+			<div>
+				<span class="instances-dropdown-label">
+					{{ instanceCount }} Named instances
+				</span>
+				<select
+					name="Named instances"
+					@change="selectInstance($event.target.value)"
+					:value="activeInstance"
 				>
-					{{ instance }}
-				</option>
-			</select>
-			<label class="flip-state">
-				<input type="checkbox" v-model="showPreviews" /><span
-					>Show previews</span
-				>
-			</label>
+					<option
+						v-for="(_, instance) in instances"
+						:key="instance"
+						:value="instance"
+						:selected="instance === activeInstance"
+					>
+						{{ instance }}
+					</option>
+				</select>
+				<label class="flip-state" v-if="showInstancesPreviews">
+					<input type="checkbox" v-model="showPreviews" /><span>
+						Show previews
+					</span>
+				</label>
+			</div>
 		</div>
 		<div
 			class="named-instances-preview"
@@ -428,12 +432,13 @@ export default {
 	pointer-events: none;
 }
 
-.named-instances > * {
-	vertical-align: middle;
+.named-instances > div {
+	display: flex;
+	align-items: center;
 }
 
 .named-instances .flip-state {
-	margin-left: var(--small-margin);
+	margin-left: auto;
 }
 
 .instances-list ul {
@@ -489,7 +494,7 @@ export default {
 }
 
 .instances-dropdown-label {
-	margin-right: var(--small-margin);
+	margin-right: 0.5em;
 }
 
 .code {

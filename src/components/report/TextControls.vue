@@ -1,9 +1,10 @@
 <template>
 	<div class="text-controls">
 		<div v-if="languages.length > 0">
-			<label>
-				Language
+			<label class="language-select">
+				<span>Language</span>
 				<select
+					name="language"
 					@change="setLanguage($event.target.value)"
 					:value="activeLanguage"
 				>
@@ -133,13 +134,10 @@ export default {
 	align-items: center;
 }
 
-.text-controls label > * {
-	margin-left: var(--small-margin);
-}
-
+.language-select,
 .alignment-buttons {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 }
 
 .alignment-buttons .button {
@@ -163,9 +161,9 @@ export default {
 	fill: currentColor;
 }
 
+.language-select span,
 .alignment-buttons span {
-	padding-top: 0.125rem;
-	margin-right: var(--small-margin);
+	margin-right: 0.5em;
 }
 
 .alignment-buttons .button:first-of-type {
