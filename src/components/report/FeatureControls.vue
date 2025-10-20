@@ -33,8 +33,8 @@
 					</button>
 					<span class="feature-description">
 						<span class="opentype-label">{{ feature.tag }}</span>
-						<span class="feature-name" :title="feature.name">{{
-							feature.name
+						<span class="feature-name">{{
+							feature.uiName || feature.name
 						}}</span>
 					</span>
 					<select
