@@ -17,7 +17,7 @@
 					:key="`reqfeat_${feature.tag}`"
 				>
 					<span class="opentype-label">{{ feature.tag }}</span>
-					{{ feature.name }}
+					{{ feature.uiName || feature.name }}
 				</li>
 			</ul>
 		</div>
@@ -35,7 +35,7 @@
 			>
 				<div class="feature-control">
 					<span class="opentype-label">{{ feature.tag }}</span>
-					{{ feature.name }}
+					{{ feature.uiName || feature.name }}
 					<span
 						class="state"
 						:class="feature.state === 'on' ? 'on' : 'off'"
