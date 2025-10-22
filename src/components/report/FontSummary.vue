@@ -80,18 +80,6 @@
 			</ul>
 		</div>
 
-		<div>
-			<h3>Supported languages</h3>
-			<p>
-				{{
-					$filters.listify(
-						font.languageSupport,
-						"None that Wakamai Fondue could detect"
-					)
-				}}.
-			</p>
-		</div>
-
 		<div v-if="localizations.length > 0">
 			<h3>
 				{{ $filters.pluralize(localizations.length, "Localization") }}
