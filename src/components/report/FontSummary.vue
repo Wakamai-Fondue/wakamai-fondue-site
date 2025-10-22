@@ -90,10 +90,13 @@
 					)
 				}}.
 			</p>
-			<template v-if="localizations.length > 0">
-				<h3>Localization</h3>
-				<p>{{ $filters.listify(localizations) }}.</p>
-			</template>
+		</div>
+
+		<div v-if="localizations.length > 0">
+			<h3>
+				{{ $filters.pluralize(localizations.length, "Localization") }}
+			</h3>
+			<p>{{ $filters.listify(localizations) }}.</p>
 		</div>
 
 		<div v-if="isExamplefont" class="example-font-shoutout">
