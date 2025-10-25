@@ -133,14 +133,14 @@
 
 					<div class="code">
 						<CopyToClipboard
-							:content="getFeatureCode(feature.tag)"
+							:content="getFeatureCSS(feature.tag)"
 						/>
 						<Prism
 							language="css"
 							:key="`code_${feature.tag}_${
 								currentStates[feature.tag]
 							}`"
-							>{{ getFeatureCode(feature.tag) }}</Prism
+							>{{ getFeatureCSS(feature.tag) }}</Prism
 						>
 					</div>
 				</template>
@@ -235,14 +235,10 @@ export default {
 				state ? onState : offState
 			};`;
 		},
-		getFeatureCode(feature) {
-			let state;
-			if (this.currentStates[feature] !== undefined) {
-				state = this.currentStates[feature];
-			} else {
-				state = 1;
-			}
-			return `font-feature-settings: "${feature}" ${state};`;
+		getFeatureCSS(feature) {
+			return this.font.featureCSS(feature, {
+				value: this.currentStates[feature] || 1,
+			});
 		},
 		getCombinations(feature) {
 			if (feature.tag === "frac") {
