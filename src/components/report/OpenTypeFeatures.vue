@@ -237,7 +237,7 @@ export default {
 		},
 		getFeatureCSS(feature) {
 			return this.font.featureCSS(feature, {
-				value: this.currentStates[feature] || 1,
+				value: this.currentStates[feature] ?? 1,
 			});
 		},
 		getCombinations(feature) {
