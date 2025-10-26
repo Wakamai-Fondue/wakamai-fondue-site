@@ -135,13 +135,9 @@
 						<CopyToClipboard
 							:content="getFeatureCSS(feature.tag)"
 						/>
-						<Prism
-							language="css"
-							:key="`code_${feature.tag}_${
-								currentStates[feature.tag]
-							}`"
-							>{{ getFeatureCSS(feature.tag) }}</Prism
-						>
+						<Prism language="css" :key="`code_${feature.tag}`">{{
+							getFeatureCSS(feature.tag)
+						}}</Prism>
 					</div>
 				</template>
 				<div
@@ -237,7 +233,8 @@ export default {
 		},
 		getFeatureCSS(feature) {
 			return this.font.featureCSS(feature, {
-				value: this.currentStates[feature] ?? 1,
+				value: 1,
+				format: "both",
 			});
 		},
 		getCombinations(feature) {
