@@ -1,6 +1,6 @@
 {
   "name": "wakamai-fondue",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "serve": "vite serve",
@@ -9,7 +9,7 @@
     "lint": "eslint \"src/**/*.{js,vue}\" --fix"
   },
   "dependencies": {
-    "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#2ad047107c57f9d9826f6b593b85af7058127918",
+    "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#cbe2b51b723563d28d9dd1460458e21ff757ef1e",
     "core-js": "^3.39.0",
     "prismjs": "^1.30.0",
     "vue": "^3.5.13",
