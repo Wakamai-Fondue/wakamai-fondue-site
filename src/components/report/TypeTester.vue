@@ -99,9 +99,10 @@ export default {
 		CopyToClipboard,
 	},
 	setup() {
-		const { previewText } = usePreferences();
+		const { previewText, fontSize } = usePreferences();
 		return {
 			previewText,
+			fontSize,
 		};
 	},
 	data() {
@@ -148,7 +149,10 @@ export default {
 			}
 		},
 		getStyles() {
-			let css = this.textStyles;
+			let css = this.textStyles.replace(
+				"var(--preview-font-size, 24px)",
+				`${this.fontSize}px`
+			);
 			if (this.featureStyles) {
 				css += `\n\n` + this.featureStyles;
 			}
