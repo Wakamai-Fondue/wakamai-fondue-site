@@ -48,6 +48,7 @@
 			<TextControls
 				:font="font"
 				:autoOpticalSizing
+				:fontSize="fontSize"
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"
@@ -99,9 +100,10 @@ export default {
 		CopyToClipboard,
 	},
 	setup() {
-		const { previewText } = usePreferences();
+		const { previewText, fontSize } = usePreferences();
 		return {
 			previewText,
+			fontSize,
 		};
 	},
 	data() {

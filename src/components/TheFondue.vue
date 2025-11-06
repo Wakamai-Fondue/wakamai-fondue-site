@@ -66,6 +66,7 @@ export default {
 	left: 1.5vw;
 	top: 1.5vw;
 	width: 12.5vw;
+	max-width: 10rem;
 	z-index: 10;
 }
 
