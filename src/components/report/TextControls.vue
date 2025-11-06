@@ -88,7 +88,7 @@
 
 <script>
 export default {
-	props: ["font", "autoOpticalSizing"],
+	props: ["font", "autoOpticalSizing", "fontSize"],
 	emits: ["updateTextStyles", "updateLanguage", "updateAutoOpticalSizing"],
 	data() {
 		return {
@@ -101,6 +101,11 @@ export default {
 	mounted() {
 		this.updateStyles();
 	},
+	watch: {
+		fontSize() {
+			this.updateStyles();
+		},
+	},
 	methods: {
 		align(alignment) {
 			this.textAlign = alignment;
@@ -110,7 +115,7 @@ export default {
 			this.$emit("updateTextStyles", this.getTextStyles());
 		},
 		getTextStyles() {
-			return `font-size: var(--preview-font-size, 24px);\ntext-align: ${this.textAlign};`;
+			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
 		},
 		setLanguage(language) {
 			this.$emit("updateLanguage", language);

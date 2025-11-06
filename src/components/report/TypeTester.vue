@@ -48,6 +48,7 @@
 			<TextControls
 				:font="font"
 				:autoOpticalSizing
+				:fontSize="fontSize"
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"
@@ -149,10 +150,7 @@ export default {
 			}
 		},
 		getStyles() {
-			let css = this.textStyles.replace(
-				"var(--preview-font-size, 24px)",
-				`${this.fontSize}px`
-			);
+			let css = this.textStyles;
 			if (this.featureStyles) {
 				css += `\n\n` + this.featureStyles;
 			}
