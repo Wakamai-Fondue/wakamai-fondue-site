@@ -199,7 +199,6 @@ export default {
 }
 
 .example-font-shoutout a {
-	color: inherit;
 	color: var(--red);
 }
 </style>
