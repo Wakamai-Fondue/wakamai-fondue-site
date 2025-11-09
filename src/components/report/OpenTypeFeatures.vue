@@ -33,7 +33,7 @@
 				:key="`optfeat_${feature.tag}`"
 				class="feature-demo"
 			>
-				<div class="feature-control">
+				<div class="feature-control" :id="`feature-${feature.tag}`">
 					<span class="opentype-label">{{ feature.tag }}</span>
 					{{ feature.uiName || feature.name }}
 					<span

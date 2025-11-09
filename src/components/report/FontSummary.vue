@@ -75,7 +75,11 @@
 			<h3>Layout features</h3>
 			<ul>
 				<li v-for="featureData in features" :key="featureData.tag">
-					<span class="opentype-label">{{ featureData.tag }}</span>
+					<a
+						:href="`#feature-${featureData.tag}`"
+						class="opentype-label"
+						>{{ featureData.tag }}</a
+					>
 				</li>
 			</ul>
 		</div>
@@ -179,6 +183,10 @@ export default {
 
 .features li {
 	margin-top: var(--small-margin);
+}
+
+.features a {
+	text-decoration: none;
 }
 
 .example-font-shoutout {
