@@ -239,47 +239,37 @@ export default {
 		},
 		getCombinations(feature) {
 			if (feature.tag === "frac") {
-				// Use a custom test string for `frac`, and check if these
-				// are actually in the font.
-				const fracExamples = [
-					"1/1",
-					"1/2",
-					"1/3",
-					"1/4",
-					"1/5",
-					"1/6",
-					"1/7",
-					"1/8",
-					"1/9",
-					"1/0",
-					"1/2",
-					"3/4",
-					"5/6",
-					"7/8",
-					"9/10",
-					"12/34",
-					"567/890",
-					"12345/67890",
-				];
-				const allowedChars = new Set(
+				const uniqueCombinations =
 					this.featureChars[feature.tag]["summary"][
 						"uniqueCombinations"
-					]
-				);
-				const filtered = fracExamples.filter((example) =>
-					[...example].every((char) => allowedChars.has(char))
-				);
-				if (fracExamples.length !== filtered.length) {
-					// If one or more example strings got lost, add the uniqueCombinations
-					// to we can show what might deviate from `frac` expectations
-					return [
-						...this.featureChars[feature.tag]["summary"][
-							"uniqueCombinations"
-						],
-						...filtered,
-					].join(" ");
+					];
+
+				const allChars = new Set();
+				uniqueCombinations.forEach((combo) => {
+					[...combo].forEach((char) => allChars.add(char));
+				});
+
+				// Check if font supports digits and slashes
+				const hasDigits = [
+					"0",
+					"1",
+					"2",
+					"3",
+					"4",
+					"5",
+					"6",
+					"7",
+					"8",
+					"9",
+				].some((d) => allChars.has(d));
+				const hasSlash = allChars.has("/") || allChars.has("⁄");
+
+				if (hasDigits && hasSlash) {
+					// Show human readable pre-made examples if supported...
+					return "1/1 1/2 1/3 1/4 1/5 1/6 1/7 1/8 1/9 2/3 4/5 6/7 8/9 10/10";
 				} else {
-					return filtered.join(" ");
+					// ...else, show actual combinations
+					return uniqueCombinations.join(" ");
 				}
 			} else {
 				return this.featureChars[feature.tag]["summary"][
