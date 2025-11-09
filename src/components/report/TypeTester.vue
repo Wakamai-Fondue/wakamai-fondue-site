@@ -4,7 +4,6 @@
 		<div class="content tester-container">
 			<div
 				class="tester"
-				:class="{ sticky }"
 				:style="
 					$filters.inlinestyle(
 						`${variableStyles}${featureStyles}${textStyles}` +
@@ -15,16 +14,6 @@
 				"
 				:lang="language"
 			>
-				<button
-					contenteditable="false"
-					type="button"
-					alt="Pin text"
-					class="sticky-button"
-					:class="{ sticky }"
-					@click="sticky = !sticky"
-				>
-					📌
-				</button>
 				<p
 					dir="auto"
 					contenteditable="plaintext-only"
@@ -113,7 +102,6 @@ export default {
 			featureStyles: "",
 			textStyles: "",
 			language: null,
-			sticky: false,
 			autoOpticalSizing: true,
 		};
 	},
@@ -184,32 +172,11 @@ export default {
 	padding: 1rem;
 }
 
-.tester.sticky {
-	position: sticky;
-	top: 0;
-}
-
 .code {
 	margin-top: 2rem;
 }
 
 .code-styles {
 	position: relative;
-}
-
-.sticky-button {
-	padding: var(--small-margin);
-	font-family: sans-serif;
-	border: 0;
-	background: none;
-	position: absolute;
-	top: 0;
-	right: 0;
-	opacity: 0.5;
-	font-size: 1.5rem;
-}
-
-.sticky-button.sticky {
-	opacity: 1;
 }
 </style>

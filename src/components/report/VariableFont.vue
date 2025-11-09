@@ -2,7 +2,7 @@
 	<section class="variable" id="variable">
 		<h2 class="section-title">Variable</h2>
 		<div class="content variable-tester-container">
-			<div class="variable-tester" :class="{ sticky }">
+			<div class="variable-tester">
 				<p
 					contenteditable="plaintext-only"
 					spellcheck="false"
@@ -16,18 +16,6 @@
 				>
 					{{ previewText }}
 				</p>
-				<button
-					contenteditable="false"
-					spellcheck="false"
-					autocorrect="off"
-					type="button"
-					alt="Pin text"
-					class="sticky-button"
-					:class="{ sticky }"
-					@click="sticky = !sticky"
-				>
-					📌
-				</button>
 			</div>
 			<VariableControls
 				:font="font"
@@ -64,7 +52,6 @@ export default {
 	data() {
 		return {
 			variableStyles: "",
-			sticky: false,
 			autoOpticalSizing: true,
 		};
 	},
@@ -93,27 +80,5 @@ export default {
 	padding: 1rem;
 	font-size: 3rem;
 	background: var(--light-grey);
-}
-
-.variable-tester.sticky {
-	position: sticky;
-	top: 0;
-	z-index: 1;
-}
-
-.sticky-button {
-	padding: var(--small-margin);
-	font-family: sans-serif;
-	border: 0;
-	background: none;
-	position: absolute;
-	top: 0;
-	right: 0;
-	opacity: 0.5;
-	font-size: 1.5rem;
-}
-
-.sticky-button.sticky {
-	opacity: 1;
 }
 </style>
