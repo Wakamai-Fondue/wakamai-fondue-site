@@ -146,7 +146,7 @@ export default {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 2rem 0;
-	margin: 0;
+	margin: 4rem 0 0 0;
 	font-size: 4rem;
 }
 
