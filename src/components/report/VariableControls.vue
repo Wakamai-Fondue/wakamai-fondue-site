@@ -301,18 +301,28 @@ export default {
 			this.matchInstance();
 		},
 		matchInstance() {
-			// Using a simple JSON.stringify to compare an object with the
-			// current axes values, with the axes values of the instances.
+			// Compare current axes values with named instances
 			const currentAxes = {};
 			for (const axis of Object.values(this.axes)) {
 				currentAxes[axis.id] = axis.current;
 			}
-			const current = JSON.stringify(currentAxes);
 
 			let activeInstance = "";
 			for (const instance in this.instances) {
-				if (current === JSON.stringify(this.instances[instance])) {
+				const instanceAxes = this.instances[instance];
+				let matches = true;
+
+				// Check if all axis values match
+				for (const axisId in currentAxes) {
+					if (currentAxes[axisId] !== instanceAxes[axisId]) {
+						matches = false;
+						break;
+					}
+				}
+
+				if (matches) {
 					activeInstance = instance;
+					break;
 				}
 			}
 			this.activeInstance = activeInstance;

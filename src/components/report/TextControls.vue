@@ -116,7 +116,10 @@ export default {
 			activeLanguage: null,
 			languages: this.font.languageSystems,
 			instances: this.font.isVariable ? this.font.variable.instances : {},
-			activeInstance: "",
+			activeInstance:
+				this.font.isVariable && this.font.variable.defaultInstance
+					? this.font.variable.defaultInstance
+					: "",
 		};
 	},
 	computed: {
@@ -127,9 +130,6 @@ export default {
 
 	mounted() {
 		this.updateStyles();
-		if (this.font.isVariable && this.hasInstances) {
-			this.findDefaultInstance();
-		}
 	},
 	watch: {
 		fontSize() {
@@ -156,23 +156,6 @@ export default {
 		selectInstance(instance) {
 			this.activeInstance = instance;
 			this.$emit("selectInstance", instance);
-		},
-		findDefaultInstance() {
-			const defaultAxes = {};
-			for (const axis of this.font.variable.axes) {
-				defaultAxes[axis.id] = axis.default;
-			}
-			const defaultAxesString = JSON.stringify(defaultAxes);
-
-			for (const instance in this.instances) {
-				if (
-					defaultAxesString ===
-					JSON.stringify(this.instances[instance])
-				) {
-					this.activeInstance = instance;
-					return;
-				}
-			}
 		},
 	},
 };
