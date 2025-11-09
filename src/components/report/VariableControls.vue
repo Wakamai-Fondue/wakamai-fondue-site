@@ -272,6 +272,10 @@ export default {
 				targetAxis.current = value;
 				this.axisInputValues[axis] = value;
 			}
+			// If instance sets opsz, disable automatic optical sizing
+			if ("opsz" in this.instances[instance]) {
+				this.$emit("updateAutoOpticalSizing", false);
+			}
 			this.updateStyles();
 		},
 		updateStyles(axis) {
