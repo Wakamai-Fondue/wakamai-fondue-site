@@ -41,6 +41,7 @@
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"
+				@selectInstance="selectInstance"
 			/>
 			<FeatureControls
 				:font="font"
@@ -54,7 +55,9 @@
 				:showAxes="false"
 				:showTitles="false"
 				:showInstancesPreviews="false"
+				:showInstancesInline="false"
 				showInstances="dropdown"
+				:selectedInstance="selectedInstance"
 				@updateVariableStyles="updateVariableStyles"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"
 			/>
@@ -103,6 +106,7 @@ export default {
 			textStyles: "",
 			language: null,
 			autoOpticalSizing: true,
+			selectedInstance: "",
 		};
 	},
 	computed: {
@@ -129,6 +133,9 @@ export default {
 		updateLanguage(updatedLanguage) {
 			updatedLanguage = updatedLanguage || null;
 			this.language = updatedLanguage;
+		},
+		selectInstance(instance) {
+			this.selectedInstance = instance;
 		},
 		getHTML() {
 			if (this.language) {

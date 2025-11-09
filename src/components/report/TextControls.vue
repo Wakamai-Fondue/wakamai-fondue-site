@@ -19,6 +19,21 @@
 				</select>
 			</label>
 		</div>
+		<div v-if="font.isVariable && hasInstances" class="instances-select">
+			<select
+				name="Named instances"
+				@change="selectInstance($event.target.value)"
+				:value="activeInstance"
+			>
+				<option
+					v-for="(_, instance) in instances"
+					:key="instance"
+					:value="instance"
+				>
+					{{ instance }}
+				</option>
+			</select>
+		</div>
 		<div class="alignment-buttons">
 			<span>Alignment</span>
 			<button
@@ -89,17 +104,32 @@
 <script>
 export default {
 	props: ["font", "autoOpticalSizing", "fontSize"],
-	emits: ["updateTextStyles", "updateLanguage", "updateAutoOpticalSizing"],
+	emits: [
+		"updateTextStyles",
+		"updateLanguage",
+		"updateAutoOpticalSizing",
+		"selectInstance",
+	],
 	data() {
 		return {
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
+			instances: this.font.isVariable ? this.font.variable.instances : {},
+			activeInstance: "",
 		};
+	},
+	computed: {
+		hasInstances() {
+			return Object.entries(this.instances).length > 0;
+		},
 	},
 
 	mounted() {
 		this.updateStyles();
+		if (this.font.isVariable && this.hasInstances) {
+			this.findDefaultInstance();
+		}
 	},
 	watch: {
 		fontSize() {
@@ -122,6 +152,27 @@ export default {
 		},
 		updateAutoOpticalSizing() {
 			this.$emit("updateAutoOpticalSizing", !this.autoOpticalSizing);
+		},
+		selectInstance(instance) {
+			this.activeInstance = instance;
+			this.$emit("selectInstance", instance);
+		},
+		findDefaultInstance() {
+			const defaultAxes = {};
+			for (const axis of this.font.variable.axes) {
+				defaultAxes[axis.id] = axis.default;
+			}
+			const defaultAxesString = JSON.stringify(defaultAxes);
+
+			for (const instance in this.instances) {
+				if (
+					defaultAxesString ===
+					JSON.stringify(this.instances[instance])
+				) {
+					this.activeInstance = instance;
+					return;
+				}
+			}
 		},
 	},
 };

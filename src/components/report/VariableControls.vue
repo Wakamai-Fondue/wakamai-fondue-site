@@ -116,12 +116,19 @@
 			</ul>
 		</div>
 		<div
-			v-if="hasIntances && showInstances === 'dropdown'"
+			v-if="
+				hasIntances &&
+				showInstances === 'dropdown' &&
+				showInstancesInline !== false
+			"
 			class="named-instances"
 		>
 			<h3 v-if="showTitles">Named instances</h3>
 			<div>
-				<span class="instances-dropdown-label">
+				<span
+					class="instances-dropdown-label"
+					v-if="showInstancesLabel !== false"
+				>
 					{{ instanceCount }} Named instances
 				</span>
 				<select
@@ -179,6 +186,9 @@ export default {
 		"showOpticalSizeToggle",
 		"autoOpticalSizing",
 		"previewText",
+		"showInstancesInline",
+		"showInstancesLabel",
+		"selectedInstance",
 	],
 	emits: ["updateVariableStyles", "updateAutoOpticalSizing"],
 	components: {
@@ -221,6 +231,11 @@ export default {
 			if (this.font.hasOpticalSize) {
 				this.currentStates["opsz"] = !enabled;
 				this.updateStyles();
+			}
+		},
+		selectedInstance(instance) {
+			if (instance) {
+				this.selectInstance(instance);
 			}
 		},
 	},
