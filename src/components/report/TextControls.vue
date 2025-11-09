@@ -103,13 +103,8 @@
 
 <script>
 export default {
-	props: ["font", "autoOpticalSizing", "fontSize"],
-	emits: [
-		"updateTextStyles",
-		"updateLanguage",
-		"updateAutoOpticalSizing",
-		"selectInstance",
-	],
+	props: ["font", "fontSize"],
+	emits: ["updateTextStyles", "updateLanguage", "selectInstance"],
 	data() {
 		return {
 			textAlign: "initial",
@@ -149,9 +144,6 @@ export default {
 		},
 		setLanguage(language) {
 			this.$emit("updateLanguage", language);
-		},
-		updateAutoOpticalSizing() {
-			this.$emit("updateAutoOpticalSizing", !this.autoOpticalSizing);
 		},
 		selectInstance(instance) {
 			this.activeInstance = instance;
