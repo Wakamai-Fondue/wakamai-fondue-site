@@ -69,7 +69,7 @@
 						type="text"
 						name="current-axis-value"
 						class="axis-current"
-						pattern="[0-9.-]*"
+						pattern="[0-9.\-]*"
 						v-model="axisInputValues[axis.id]"
 						:disabled="currentStates[axis.id] === false"
 						@input="handleInputChange(axis)"
