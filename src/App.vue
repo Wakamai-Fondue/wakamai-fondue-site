@@ -264,9 +264,9 @@ a {
 
 /* Global styles */
 h2 {
-	font-size: 1.5rem;
-	padding: 2rem 0;
-	margin: 4rem 0;
+	font-size: 2rem;
+	padding: 2.5rem 0;
+	margin: 8rem 0 4rem 0;
 	background: var(--green);
 	color: white;
 	text-align: center;

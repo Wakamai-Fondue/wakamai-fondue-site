@@ -69,7 +69,7 @@
 						type="text"
 						name="current-axis-value"
 						class="axis-current"
-						pattern="[0-9.-]*"
+						pattern="[0-9.\-]*"
 						v-model="axisInputValues[axis.id]"
 						:disabled="currentStates[axis.id] === false"
 						@input="handleInputChange(axis)"
@@ -116,12 +116,19 @@
 			</ul>
 		</div>
 		<div
-			v-if="hasIntances && showInstances === 'dropdown'"
+			v-if="
+				hasIntances &&
+				showInstances === 'dropdown' &&
+				showInstancesInline !== false
+			"
 			class="named-instances"
 		>
 			<h3 v-if="showTitles">Named instances</h3>
 			<div>
-				<span class="instances-dropdown-label">
+				<span
+					class="instances-dropdown-label"
+					v-if="showInstancesLabel !== false"
+				>
 					{{ instanceCount }} Named instances
 				</span>
 				<select
@@ -179,6 +186,9 @@ export default {
 		"showOpticalSizeToggle",
 		"autoOpticalSizing",
 		"previewText",
+		"showInstancesInline",
+		"showInstancesLabel",
+		"selectedInstance",
 	],
 	emits: ["updateVariableStyles", "updateAutoOpticalSizing"],
 	components: {
@@ -221,6 +231,11 @@ export default {
 			if (this.font.hasOpticalSize) {
 				this.currentStates["opsz"] = !enabled;
 				this.updateStyles();
+			}
+		},
+		selectedInstance(instance) {
+			if (instance) {
+				this.selectInstance(instance);
 			}
 		},
 	},
@@ -272,6 +287,10 @@ export default {
 				targetAxis.current = value;
 				this.axisInputValues[axis] = value;
 			}
+			// If instance sets opsz, disable automatic optical sizing
+			if ("opsz" in this.instances[instance]) {
+				this.$emit("updateAutoOpticalSizing", false);
+			}
 			this.updateStyles();
 		},
 		updateStyles(axis) {
@@ -282,18 +301,28 @@ export default {
 			this.matchInstance();
 		},
 		matchInstance() {
-			// Using a simple JSON.stringify to compare an object with the
-			// current axes values, with the axes values of the instances.
+			// Compare current axes values with named instances
 			const currentAxes = {};
 			for (const axis of Object.values(this.axes)) {
 				currentAxes[axis.id] = axis.current;
 			}
-			const current = JSON.stringify(currentAxes);
 
 			let activeInstance = "";
 			for (const instance in this.instances) {
-				if (current === JSON.stringify(this.instances[instance])) {
+				const instanceAxes = this.instances[instance];
+				let matches = true;
+
+				// Check if all axis values match
+				for (const axisId in currentAxes) {
+					if (currentAxes[axisId] !== instanceAxes[axisId]) {
+						matches = false;
+						break;
+					}
+				}
+
+				if (matches) {
 					activeInstance = instance;
+					break;
 				}
 			}
 			this.activeInstance = activeInstance;

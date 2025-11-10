@@ -19,6 +19,21 @@
 				</select>
 			</label>
 		</div>
+		<div v-if="font.isVariable && hasInstances" class="instances-select">
+			<select
+				name="Named instances"
+				@change="selectInstance($event.target.value)"
+				:value="activeInstance"
+			>
+				<option
+					v-for="(_, instance) in instances"
+					:key="instance"
+					:value="instance"
+				>
+					{{ instance }}
+				</option>
+			</select>
+		</div>
 		<div class="alignment-buttons">
 			<span>Alignment</span>
 			<button
@@ -88,14 +103,24 @@
 
 <script>
 export default {
-	props: ["font", "autoOpticalSizing", "fontSize"],
-	emits: ["updateTextStyles", "updateLanguage", "updateAutoOpticalSizing"],
+	props: ["font", "fontSize"],
+	emits: ["updateTextStyles", "updateLanguage", "selectInstance"],
 	data() {
 		return {
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
+			instances: this.font.isVariable ? this.font.variable.instances : {},
+			activeInstance:
+				this.font.isVariable && this.font.variable.defaultInstance
+					? this.font.variable.defaultInstance
+					: "",
 		};
+	},
+	computed: {
+		hasInstances() {
+			return Object.entries(this.instances).length > 0;
+		},
 	},
 
 	mounted() {
@@ -120,8 +145,9 @@ export default {
 		setLanguage(language) {
 			this.$emit("updateLanguage", language);
 		},
-		updateAutoOpticalSizing() {
-			this.$emit("updateAutoOpticalSizing", !this.autoOpticalSizing);
+		selectInstance(instance) {
+			this.activeInstance = instance;
+			this.$emit("selectInstance", instance);
 		},
 	},
 };
