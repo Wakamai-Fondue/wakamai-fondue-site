@@ -76,10 +76,14 @@
 			<ul>
 				<li v-for="featureData in features" :key="featureData.tag">
 					<a
+						v-if="featureData.state !== 'fixed'"
 						:href="`#feature-${featureData.tag}`"
 						class="opentype-label"
 						>{{ featureData.tag }}</a
 					>
+					<span v-else class="opentype-label">{{
+						featureData.tag
+					}}</span>
 				</li>
 			</ul>
 		</div>
