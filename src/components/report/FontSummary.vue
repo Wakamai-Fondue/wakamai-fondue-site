@@ -156,7 +156,8 @@ export default {
 
 .details {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: auto 1fr;
+	gap: var(--small-margin);
 }
 
 .details dt {
