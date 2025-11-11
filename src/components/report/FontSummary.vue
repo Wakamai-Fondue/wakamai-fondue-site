@@ -58,14 +58,14 @@
 			</strong>
 		</p>
 
-		<table class="details">
-			<tbody>
-				<tr v-for="(value, key) in summary" :key="key">
-					<th scope="row">{{ key }}</th>
-					<td v-html="value" />
-				</tr>
-			</tbody>
-		</table>
+		<dl class="details">
+			<!-- Disabling this Vue v2 rule here: https://eslint.vuejs.org/rules/no-v-for-template-key.html ->
+			<!-- eslint-disable-next-line vue/no-v-for-template-key -->
+			<template v-for="(value, key) in summary" :key="key">
+				<dt>{{ key }}</dt>
+				<dd>{{ value }}</dd>
+			</template>
+		</dl>
 
 		<div
 			class="features"
@@ -155,25 +155,12 @@ export default {
 }
 
 .details {
-	margin-top: 2rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
-.details tr + tr {
-	padding-top: var(--small-margin);
-}
-
-.details th {
-	padding-top: var(--small-margin);
-	padding-right: 1em;
-	text-align: left;
-	white-space: nowrap;
-	text-transform: capitalize;
-	vertical-align: top;
-}
-
-.details td {
-	padding-top: var(--small-margin);
-	white-space: pre-line;
+.details dt {
+	font-weight: bold;
 }
 
 .features ul {
