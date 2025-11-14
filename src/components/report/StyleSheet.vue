@@ -38,8 +38,13 @@
 					Include font-feature-settings fallbacks
 				</label>
 				<label>
+					<input type="checkbox" v-model="useNamespace" />
 					Namespace:
-					<input type="text" v-model="namespace" />
+					<input
+						type="text"
+						v-model="namespace"
+						:disabled="!useNamespace"
+					/>
 				</label>
 				<div class="code">
 					<CopyToClipboard :content="css" />
@@ -70,6 +75,7 @@ export default {
 		return {
 			includeUnicodeRange: false,
 			includeFontFeatureFallback: false,
+			useNamespace: false,
 			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
 		};
@@ -81,7 +87,7 @@ export default {
 					fontFaceUnicodeRange: this.includeUnicodeRange,
 					fontFeatureFallback: this.includeFontFeatureFallback,
 				},
-				namespace: this.namespace,
+				namespace: this.useNamespace ? this.namespace : "",
 			});
 		},
 	},
