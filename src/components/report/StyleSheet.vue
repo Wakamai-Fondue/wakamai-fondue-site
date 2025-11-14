@@ -69,7 +69,7 @@ export default {
 	data() {
 		return {
 			includeUnicodeRange: false,
-			includeFontFeatureFallback: true,
+			includeFontFeatureFallback: false,
 			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
 		};
