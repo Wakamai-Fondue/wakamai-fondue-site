@@ -26,6 +26,21 @@
 						Download stylesheet!
 					</button>
 				</div>
+				<label>
+					<input type="checkbox" v-model="includeUnicodeRange" />
+					Include unicode-range
+				</label>
+				<label>
+					<input
+						type="checkbox"
+						v-model="includeFontFeatureFallback"
+					/>
+					Include font-feature-settings fallbacks
+				</label>
+				<label>
+					Namespace:
+					<input type="text" v-model="namespace" />
+				</label>
 				<div class="code">
 					<CopyToClipboard :content="css" />
 					<Prism language="css" :key="{ css }">{{ css }}</Prism>
@@ -53,9 +68,22 @@ export default {
 	},
 	data() {
 		return {
-			css: this.font.cssString,
+			includeUnicodeRange: false,
+			includeFontFeatureFallback: true,
+			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
 		};
+	},
+	computed: {
+		css() {
+			return this.font.stylesheet({
+				include: {
+					fontFaceUnicodeRange: this.includeUnicodeRange,
+					fontFeatureFallback: this.includeFontFeatureFallback,
+				},
+				namespace: this.namespace,
+			});
+		},
 	},
 	methods: {
 		getFontCSSLink() {
@@ -63,8 +91,7 @@ export default {
 			let temp = document.createElement("a");
 			temp.setAttribute(
 				"href",
-				"data:text/plain;charset=utf-8," +
-					encodeURIComponent(this.font.cssString)
+				"data:text/plain;charset=utf-8," + encodeURIComponent(this.css)
 			);
 			temp.setAttribute("download", filename);
 

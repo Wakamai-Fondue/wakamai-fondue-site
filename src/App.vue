@@ -216,8 +216,7 @@ html {
 	min-width: 320px;
 	font-family: var(--system-font-stack);
 	scroll-behavior: smooth;
-	scrollbar-gutter: stable;
-	scroll-padding-top: var(--nav-height);
+	scroll-padding-top: calc(var(--nav-height) + 1rem);
 }
 
 *,
