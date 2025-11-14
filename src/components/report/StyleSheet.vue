@@ -37,6 +37,10 @@
 					/>
 					Include font-feature-settings fallbacks
 				</label>
+				<label>
+					Namespace:
+					<input type="text" v-model="namespace" />
+				</label>
 				<div class="code">
 					<CopyToClipboard :content="css" />
 					<Prism language="css" :key="{ css }">{{ css }}</Prism>
@@ -66,6 +70,7 @@ export default {
 		return {
 			includeUnicodeRange: false,
 			includeFontFeatureFallback: true,
+			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
 		};
 	},
@@ -76,6 +81,7 @@ export default {
 					fontFaceUnicodeRange: this.includeUnicodeRange,
 					fontFeatureFallback: this.includeFontFeatureFallback,
 				},
+				namespace: this.namespace,
 			});
 		},
 	},
