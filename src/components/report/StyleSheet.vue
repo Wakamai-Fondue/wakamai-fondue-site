@@ -30,6 +30,13 @@
 					<input type="checkbox" v-model="includeUnicodeRange" />
 					Include unicode-range
 				</label>
+				<label>
+					<input
+						type="checkbox"
+						v-model="includeFontFeatureFallback"
+					/>
+					Include font-feature-settings fallbacks
+				</label>
 				<div class="code">
 					<CopyToClipboard :content="css" />
 					<Prism language="css" :key="{ css }">{{ css }}</Prism>
@@ -58,6 +65,7 @@ export default {
 	data() {
 		return {
 			includeUnicodeRange: false,
+			includeFontFeatureFallback: true,
 			fontname: this.font.summary["Font name"],
 		};
 	},
@@ -66,6 +74,7 @@ export default {
 			return this.font.stylesheet({
 				include: {
 					fontFaceUnicodeRange: this.includeUnicodeRange,
+					fontFeatureFallback: this.includeFontFeatureFallback,
 				},
 			});
 		},
