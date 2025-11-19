@@ -71,7 +71,7 @@
 				>
 					submit an issue</a
 				>, or
-				<a href="https://typo.social/@pixelambacht" target="_blank"
+				<a rel="me" href="https://typo.social/@pixelambacht" target="_blank"
 					>find me on the Fediverse</a
 				>!
 			</p>
