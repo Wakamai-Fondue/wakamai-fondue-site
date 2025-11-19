@@ -192,6 +192,18 @@ export default {
 	columns: 3;
 }
 
+@media screen and (max-width: 920px) {
+	.feature-controls.long ul {
+		columns: 2;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.feature-controls.long ul {
+		columns: 1;
+	}
+}
+
 .feature-controls.long li {
 	list-style: initial;
 	color: transparent;
