@@ -199,7 +199,8 @@ export default {
 
 .feature-controls label {
 	margin-bottom: var(--small-margin);
-	display: flex;
+	display: grid;
+	grid-template-columns: 6rem 1fr;
 	cursor: pointer;
 	color: black;
 }
