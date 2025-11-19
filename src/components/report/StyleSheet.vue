@@ -26,26 +26,31 @@
 						Download stylesheet!
 					</button>
 				</div>
-				<label>
-					<input type="checkbox" v-model="includeUnicodeRange" />
-					Include unicode-range
-				</label>
-				<label>
-					<input
-						type="checkbox"
-						v-model="includeFontFeatureFallback"
-					/>
-					Include font-feature-settings fallbacks
-				</label>
-				<label>
-					<input type="checkbox" v-model="useNamespace" />
-					Namespace:
-					<input
-						type="text"
-						v-model="namespace"
-						:disabled="!useNamespace"
-					/>
-				</label>
+
+				<h3>Options</h3>
+				<div class="css-options">
+					<label>
+						<input type="checkbox" v-model="includeUnicodeRange" />
+						Unicode-range
+					</label>
+					<label>
+						<input
+							type="checkbox"
+							v-model="includeFontFeatureFallback"
+						/>
+						Font-feature-settings fallbacks
+					</label>
+					<label class="css-namespace">
+						<input type="checkbox" v-model="useNamespace" />
+						Namespace:
+						<input
+							type="text"
+							v-model="namespace"
+							:disabled="!useNamespace"
+						/>
+					</label>
+				</div>
+
 				<div class="code">
 					<CopyToClipboard :content="css" />
 					<Prism language="css" :key="{ css }">{{ css }}</Prism>
@@ -131,13 +136,30 @@ export default {
 	display: flex;
 	justify-content: center;
 	top: calc(var(--nav-height) + 1rem);
-	margin-bottom: 2rem;
+	margin-top: 3rem;
 	z-index: 1;
 }
 
 .css-button-container button {
 	padding: 0.5em 1em;
 	font-size: 1.5rem;
+}
+
+.css-options {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin-bottom: 2rem;
+}
+
+.css-options > * {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.css-namespace {
+	grid-template-columns: auto auto 1fr;
 }
 
 .code {
