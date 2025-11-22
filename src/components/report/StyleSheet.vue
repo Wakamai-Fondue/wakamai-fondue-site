@@ -26,6 +26,31 @@
 						Download stylesheet!
 					</button>
 				</div>
+
+				<h3>Options</h3>
+				<div class="css-options">
+					<label>
+						<input type="checkbox" v-model="includeUnicodeRange" />
+						Unicode-range
+					</label>
+					<label>
+						<input
+							type="checkbox"
+							v-model="includeFontFeatureFallback"
+						/>
+						Font-feature-settings fallbacks
+					</label>
+					<label class="css-namespace">
+						<input type="checkbox" v-model="useNamespace" />
+						Namespace:
+						<input
+							type="text"
+							v-model="namespace"
+							:disabled="!useNamespace"
+						/>
+					</label>
+				</div>
+
 				<div class="code">
 					<CopyToClipboard :content="css" />
 					<Prism language="css" :key="{ css }">{{ css }}</Prism>
@@ -53,9 +78,23 @@ export default {
 	},
 	data() {
 		return {
-			css: this.font.cssString,
+			includeUnicodeRange: false,
+			includeFontFeatureFallback: false,
+			useNamespace: false,
+			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
 		};
+	},
+	computed: {
+		css() {
+			return this.font.stylesheet({
+				include: {
+					fontFaceUnicodeRange: this.includeUnicodeRange,
+					fontFeatureFallback: this.includeFontFeatureFallback,
+				},
+				namespace: this.useNamespace ? this.namespace : "",
+			});
+		},
 	},
 	methods: {
 		getFontCSSLink() {
@@ -63,8 +102,7 @@ export default {
 			let temp = document.createElement("a");
 			temp.setAttribute(
 				"href",
-				"data:text/plain;charset=utf-8," +
-					encodeURIComponent(this.font.cssString)
+				"data:text/plain;charset=utf-8," + encodeURIComponent(this.css)
 			);
 			temp.setAttribute("download", filename);
 
@@ -98,13 +136,30 @@ export default {
 	display: flex;
 	justify-content: center;
 	top: calc(var(--nav-height) + 1rem);
-	margin-bottom: 2rem;
+	margin-top: 3rem;
 	z-index: 1;
 }
 
 .css-button-container button {
 	padding: 0.5em 1em;
 	font-size: 1.5rem;
+}
+
+.css-options {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin-bottom: 2rem;
+}
+
+.css-options > * {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.css-namespace {
+	grid-template-columns: auto auto 1fr;
 }
 
 .code {
