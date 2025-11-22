@@ -232,10 +232,24 @@ export default {
 			};`;
 		},
 		getFeatureCSS(feature) {
-			return this.font.featureCSS(feature, {
-				value: 1,
-				format: "both",
-			});
+			// Type 3 lookups are non-boolean, deal with those if we got 'em
+			if (
+				this.featureChars[feature] &&
+				this.featureChars[feature]["lookups"]
+			) {
+				const type3Lookup = this.featureChars[feature]["lookups"].find(
+					(lookup) => lookup.type === 3
+				);
+
+				if (type3Lookup) {
+					const maxAlternates = this.getMaxAlternates(type3Lookup);
+					if (maxAlternates > 1) {
+						return `font-feature-settings: "${feature}" 1; /* Use value 1 to ${maxAlternates} for all alternates */`;
+					}
+				}
+			}
+
+			return `font-feature-settings: "${feature}";`;
 		},
 		getCombinations(feature) {
 			if (feature.tag === "frac") {
@@ -276,6 +290,12 @@ export default {
 					"uniqueCombinations"
 				].join(" ");
 			}
+		},
+		getMaxAlternates(lookup) {
+			if (!lookup.alternateCount || lookup.alternateCount.length === 0) {
+				return 0;
+			}
+			return Math.max(...lookup.alternateCount);
 		},
 	},
 };
