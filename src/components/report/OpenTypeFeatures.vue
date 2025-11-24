@@ -75,6 +75,7 @@
 									v-for="n in lookup['alternateCount'][index]"
 									:key="`type3_${char}_${n}`"
 									:style="getFeatureStyle(feature.tag, n)"
+									:title="`font-feature-settings: &quot;${feature.tag}&quot; ${n};`"
 								>
 									{{ char }}
 								</span>
