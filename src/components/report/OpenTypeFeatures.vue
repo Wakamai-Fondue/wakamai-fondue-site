@@ -234,10 +234,7 @@ export default {
 		},
 		getFeatureCSS(feature) {
 			// Type 3 lookups are non-boolean, deal with those if we got 'em
-			if (
-				this.featureChars[feature] &&
-				this.featureChars[feature]["lookups"]
-			) {
+			if (this.featureChars[feature]?.lookups) {
 				const type3Lookup = this.featureChars[feature]["lookups"].find(
 					(lookup) => lookup.type === 3
 				);
