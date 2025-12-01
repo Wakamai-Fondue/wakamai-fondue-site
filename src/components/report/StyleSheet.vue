@@ -148,8 +148,14 @@ export default {
 	top: var(--nav-height);
 	margin-top: 2rem;
 	margin-bottom: 1rem;
-	padding: 0.5rem 0 1rem 0;
+	padding: 0.5rem 0;
 	z-index: 1;
+}
+
+@media screen and (max-width: 900px) {
+	.css-button-container {
+		grid-template-columns: 1fr;
+	}
 }
 
 .css-button-container h3 {
@@ -158,8 +164,9 @@ export default {
 }
 
 .css-button-container button {
+	justify-self: center;
 	min-width: 0;
-	padding: 0 1em;
+	padding: 0.5em 1em;
 	font-size: 1.5rem;
 }
 
