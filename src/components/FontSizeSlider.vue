@@ -48,7 +48,7 @@ export default {
 }
 
 .font-size-slider input {
-	width: min(15vw, 200px);
+	width: 180px;
 }
 
 .font-size-value {

@@ -47,7 +47,6 @@ nav {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0 1em;
-	margin-right: 2em;
 }
 
 nav a {
@@ -60,5 +59,19 @@ nav a {
 
 .css {
 	color: var(--red);
+}
+
+@media screen and (max-width: 820px) {
+	.font-report-navigation {
+		--nav-height: auto;
+		padding: 0.25rem 0;
+		grid-template-columns: 1fr;
+		gap: 0.25rem 0;
+		place-items: center;
+	}
+
+	nav {
+		justify-content: center;
+	}
 }
 </style>
