@@ -5,6 +5,7 @@
 				<a href="#app" class="new">New</a>
 				<a href="#summary">Summary</a>
 				<a href="#tester">Tester</a>
+				<a href="#color">Color</a>
 				<a href="#variable">Variable</a>
 				<a href="#features">Features</a>
 				<a href="#charset">Characters</a>
@@ -59,6 +60,13 @@ nav a {
 
 .css {
 	color: var(--red);
+}
+
+/* Hide links to bits we're not showing */
+body:not(:has(#color)) [href="#color"],
+body:not(:has(#variable)) [href="#variable"],
+body:not(:has(#features)) [href="#features"] {
+	display: none;
 }
 
 @media screen and (max-width: 820px) {
