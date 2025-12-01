@@ -44,7 +44,7 @@ export default {
 	font-size: 1rem;
 	background: var(--offwhite);
 	padding: 0.75em 1em;
-	border-radius: 0.4em;
+	height: 100%;
 }
 
 .font-size-slider input {
