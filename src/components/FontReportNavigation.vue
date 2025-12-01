@@ -1,15 +1,17 @@
 <template>
-	<div class="font-report-navigation">
-		<nav>
-			<a href="#app" class="new">New</a>
-			<a href="#summary">Summary</a>
-			<a href="#tester">Tester</a>
-			<a href="#variable">Variable</a>
-			<a href="#features">Features</a>
-			<a href="#charset">Characters</a>
-			<a href="#stylesheet" class="css">CSS</a>
-		</nav>
-		<FontSizeSlider />
+	<div class="font-report-navigation-container">
+		<div class="font-report-navigation">
+			<nav>
+				<a href="#app" class="new">New</a>
+				<a href="#summary">Summary</a>
+				<a href="#tester">Tester</a>
+				<a href="#variable">Variable</a>
+				<a href="#features">Features</a>
+				<a href="#charset">Characters</a>
+				<a href="#stylesheet" class="css">CSS</a>
+			</nav>
+			<FontSizeSlider />
+		</div>
 	</div>
 </template>
 
@@ -24,17 +26,21 @@ export default {
 </script>
 
 <style scoped>
-.font-report-navigation {
-	background: var(--yellow);
-	padding: 0 1em;
-	min-height: var(--nav-height);
+.font-report-navigation-container {
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	display: flex;
+	background: var(--yellow);
+}
+
+.font-report-navigation {
+	display: grid;
+	grid-template-columns: 1fr auto;
 	align-items: center;
-	justify-content: center;
-	font-size: 1.25rem;
+	margin: 0 auto;
+	max-width: var(--max-content-width);
+	padding: 0 1em;
+	min-height: var(--nav-height);
 }
 
 nav {
