@@ -18,6 +18,36 @@
 					multiple layout features together.
 				</p>
 				<div class="css-button-container">
+					<h3>Stylesheet options</h3>
+					<div class="css-options">
+						<label>
+							<input
+								type="checkbox"
+								v-model="includeUnicodeRange"
+							/>
+							Unicode-range
+						</label>
+						<label>
+							<input
+								type="checkbox"
+								v-model="includeFontFeatureFallback"
+							/>
+							Font-feature-settings fallbacks
+						</label>
+						<label>
+							<input type="checkbox" v-model="includeVariables" />
+							Variable instances
+						</label>
+						<label class="css-namespace">
+							<input type="checkbox" v-model="useNamespace" />
+							Namespace:
+							<input
+								type="text"
+								v-model="namespace"
+								:disabled="!useNamespace"
+							/>
+						</label>
+					</div>
 					<button
 						type="button"
 						class="button off"
@@ -25,30 +55,6 @@
 					>
 						Download stylesheet!
 					</button>
-				</div>
-
-				<h3>Options</h3>
-				<div class="css-options">
-					<label>
-						<input type="checkbox" v-model="includeUnicodeRange" />
-						Unicode-range
-					</label>
-					<label>
-						<input
-							type="checkbox"
-							v-model="includeFontFeatureFallback"
-						/>
-						Font-feature-settings fallbacks
-					</label>
-					<label class="css-namespace">
-						<input type="checkbox" v-model="useNamespace" />
-						Namespace:
-						<input
-							type="text"
-							v-model="namespace"
-							:disabled="!useNamespace"
-						/>
-					</label>
 				</div>
 
 				<div class="code">
@@ -80,6 +86,7 @@ export default {
 		return {
 			includeUnicodeRange: false,
 			includeFontFeatureFallback: false,
+			includeVariables: true,
 			useNamespace: false,
 			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
@@ -91,6 +98,7 @@ export default {
 				include: {
 					fontFaceUnicodeRange: this.includeUnicodeRange,
 					fontFeatureFallback: this.includeFontFeatureFallback,
+					variables: this.includeVariables,
 				},
 				namespace: this.useNamespace ? this.namespace : "",
 			});
@@ -132,26 +140,44 @@ export default {
 }
 
 .css-button-container {
+	background: white;
 	position: sticky;
-	display: flex;
-	justify-content: center;
-	top: calc(var(--nav-height) + 1rem);
-	margin-top: 3rem;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 0.5rem 1rem;
+	top: var(--nav-height);
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	padding: 0.5rem 0;
 	z-index: 1;
 }
 
+@media screen and (max-width: 900px) {
+	.css-button-container {
+		grid-template-columns: 1fr;
+	}
+}
+
+.css-button-container h3 {
+	grid-column: 1 / -1;
+	margin: 0;
+}
+
 .css-button-container button {
+	justify-self: center;
+	min-width: 0;
 	padding: 0.5em 1em;
 	font-size: 1.5rem;
 }
 
 .css-options {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	margin-bottom: 2rem;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5rem 1rem;
 }
 
 .css-options > * {
+	min-width: 0;
 	display: grid;
 	grid-template-columns: auto 1fr;
 	align-items: center;
