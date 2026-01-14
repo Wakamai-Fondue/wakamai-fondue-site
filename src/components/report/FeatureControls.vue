@@ -6,7 +6,7 @@
 				v-for="feature in optionalFeatures"
 				:key="`featcont_${feature.tag}`"
 			>
-				<label>
+				<div class="label">
 					<button
 						v-if="currentStates[feature.tag] >= 1"
 						type="button"
@@ -53,7 +53,7 @@
 							{{ n }}
 						</option>
 					</select>
-				</label>
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -209,7 +209,7 @@ export default {
 	color: transparent;
 }
 
-.feature-controls label {
+.feature-controls .label {
 	margin-bottom: var(--small-margin);
 	display: grid;
 	grid-template-columns: 6rem 1fr;
