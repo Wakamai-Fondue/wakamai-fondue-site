@@ -192,6 +192,18 @@ export default {
 	columns: 3;
 }
 
+@media screen and (max-width: 920px) {
+	.feature-controls.long ul {
+		columns: 2;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.feature-controls.long ul {
+		columns: 1;
+	}
+}
+
 .feature-controls.long li {
 	list-style: initial;
 	color: transparent;
@@ -199,7 +211,8 @@ export default {
 
 .feature-controls label {
 	margin-bottom: var(--small-margin);
-	display: flex;
+	display: grid;
+	grid-template-columns: 6rem 1fr;
 	cursor: pointer;
 	color: black;
 }
