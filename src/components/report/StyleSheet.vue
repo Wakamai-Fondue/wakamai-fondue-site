@@ -20,31 +20,6 @@
 				<div class="css-button-container">
 					<h3>Stylesheet options</h3>
 					<div class="css-options">
-						<label>
-							<input
-								type="checkbox"
-								v-model="includeUnicodeRange"
-							/>
-							Unicode-range
-						</label>
-						<label>
-							<input
-								type="checkbox"
-								v-model="includeFontFeatureFallback"
-							/>
-							Font-feature-settings fallbacks
-						</label>
-						<label>
-							<input type="checkbox" v-model="includeVariables" />
-							Variable instances
-						</label>
-						<label>
-							<input
-								type="checkbox"
-								v-model="includeDefaultOnFeatures"
-							/>
-							Include on-by-default features
-						</label>
 						<label class="css-namespace">
 							<input type="checkbox" v-model="useNamespace" />
 							Namespace:
@@ -53,6 +28,31 @@
 								v-model="namespace"
 								:disabled="!useNamespace"
 							/>
+						</label>
+						<label>
+							<input
+								type="checkbox"
+								v-model="includeUnicodeRange"
+							/>
+							Unicode-range
+						</label>
+						<label v-if="hasFallbackFeatures">
+							<input
+								type="checkbox"
+								v-model="includeFontFeatureFallback"
+							/>
+							Font-feature-settings fallbacks
+						</label>
+						<label v-if="hasVariableInstances">
+							<input type="checkbox" v-model="includeVariables" />
+							Variable instances
+						</label>
+						<label v-if="hasDefaultOnFeatures">
+							<input
+								type="checkbox"
+								v-model="includeDefaultOnFeatures"
+							/>
+							Include on-by-default features
 						</label>
 					</div>
 					<button
@@ -111,6 +111,21 @@ export default {
 				},
 				namespace: this.useNamespace ? this.namespace : "",
 			});
+		},
+		hasVariableInstances() {
+			return (
+				this.font.isVariable &&
+				this.font.variable?.instances &&
+				Object.keys(this.font.variable.instances).length > 0
+			);
+		},
+		hasDefaultOnFeatures() {
+			return this.font.features.some((f) => f.state === "on");
+		},
+		hasFallbackFeatures() {
+			return this.font.features.some(
+				(f) => f.state === "off" && f.css?.variant
+			);
 		},
 	},
 	methods: {
