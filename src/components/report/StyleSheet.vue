@@ -38,6 +38,13 @@
 							<input type="checkbox" v-model="includeVariables" />
 							Variable instances
 						</label>
+						<label>
+							<input
+								type="checkbox"
+								v-model="includeDefaultOnFeatures"
+							/>
+							Include on-by-default features
+						</label>
 						<label class="css-namespace">
 							<input type="checkbox" v-model="useNamespace" />
 							Namespace:
@@ -87,6 +94,7 @@ export default {
 			includeUnicodeRange: false,
 			includeFontFeatureFallback: false,
 			includeVariables: true,
+			includeDefaultOnFeatures: false,
 			useNamespace: false,
 			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
@@ -99,6 +107,7 @@ export default {
 					fontFaceUnicodeRange: this.includeUnicodeRange,
 					fontFeatureFallback: this.includeFontFeatureFallback,
 					variables: this.includeVariables,
+					includeDefaultOnFeatures: this.includeDefaultOnFeatures,
 				},
 				namespace: this.useNamespace ? this.namespace : "",
 			});
