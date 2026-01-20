@@ -64,6 +64,7 @@ export default defineConfig({
 		nodePolyfills({
 			overrides: {
 				assert: require.resolve("assert/"),
+				crypto: false,
 				fs: false,
 				stream: require.resolve("stream-browserify"),
 				util: require.resolve("util/"),
