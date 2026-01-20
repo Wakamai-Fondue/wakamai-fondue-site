@@ -30,8 +30,7 @@
     "util": "^0.12.5",
     "vite": "^6.4.1",
     "vite-bundle-analyzer": "^0.17.0",
-    "vite-plugin-node-polyfills": "^0.23.0",
-    "vue-template-compiler": "^2.7.16"
+    "vite-plugin-node-polyfills": "^0.23.0"
   },
   "engines": {
     "node": ">=22"
