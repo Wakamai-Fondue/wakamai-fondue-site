@@ -1,6 +1,7 @@
 {
   "name": "wakamai-fondue",
   "version": "2.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "serve": "vite serve",
