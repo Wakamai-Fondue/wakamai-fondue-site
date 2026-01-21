@@ -1,4 +1,6 @@
+import { createRequire } from "node:module";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
@@ -6,6 +8,9 @@ import { analyzer } from "vite-bundle-analyzer";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 import { dependencies } from "./package.json";
+
+const require = createRequire(import.meta.url);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 delete dependencies["@wakamai-fondue/engine"];
 const vendors = ["vue"];
@@ -59,6 +64,7 @@ export default defineConfig({
 		nodePolyfills({
 			overrides: {
 				assert: require.resolve("assert/"),
+				crypto: false,
 				fs: false,
 				stream: require.resolve("stream-browserify"),
 				util: require.resolve("util/"),
