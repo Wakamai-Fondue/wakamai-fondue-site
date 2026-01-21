@@ -54,6 +54,13 @@
 							/>
 							Include on-by-default features
 						</label>
+						<label v-if="hasFallbackFeatures">
+							<input
+								type="checkbox"
+								v-model="fontFeatureSettingsOnly"
+							/>
+							Use font-feature-settings only
+						</label>
 					</div>
 					<button
 						type="button"
@@ -95,6 +102,7 @@ export default {
 			includeFontFeatureFallback: false,
 			includeVariables: true,
 			includeDefaultOnFeatures: false,
+			fontFeatureSettingsOnly: false,
 			useNamespace: false,
 			namespace: this.font.slug,
 			fontname: this.font.summary["Font name"],
@@ -106,6 +114,7 @@ export default {
 				include: {
 					fontFaceUnicodeRange: this.includeUnicodeRange,
 					fontFeatureFallback: this.includeFontFeatureFallback,
+					fontFeatureSettingsOnly: this.fontFeatureSettingsOnly,
 					variables: this.includeVariables,
 					includeDefaultOnFeatures: this.includeDefaultOnFeatures,
 				},
