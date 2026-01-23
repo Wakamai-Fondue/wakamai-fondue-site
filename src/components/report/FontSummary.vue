@@ -59,8 +59,6 @@
 		</p>
 
 		<dl class="details">
-			<!-- Disabling this Vue v2 rule here: https://eslint.vuejs.org/rules/no-v-for-template-key.html ->
-			<!-- eslint-disable-next-line vue/no-v-for-template-key -->
 			<template v-for="(value, key) in summary" :key="key">
 				<dt>{{ key }}</dt>
 				<dd>{{ value }}</dd>
