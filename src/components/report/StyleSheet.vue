@@ -29,13 +29,20 @@
 								:disabled="!useNamespace"
 							/>
 						</label>
-						<label>
+
+						<label v-if="hasFallbackFeatures">
 							<input
 								type="checkbox"
-								v-model="includeUnicodeRange"
+								v-model="fontFeatureSettingsOnly"
 							/>
-							Unicode-range
+							Use font-feature-settings only
 						</label>
+
+						<label v-if="hasVariableInstances">
+							<input type="checkbox" v-model="includeVariables" />
+							Variable instances
+						</label>
+
 						<label v-if="hasFallbackFeatures">
 							<input
 								type="checkbox"
@@ -43,10 +50,12 @@
 							/>
 							Font-feature-settings fallbacks
 						</label>
-						<label v-if="hasVariableInstances">
-							<input type="checkbox" v-model="includeVariables" />
-							Variable instances
+
+						<label v-if="hasFeatures">
+							<input type="checkbox" v-model="includeFeatures" />
+							OpenType features
 						</label>
+
 						<label v-if="hasDefaultOnFeatures">
 							<input
 								type="checkbox"
@@ -54,12 +63,13 @@
 							/>
 							Include on-by-default features
 						</label>
-						<label v-if="hasFallbackFeatures">
+
+						<label>
 							<input
 								type="checkbox"
-								v-model="fontFeatureSettingsOnly"
+								v-model="includeUnicodeRange"
 							/>
-							Use font-feature-settings only
+							Unicode-range
 						</label>
 					</div>
 					<button
@@ -101,6 +111,7 @@ export default {
 			includeUnicodeRange: false,
 			includeFontFeatureFallback: false,
 			includeVariables: true,
+			includeFeatures: true,
 			includeDefaultOnFeatures: false,
 			fontFeatureSettingsOnly: false,
 			useNamespace: false,
@@ -116,6 +127,7 @@ export default {
 					fontFeatureFallback: this.includeFontFeatureFallback,
 					fontFeatureSettingsOnly: this.fontFeatureSettingsOnly,
 					variables: this.includeVariables,
+					features: this.includeFeatures,
 					includeDefaultOnFeatures: this.includeDefaultOnFeatures,
 				},
 				namespace: this.useNamespace ? this.namespace : "",
@@ -127,6 +139,9 @@ export default {
 				this.font.variable?.instances &&
 				Object.keys(this.font.variable.instances).length > 0
 			);
+		},
+		hasFeatures() {
+			return this.font.features && this.font.features.length > 0;
 		},
 		hasDefaultOnFeatures() {
 			return this.font.features.some((f) => f.state === "on");
