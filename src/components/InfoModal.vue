@@ -3,9 +3,15 @@
 		<button
 			type="button"
 			aria-label="Info"
-			class="info"
+			class="info circle-background"
 			@click="toggleInfoModal"
-		></button>
+		>
+			<svg viewBox="0 0 57 57">
+				<path
+					d="M19 24.8a44 44 0 0 0-5.8-4.2l-7.8-4.2q-3-1.6-4.3-2.7A6 6 0 0 1 0 10.2Q0 9.2.5 8 1 7 2.3 5.7 5 3.7 6 1.8 7.3 0 9.5 0q2 .1 3.4 1.6 1.6 1.8 3 4.2l7.5 12q2.2 3.8 5 3.7c2.7 0 3.1-1.1 5-3.7s4-6.5 7.4-12q1.3-2.4 3-4.2C45.5-.2 46 0 47.2 0q2.3 0 3.6 1.9L54.4 6q1.5 1.4 1.8 2.3.5.8.5 1.9-.1 2.1-1.1 3.2l-4.4 2.8-7.7 4.2a27 27 0 0 0-5.9 4.1q-2.2 2-2.2 3.7c0 1.7.7 2.6 2.2 3.7a44 44 0 0 0 6 4.2l7.6 4.2q3 1.6 4.4 2.7 1.2 1.1 1 3.3 0 1-.4 2-.5 1.1-1.8 2.4-2.5 2.4-3.6 4.1-1.4 1.9-3.6 1.9a4 4 0 0 1-3.4-1.6q-1.7-1.8-3-4.2l-7.5-12q-2.3-3.8-5-3.7c-2.7 0-3.1 1.1-5 3.7l-7.4 12q-1.4 2.4-3 4.2c-1.6 1.8-2.2 1.6-3.4 1.6q-2.3 0-3.6-1.9l-3.6-4.1Q.8 49.3.5 48.4q-.5-.5-.5-1.7.1-2 1.1-3.2l4.3-2.8 7.8-4.1q3.7-2.1 5.8-4.2 2.4-2 2.3-3.7.2-2.1-2.3-4"
+				/>
+			</svg>
+		</button>
 		<div class="modal-content">
 			<p class="modal-title">Wakamai Fondue</p>
 			<p class="version">Version 2.0</p>
@@ -35,8 +41,8 @@
 				Indra Kupferschmid, Bram Stein, Nick Sherman, David Jonathan
 				Ross, Koen Kivits, Kenneth Ormandy, Zach Leatherman, Mike
 				“Pomax” Kamermans, John Hudson, Robin Rendle, Pascal
-				Widdershoven, Frank Grießhammer, Dave Crossland and Amelia
-				Bellamy-Royds 💖
+				Widdershoven, Frank Grießhammer, Dave Crossland, Amelia
+				Bellamy-Royds and André Jaenisch 💖
 			</p>
 			<hr />
 			<p>
@@ -151,7 +157,7 @@ export default {
 
 .modal-content hr {
 	opacity: 0.25;
-	border-style: dashed;
+	border: 1px dashed white;
 	margin: 1.5rem -1.5rem;
 }
 
@@ -170,21 +176,20 @@ export default {
 	position: fixed;
 	z-index: 100;
 	right: 1.5vw;
-	top: 1.5vw;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 2.5rem;
-	height: 2.5rem;
-	border-radius: 50%;
+	top: 1.25vw;
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
 	border: 0;
 	outline: 0;
-	background: var(--offwhite);
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 32'%3E%3Cpath fill='%23cd4e49' d='M8.4 14.4c-.7-.6-1.6-1.2-2.6-1.8-1.1-.6-2.2-1.2-3.4-1.8-.9-.5-1.5-.9-1.9-1.2-.3-.4-.5-.9-.5-1.5 0-.3.1-.6.2-.9.2-.3.4-.6.8-1 .8-.6 1.3-1.2 1.7-1.7.3-.6.9-.8 1.5-.8s1.1.3 1.5.7c.5.5.9 1.1 1.3 1.8 1.5 2.4 2.6 4.1 3.3 5.2s1.4 1.6 2.2 1.6s1.4-.5 2.2-1.6s1.8-2.8 3.3-5.2c.4-.7.8-1.3 1.3-1.8s1-.7 1.5-.7c.7 0 1.2.3 1.6.8.4.5.9 1.1 1.6 1.8.4.4.7.7.8 1 .1.2.2.5.2.8 0 .6-.2 1.1-.5 1.4-.4.3-1 .7-1.9 1.2-1.2.6-2.3 1.2-3.4 1.8-1.1.6-2 1.2-2.6 1.8-.7.6-1 1.1-1 1.6s.3 1.1 1 1.6c.7.6 1.6 1.2 2.6 1.8 1.1.6 2.2 1.2 3.4 1.8.9.5 1.5.9 1.9 1.2.4.3.5.8.5 1.4 0 .3-.1.6-.2.9-.2.3-.4.6-.8 1-.7.7-1.3 1.3-1.6 1.8-.4.5-.9.8-1.6.8-.6 0-1.1-.2-1.5-.7-.5-.5-.9-1.1-1.3-1.8-1.5-2.4-2.6-4.1-3.3-5.2-.7-1.1-1.4-1.6-2.2-1.6s-1.4.5-2.2 1.6c-.7 1.1-1.8 2.8-3.3 5.2-.4.7-.8 1.3-1.3 1.8s-1 .7-1.5.7c-.7 0-1.2-.3-1.6-.8-.4-.5-.9-1.1-1.6-1.8-.4-.4-.7-.7-.8-1-.1-.1-.2-.4-.2-.7 0-.6.2-1.1.5-1.4.4-.3 1-.7 1.9-1.2 1.2-.6 2.3-1.2 3.4-1.8 1.1-.6 2-1.2 2.6-1.8.7-.6 1-1.1 1-1.6.1-.6-.3-1.2-1-1.7z'/%3E%3C/svg%3E");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 45%;
 	cursor: pointer;
+}
+
+.info svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: var(--red);
 }
 
 .ps {
