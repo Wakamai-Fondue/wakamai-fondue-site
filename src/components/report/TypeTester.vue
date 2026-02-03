@@ -23,7 +23,6 @@
 
 			<TextControls
 				:font="font"
-				:fontSize="fontSize"
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@selectInstance="selectInstance"
@@ -62,10 +61,9 @@ export default {
 		TextControls,
 	},
 	setup() {
-		const { previewText, fontSize } = usePreferences();
+		const { previewText } = usePreferences();
 		return {
 			previewText,
-			fontSize,
 		};
 	},
 	data() {
@@ -107,6 +105,7 @@ export default {
 .tester {
 	position: relative;
 	font-family: var(--font-stack);
+	font-size: var(--preview-font-size, 48px);
 	max-width: var(--max-content-width);
 	margin: 0 auto 0 auto;
 	background: var(--light-grey);

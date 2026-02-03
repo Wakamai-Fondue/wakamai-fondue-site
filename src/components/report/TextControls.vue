@@ -103,7 +103,7 @@
 
 <script>
 export default {
-	props: ["font", "fontSize"],
+	props: ["font"],
 	emits: ["updateTextStyles", "updateLanguage", "selectInstance"],
 	data() {
 		return {
@@ -122,25 +122,13 @@ export default {
 			return Object.entries(this.instances).length > 0;
 		},
 	},
-
-	mounted() {
-		this.updateStyles();
-	},
-	watch: {
-		fontSize() {
-			this.updateStyles();
-		},
-	},
 	methods: {
 		align(alignment) {
 			this.textAlign = alignment;
-			this.updateStyles();
-		},
-		updateStyles() {
 			this.$emit("updateTextStyles", this.getTextStyles());
 		},
 		getTextStyles() {
-			return `font-size: ${this.fontSize}px;\ntext-align: ${this.textAlign};`;
+			return `text-align: ${this.textAlign};`;
 		},
 		setLanguage(language) {
 			this.$emit("updateLanguage", language);
