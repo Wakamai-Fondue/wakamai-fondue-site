@@ -340,7 +340,7 @@ export default {
 	display: block;
 	position: relative;
 	font-family: var(--font-stack);
-	font-size: var(--preview-font-size, 1.5rem);
+	font-size: var(--preview-font-size, 2rem);
 	background: var(--light-grey);
 	padding: 0.5rem;
 	margin-top: var(--small-margin);

@@ -9,7 +9,6 @@
 					autocorrect="off"
 					:style="
 						$filters.inlinestyle(variableStyles) +
-						` font-size: var(--preview-font-size, 24px);` +
 						(autoOpticalSizing ? '' : ' font-optical-sizing: none;')
 					"
 					@input="updatePreviewText"
@@ -77,8 +76,9 @@ export default {
 .variable-tester {
 	position: relative;
 	font-family: var(--font-stack);
+	font-size: calc(var(--font-multiplier) * var(--preview-font-size, 2rem));
 	padding: 1rem;
-	font-size: 3rem;
 	background: var(--light-grey);
+	color: black;
 }
 </style>

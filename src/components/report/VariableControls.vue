@@ -516,7 +516,7 @@ export default {
 
 .large-sample {
 	font-family: var(--font-stack);
-	font-size: var(--preview-font-size, 24px);
+	font-size: var(--preview-font-size, 2rem);
 	background: var(--light-grey);
 	margin-top: var(--small-margin);
 	padding: 1rem;
