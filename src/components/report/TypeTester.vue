@@ -14,8 +14,9 @@
 						)
 					"
 					:lang="language"
+					@input="updatePreviewText"
 				>
-					{{ customText || previewText }}
+					{{ previewText }}
 				</p>
 			</div>
 
@@ -66,7 +67,6 @@ export default {
 	},
 	data() {
 		return {
-			customText: this.font.customText,
 			variableStyles: "",
 			featureStyles: "",
 			textStyles: "",
@@ -90,6 +90,9 @@ export default {
 		},
 		selectInstance(instance) {
 			this.selectedInstance = instance;
+		},
+		updatePreviewText(event) {
+			this.previewText = event.target.textContent;
 		},
 	},
 };
