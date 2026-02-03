@@ -79,5 +79,6 @@ export default {
 	font-size: calc(var(--font-multiplier) * var(--preview-font-size, 2rem));
 	padding: 1rem;
 	background: var(--light-grey);
+	color: black;
 }
 </style>

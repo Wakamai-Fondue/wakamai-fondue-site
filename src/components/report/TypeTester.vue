@@ -104,13 +104,8 @@ export default {
 	position: relative;
 	font-family: var(--font-stack);
 	font-size: calc(var(--font-multiplier) * var(--preview-font-size, 2rem));
-	max-width: var(--max-content-width);
-	margin: 0 auto 0 auto;
+	padding: 1rem;
 	background: var(--light-grey);
 	color: black;
-}
-
-.tester p {
-	padding: 1rem;
 }
 </style>
