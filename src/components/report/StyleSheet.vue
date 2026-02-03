@@ -18,8 +18,22 @@
 					multiple layout features together.
 				</p>
 				<div class="css-button-container">
-					<h3>Stylesheet options</h3>
-					<div class="css-options">
+					<header>
+						<h3>Stylesheet options</h3>
+						<label
+							><input type="checkbox" v-model="showOptions" />
+							Show options</label
+						>
+						<button
+							type="button"
+							class="button off download-css"
+							@click="getFontCSSLink()"
+						>
+							Download stylesheet!
+						</button>
+					</header>
+
+					<div class="css-options" v-show="showOptions">
 						<label class="css-namespace">
 							<input type="checkbox" v-model="useNamespace" />
 							Namespace:
@@ -29,31 +43,7 @@
 								:disabled="!useNamespace"
 							/>
 						</label>
-						<label>
-							<input
-								type="checkbox"
-								v-model="includeUnicodeRange"
-							/>
-							Unicode-range
-						</label>
-						<label v-if="hasFallbackFeatures">
-							<input
-								type="checkbox"
-								v-model="includeFontFeatureFallback"
-							/>
-							Font-feature-settings fallbacks
-						</label>
-						<label v-if="hasVariableInstances">
-							<input type="checkbox" v-model="includeVariables" />
-							Variable instances
-						</label>
-						<label v-if="hasDefaultOnFeatures">
-							<input
-								type="checkbox"
-								v-model="includeDefaultOnFeatures"
-							/>
-							Include on-by-default features
-						</label>
+
 						<label v-if="hasFallbackFeatures">
 							<input
 								type="checkbox"
@@ -61,14 +51,41 @@
 							/>
 							Use font-feature-settings only
 						</label>
+
+						<label v-if="hasVariableInstances">
+							<input type="checkbox" v-model="includeVariables" />
+							Variable instances
+						</label>
+
+						<label v-if="hasFallbackFeatures">
+							<input
+								type="checkbox"
+								v-model="includeFontFeatureFallback"
+							/>
+							Font-feature-settings fallbacks
+						</label>
+
+						<label v-if="hasFeatures">
+							<input type="checkbox" v-model="includeFeatures" />
+							OpenType features
+						</label>
+
+						<label v-if="hasDefaultOnFeatures">
+							<input
+								type="checkbox"
+								v-model="includeDefaultOnFeatures"
+							/>
+							Include on-by-default features
+						</label>
+
+						<label>
+							<input
+								type="checkbox"
+								v-model="includeUnicodeRange"
+							/>
+							Unicode-range
+						</label>
 					</div>
-					<button
-						type="button"
-						class="button off"
-						@click="getFontCSSLink()"
-					>
-						Download stylesheet!
-					</button>
 				</div>
 
 				<div class="code">
@@ -98,9 +115,11 @@ export default {
 	},
 	data() {
 		return {
+			showOptions: false,
 			includeUnicodeRange: false,
 			includeFontFeatureFallback: false,
 			includeVariables: true,
+			includeFeatures: true,
 			includeDefaultOnFeatures: false,
 			fontFeatureSettingsOnly: false,
 			useNamespace: false,
@@ -116,6 +135,7 @@ export default {
 					fontFeatureFallback: this.includeFontFeatureFallback,
 					fontFeatureSettingsOnly: this.fontFeatureSettingsOnly,
 					variables: this.includeVariables,
+					features: this.includeFeatures,
 					includeDefaultOnFeatures: this.includeDefaultOnFeatures,
 				},
 				namespace: this.useNamespace ? this.namespace : "",
@@ -127,6 +147,9 @@ export default {
 				this.font.variable?.instances &&
 				Object.keys(this.font.variable.instances).length > 0
 			);
+		},
+		hasFeatures() {
+			return this.font.features && this.font.features.length > 0;
 		},
 		hasDefaultOnFeatures() {
 			return this.font.features.some((f) => f.state === "on");
@@ -175,14 +198,18 @@ export default {
 .css-button-container {
 	background: white;
 	position: sticky;
-	display: grid;
-	grid-template-columns: 1fr auto;
-	gap: 0.5rem 1rem;
 	top: var(--nav-height);
 	margin-top: 2rem;
 	margin-bottom: 1rem;
-	padding: 0.5rem 0;
 	z-index: 1;
+}
+
+.css-button-container header {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	align-items: baseline;
+	gap: 1em;
 }
 
 @media screen and (max-width: 900px) {
@@ -192,18 +219,24 @@ export default {
 }
 
 .css-button-container h3 {
-	grid-column: 1 / -1;
 	margin: 0;
 }
 
-.css-button-container button {
-	justify-self: center;
+.css-button-container h3 button {
+	all: unset;
+	cursor: pointer;
+}
+
+.download-css {
+	justify-self: end;
 	min-width: 0;
 	padding: 0.5em 1em;
 	font-size: 1.5rem;
 }
 
 .css-options {
+	margin-top: 1em;
+	grid-column: 1 / -1;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 0.5rem 1rem;
