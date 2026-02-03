@@ -203,6 +203,9 @@ export default {
 	--max-content-width: 68rem;
 
 	--nav-height: 4rem;
+
+	/* Multiply preview font size for "full" testers */
+	--font-multiplier: 1.5;
 }
 
 @font-face {

@@ -2,20 +2,18 @@
 	<section id="tester">
 		<h2 class="section-title">Tester</h2>
 		<div class="content tester-container">
-			<div
-				class="tester"
-				:style="
-					$filters.inlinestyle(
-						`${variableStyles}${featureStyles}${textStyles}`
-					)
-				"
-				:lang="language"
-			>
+			<div class="tester">
 				<p
 					dir="auto"
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
+					:style="
+						$filters.inlinestyle(
+							`${variableStyles}${featureStyles}${textStyles}`
+						)
+					"
+					:lang="language"
 				>
 					{{ customText || previewText }}
 				</p>
@@ -105,7 +103,7 @@ export default {
 .tester {
 	position: relative;
 	font-family: var(--font-stack);
-	font-size: var(--preview-font-size, 48px);
+	font-size: calc(var(--font-multiplier) * var(--preview-font-size, 2rem));
 	max-width: var(--max-content-width);
 	margin: 0 auto 0 auto;
 	background: var(--light-grey);
