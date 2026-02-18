@@ -23,12 +23,17 @@
 import TheFondue from "./components/TheFondue.vue";
 import FontReport from "./components/FontReport.vue";
 import InfoModal from "./components/InfoModal.vue";
+import { usePreferences } from "@/composables/usePreferences.js";
 
 export default {
 	components: {
 		TheFondue,
 		FontReport,
 		InfoModal,
+	},
+	setup() {
+		const { setPreviewText } = usePreferences();
+		return { setPreviewText };
 	},
 	data() {
 		return {
@@ -78,6 +83,9 @@ export default {
 					that.error = false;
 					that.injectStyleSheet(fileOrBlob);
 					that.font = fondue;
+					if (fondue.customText) {
+						that.setPreviewText(fondue.customText);
+					}
 					that.$nextTick(() => {
 						that.working = false;
 					});
@@ -203,6 +211,9 @@ export default {
 	--max-content-width: 68rem;
 
 	--nav-height: 4rem;
+
+	/* Multiply preview font size for "full" testers */
+	--font-multiplier: 1.5;
 }
 
 @font-face {

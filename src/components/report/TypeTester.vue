@@ -2,22 +2,21 @@
 	<section id="tester">
 		<h2 class="section-title">Tester</h2>
 		<div class="content tester-container">
-			<div
-				class="tester"
-				:style="
-					$filters.inlinestyle(
-						`${variableStyles}${featureStyles}${textStyles}`
-					)
-				"
-				:lang="language"
-			>
+			<div class="tester">
 				<p
 					dir="auto"
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
+					:style="
+						$filters.inlinestyle(
+							`${variableStyles}${featureStyles}${textStyles}`
+						)
+					"
+					:lang="language"
+					@input="updatePreviewText"
 				>
-					{{ customText || previewText }}
+					{{ previewText }}
 				</p>
 			</div>
 
@@ -68,7 +67,6 @@ export default {
 	},
 	data() {
 		return {
-			customText: this.font.customText,
 			variableStyles: "",
 			featureStyles: "",
 			textStyles: "",
@@ -93,6 +91,9 @@ export default {
 		selectInstance(instance) {
 			this.selectedInstance = instance;
 		},
+		updatePreviewText(event) {
+			this.previewText = event.target.textContent;
+		},
 	},
 };
 </script>
@@ -105,14 +106,9 @@ export default {
 .tester {
 	position: relative;
 	font-family: var(--font-stack);
-	font-size: var(--preview-font-size, 48px);
-	max-width: var(--max-content-width);
-	margin: 0 auto 0 auto;
+	font-size: calc(var(--font-multiplier) * var(--preview-font-size, 2rem));
+	padding: 1rem;
 	background: var(--light-grey);
 	color: black;
-}
-
-.tester p {
-	padding: 1rem;
 }
 </style>
