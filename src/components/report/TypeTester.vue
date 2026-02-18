@@ -15,7 +15,6 @@
 						)
 					"
 					:lang="language"
-					@input="updatePreviewText"
 				></p>
 			</div>
 
@@ -92,9 +91,6 @@ export default {
 		},
 		selectInstance(instance) {
 			this.selectedInstance = instance;
-		},
-		updatePreviewText(event) {
-			this.previewText = event.target.textContent;
 		},
 	},
 };
