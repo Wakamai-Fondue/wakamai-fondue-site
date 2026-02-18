@@ -4,6 +4,7 @@
 		<div class="content tester-container">
 			<div class="tester">
 				<p
+					ref="testerText"
 					dir="auto"
 					contenteditable="plaintext-only"
 					spellcheck="false"
@@ -15,9 +16,7 @@
 					"
 					:lang="language"
 					@input="updatePreviewText"
-				>
-					{{ previewText }}
-				</p>
+				></p>
 			</div>
 
 			<TextControls
@@ -73,6 +72,9 @@ export default {
 			language: null,
 			selectedInstance: "",
 		};
+	},
+	mounted() {
+		this.$refs.testerText.textContent = this.previewText;
 	},
 	methods: {
 		updateVariableStyles(updatedStyles) {
