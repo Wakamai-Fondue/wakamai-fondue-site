@@ -344,7 +344,7 @@ export default {
 	background: var(--light-grey);
 	padding: 0.5rem;
 	margin-top: var(--small-margin);
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .feature-message {
