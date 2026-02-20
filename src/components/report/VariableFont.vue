@@ -4,6 +4,7 @@
 		<div class="content variable-tester-container">
 			<div class="variable-tester">
 				<p
+					ref="testerText"
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
@@ -12,9 +13,7 @@
 						(autoOpticalSizing ? '' : ' font-optical-sizing: none;')
 					"
 					@input="updatePreviewText"
-				>
-					{{ previewText }}
-				</p>
+				></p>
 			</div>
 			<VariableControls
 				:font="font"
@@ -53,6 +52,9 @@ export default {
 			variableStyles: "",
 			autoOpticalSizing: true,
 		};
+	},
+	mounted() {
+		this.$refs.testerText.textContent = this.previewText;
 	},
 	methods: {
 		updateVariableStyles(updatedStyles) {

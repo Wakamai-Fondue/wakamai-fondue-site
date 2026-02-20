@@ -12,10 +12,6 @@ export function usePreferences() {
 		previewText.value = text;
 	};
 
-	const resetPreviewText = () => {
-		previewText.value = DEFAULT_PREVIEW_TEXT;
-	};
-
 	const setFontSize = (size) => {
 		fontSize.value = size;
 		document.body.style.setProperty("--preview-font-size", `${size}px`);
@@ -33,7 +29,6 @@ export function usePreferences() {
 		previewText,
 		fontSize,
 		setPreviewText,
-		resetPreviewText,
 		setFontSize,
 		resetFontSize,
 	};

@@ -4,6 +4,7 @@
 		<div class="content tester-container">
 			<div class="tester">
 				<p
+					ref="testerText"
 					dir="auto"
 					contenteditable="plaintext-only"
 					spellcheck="false"
@@ -14,10 +15,7 @@
 						)
 					"
 					:lang="language"
-					@input="updatePreviewText"
-				>
-					{{ previewText }}
-				</p>
+				></p>
 			</div>
 
 			<TextControls
@@ -74,6 +72,9 @@ export default {
 			selectedInstance: "",
 		};
 	},
+	mounted() {
+		this.$refs.testerText.textContent = this.previewText;
+	},
 	methods: {
 		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
@@ -90,9 +91,6 @@ export default {
 		},
 		selectInstance(instance) {
 			this.selectedInstance = instance;
-		},
-		updatePreviewText(event) {
-			this.previewText = event.target.textContent;
 		},
 	},
 };
