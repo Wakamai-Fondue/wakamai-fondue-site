@@ -16,20 +16,21 @@
 				</template>
 			</p>
 			<template v-if="palettes.length">
-				<h3>Palettes</h3>
-				<ul
-					class="palette"
+				<template
 					v-for="(palette, palIndex) in palettes"
 					:key="`pal_${palIndex}`"
 				>
-					<li
-						v-for="(color, colorIndex) in palette"
-						:key="`clr_${palIndex}_${colorIndex}`"
-						:style="{ background: color }"
-					>
-						<span class="label">{{ color }}</span>
-					</li>
-				</ul>
+					<h3>Palette {{ palIndex }}</h3>
+					<ul class="palette">
+						<li
+							v-for="(color, colorIndex) in palette"
+							:key="`clr_${palIndex}_${colorIndex}`"
+							:style="{ background: color }"
+						>
+							<span class="label">{{ color }}</span>
+						</li>
+					</ul>
+				</template>
 			</template>
 		</div>
 	</section>
@@ -51,7 +52,6 @@ export default {
 .palette {
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 1rem;
 }
 
 .palette li {
