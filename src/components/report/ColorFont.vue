@@ -20,10 +20,15 @@
 					v-for="(palette, palIndex) in palettes"
 					:key="`pal_${palIndex}`"
 				>
-					<h3>Palette {{ palIndex }}</h3>
+					<h3>
+						Palette {{ palIndex }}
+						<template v-if="palette.name"
+							>— {{ palette.name }}</template
+						>
+					</h3>
 					<ul class="palette">
 						<li
-							v-for="(color, colorIndex) in palette"
+							v-for="(color, colorIndex) in palette.colors"
 							:key="`clr_${palIndex}_${colorIndex}`"
 							:style="{ background: color }"
 						>
