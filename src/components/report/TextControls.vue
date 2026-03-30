@@ -20,19 +20,40 @@
 			</label>
 		</div>
 		<div v-if="font.isVariable && hasInstances" class="instances-select">
-			<select
-				name="Named instances"
-				@change="selectInstance($event.target.value)"
-				:value="activeInstance"
-			>
-				<option
-					v-for="(_, instance) in instances"
-					:key="instance"
-					:value="instance"
+			<label>
+				<span>Instance</span>
+				<select
+					name="Named instances"
+					@change="selectInstance($event.target.value)"
+					:value="activeInstance"
 				>
-					{{ instance }}
-				</option>
-			</select>
+					<option
+						v-for="(_, instance) in instances"
+						:key="instance"
+						:value="instance"
+					>
+						{{ instance }}
+					</option>
+				</select>
+			</label>
+		</div>
+		<div v-if="palettes.length > 1" class="palette-select">
+			<label>
+				<span>Palette</span>
+				<select
+					name="palette"
+					@change="selectPalette($event.target.value)"
+					:value="activePalette"
+				>
+					<option
+						v-for="(palette, index) in palettes"
+						:key="index"
+						:value="index"
+					>
+						{{ getPaletteLabel(palette, index) }}
+					</option>
+				</select>
+			</label>
 		</div>
 		<div class="alignment-buttons">
 			<span>Alignment</span>
@@ -104,7 +125,12 @@
 <script>
 export default {
 	props: ["font"],
-	emits: ["updateTextStyles", "updateLanguage", "selectInstance"],
+	emits: [
+		"updateTextStyles",
+		"updateLanguage",
+		"selectInstance",
+		"selectPalette",
+	],
 	data() {
 		return {
 			textAlign: "initial",
@@ -115,6 +141,8 @@ export default {
 				this.font.isVariable && this.font.variable.defaultInstance
 					? this.font.variable.defaultInstance
 					: "",
+			palettes: this.font.colorPalettes || [],
+			activePalette: 0,
 		};
 	},
 	computed: {
@@ -137,6 +165,16 @@ export default {
 			this.activeInstance = instance;
 			this.$emit("selectInstance", instance);
 		},
+		selectPalette(index) {
+			this.activePalette = parseInt(index, 10);
+			this.$emit("selectPalette", this.activePalette);
+		},
+		getPaletteLabel(palette, index) {
+			if (palette.name) {
+				return palette.name;
+			}
+			return `Palette ${index}`;
+		},
 	},
 };
 </script>
@@ -155,11 +193,30 @@ export default {
 	align-items: center;
 }
 
+.text-controls select {
+	min-width: 8em;
+}
+
 .language-select,
+.palette-select,
 .alignment-buttons {
 	display: flex;
 	align-items: center;
 }
+
+.palette-select label {
+	display: flex;
+	align-items: center;
+}
+
+label span,
+.alignment-buttons span {
+	margin-right: 0.5em;
+}
+/* .palette-select span {
+	margin-right: 0.5em;
+	border: 10px solid hotpink;
+} */
 
 .alignment-buttons .button {
 	border-radius: 0;
@@ -182,10 +239,10 @@ export default {
 	fill: currentColor;
 }
 
-.language-select span,
+/* .language-select span,
 .alignment-buttons span {
 	margin-right: 0.5em;
-}
+} */
 
 .alignment-buttons .button:first-of-type {
 	border-top-left-radius: 0.2rem;
