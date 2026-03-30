@@ -81,7 +81,7 @@ export default {
 			that.fromDataBuffer(data, fileName)
 				.then((fondue) => {
 					that.error = false;
-					that.injectStyleSheet(fileOrBlob);
+					that.injectStyleSheet(fileOrBlob, fondue);
 					that.font = fondue;
 					if (fondue.customText) {
 						that.setPreviewText(fondue.customText);
@@ -152,7 +152,7 @@ export default {
 				};
 			});
 		},
-		injectStyleSheet(file) {
+		injectStyleSheet(file, fondue) {
 			// Use the "uploaded" font on the page
 			const id = "wakamai-fondue-custom-stylesheet";
 			let style = document.getElementById(id);
@@ -166,12 +166,25 @@ export default {
 
 			// Inject new stylesheet
 			const objectURL = URL.createObjectURL(file);
+			let css = `@font-face { font-family: 'wakamai-fondue'; src: url('${objectURL}'); }`;
+
+			// Add @font-palette-values for color fonts with multiple palettes
+			const paletteCss = fondue.stylesheet({
+				namespace: "wf",
+				fontFamily: "wakamai-fondue",
+				include: {
+					fontFace: false,
+					features: false,
+					variables: false,
+					palettes: true,
+				},
+			});
+			if (paletteCss.trim()) {
+				css += "\n" + paletteCss;
+			}
+
 			style.innerHTML = "";
-			style.appendChild(
-				document.createTextNode(
-					`@font-face { font-family: 'wakamai-fondue'; src: url('${objectURL}'); }`
-				)
-			);
+			style.appendChild(document.createTextNode(css));
 		},
 		toggleInfoModal(forceClose) {
 			if (forceClose) {

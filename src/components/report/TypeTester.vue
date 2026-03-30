@@ -11,7 +11,7 @@
 					autocorrect="off"
 					:style="
 						$filters.inlinestyle(
-							`${variableStyles}${featureStyles}${textStyles}`
+							`${variableStyles}${featureStyles}${textStyles}${paletteStyles}`
 						)
 					"
 					:lang="language"
@@ -23,6 +23,7 @@
 				@updateTextStyles="updateTextStyles"
 				@updateLanguage="updateLanguage"
 				@selectInstance="selectInstance"
+				@selectPalette="selectPalette"
 			/>
 			<FeatureControls
 				:font="font"
@@ -68,6 +69,7 @@ export default {
 			variableStyles: "",
 			featureStyles: "",
 			textStyles: "",
+			paletteStyles: "",
 			language: null,
 			selectedInstance: "",
 		};
@@ -91,6 +93,15 @@ export default {
 		},
 		selectInstance(instance) {
 			this.selectedInstance = instance;
+		},
+		selectPalette(index) {
+			if (index === 0) {
+				this.paletteStyles = "";
+			} else {
+				const palette = this.font.colorPalettes[index];
+				const cssName = palette?.cssName || `palette-${index}`;
+				this.paletteStyles = `font-palette: --wf-${cssName};`;
+			}
 		},
 	},
 };
