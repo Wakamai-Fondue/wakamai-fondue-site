@@ -16,6 +16,11 @@
 				Nieskens</a
 			>
 		</p>
+		<p class="github">
+			<a href="https://github.com/Wakamai-Fondue/wakamai-fondue-site/issues/" target="_blank"
+				>Report an issue or idea on Github</a
+			>
+		</p>
 	</footer>
 </template>
 
@@ -39,5 +44,9 @@ footer img {
 footer a {
 	text-decoration: none;
 	color: inherit;
+}
+
+footer p.github {
+	font-size: smaller;
 }
 </style>
