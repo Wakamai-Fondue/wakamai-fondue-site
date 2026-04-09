@@ -8,7 +8,7 @@
 		<OpenTypeFeatures v-if="font.hasFeatures" :font="font" />
 		<CharGrid :font="font" />
 		<StyleSheet :font="font" />
-		<SiteFooter />
+		<SiteFooter @toggleInfoModal="$emit('toggleInfoModal')" />
 	</section>
 </template>
 
@@ -25,6 +25,7 @@ import FontReportNavigation from "./FontReportNavigation.vue";
 
 export default {
 	props: ["font", "isExamplefont"],
+	emits: ["toggleInfoModal"],
 	components: {
 		FontSummary,
 		TypeTester,

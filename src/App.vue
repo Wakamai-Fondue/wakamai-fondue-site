@@ -14,7 +14,11 @@
 			@toggleInfoModal="toggleInfoModal"
 			:error="error"
 		/>
-		<FontReport :font="font" :isExamplefont="isExamplefont" />
+		<FontReport
+			:font="font"
+			:isExamplefont="isExamplefont"
+			@toggleInfoModal="toggleInfoModal"
+		/>
 		<InfoModal v-if="showInfoModal" @toggleInfoModal="toggleInfoModal" />
 	</div>
 </template>
