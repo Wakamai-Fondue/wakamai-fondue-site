@@ -124,12 +124,16 @@
 			class="named-instances"
 		>
 			<h3 v-if="showTitles">Instances</h3>
+			<p>
+				This font has <strong>{{ instanceCount }} instances</strong>.
+				These are pre-configured, named settings for the axes values.
+			</p>
 			<div>
 				<span
 					class="instances-dropdown-label"
 					v-if="showInstancesLabel !== false"
 				>
-					{{ instanceCount }} Instances
+					Instance
 				</span>
 				<InstancesSelect
 					:font="font"
@@ -455,6 +459,10 @@ export default {
 	pointer-events: none;
 }
 
+.named-instances > p {
+	margin-bottom: 1rem;
+}
+
 .named-instances > div {
 	display: flex;
 	align-items: center;
@@ -514,10 +522,6 @@ export default {
 	background: var(--light-grey);
 	margin-top: var(--small-margin);
 	padding: 1rem;
-}
-
-.instances-dropdown-label {
-	margin-right: 0.5em;
 }
 
 .code {

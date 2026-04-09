@@ -50,3 +50,9 @@ export default {
 	emits: ["update:modelValue"],
 };
 </script>
+
+<style scoped>
+span + select {
+	margin-left: 0.5em;
+}
+</style>

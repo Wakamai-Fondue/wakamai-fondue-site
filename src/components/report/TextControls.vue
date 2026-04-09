@@ -176,13 +176,17 @@ export default {
 	justify-content: space-between;
 }
 
-.text-controls select {
-	min-width: 8em;
+span + select {
+	margin-left: 0.5em;
 }
 
 .alignment-buttons {
 	display: flex;
 	align-items: center;
+}
+
+.alignment-buttons span {
+	margin-right: 0.5em;
 }
 
 .alignment-buttons .button {
@@ -205,11 +209,6 @@ export default {
 	height: 0.85rem;
 	fill: currentColor;
 }
-
-/* .language-select span,
-.alignment-buttons span {
-	margin-right: 0.5em;
-} */
 
 .alignment-buttons .button:first-of-type {
 	border-top-left-radius: 0.2rem;
