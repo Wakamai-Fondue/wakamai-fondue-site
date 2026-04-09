@@ -145,7 +145,7 @@ export default {
 			requestAnimationFrame(() => {
 				// Grab font from server
 				const request = new XMLHttpRequest();
-				request.open("GET", `/${filename}`, true);
+				request.open("GET", `/font/${filename}`, true);
 				request.responseType = "blob";
 				request.send();
 
