@@ -131,20 +131,12 @@
 				>
 					{{ instanceCount }} Named instances
 				</span>
-				<select
-					name="Named instances"
-					@change="selectInstance($event.target.value)"
-					:value="activeInstance"
-				>
-					<option
-						v-for="(_, instance) in instances"
-						:key="instance"
-						:value="instance"
-						:selected="instance === activeInstance"
-					>
-						{{ instance }}
-					</option>
-				</select>
+				<InstancesSelect
+					:font="font"
+					:modelValue="activeInstance"
+					:showLabel="false"
+					@update:modelValue="selectInstance"
+				/>
 				<label class="flip-state" v-if="showInstancesPreviews">
 					<input type="checkbox" v-model="showPreviews" /><span>
 						Show previews
@@ -174,6 +166,7 @@
 <script>
 import Prism from "vue-prism-component";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
+import InstancesSelect from "@/components/report/InstancesSelect.vue";
 
 export default {
 	props: [
@@ -194,10 +187,11 @@ export default {
 	components: {
 		Prism,
 		CopyToClipboard,
+		InstancesSelect,
 	},
 	data() {
 		return {
-			activeInstance: "",
+			activeInstance: this.font.variable.defaultInstance || "",
 			axes: this.font.variable.axes,
 			instances: this.font.variable.instances,
 			currentStates: {},

@@ -19,24 +19,12 @@
 				</select>
 			</label>
 		</div>
-		<div v-if="font.isVariable && hasInstances" class="instances-select">
-			<label>
-				<span>Instance</span>
-				<select
-					name="Named instances"
-					@change="selectInstance($event.target.value)"
-					:value="activeInstance"
-				>
-					<option
-						v-for="(_, instance) in instances"
-						:key="instance"
-						:value="instance"
-					>
-						{{ instance }}
-					</option>
-				</select>
-			</label>
-		</div>
+		<InstancesSelect
+			v-if="font.isVariable && hasInstances"
+			:font="font"
+			:modelValue="activeInstance"
+			@update:modelValue="selectInstance"
+		/>
 		<div v-if="palettes.length > 1" class="palette-select">
 			<label>
 				<span>Palette</span>
@@ -123,7 +111,12 @@
 </template>
 
 <script>
+import InstancesSelect from "@/components/report/InstancesSelect.vue";
+
 export default {
+	components: {
+		InstancesSelect,
+	},
 	props: ["font"],
 	emits: [
 		"updateTextStyles",
@@ -136,18 +129,17 @@ export default {
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
-			instances: this.font.isVariable ? this.font.variable.instances : {},
-			activeInstance:
-				this.font.isVariable && this.font.variable.defaultInstance
-					? this.font.variable.defaultInstance
-					: "",
+			activeInstance: this.font.variable?.defaultInstance || "",
 			palettes: this.font.colorPalettes || [],
 			activePalette: 0,
 		};
 	},
 	computed: {
 		hasInstances() {
-			return Object.entries(this.instances).length > 0;
+			return (
+				this.font.isVariable &&
+				Object.entries(this.font.variable.instances).length > 0
+			);
 		},
 	},
 	methods: {
