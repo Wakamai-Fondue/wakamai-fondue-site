@@ -94,7 +94,7 @@
 			v-if="hasIntances && showInstances === 'list'"
 			class="instances-list"
 		>
-			<h3 v-if="showTitles">Named instances</h3>
+			<h3 v-if="showTitles">Instances</h3>
 			<ul>
 				<li v-for="(_, instance) in instances" :key="instance">
 					<button
@@ -123,28 +123,24 @@
 			"
 			class="named-instances"
 		>
-			<h3 v-if="showTitles">Named instances</h3>
+			<h3 v-if="showTitles">Instances</h3>
+			<p>
+				This font has <strong>{{ instanceCount }} instances</strong>.
+				These are pre-configured, named settings for the axes values.
+			</p>
 			<div>
 				<span
 					class="instances-dropdown-label"
 					v-if="showInstancesLabel !== false"
 				>
-					{{ instanceCount }} Named instances
+					Instance
 				</span>
-				<select
-					name="Named instances"
-					@change="selectInstance($event.target.value)"
-					:value="activeInstance"
-				>
-					<option
-						v-for="(_, instance) in instances"
-						:key="instance"
-						:value="instance"
-						:selected="instance === activeInstance"
-					>
-						{{ instance }}
-					</option>
-				</select>
+				<InstancesSelect
+					:font="font"
+					:modelValue="activeInstance"
+					:showLabel="false"
+					@update:modelValue="selectInstance"
+				/>
 				<label class="flip-state" v-if="showInstancesPreviews">
 					<input type="checkbox" v-model="showPreviews" /><span>
 						Show previews
@@ -174,6 +170,7 @@
 <script>
 import Prism from "vue-prism-component";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
+import InstancesSelect from "@/components/report/InstancesSelect.vue";
 
 export default {
 	props: [
@@ -194,10 +191,11 @@ export default {
 	components: {
 		Prism,
 		CopyToClipboard,
+		InstancesSelect,
 	},
 	data() {
 		return {
-			activeInstance: "",
+			activeInstance: this.font.variable.defaultInstance || "",
 			axes: this.font.variable.axes,
 			instances: this.font.variable.instances,
 			currentStates: {},
@@ -461,6 +459,10 @@ export default {
 	pointer-events: none;
 }
 
+.named-instances > p {
+	margin-bottom: 1rem;
+}
+
 .named-instances > div {
 	display: flex;
 	align-items: center;
@@ -520,10 +522,6 @@ export default {
 	background: var(--light-grey);
 	margin-top: var(--small-margin);
 	padding: 1rem;
-}
-
-.instances-dropdown-label {
-	margin-right: 0.5em;
 }
 
 .code {

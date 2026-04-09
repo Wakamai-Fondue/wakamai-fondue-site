@@ -1,59 +1,43 @@
 <template>
 	<div class="text-controls">
 		<div v-if="languages.length > 0">
-			<label class="language-select">
-				<span>Language</span>
-				<select
-					name="language"
-					@change="setLanguage($event.target.value)"
-					:value="activeLanguage"
+			<span>Language</span>
+			<select
+				name="language"
+				@change="setLanguage($event.target.value)"
+				:value="activeLanguage"
+			>
+				<option value="">None</option>
+				<option
+					v-for="lang in languages"
+					:key="lang.html"
+					:value="lang.html"
 				>
-					<option value="">None</option>
-					<option
-						v-for="lang in languages"
-						:key="lang.html"
-						:value="lang.html"
-					>
-						{{ lang.name }} ({{ lang.html }})
-					</option>
-				</select>
-			</label>
+					{{ lang.name }} ({{ lang.html }})
+				</option>
+			</select>
 		</div>
-		<div v-if="font.isVariable && hasInstances" class="instances-select">
-			<label>
-				<span>Instance</span>
-				<select
-					name="Named instances"
-					@change="selectInstance($event.target.value)"
-					:value="activeInstance"
-				>
-					<option
-						v-for="(_, instance) in instances"
-						:key="instance"
-						:value="instance"
-					>
-						{{ instance }}
-					</option>
-				</select>
-			</label>
-		</div>
+		<InstancesSelect
+			v-if="font.isVariable && hasInstances"
+			:font="font"
+			:modelValue="activeInstance"
+			@update:modelValue="selectInstance"
+		/>
 		<div v-if="palettes.length > 1" class="palette-select">
-			<label>
-				<span>Palette</span>
-				<select
-					name="palette"
-					@change="selectPalette($event.target.value)"
-					:value="activePalette"
+			<span>Palette</span>
+			<select
+				name="palette"
+				@change="selectPalette($event.target.value)"
+				:value="activePalette"
+			>
+				<option
+					v-for="(palette, index) in palettes"
+					:key="index"
+					:value="index"
 				>
-					<option
-						v-for="(palette, index) in palettes"
-						:key="index"
-						:value="index"
-					>
-						{{ getPaletteLabel(palette, index) }}
-					</option>
-				</select>
-			</label>
+					{{ getPaletteLabel(palette, index) }}
+				</option>
+			</select>
 		</div>
 		<div class="alignment-buttons">
 			<span>Alignment</span>
@@ -123,7 +107,12 @@
 </template>
 
 <script>
+import InstancesSelect from "@/components/report/InstancesSelect.vue";
+
 export default {
+	components: {
+		InstancesSelect,
+	},
 	props: ["font"],
 	emits: [
 		"updateTextStyles",
@@ -136,18 +125,17 @@ export default {
 			textAlign: "initial",
 			activeLanguage: null,
 			languages: this.font.languageSystems,
-			instances: this.font.isVariable ? this.font.variable.instances : {},
-			activeInstance:
-				this.font.isVariable && this.font.variable.defaultInstance
-					? this.font.variable.defaultInstance
-					: "",
+			activeInstance: this.font.variable?.defaultInstance || "",
 			palettes: this.font.colorPalettes || [],
 			activePalette: 0,
 		};
 	},
 	computed: {
 		hasInstances() {
-			return Object.entries(this.instances).length > 0;
+			return (
+				this.font.isVariable &&
+				Object.entries(this.font.variable.instances).length > 0
+			);
 		},
 	},
 	methods: {
@@ -188,35 +176,18 @@ export default {
 	justify-content: space-between;
 }
 
-.text-controls label {
-	display: flex;
-	align-items: center;
+span + select {
+	margin-left: 0.5em;
 }
 
-.text-controls select {
-	min-width: 8em;
-}
-
-.language-select,
-.palette-select,
 .alignment-buttons {
 	display: flex;
 	align-items: center;
 }
 
-.palette-select label {
-	display: flex;
-	align-items: center;
-}
-
-label span,
 .alignment-buttons span {
 	margin-right: 0.5em;
 }
-/* .palette-select span {
-	margin-right: 0.5em;
-	border: 10px solid hotpink;
-} */
 
 .alignment-buttons .button {
 	border-radius: 0;
@@ -238,11 +209,6 @@ label span,
 	height: 0.85rem;
 	fill: currentColor;
 }
-
-/* .language-select span,
-.alignment-buttons span {
-	margin-right: 0.5em;
-} */
 
 .alignment-buttons .button:first-of-type {
 	border-top-left-radius: 0.2rem;

@@ -22,4 +22,4 @@ pnpm-debug.log*
 *.sw?
 
 # Test fonts
-public/GimletVariable-VF.woff2
+src/public/font
