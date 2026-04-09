@@ -88,7 +88,7 @@ export default {
 	border: 0;
 	outline: 0;
 	cursor: pointer;
-	animation: woooo 2s linear infinite alternate both;
+	animation: woooo 1.25s ease-in-out infinite alternate both;
 }
 
 .info svg {
@@ -99,10 +99,10 @@ export default {
 
 @keyframes woooo {
 	from {
-		rotate: -10deg;
+		rotate: -16deg;
 	}
 	to {
-		rotate: 10deg;
+		rotate: 16deg;
 	}
 }
 </style>

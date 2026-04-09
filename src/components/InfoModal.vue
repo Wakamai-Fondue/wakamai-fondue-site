@@ -175,8 +175,8 @@ export default {
 .info {
 	position: fixed;
 	z-index: 100;
-	right: 1.5vw;
-	top: 1.25vw;
+	right: 1.5rem;
+	top: 1rem;
 	display: grid;
 	place-items: center;
 	width: 3rem;

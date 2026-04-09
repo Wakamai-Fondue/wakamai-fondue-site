@@ -36,24 +36,20 @@ footer {
 	background: black;
 	color: var(--offwhite);
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
+	gap: 1.25rem;
 	margin-top: 8rem;
-	padding: 4rem 0;
+	padding: 3rem 0;
 }
 
 footer img {
 	width: 12rem;
-	margin: 2rem;
 }
 
 footer a {
 	text-decoration: none;
 	color: inherit;
-}
-
-footer p {
-	margin-top: 2rem;
 }
 </style>
