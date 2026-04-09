@@ -13,9 +13,9 @@
 				<button
 					type="button"
 					class="button on"
-					@click="$emit('getExampleFont', 'GimletVariable-VF.woff2')"
+					@click="$emit('getExampleFont', 'Polymode-Roman-VF.woff2')"
 				>
-					Try with Gimlet
+					Try with Polymode Sans
 				</button>
 				<span class="errormessage" :class="{ show: error }">
 					<strong>Oops! I couldn't handle that file.</strong>
