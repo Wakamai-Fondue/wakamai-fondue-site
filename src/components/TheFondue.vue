@@ -69,10 +69,9 @@ export default {
 
 .logo {
 	position: absolute;
-	left: 1.5vw;
-	top: 1.5vw;
-	width: 12.5vw;
-	max-width: 10rem;
+	right: 1.5vw;
+	bottom: 1.5vw;
+	width: max(120px, 10vw);
 	z-index: 10;
 }
 
