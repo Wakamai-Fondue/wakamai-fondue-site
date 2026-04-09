@@ -1,25 +1,23 @@
 <template>
 	<div v-if="showLabel" class="instances-select">
-		<label>
-			<span>Instance</span>
-			<select
-				name="Named instances"
-				:value="modelValue"
-				@change="$emit('update:modelValue', $event.target.value)"
+		<span>Instance</span>
+		<select
+			name="Instances"
+			:value="modelValue"
+			@change="$emit('update:modelValue', $event.target.value)"
+		>
+			<option
+				v-for="(_, instance) in font.variable.instances"
+				:key="instance"
+				:value="instance"
 			>
-				<option
-					v-for="(_, instance) in font.variable.instances"
-					:key="instance"
-					:value="instance"
-				>
-					{{ instance }}
-				</option>
-			</select>
-		</label>
+				{{ instance }}
+			</option>
+		</select>
 	</div>
 	<select
 		v-else
-		name="Named instances"
+		name="Instances"
 		:value="modelValue"
 		@change="$emit('update:modelValue', $event.target.value)"
 	>

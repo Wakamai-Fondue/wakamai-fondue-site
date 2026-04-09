@@ -94,7 +94,7 @@
 			v-if="hasIntances && showInstances === 'list'"
 			class="instances-list"
 		>
-			<h3 v-if="showTitles">Named instances</h3>
+			<h3 v-if="showTitles">Instances</h3>
 			<ul>
 				<li v-for="(_, instance) in instances" :key="instance">
 					<button
@@ -123,13 +123,13 @@
 			"
 			class="named-instances"
 		>
-			<h3 v-if="showTitles">Named instances</h3>
+			<h3 v-if="showTitles">Instances</h3>
 			<div>
 				<span
 					class="instances-dropdown-label"
 					v-if="showInstancesLabel !== false"
 				>
-					{{ instanceCount }} Named instances
+					{{ instanceCount }} Instances
 				</span>
 				<InstancesSelect
 					:font="font"

@@ -1,23 +1,21 @@
 <template>
 	<div class="text-controls">
 		<div v-if="languages.length > 0">
-			<label class="language-select">
-				<span>Language</span>
-				<select
-					name="language"
-					@change="setLanguage($event.target.value)"
-					:value="activeLanguage"
+			<span>Language</span>
+			<select
+				name="language"
+				@change="setLanguage($event.target.value)"
+				:value="activeLanguage"
+			>
+				<option value="">None</option>
+				<option
+					v-for="lang in languages"
+					:key="lang.html"
+					:value="lang.html"
 				>
-					<option value="">None</option>
-					<option
-						v-for="lang in languages"
-						:key="lang.html"
-						:value="lang.html"
-					>
-						{{ lang.name }} ({{ lang.html }})
-					</option>
-				</select>
-			</label>
+					{{ lang.name }} ({{ lang.html }})
+				</option>
+			</select>
 		</div>
 		<InstancesSelect
 			v-if="font.isVariable && hasInstances"
@@ -26,22 +24,20 @@
 			@update:modelValue="selectInstance"
 		/>
 		<div v-if="palettes.length > 1" class="palette-select">
-			<label>
-				<span>Palette</span>
-				<select
-					name="palette"
-					@change="selectPalette($event.target.value)"
-					:value="activePalette"
+			<span>Palette</span>
+			<select
+				name="palette"
+				@change="selectPalette($event.target.value)"
+				:value="activePalette"
+			>
+				<option
+					v-for="(palette, index) in palettes"
+					:key="index"
+					:value="index"
 				>
-					<option
-						v-for="(palette, index) in palettes"
-						:key="index"
-						:value="index"
-					>
-						{{ getPaletteLabel(palette, index) }}
-					</option>
-				</select>
-			</label>
+					{{ getPaletteLabel(palette, index) }}
+				</option>
+			</select>
 		</div>
 		<div class="alignment-buttons">
 			<span>Alignment</span>
@@ -180,35 +176,14 @@ export default {
 	justify-content: space-between;
 }
 
-.text-controls label {
-	display: flex;
-	align-items: center;
-}
-
 .text-controls select {
 	min-width: 8em;
 }
 
-.language-select,
-.palette-select,
 .alignment-buttons {
 	display: flex;
 	align-items: center;
 }
-
-.palette-select label {
-	display: flex;
-	align-items: center;
-}
-
-label span,
-.alignment-buttons span {
-	margin-right: 0.5em;
-}
-/* .palette-select span {
-	margin-right: 0.5em;
-	border: 10px solid hotpink;
-} */
 
 .alignment-buttons .button {
 	border-radius: 0;
