@@ -69,10 +69,9 @@ export default {
 
 .logo {
 	position: absolute;
-	left: 1.5vw;
-	top: 1.5vw;
-	width: 12.5vw;
-	max-width: 10rem;
+	right: 1.5vw;
+	bottom: 1.5vw;
+	width: max(120px, 10vw);
 	z-index: 10;
 }
 
@@ -88,7 +87,7 @@ export default {
 	border: 0;
 	outline: 0;
 	cursor: pointer;
-	animation: woooo 2s linear infinite alternate both;
+	animation: woooo 1.25s ease-in-out infinite alternate both;
 }
 
 .info svg {
@@ -99,10 +98,10 @@ export default {
 
 @keyframes woooo {
 	from {
-		rotate: -10deg;
+		rotate: -16deg;
 	}
 	to {
-		rotate: 10deg;
+		rotate: 16deg;
 	}
 }
 </style>
