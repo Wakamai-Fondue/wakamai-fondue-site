@@ -118,7 +118,7 @@ export default {
 }
 
 .info > strong {
-	font-size: 1.5em;
+	font-size: 2.25em;
 }
 
 .info button {

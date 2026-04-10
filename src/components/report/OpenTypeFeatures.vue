@@ -122,14 +122,31 @@
 						v-if="featureChars[feature.tag]['summary']['isCapped']"
 						class="feature-message"
 					>
-						There are
+						Showing the first 250 of
 						{{
 							featureChars[feature.tag]["summary"][
 								"totalCombinations"
 							]
 						}}
-						substitutions for this feature, only showing the first
-						250.
+						substitutions.
+					</div>
+
+					<div
+						v-if="
+							featureChars[feature.tag]['summary'][
+								'alreadyAlternateCount'
+							] > 0
+						"
+						class="feature-message"
+					>
+						There are
+						{{
+							featureChars[feature.tag]["summary"][
+								"alreadyAlternateCount"
+							]
+						}}
+						glyphs we couldn't trace back to a character. These are
+						probably substitutions of other substitutions.
 					</div>
 
 					<div class="code">
