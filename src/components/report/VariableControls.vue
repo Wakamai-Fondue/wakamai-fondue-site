@@ -125,8 +125,11 @@
 		>
 			<h3 v-if="showTitles">Instances</h3>
 			<p>
-				This font has <strong>{{ instanceCount }} instances</strong>.
-				These are pre-configured, named settings for the axes values.
+				This font has
+				<strong
+					>{{ instanceCount }}
+					{{ $filters.pluralize(instanceCount, "instance") }}</strong
+				>. These are pre-configured, named settings for the axes values.
 			</p>
 			<div>
 				<span

@@ -11,7 +11,7 @@
 				<a href="#charset">Characters</a>
 				<a href="#stylesheet" class="css">CSS</a>
 			</nav>
-			<FontSizeSlider />
+			<FontSizeSlider :visible="showFontSizeSlider" />
 		</div>
 	</div>
 </template>
@@ -22,6 +22,34 @@ import FontSizeSlider from "./FontSizeSlider.vue";
 export default {
 	components: {
 		FontSizeSlider,
+	},
+	data() {
+		return {
+			showFontSizeSlider: false,
+			observer: null,
+		};
+	},
+	mounted() {
+		const tester = document.getElementById("tester");
+		if (tester) {
+			this.observer = new IntersectionObserver(
+				(entries) => {
+					const entry = entries[0];
+					if (entry.isIntersecting) {
+						this.showFontSizeSlider = true;
+					} else if (entry.boundingClientRect.top > 0) {
+						this.showFontSizeSlider = false;
+					}
+				},
+				{ threshold: 0 }
+			);
+			this.observer.observe(tester);
+		}
+	},
+	beforeUnmount() {
+		if (this.observer) {
+			this.observer.disconnect();
+		}
 	},
 };
 </script>
