@@ -119,7 +119,10 @@
 					</template>
 
 					<div
-						v-if="featureChars[feature.tag]['summary']['isCapped']"
+						v-if="
+							featureChars[feature.tag]['summary']['isCapped'] &&
+							!expandedFeatures[feature.tag]
+						"
 						class="feature-message"
 					>
 						Showing the first 250 of
@@ -129,6 +132,12 @@
 							]
 						}}
 						substitutions.
+						<button
+							class="button"
+							@click="showAllCombinations(feature.tag)"
+						>
+							Show all
+						</button>
 					</div>
 
 					<div
@@ -184,6 +193,7 @@ export default {
 	data() {
 		return {
 			currentStates: [],
+			expandedFeatures: {},
 			hasOptionalFeatures:
 				this.font.features.filter((f) => f.state !== "fixed").length >
 				0,
@@ -266,15 +276,19 @@ export default {
 
 			return `font-feature-settings: "${feature}";`;
 		},
+		showAllCombinations(tag) {
+			this.expandedFeatures[tag] = true;
+		},
 		getCombinations(feature) {
-			if (feature.tag === "frac") {
-				const uniqueCombinations =
-					this.featureChars[feature.tag]["summary"][
-						"uniqueCombinations"
-					];
+			const summary = this.featureChars[feature.tag]["summary"];
+			const isExpanded = this.expandedFeatures[feature.tag];
+			const combinations = isExpanded
+				? summary["allCombinations"]
+				: summary["uniqueCombinations"];
 
+			if (feature.tag === "frac") {
 				const allChars = new Set();
-				uniqueCombinations.forEach((combo) => {
+				combinations.forEach((combo) => {
 					[...combo].forEach((char) => allChars.add(char));
 				});
 
@@ -298,12 +312,10 @@ export default {
 					return "1/1 1/2 1/3 1/4 1/5 1/6 1/7 1/8 1/9 2/3 4/5 6/7 8/9 10/10";
 				} else {
 					// ...else, show actual combinations
-					return uniqueCombinations.join(" ");
+					return combinations.join(" ");
 				}
 			} else {
-				return this.featureChars[feature.tag]["summary"][
-					"uniqueCombinations"
-				].join(" ");
+				return combinations.join(" ");
 			}
 		},
 		getMaxAlternates(lookup) {
