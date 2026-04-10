@@ -129,7 +129,7 @@
 							]
 						}}
 						substitutions for this feature, only showing the first
-						1000.
+						250.
 					</div>
 
 					<div class="code">
