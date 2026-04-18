@@ -1,7 +1,7 @@
 import { ref, watch } from "vue";
 
 const DEFAULT_PREVIEW_TEXT =
-	'The melting cheese & bread explode in a quick wave of joy: "1, 2, 3… zen!"';
+	'The melting cheese & bread explode in a quick wave of joy: "1, 2, 3... zen!?"';
 const DEFAULT_FONT_SIZE = 48;
 
 const previewText = ref(DEFAULT_PREVIEW_TEXT);

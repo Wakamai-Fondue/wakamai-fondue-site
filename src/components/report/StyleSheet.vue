@@ -199,9 +199,10 @@ export default {
 	background: white;
 	position: sticky;
 	top: var(--nav-height);
-	margin-top: 2rem;
-	margin-bottom: 1rem;
+	margin-top: calc(2rem - var(--small-margin));
+	margin-bottom: calc(1rem - var(--small-margin));;
 	z-index: 1;
+	padding: var(--small-margin) 0;
 }
 
 .css-button-container header {

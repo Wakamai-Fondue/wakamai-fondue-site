@@ -2,7 +2,7 @@
 	<section id="tester">
 		<h2 class="section-title">Tester</h2>
 		<div class="content tester-container">
-			<div class="tester">
+			<div class="tester" :class="{ sticky }">
 				<p
 					ref="testerText"
 					dir="auto"
@@ -16,6 +16,16 @@
 					"
 					:lang="language"
 				></p>
+				<button
+					contenteditable="false"
+					type="button"
+					alt="Pin text"
+					class="sticky-button"
+					:class="{ sticky }"
+					@click="sticky = !sticky"
+				>
+					📌
+				</button>
 			</div>
 
 			<TextControls
@@ -72,6 +82,7 @@ export default {
 			paletteStyles: "",
 			language: null,
 			selectedInstance: "",
+			sticky: false,
 		};
 	},
 	mounted() {
@@ -119,5 +130,27 @@ export default {
 	padding: 1rem;
 	background: var(--light-grey);
 	color: black;
+}
+
+.tester.sticky {
+	position: sticky;
+	top: var(--nav-height);
+}
+
+.sticky-button {
+	padding: var(--small-margin);
+	font-family: sans-serif;
+	border: 0;
+	background: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0.5;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+.sticky-button.sticky {
+	opacity: 1;
 }
 </style>

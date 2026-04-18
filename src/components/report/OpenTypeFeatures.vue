@@ -125,13 +125,13 @@
 						"
 						class="feature-message"
 					>
-						Showing the first 250 of
+						Showing 250 of
 						{{
 							featureChars[feature.tag]["summary"][
 								"totalCombinations"
 							]
 						}}
-						substitutions.
+						possible combinations.
 						<button
 							class="button"
 							@click="showAllCombinations(feature.tag)"
@@ -148,13 +148,28 @@
 						"
 						class="feature-message"
 					>
-						There are
+						There
+						{{
+							featureChars[feature.tag]["summary"][
+								"alreadyAlternateCount"
+							] === 1
+								? "is"
+								: "are"
+						}}
 						{{
 							featureChars[feature.tag]["summary"][
 								"alreadyAlternateCount"
 							]
 						}}
-						glyphs we couldn't trace back to a character. These are
+						{{
+							$filters.pluralize(
+								featureChars[feature.tag]["summary"][
+									"alreadyAlternateCount"
+								],
+								"glyph"
+							)
+						}}
+						we couldn't trace back to a character. These are
 						probably substitutions of other substitutions.
 					</div>
 
