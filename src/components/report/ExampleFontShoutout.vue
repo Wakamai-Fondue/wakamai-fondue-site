@@ -1,12 +1,15 @@
 <template>
 	<div class="example-font-shoutout">
 		<a href="https://polymodesans.com/" target="_blank">
-			<strong>Polymode Sans</strong>
+			<strong>Polymode</strong>
 		</a>
 		by
 		<a href="https://xyztype.com" target="_blank">XYZ Type</a>
-		is today's Wakamai Fondue demo font.
-		<a href="https://xyztype.com/fonts" target="_blank">Get it here!</a>
+		is today's Wakamai Fondue demo font!
+		<br />
+		<a href="https://xyztype.com/fonts" target="_blank" class="button on"
+			>Get it here!</a
+		>
 	</div>
 </template>
 
@@ -52,7 +55,14 @@
 	}
 }
 
-.example-font-shoutout a {
+.example-font-shoutout a:not(.button) {
 	color: var(--red);
+}
+
+.example-font-shoutout a.button {
+	display: inline-block;
+	margin-top: 0.5em;
+	text-decoration: none;
+	font-size: 0.9em;
 }
 </style>

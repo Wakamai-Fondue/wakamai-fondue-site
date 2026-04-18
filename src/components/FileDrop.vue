@@ -15,7 +15,7 @@
 					class="button on"
 					@click="$emit('getExampleFont', 'Polymode-Roman-VF.woff2')"
 				>
-					Try with Polymode Sans
+					Try with Polymode
 				</button>
 				<span class="errormessage" :class="{ show: error }">
 					<strong>Oops! I couldn't handle that file.</strong>
@@ -70,8 +70,8 @@ export default {
 
 .upload {
 	position: relative;
-	width: 50vmin;
-	height: 50vmin;
+	width: max(300px, 50vmin);
+	height: max(300px, 50vmin);
 	max-width: 500px;
 	max-height: 500px;
 	transition: transform 150ms;
@@ -118,7 +118,8 @@ export default {
 }
 
 .info > strong {
-	font-size: 1.5em;
+	font-size: 2.25em;
+	text-align: center;
 }
 
 .info button {

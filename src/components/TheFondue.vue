@@ -1,8 +1,8 @@
 <template>
 	<header class="fondue">
 		<picture>
-			<source srcset="@/assets/fondue.avif" type="image/avif" />
 			<source srcset="@/assets/fondue.webp" type="image/webp" />
+			<source srcset="@/assets/fondue.avif" type="image/avif" />
 			<img src="@/assets/fondue.jpg" alt="" />
 		</picture>
 		<button

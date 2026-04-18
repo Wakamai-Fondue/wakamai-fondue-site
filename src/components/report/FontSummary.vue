@@ -1,12 +1,14 @@
 <template>
 	<section class="summary content" id="summary">
-		<h1>{{ summary["Font name"] }}</h1>
+		<h1>{{ summary.familyName }}</h1>
 		<p class="oneliner">
 			This is a
 
 			<strong v-if="font.isHinted"> hinted</strong>
 
 			<strong v-if="font.isVariable"> variable</strong>
+			<strong v-else> {{ summary.subfamilyName }}</strong>
+
 			<strong v-if="font.isColor"> color</strong>
 
 			font with
@@ -144,11 +146,14 @@ export default {
 	text-overflow: ellipsis;
 	padding: 2rem 0;
 	margin: 4rem 0 0 0;
-	font-size: 4rem;
+	font-size: 6rem;
+	line-height: 1;
 }
 
 .oneliner {
 	text-align: center;
+	margin-bottom: 3rem;
+	line-height: 1.5;
 }
 
 .details {
