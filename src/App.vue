@@ -116,7 +116,9 @@ export default {
 						that.working = false;
 					});
 				})
-				.catch(function () {
+				.catch(function (error) {
+					// eslint-disable-next-line no-console
+					console.error(error);
 					that.error = true;
 					that.working = false;
 				});
@@ -230,9 +232,9 @@ export default {
 				const buffer = await blob.arrayBuffer();
 				const filename = fontData.postscriptName || fontData.fullName;
 				this.loadFondue(blob, buffer, filename, that);
-			} catch (err) {
+			} catch (error) {
 				// eslint-disable-next-line no-console
-				console.error(err);
+				console.error(error);
 				this.error = true;
 				this.working = false;
 			}

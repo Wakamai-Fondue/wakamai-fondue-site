@@ -59,12 +59,12 @@ export default {
 				const fonts = await window.queryLocalFonts();
 				this.fonts = fonts;
 				this.$emit("permissionChange", "granted");
-			} catch (err) {
-				if (err.name === "NotAllowedError") {
+			} catch (error) {
+				if (error.name === "NotAllowedError") {
 					this.$emit("permissionChange", "denied");
 				} else {
 					// eslint-disable-next-line no-console
-					console.error("Error querying local fonts:", err);
+					console.error(error);
 				}
 			}
 		},
