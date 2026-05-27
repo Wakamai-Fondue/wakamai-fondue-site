@@ -126,13 +126,26 @@
 						class="feature-message"
 					>
 						Showing 250 of
-						{{
+						<template
+							v-if="
+								featureChars[feature.tag]['summary'][
+									'exceededMax'
+								]
+							"
+							>more than 10000</template
+						>
+						<template v-else>{{
 							featureChars[feature.tag]["summary"][
 								"totalCombinations"
 							]
-						}}
+						}}</template>
 						possible combinations.
 						<button
+							v-if="
+								!featureChars[feature.tag]['summary'][
+									'exceededMax'
+								]
+							"
 							class="button"
 							@click="showAllCombinations(feature.tag)"
 						>
@@ -388,7 +401,6 @@ export default {
 	background: var(--light-grey);
 	padding: 0.5rem;
 	margin-top: var(--small-margin);
-	/* overflow: hidden; */
 }
 
 .feature-message {
