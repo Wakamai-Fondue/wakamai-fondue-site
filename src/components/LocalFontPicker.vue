@@ -41,15 +41,20 @@ export default {
 			fonts: [],
 		};
 	},
-	methods: {
-		async handleInteraction(event) {
-			if (this.permission === "denied" || this.fonts.length > 0) {
-				return;
+	mounted() {
+		if (this.permission === "granted") {
+			this.loadFonts();
+		}
+	},
+	watch: {
+		permission(newVal) {
+			if (newVal === "granted" && this.fonts.length === 0) {
+				this.loadFonts();
 			}
-
-			// Prevent select from opening until we have fonts
-			event.preventDefault();
-
+		},
+	},
+	methods: {
+		async loadFonts() {
 			try {
 				const fonts = await window.queryLocalFonts();
 				this.fonts = fonts;
@@ -62,6 +67,16 @@ export default {
 					console.error("Error querying local fonts:", err);
 				}
 			}
+		},
+		async handleInteraction(event) {
+			if (this.permission === "denied" || this.fonts.length > 0) {
+				return;
+			}
+
+			// Prevent select from opening until we have fonts
+			event.preventDefault();
+
+			await this.loadFonts();
 		},
 		handleChange(event) {
 			const postscriptName = event.target.value;
@@ -83,5 +98,7 @@ export default {
 	margin-top: 0.75rem;
 	position: relative;
 	z-index: 1;
+	width: 10rem;
+	text-align: center;
 }
 </style>
