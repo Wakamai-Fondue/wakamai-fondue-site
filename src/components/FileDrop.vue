@@ -17,6 +17,14 @@
 				>
 					Try with Polymode
 				</button>
+				<LocalFontPicker
+					:supported="localFontsSupported"
+					:permission="localFontsPermission"
+					@select="$emit('loadLocalFont', $event)"
+					@permissionChange="
+						$emit('localFontsPermissionChange', $event)
+					"
+				/>
 				<span class="errormessage" :class="{ show: error }">
 					<strong>Oops! I couldn't handle that file.</strong>
 					<a href="mailto:brokenfonts@pixelambacht.nl"
@@ -29,9 +37,19 @@
 </template>
 
 <script>
+import LocalFontPicker from "./LocalFontPicker.vue";
+
 export default {
-	props: ["error"],
-	emits: ["getFont", "getExampleFont"],
+	components: {
+		LocalFontPicker,
+	},
+	props: ["error", "localFontsSupported", "localFontsPermission"],
+	emits: [
+		"getFont",
+		"getExampleFont",
+		"loadLocalFont",
+		"localFontsPermissionChange",
+	],
 };
 </script>
 

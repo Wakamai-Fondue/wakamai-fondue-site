@@ -19,8 +19,14 @@
 		</button>
 		<FileDrop
 			:error="error"
+			:localFontsSupported="localFontsSupported"
+			:localFontsPermission="localFontsPermission"
 			@getFont="$emit('getFont', $event)"
 			@getExampleFont="$emit('getExampleFont', $event)"
+			@loadLocalFont="$emit('loadLocalFont', $event)"
+			@localFontsPermissionChange="
+				$emit('localFontsPermissionChange', $event)
+			"
 		/>
 		<a
 			href="https://pixelambacht.nl"
@@ -36,8 +42,14 @@
 import FileDrop from "./FileDrop.vue";
 
 export default {
-	props: ["error"],
-	emits: ["getFont", "getExampleFont", "toggleInfoModal"],
+	props: ["error", "localFontsSupported", "localFontsPermission"],
+	emits: [
+		"getFont",
+		"getExampleFont",
+		"toggleInfoModal",
+		"loadLocalFont",
+		"localFontsPermissionChange",
+	],
 	components: {
 		FileDrop,
 	},
