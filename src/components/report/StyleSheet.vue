@@ -200,7 +200,7 @@ export default {
 	position: sticky;
 	top: var(--nav-height);
 	margin-top: calc(2rem - var(--small-margin));
-	margin-bottom: calc(1rem - var(--small-margin));;
+	margin-bottom: calc(1rem - var(--small-margin));
 	z-index: 1;
 	padding: var(--small-margin) 0;
 }

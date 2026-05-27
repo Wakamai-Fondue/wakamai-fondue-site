@@ -6,8 +6,12 @@
   "scripts": {
     "serve": "vite serve",
     "build": "vite build",
-    "lint:check": "eslint \"src/**/*.{js,vue}\" --no-fix --max-warnings=0",
-    "lint": "eslint \"src/**/*.{js,vue}\" --fix"
+    "lint": "npm-run-all lint:**",
+    "lint:eslint": "eslint \"src/**/*.{js,vue}\" --max-warnings=0",
+    "lint:prettier": "prettier --check \"src/**/*.{js,vue}\"",
+    "lint-fix": "npm-run-all --sequential lint-fix:** prettier",
+    "lint-fix:eslint": "eslint \"src/**/*.{js,vue}\" --fix",
+    "prettier": "prettier --write \"src/**/*.{js,vue}\""
   },
   "dependencies": {
     "@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#cbe2b51b723563d28d9dd1460458e21ff757ef1e",
@@ -24,6 +28,7 @@
     "eslint": "^8.23.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.31.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5",
