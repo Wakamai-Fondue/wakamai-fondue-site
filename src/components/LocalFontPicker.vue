@@ -15,10 +15,11 @@
 		</option>
 		<option
 			v-for="font in fonts"
-			:key="font.postscriptName"
-			:value="font.postscriptName"
+			:key="font.data.postscriptName"
+			:value="font.data.postscriptName"
+			:disabled="!font.isSupported"
 		>
-			{{ font.fullName }}
+			{{ font.data.fullName }}
 		</option>
 	</select>
 </template>
@@ -54,11 +55,64 @@ export default {
 		},
 	},
 	methods: {
+		// Local fonts can be .ttc collections, or old Apple
+		// `true` or `typ1` fonts, which we can't parse
+		async isSupported(fontData) {
+			try {
+				const blob = await fontData.blob();
+				const header = await blob.slice(0, 4).arrayBuffer();
+				const b = new Uint8Array(header);
+				// TrueType: 0x00010000
+				if (
+					b[0] === 0x00 &&
+					b[1] === 0x01 &&
+					b[2] === 0x00 &&
+					b[3] === 0x00
+				)
+					return true;
+				// OpenType (CFF): "OTTO"
+				if (
+					b[0] === 0x4f &&
+					b[1] === 0x54 &&
+					b[2] === 0x54 &&
+					b[3] === 0x4f
+				)
+					return true;
+				// WOFF: "wOFF"
+				if (
+					b[0] === 0x77 &&
+					b[1] === 0x4f &&
+					b[2] === 0x46 &&
+					b[3] === 0x46
+				)
+					return true;
+				// WOFF2: "wOF2"
+				if (
+					b[0] === 0x77 &&
+					b[1] === 0x4f &&
+					b[2] === 0x46 &&
+					b[3] === 0x32
+				)
+					return true;
+				return false;
+			} catch {
+				return false;
+			}
+		},
 		async loadFonts() {
 			try {
-				const fonts = await window.queryLocalFonts();
-				this.fonts = fonts;
+				const allFonts = await window.queryLocalFonts();
 				this.$emit("permissionChange", "granted");
+
+				// Check support for each font
+				const fonts = [];
+				for (const font of allFonts) {
+					fonts.push({
+						data: font,
+						isSupported: await this.isSupported(font),
+					});
+				}
+				this.fonts = fonts;
 			} catch (error) {
 				if (error.name === "NotAllowedError") {
 					this.$emit("permissionChange", "denied");
@@ -81,10 +135,10 @@ export default {
 		handleChange(event) {
 			const postscriptName = event.target.value;
 			const font = this.fonts.find(
-				(f) => f.postscriptName === postscriptName
+				(f) => f.data.postscriptName === postscriptName
 			);
-			if (font) {
-				this.$emit("select", font);
+			if (font && font.isSupported) {
+				this.$emit("select", font.data);
 				// Reset to placeholder
 				event.target.value = "";
 			}
