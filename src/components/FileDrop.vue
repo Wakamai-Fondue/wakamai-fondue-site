@@ -9,7 +9,7 @@
 				@change="$emit('getFont', $event)"
 			/>
 			<div class="info">
-				<strong>Drop a font!</strong>
+				<strong class="drop">Drop a font!</strong>
 				<button
 					type="button"
 					class="button on"
@@ -17,21 +17,49 @@
 				>
 					Try with Polymode
 				</button>
-				<span class="errormessage" :class="{ show: error }">
+				<LocalFontPicker
+					:supported="localFontsSupported"
+					:permission="localFontsPermission"
+					@select="$emit('loadLocalFont', $event)"
+					@permissionChange="
+						$emit('localFontsPermissionChange', $event)
+					"
+				/>
+				<div class="errormessage" :class="{ show: error }">
 					<strong>Oops! I couldn't handle that file.</strong>
-					<a href="mailto:brokenfonts@pixelambacht.nl"
+					<p v-if="localFontError">
+						⚠️ This is likely not a Wakamai Fondue error!
+						<br />
+						Local fonts can fail in many ways.
+					</p>
+					<a v-else href="mailto:brokenfonts@pixelambacht.nl"
 						>Tell me about it so I can fix it</a
 					>
-				</span>
+				</div>
 			</div>
 		</label>
 	</div>
 </template>
 
 <script>
+import LocalFontPicker from "./LocalFontPicker.vue";
+
 export default {
-	props: ["error"],
-	emits: ["getFont", "getExampleFont"],
+	components: {
+		LocalFontPicker,
+	},
+	props: [
+		"error",
+		"localFontError",
+		"localFontsSupported",
+		"localFontsPermission",
+	],
+	emits: [
+		"getFont",
+		"getExampleFont",
+		"loadLocalFont",
+		"localFontsPermissionChange",
+	],
 };
 </script>
 
@@ -123,11 +151,31 @@ export default {
 }
 
 .info button {
-	margin-top: 1.5rem;
+	margin-top: 1.25rem;
 	/* Stacking tricks to prevent button click
     from being seen as label click */
 	position: relative;
 	z-index: 1;
+}
+
+.drop {
+	z-index: 1;
+}
+
+.drop:hover {
+	animation: schwoop 900ms step-end infinite;
+}
+
+@keyframes schwoop {
+	0% {
+		color: var(--red);
+	}
+	33.33% {
+		color: var(--green);
+	}
+	66.66% {
+		color: var(--yellow);
+	}
 }
 
 .dragging .filedrop {

@@ -12,7 +12,12 @@
 			@getFont="getFont"
 			@getExampleFont="getExampleFont"
 			@toggleInfoModal="toggleInfoModal"
+			@loadLocalFont="loadLocalFont"
+			@localFontsPermissionChange="updateLocalFontsPermission"
 			:error="error"
+			:localFontError="localFontError"
+			:localFontsSupported="localFontsSupported"
+			:localFontsPermission="localFontsPermission"
 		/>
 		<FontReport
 			:font="font"
@@ -45,11 +50,14 @@ export default {
 			dragging: false,
 			working: false,
 			error: false,
+			localFontError: false,
 			showInfoModal: false,
 			isExamplefont: false,
 			fromDataBuffer: null,
 			scrollbarWidth:
 				window.innerWidth - document.body.clientWidth + "px",
+			localFontsSupported: false,
+			localFontsPermission: "prompt",
 		};
 	},
 	async mounted() {
@@ -60,6 +68,22 @@ export default {
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error(error);
+		}
+
+		// Check Local Font Access API support
+		this.localFontsSupported = "queryLocalFonts" in window;
+		if (this.localFontsSupported) {
+			navigator.permissions
+				.query({ name: "local-fonts" })
+				.then((status) => {
+					this.localFontsPermission = status.state;
+					status.addEventListener("change", () => {
+						this.localFontsPermission = status.state;
+					});
+				})
+				.catch(() => {
+					// Permission query not supported, will ask on interaction
+				});
 		}
 	},
 	methods: {
@@ -85,6 +109,7 @@ export default {
 			that.fromDataBuffer(data, fileName)
 				.then((fondue) => {
 					that.error = false;
+					that.localFontError = false;
 					that.injectStyleSheet(fileOrBlob, fondue);
 					that.font = fondue;
 					if (fondue.customText) {
@@ -94,7 +119,9 @@ export default {
 						that.working = false;
 					});
 				})
-				.catch(function () {
+				.catch(function (error) {
+					// eslint-disable-next-line no-console
+					console.error(error);
 					that.error = true;
 					that.working = false;
 				});
@@ -105,6 +132,7 @@ export default {
 			e.preventDefault();
 			this.dragging = false;
 			this.isExamplefont = false;
+			this.localFontError = false;
 
 			const that = this;
 
@@ -196,6 +224,28 @@ export default {
 			} else {
 				this.showInfoModal = !this.showInfoModal;
 			}
+		},
+		async loadLocalFont(fontData) {
+			this.working = true;
+			this.error = false;
+			this.localFontError = true;
+			this.isExamplefont = false;
+			const that = this;
+
+			try {
+				const blob = await fontData.blob();
+				const buffer = await blob.arrayBuffer();
+				const filename = fontData.postscriptName || fontData.fullName;
+				this.loadFondue(blob, buffer, filename, that);
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.error(error);
+				this.error = true;
+				this.working = false;
+			}
+		},
+		updateLocalFontsPermission(permission) {
+			this.localFontsPermission = permission;
 		},
 	},
 };
