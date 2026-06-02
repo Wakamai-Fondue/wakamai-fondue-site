@@ -15,6 +15,7 @@
 			@loadLocalFont="loadLocalFont"
 			@localFontsPermissionChange="updateLocalFontsPermission"
 			:error="error"
+			:localFontError="localFontError"
 			:localFontsSupported="localFontsSupported"
 			:localFontsPermission="localFontsPermission"
 		/>
@@ -49,6 +50,7 @@ export default {
 			dragging: false,
 			working: false,
 			error: false,
+			localFontError: false,
 			showInfoModal: false,
 			isExamplefont: false,
 			fromDataBuffer: null,
@@ -107,6 +109,7 @@ export default {
 			that.fromDataBuffer(data, fileName)
 				.then((fondue) => {
 					that.error = false;
+					that.localFontError = false;
 					that.injectStyleSheet(fileOrBlob, fondue);
 					that.font = fondue;
 					if (fondue.customText) {
@@ -129,6 +132,7 @@ export default {
 			e.preventDefault();
 			this.dragging = false;
 			this.isExamplefont = false;
+			this.localFontError = false;
 
 			const that = this;
 
@@ -224,6 +228,7 @@ export default {
 		async loadLocalFont(fontData) {
 			this.working = true;
 			this.error = false;
+			this.localFontError = true;
 			this.isExamplefont = false;
 			const that = this;
 

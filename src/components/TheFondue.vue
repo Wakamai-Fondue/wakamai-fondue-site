@@ -19,6 +19,7 @@
 		</button>
 		<FileDrop
 			:error="error"
+			:localFontError="localFontError"
 			:localFontsSupported="localFontsSupported"
 			:localFontsPermission="localFontsPermission"
 			@getFont="$emit('getFont', $event)"
@@ -42,7 +43,12 @@
 import FileDrop from "./FileDrop.vue";
 
 export default {
-	props: ["error", "localFontsSupported", "localFontsPermission"],
+	props: [
+		"error",
+		"localFontError",
+		"localFontsSupported",
+		"localFontsPermission",
+	],
 	emits: [
 		"getFont",
 		"getExampleFont",
