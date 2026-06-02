@@ -10,8 +10,11 @@
 			{{
 				permission === "denied"
 					? "Local fonts denied"
-					: "Pick a local font"
+					: "Or pick a local font"
 			}}
+		</option>
+		<option v-if="fonts.length > 0" value="__refresh__">
+			↻ Refresh font list
 		</option>
 		<option
 			v-for="font in fonts"
@@ -25,6 +28,8 @@
 </template>
 
 <script>
+const CACHE_KEY = "wakamai-fondue-local-fonts-support";
+
 export default {
 	props: {
 		supported: {
@@ -40,6 +45,7 @@ export default {
 	data() {
 		return {
 			fonts: [],
+			loaded: false,
 		};
 	},
 	mounted() {
@@ -49,12 +55,35 @@ export default {
 	},
 	watch: {
 		permission(newVal) {
-			if (newVal === "granted" && this.fonts.length === 0) {
+			if (newVal === "granted" && !this.loaded) {
 				this.loadFonts();
 			}
 		},
 	},
 	methods: {
+		getCache() {
+			try {
+				const data = localStorage.getItem(CACHE_KEY);
+				return data ? JSON.parse(data) : null;
+			} catch {
+				return null;
+			}
+		},
+		setCache(fonts) {
+			try {
+				const support = {};
+				for (const font of fonts) {
+					support[font.data.postscriptName] = font.isSupported;
+				}
+				localStorage.setItem(
+					CACHE_KEY,
+					JSON.stringify({ count: fonts.length, support })
+				);
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.error(error);
+			}
+		},
 		// Local fonts can be .ttc collections, or old Apple
 		// `true` or `typ1` fonts, which we can't parse
 		async isSupported(fontData) {
@@ -96,7 +125,9 @@ export default {
 					return true;
 				return false;
 			} catch {
-				return false;
+				// FontData blob can fail on page reload (stale references)
+				// Assume supported - loading will show error if it fails
+				return true;
 			}
 		},
 		async loadFonts() {
@@ -104,15 +135,27 @@ export default {
 				const allFonts = await window.queryLocalFonts();
 				this.$emit("permissionChange", "granted");
 
-				// Check support for each font
-				const fonts = [];
-				for (const font of allFonts) {
-					fonts.push({
+				// Checking support for these fonts is expensive, so we check
+				// 'em an cache the result, and use that when available
+				const cache = this.getCache();
+				if (cache && cache.count === allFonts.length) {
+					// Use cached data
+					this.fonts = allFonts.map((font) => ({
 						data: font,
-						isSupported: await this.isSupported(font),
-					});
+						isSupported: cache.support[font.postscriptName] ?? true,
+					}));
+					this.loaded = true;
+				} else {
+					// No cache or fontcount changed
+					this.fonts = allFonts.map((font) => ({
+						data: font,
+						isSupported: true,
+					}));
+					this.loaded = true;
+
+					// Check support in background
+					this.refreshFonts();
 				}
-				this.fonts = fonts;
 			} catch (error) {
 				if (error.name === "NotAllowedError") {
 					this.$emit("permissionChange", "denied");
@@ -122,8 +165,31 @@ export default {
 				}
 			}
 		},
+		async refreshFonts() {
+			const allFonts = await window.queryLocalFonts();
+
+			// Check support for each font
+			const checkedFonts = [];
+			const batchSize = 20;
+			for (let i = 0; i < allFonts.length; i += batchSize) {
+				const batch = allFonts.slice(i, i + batchSize);
+				const results = await Promise.all(
+					batch.map(async (font) => ({
+						data: font,
+						isSupported: await this.isSupported(font),
+					}))
+				);
+				checkedFonts.push(...results);
+			}
+
+			// Update list and cache
+			if (checkedFonts.some((f) => f.isSupported)) {
+				this.fonts = checkedFonts;
+				this.setCache(checkedFonts);
+			}
+		},
 		async handleInteraction(event) {
-			if (this.permission === "denied" || this.fonts.length > 0) {
+			if (this.permission === "denied" || this.loaded) {
 				return;
 			}
 
@@ -133,9 +199,16 @@ export default {
 			await this.loadFonts();
 		},
 		handleChange(event) {
-			const postscriptName = event.target.value;
+			const value = event.target.value;
+
+			if (value === "__refresh__") {
+				event.target.value = "";
+				this.refreshFonts();
+				return;
+			}
+
 			const font = this.fonts.find(
-				(f) => f.data.postscriptName === postscriptName
+				(f) => f.data.postscriptName === value
 			);
 			if (font && font.isSupported) {
 				this.$emit("select", font.data);
@@ -152,7 +225,7 @@ export default {
 	margin-top: 0.75rem;
 	position: relative;
 	z-index: 1;
-	width: 10rem;
+	max-width: 11rem;
 	text-align: center;
 }
 </style>
