@@ -4,16 +4,16 @@
 		<p class="oneliner">
 			This is a
 
-			<strong v-if="font.isHinted"> hinted</strong>
+			<strong v-if="font.isHinted"> hinted </strong>
 
-			<strong v-if="font.isVariable"> variable</strong>
+			<strong v-if="font.isVariable"> variable </strong>
 			<strong v-else> {{ summary.subfamilyName }}</strong>
 
-			<strong v-if="font.isColor"> color</strong>
+			<strong v-if="font.isColor"> color </strong>
 
 			font with
 
-			<strong v-if="!font.outlines.length"> no</strong>
+			<strong v-if="!font.outlines.length"> no </strong>
 			<strong v-else> {{ font.outlines.join(", ") }}</strong>
 
 			outlines<template v-if="!font.isColor">.</template>
