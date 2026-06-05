@@ -14,10 +14,6 @@ const fontSize = ref(DEFAULT_FONT_SIZE);
 
 export function usePreferences() {
 	const getPreviewText = (key) => {
-		if (key && key.startsWith("feature:")) {
-			const featureTag = key.slice(8);
-			return previewTexts.features[featureTag] || previewTexts.default;
-		}
 		return previewTexts[key] || previewTexts.default;
 	};
 
