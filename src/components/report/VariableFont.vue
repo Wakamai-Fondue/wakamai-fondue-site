@@ -33,7 +33,7 @@
 				:showOpticalSizeToggle="true"
 				showInstances="dropdown"
 				showInstancesPreviews="true"
-				:previewText="previewText"
+				:previewText="currentPreviewText"
 				:autoOpticalSizing="autoOpticalSizing"
 				@updateVariableStyles="updateVariableStyles"
 				@updateAutoOpticalSizing="updateAutoOpticalSizing"
@@ -52,9 +52,9 @@ export default {
 		VariableControls,
 	},
 	setup() {
-		const { previewText } = usePreferences();
+		const { getPreviewText } = usePreferences();
 		return {
-			previewText,
+			getPreviewText,
 		};
 	},
 	data() {
@@ -62,17 +62,19 @@ export default {
 			variableStyles: "",
 			autoOpticalSizing: true,
 			sticky: false,
+			currentPreviewText: "",
 		};
 	},
 	mounted() {
-		this.$refs.testerText.textContent = this.previewText;
+		this.currentPreviewText = this.getPreviewText("variableFont");
+		this.$refs.testerText.textContent = this.currentPreviewText;
 	},
 	methods: {
 		updateVariableStyles(updatedStyles) {
 			this.variableStyles = updatedStyles;
 		},
 		updatePreviewText(event) {
-			this.previewText = event.target.textContent;
+			this.currentPreviewText = event.target.textContent;
 		},
 		updateAutoOpticalSizing(newValue) {
 			this.autoOpticalSizing = newValue;

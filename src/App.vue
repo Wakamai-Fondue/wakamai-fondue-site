@@ -41,8 +41,8 @@ export default {
 		InfoModal,
 	},
 	setup() {
-		const { setPreviewText } = usePreferences();
-		return { setPreviewText };
+		const { setPreviewTexts } = usePreferences();
+		return { setPreviewTexts };
 	},
 	data() {
 		return {
@@ -98,7 +98,7 @@ export default {
 				const options = e.data.options || {};
 
 				if (options.previewText) {
-					this.setPreviewText(options.previewText);
+					this.setPreviewTexts(options.previewText);
 				}
 
 				this.working = true;
@@ -138,7 +138,7 @@ export default {
 					that.injectStyleSheet(fileOrBlob, fondue);
 					that.font = fondue;
 					if (fondue.customText) {
-						that.setPreviewText(fondue.customText);
+						that.setPreviewTexts(fondue.customText);
 					}
 					that.$nextTick(() => {
 						that.working = false;
