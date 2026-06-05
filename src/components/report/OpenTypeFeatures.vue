@@ -54,7 +54,28 @@
 					</label>
 				</div>
 
-				<template v-if="isValidFeature(feature)">
+				<template v-if="getCustomFeatureText(feature.tag)">
+					<span
+						:style="getFeatureStyle(feature.tag)"
+						class="chars"
+						contenteditable="plaintext-only"
+						spellcheck="false"
+						autocorrect="off"
+						>{{ getCustomFeatureText(feature.tag) }}</span
+					>
+					<div class="code">
+						<CopyToClipboard
+							:content="getFeatureCSS(feature.tag)"
+						/>
+						<Prism
+							language="css"
+							:key="`code_custom_${feature.tag}`"
+							>{{ getFeatureCSS(feature.tag) }}</Prism
+						>
+					</div>
+				</template>
+
+				<template v-else-if="isValidFeature(feature)">
 					<template
 						v-for="(lookup, index) in featureChars[feature.tag][
 							'lookups'
@@ -211,12 +232,17 @@
 <script>
 import Prism from "vue-prism-component";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
+import { usePreferences } from "@/composables/usePreferences.js";
 
 export default {
 	props: ["font"],
 	components: {
 		Prism,
 		CopyToClipboard,
+	},
+	setup() {
+		const { previewTexts } = usePreferences();
+		return { previewTexts };
 	},
 	data() {
 		return {
@@ -351,6 +377,9 @@ export default {
 				return 0;
 			}
 			return Math.max(...lookup.alternateCount);
+		},
+		getCustomFeatureText(tag) {
+			return this.previewTexts.features[tag] || null;
 		},
 	},
 };
