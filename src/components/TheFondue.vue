@@ -87,17 +87,17 @@ export default {
 
 .logo {
 	position: absolute;
-	right: 1.5vw;
+	left: 1.5vw;
 	bottom: 1.5vw;
 	width: max(120px, 10vw);
 	z-index: 10;
 }
 
 .info {
-	position: absolute;
-	z-index: 20;
+	position: fixed;
+	z-index: 40;
 	right: 1.5vw;
-	top: 1.25vw;
+	top: calc((var(--nav-height) / 2) - 1.5rem);
 	display: grid;
 	place-items: center;
 	width: 3rem;
@@ -106,6 +106,10 @@ export default {
 	outline: 0;
 	cursor: pointer;
 	animation: woooo 1.25s ease-in-out infinite alternate both;
+}
+
+body:has(.modal) .info {
+	display: none;
 }
 
 .info svg {

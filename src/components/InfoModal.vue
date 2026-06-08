@@ -176,7 +176,7 @@ export default {
 	position: fixed;
 	z-index: 100;
 	right: 1.5rem;
-	top: 1rem;
+	top: calc((var(--nav-height) / 2) - 1.5rem);
 	display: grid;
 	place-items: center;
 	width: 3rem;
