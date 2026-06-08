@@ -41,8 +41,8 @@ export default {
 		InfoModal,
 	},
 	setup() {
-		const { setPreviewText } = usePreferences();
-		return { setPreviewText };
+		const { setPreviewTexts } = usePreferences();
+		return { setPreviewTexts };
 	},
 	data() {
 		return {
@@ -85,6 +85,31 @@ export default {
 					// Permission query not supported, will ask on interaction
 				});
 		}
+
+		// Listen for fonts being sent to us via a "Try with..." button
+		window.addEventListener("message", (e) => {
+			if (
+				e.data?.type === "font" &&
+				e.data?.data instanceof ArrayBuffer
+			) {
+				const blob = new Blob([e.data.data]);
+				const buffer = e.data.data;
+				const filename = e.data.filename || "font";
+				const options = e.data.options || {};
+
+				if (options.previewText) {
+					this.setPreviewTexts(options.previewText);
+				}
+
+				this.working = true;
+				this.loadFondue(blob, buffer, filename, this);
+			}
+		});
+
+		// Tell opener that we're ready to receive a font
+		if (window.opener) {
+			window.opener.postMessage({ type: "ready" }, "*");
+		}
 	},
 	methods: {
 		dragStatus(status) {
@@ -113,7 +138,7 @@ export default {
 					that.injectStyleSheet(fileOrBlob, fondue);
 					that.font = fondue;
 					if (fondue.customText) {
-						that.setPreviewText(fondue.customText);
+						that.setPreviewTexts(fondue.customText);
 					}
 					that.$nextTick(() => {
 						that.working = false;

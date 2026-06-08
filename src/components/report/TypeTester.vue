@@ -69,9 +69,9 @@ export default {
 		TextControls,
 	},
 	setup() {
-		const { previewText } = usePreferences();
+		const { getPreviewText } = usePreferences();
 		return {
-			previewText,
+			getPreviewText,
 		};
 	},
 	data() {
@@ -86,7 +86,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.$refs.testerText.textContent = this.previewText;
+		this.$refs.testerText.textContent = this.getPreviewText("typeTester");
 	},
 	methods: {
 		updateVariableStyles(updatedStyles) {
