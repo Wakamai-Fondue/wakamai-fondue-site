@@ -343,6 +343,10 @@ ul {
 	font-weight: normal;
 }
 
+body:has(.modal) {
+	overflow: hidden;
+}
+
 ol,
 ul {
 	list-style: none;
