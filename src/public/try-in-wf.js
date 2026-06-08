@@ -48,6 +48,17 @@
 		return merge(merge(baseConfig, namedConfig), dataAttrs);
 	};
 
+	const getAnchor = (element) => {
+		const configs = window.wfConfig || {};
+		const configName = element.dataset.wfConfig;
+		return (
+			element.dataset.wfAnchor ||
+			(configName && configs[configName]?.anchor) ||
+			configs.default?.anchor ||
+			""
+		);
+	};
+
 	const handleClick = async (event) => {
 		const button = event.currentTarget;
 		const fontUrl = button.dataset.wfFont;
@@ -65,7 +76,9 @@
 			const fontData = await response.arrayBuffer();
 			const filename = fontUrl.split("/").pop();
 
-			const wf = window.open(WF_ORIGIN, "_blank");
+			const anchor = getAnchor(button);
+			const url = anchor ? `${WF_ORIGIN}#${anchor}` : WF_ORIGIN;
+			const wf = window.open(url, "_blank");
 			if (!wf) throw new Error("Popup was blocked");
 
 			const cleanup = () => {

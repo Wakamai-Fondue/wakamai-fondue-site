@@ -47,6 +47,9 @@ Or use JavaScript to create a custom config, next to the default one:
 		},
 		// This is a custom config that expands on the default config
 		myCustomConfig: {
+			// For this font, immediately scroll to the CSS
+			anchor: "stylesheet",
+			// For this font, use a different text for the type tester
 			previewText: {
 				typeTester: "A different custom text for regular type tester",
 			},
@@ -71,14 +74,15 @@ Config priority: `wfConfig.default` → `wfConfig[name]` → data attributes.
 
 ## Data attributes
 
-| Attribute                      | Description                                              |
-| ------------------------------ | -------------------------------------------------------- |
-| `data-wf-font`                 | Font URL (required)                                      |
-| `data-wf-config`               | Use custom config from `window.wfConfig`                 |
-| `data-wf-preview-default`      | Default preview text for all testers                     |
-| `data-wf-preview-typetester`   | Text for generic tester                                  |
-| `data-wf-preview-variablefont` | Text for variable tester                                 |
-| `data-wf-preview-feature-*`    | Text for features (e.g., `data-wf-preview-feature-liga`) |
+| Attribute                      | Description                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------------------- |
+| `data-wf-font`                 | Font URL (required)                                                                   |
+| `data-wf-config`               | Use custom config from `window.wfConfig`                                              |
+| `data-wf-anchor`               | Section to scroll to: summary, tester, variable, color, features, charset, stylesheet |
+| `data-wf-preview-default`      | Default preview text for all testers                                                  |
+| `data-wf-preview-typetester`   | Text for generic tester                                                               |
+| `data-wf-preview-variablefont` | Text for variable tester                                                              |
+| `data-wf-preview-feature-*`    | Text for features (e.g., `data-wf-preview-feature-liga`)                              |
 
 ## How it works
 
