@@ -38,5 +38,9 @@
 	},
 	"engines": {
 		"node": ">=22"
+	},
+	"allowScripts": {
+		"github:Wakamai-Fondue/wakamai-fondue-engine#c563c5f41dcc2118d720dbe631429f6b5aab06a9": true,
+		"fsevents@2.3.3": true
 	}
 }
