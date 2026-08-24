@@ -7,7 +7,7 @@ import { defineConfig } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
-import { dependencies } from "./package.json";
+import { dependencies } from "./package.json" with { type: "json" };
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
