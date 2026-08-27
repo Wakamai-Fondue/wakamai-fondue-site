@@ -6,7 +6,7 @@ import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
-import { dependencies } from "./package.json";
+import { dependencies } from "./package.json" with { type: "json" };
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
