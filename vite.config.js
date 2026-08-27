@@ -1,14 +1,11 @@
-import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 import { dependencies } from "./package.json" with { type: "json" };
 
-const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 delete dependencies["@wakamai-fondue/engine"];
@@ -26,6 +23,11 @@ function renderChunks(deps) {
 	});
 	return chunks;
 }
+
+const manualChunksConfig = {
+	vendor: vendors,
+	...renderChunks(dependencies),
+};
 
 export default defineConfig({
 	base: "/",
@@ -50,32 +52,18 @@ export default defineConfig({
 
 					return assetInfo.name;
 				},
-				manualChunks: {
-					vendor: vendors,
-					...renderChunks(dependencies),
+				manualChunks(id) {
+					for (const [chunkName, modules] of Object.entries(manualChunksConfig)) {
+						if (modules.some((mod) => id.includes(`node_modules/${mod}`))) {
+							return chunkName;
+						}
+					}
 				},
 			},
-			external: ["vite-plugin-node-polyfills/shims/global"],
 		},
 		sourcemap: false,
 	},
-	plugins: [
-		nodePolyfills({
-			overrides: {
-				assert: require.resolve("assert/"),
-				crypto: false,
-				fs: false,
-				stream: require.resolve("stream-browserify"),
-				util: require.resolve("util/"),
-				zlib: require.resolve("browserify-zlib"),
-			},
-			globals: {
-				Buffer: false,
-				global: false,
-			},
-		}),
-		vue(),
-	],
+	plugins: [vue()],
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "src"),
