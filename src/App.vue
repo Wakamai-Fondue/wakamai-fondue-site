@@ -66,7 +66,6 @@ export default {
 			const engine = await import("@wakamai-fondue/engine");
 			this.fromDataBuffer = engine.fromDataBuffer;
 		} catch (error) {
-			// eslint-disable-next-line no-console
 			console.error(error);
 		}
 
@@ -145,7 +144,6 @@ export default {
 					});
 				})
 				.catch(function (error) {
-					// eslint-disable-next-line no-console
 					console.error(error);
 					that.error = true;
 					that.working = false;
@@ -184,7 +182,7 @@ export default {
 
 			reader.onerror = function (error) {
 				// TODO: error handling
-				// eslint-disable-next-line no-console
+
 				console.error(error);
 			};
 
@@ -263,7 +261,6 @@ export default {
 				const filename = fontData.postscriptName || fontData.fullName;
 				this.loadFondue(blob, buffer, filename, that);
 			} catch (error) {
-				// eslint-disable-next-line no-console
 				console.error(error);
 				this.error = true;
 				this.working = false;
@@ -296,9 +293,9 @@ export default {
 	--small-margin: 4px;
 
 	--font-stack: wakamai-fondue, notdef;
-	--system-font-stack: system-ui, -apple-system, BlinkMacSystemFont,
-		"Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell,
-		sans-serif;
+	--system-font-stack:
+		system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
 
 	--max-content-width: 68rem;
 

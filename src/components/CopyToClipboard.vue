@@ -43,7 +43,7 @@ export default {
 							this.copyFail();
 						});
 				}
-			} catch (error) {
+			} catch {
 				this.copyFail();
 			}
 		},
