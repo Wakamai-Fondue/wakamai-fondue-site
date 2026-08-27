@@ -64,7 +64,6 @@ export default {
 				if (error.name === "NotAllowedError") {
 					this.$emit("permissionChange", "denied");
 				} else {
-					// eslint-disable-next-line no-console
 					console.error(error);
 				}
 			}
