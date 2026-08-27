@@ -33,7 +33,6 @@
 		"stream-browserify": "^3.0.0",
 		"util": "^0.12.5",
 		"vite": "^8.0.16",
-		"vite-bundle-analyzer": "^0.17.0",
 		"vite-plugin-node-polyfills": "^0.28.0"
 	},
 	"engines": {
