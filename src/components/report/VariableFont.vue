@@ -45,6 +45,7 @@
 <script>
 import VariableControls from "./VariableControls.vue";
 import { usePreferences } from "@/composables/usePreferences.js";
+import { useVariableStyles } from "@/composables/useVariableStyles.js";
 
 export default {
 	props: ["font"],
@@ -53,14 +54,22 @@ export default {
 	},
 	setup() {
 		const { getPreviewText } = usePreferences();
+		const {
+			variableStyles,
+			autoOpticalSizing,
+			setVariableStyles,
+			setAutoOpticalSizing,
+		} = useVariableStyles();
 		return {
 			getPreviewText,
+			variableStyles,
+			autoOpticalSizing,
+			setVariableStyles,
+			setAutoOpticalSizing,
 		};
 	},
 	data() {
 		return {
-			variableStyles: "",
-			autoOpticalSizing: true,
 			sticky: false,
 			currentPreviewText: "",
 		};
@@ -71,13 +80,13 @@ export default {
 	},
 	methods: {
 		updateVariableStyles(updatedStyles) {
-			this.variableStyles = updatedStyles;
+			this.setVariableStyles(updatedStyles);
 		},
 		updatePreviewText(event) {
 			this.currentPreviewText = event.target.textContent;
 		},
 		updateAutoOpticalSizing(newValue) {
-			this.autoOpticalSizing = newValue;
+			this.setAutoOpticalSizing(newValue);
 		},
 	},
 };
