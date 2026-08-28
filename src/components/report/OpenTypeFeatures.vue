@@ -233,6 +233,7 @@
 import Prism from "vue-prism-component";
 import CopyToClipboard from "@/components/CopyToClipboard.vue";
 import { usePreferences } from "@/composables/usePreferences.js";
+import { useVariableStyles } from "@/composables/useVariableStyles.js";
 
 export default {
 	props: ["font"],
@@ -242,7 +243,8 @@ export default {
 	},
 	setup() {
 		const { previewTexts } = usePreferences();
-		return { previewTexts };
+		const { variableStyles } = useVariableStyles();
+		return { previewTexts, variableStyles };
 	},
 	data() {
 		return {
@@ -309,9 +311,10 @@ export default {
 				this.currentStates[feature] = 1;
 				state = 1;
 			}
-			return `font-feature-settings:"${feature}" ${
+			const featureSettings = `font-feature-settings:"${feature}" ${
 				state ? onState : offState
 			};`;
+			return this.variableStyles + featureSettings;
 		},
 		getFeatureCSS(feature) {
 			// Type 3 lookups are non-boolean, deal with those if we got 'em
