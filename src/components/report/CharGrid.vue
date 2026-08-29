@@ -97,16 +97,18 @@
 </template>
 
 <script>
-// import VariableControls from "./VariableControls.vue";
+import { useVariableStyles } from "@/composables/useVariableStyles.js";
 
 export default {
 	props: ["font"],
-	// components: {
-	// 	VariableControls,
-	// },
+	setup() {
+		const { variableStyles } = useVariableStyles();
+		return {
+			variableStyles,
+		};
+	},
 	data() {
 		return {
-			variableStyles: "",
 			showCategories: true,
 			chars: this.font.supportedCharacters,
 			catChars: this.font.categorisedCharacters,
@@ -122,16 +124,6 @@ export default {
 		},
 		toggleCategories() {
 			this.showCategories = !this.showCategories;
-		},
-		toggleAxes() {
-			this.variableStyles = "";
-			this.showAxes = !this.showAxes;
-		},
-		// toggleFeatures() {
-		// 	this.showFeatures = !this.showFeatures;
-		// },
-		updateVariableStyles(updatedStyles) {
-			this.variableStyles = updatedStyles;
 		},
 	},
 };
