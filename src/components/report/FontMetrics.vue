@@ -2,22 +2,18 @@
 	<section id="metrics">
 		<h2 class="section-title">Metrics</h2>
 		<div class="font-metrics content">
-			<p class="metrics-preview" :style="previewStyle">
-				<span
+			<p class="metrics-preview">
+				<span class="metrics-rulers"
+					><span class="metrics-ruler cap-height"></span
+					><span class="metrics-ruler x-height"></span
+					><span class="metrics-ruler baseline"></span></span
+				><span
 					class="metrics-preview-text"
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
+					>Hey</span
 				>
-					Hey
-				</span>
-				<span class="metrics-rulers">
-					<span class="metrics-ruler ascender"></span>
-					<span class="metrics-ruler cap-height"></span>
-					<span class="metrics-ruler x-height"></span>
-					<span class="metrics-ruler baseline"></span>
-					<span class="metrics-ruler descender"></span
-				></span>
 			</p>
 
 			<div class="metrics-data">
@@ -56,17 +52,6 @@ export default {
 		metrics() {
 			return this.font.metrics;
 		},
-		previewStyle() {
-			if (!this.metrics) return {};
-
-			const m = this.metrics.cssMetrics;
-			const em = (percent) => `${percent / 100}em`;
-
-			return {
-				"--ascender": em(m.ascender),
-				"--descender": em(Math.abs(m.descender)),
-			};
-		},
 	},
 };
 </script>
@@ -75,29 +60,31 @@ export default {
 .metrics-preview {
 	--line-thickness: 1px;
 
-	position: relative;
+	display: grid;
+	align-items: baseline;
 	overflow: hidden;
+	white-space: nowrap;
 	font-family: var(--font-stack);
 	font-size: 8rem;
 	line-height: normal;
 	margin: 0;
 	padding: 0;
-	/* Make room for descender's ruler */
-	padding-bottom: 1px;
+	/* Line box top and bottom */
+	border-top: var(--line-thickness) solid #000;
+	border-bottom: var(--line-thickness) solid #000;
+}
+
+.metrics-preview-text,
+.metrics-rulers {
+	grid-area: 1 / 1;
 }
 
 .metrics-preview-text {
 	outline: 0;
-	display: inline-block;
-	width: 100%;
 }
 
 .metrics-rulers {
 	position: relative;
-	display: inline-block;
-	vertical-align: baseline;
-	width: 200%;
-	margin: 0 -100%;
 }
 
 .metrics-ruler {
@@ -108,20 +95,12 @@ export default {
 	border-top: var(--line-thickness) solid #000;
 }
 
-.metrics-ruler.ascender {
-	top: calc(-1 * var(--ascender));
-}
-
 .metrics-ruler.cap-height {
 	top: -1cap;
 }
 
 .metrics-ruler.x-height {
 	top: -1ex;
-}
-
-.metrics-ruler.descender {
-	top: var(--descender);
 }
 
 .metrics-legend {
