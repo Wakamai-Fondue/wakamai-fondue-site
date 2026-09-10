@@ -3,17 +3,33 @@
 		<h2 class="section-title">Metrics</h2>
 		<div class="font-metrics content">
 			<p class="metrics-preview">
-				<span class="metrics-rulers"
-					><span class="metrics-ruler cap-height"></span
-					><span class="metrics-ruler x-height"></span
-					><span class="metrics-ruler baseline"></span></span
-				><span
+				<span
 					class="metrics-preview-text"
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
 					>Hey</span
 				>
+				<span
+					class="metrics-ruler linebox-top"
+					data-label="Line box top"
+				></span>
+				<span
+					class="metrics-ruler cap-height"
+					data-label="Cap height"
+				></span>
+				<span
+					class="metrics-ruler x-height"
+					data-label="x-height"
+				></span>
+				<span
+					class="metrics-ruler baseline"
+					data-label="Baseline"
+				></span>
+				<span
+					class="metrics-ruler linebox-bottom"
+					data-label="Line box bottom"
+				></span>
 			</p>
 
 			<div class="metrics-data">
@@ -62,20 +78,15 @@ export default {
 
 	display: grid;
 	align-items: baseline;
-	overflow: hidden;
 	white-space: nowrap;
 	font-family: var(--font-stack);
 	font-size: 8rem;
 	line-height: normal;
 	margin: 0;
 	padding: 0;
-	/* Line box top and bottom */
-	border-top: var(--line-thickness) solid #000;
-	border-bottom: var(--line-thickness) solid #000;
 }
 
-.metrics-preview-text,
-.metrics-rulers {
+.metrics-preview > * {
 	grid-area: 1 / 1;
 }
 
@@ -83,15 +94,9 @@ export default {
 	outline: 0;
 }
 
-.metrics-rulers {
-	position: relative;
-}
-
 .metrics-ruler {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
+	position: relative;
+	align-self: baseline;
 	border-top: var(--line-thickness) solid #000;
 }
 
@@ -103,25 +108,21 @@ export default {
 	top: -1ex;
 }
 
-.metrics-legend {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+.metrics-ruler.linebox-top {
+	align-self: start;
 }
 
-.legend-item {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
+.metrics-ruler.linebox-bottom {
+	align-self: end;
+}
+
+.metrics-ruler::after {
+	content: attr(data-label);
+	position: absolute;
+	right: 0;
+	bottom: 100%;
 	font-size: 0.875rem;
-}
-
-.legend-item::before {
-	content: "";
-	display: block;
-	width: 1.5rem;
-	height: 2px;
-	background: black;
+	line-height: 1;
 }
 
 .metrics-data {
