@@ -13,14 +13,8 @@
 				</span>
 				<span class="metrics-rulers">
 					<span class="metrics-ruler ascender"></span>
-					<span
-						v-if="metrics.cssMetrics.capHeight !== undefined"
-						class="metrics-ruler cap-height"
-					></span>
-					<span
-						v-if="metrics.cssMetrics.xHeight !== undefined"
-						class="metrics-ruler x-height"
-					></span>
+					<span class="metrics-ruler cap-height"></span>
+					<span class="metrics-ruler x-height"></span>
 					<span class="metrics-ruler baseline"></span>
 					<span class="metrics-ruler descender"></span
 				></span>
@@ -68,18 +62,10 @@ export default {
 			const m = this.metrics.cssMetrics;
 			const em = (percent) => `${percent / 100}em`;
 
-			const style = {
+			return {
 				"--ascender": em(m.ascender),
 				"--descender": em(Math.abs(m.descender)),
 			};
-			// The miiiiiight not be defined
-			if (m.capHeight !== undefined) {
-				style["--cap-height"] = em(m.capHeight);
-			}
-			if (m.xHeight !== undefined) {
-				style["--x-height"] = em(m.xHeight);
-			}
-			return style;
 		},
 	},
 };
@@ -127,11 +113,11 @@ export default {
 }
 
 .metrics-ruler.cap-height {
-	top: calc(-1 * var(--cap-height));
+	top: -1cap;
 }
 
 .metrics-ruler.x-height {
-	top: calc(-1 * var(--x-height));
+	top: -1ex;
 }
 
 .metrics-ruler.descender {
