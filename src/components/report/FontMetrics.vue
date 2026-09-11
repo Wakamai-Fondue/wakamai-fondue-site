@@ -19,7 +19,7 @@
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
-					>Hey</span
+					>Hey<span>x</span></span
 				>
 				<span
 					class="metrics-ruler baseline"
@@ -32,16 +32,20 @@
 					></span>
 					<span
 						class="metrics-ruler cap-height"
-						data-label="Cap height"
+						data-label="1cap"
 					></span>
 					<span
 						class="metrics-ruler x-height"
-						data-label="x-Height"
+						data-label="1ex"
 					></span>
 					<span
 						class="metrics-ruler linebox-bottom"
 						data-label="Line box bottom"
 					></span>
+					<span class="metrics-lh">
+						<span class="metrics-lh-label">1lh</span>
+						<span class="metrics-lh-bracket"></span>
+					</span>
 				</template>
 				<template v-if="view === 'font'">
 					<span
@@ -227,6 +231,7 @@ export default {
 	line-height: normal;
 	margin: 0;
 	padding: 0;
+	padding-right: 2rem;
 }
 
 .metrics-preview > * {
@@ -269,6 +274,29 @@ export default {
 	bottom: 100%;
 	font-size: 0.75rem;
 	line-height: 1;
+}
+
+.metrics-lh {
+	position: relative;
+	margin-right: -1.25rem;
+	align-self: stretch;
+	justify-self: end;
+	display: flex;
+	align-items: center;
+}
+
+.metrics-lh-label {
+	margin-right: -1.75rem;
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	color: var(--medium-grey);
+}
+
+.metrics-lh-bracket {
+	width: 0.5rem;
+	height: 100%;
+	border: var(--line-thickness) solid var(--unlighterer-grey);
+	border-left: 0;
 }
 
 .metrics-data {
