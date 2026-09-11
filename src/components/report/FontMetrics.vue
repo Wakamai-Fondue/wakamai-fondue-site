@@ -108,12 +108,14 @@ export default {
 			const lines = [
 				{
 					key: "hhea-ascender",
-					label: "hhea ascender",
+					metrictype: "hhea",
+					kind: "ascender",
 					top: offset(hhea.ascender),
 				},
 				{
 					key: "hhea-descender",
-					label: "hhea descender",
+					metrictype: "hhea",
+					kind: "descender",
 					top: offset(hhea.descender),
 				},
 			];
@@ -121,28 +123,32 @@ export default {
 			if (os2.sTypoAscender !== undefined) {
 				lines.push({
 					key: "typo-ascender",
-					label: "Typo ascender",
+					metrictype: "Typo",
+					kind: "ascender",
 					top: offset(os2.sTypoAscender),
 				});
 			}
 			if (os2.sTypoDescender !== undefined) {
 				lines.push({
 					key: "typo-descender",
-					label: "Typo descender",
+					metrictype: "Typo",
+					kind: "descender",
 					top: offset(os2.sTypoDescender),
 				});
 			}
 			if (os2.usWinAscent !== undefined) {
 				lines.push({
 					key: "win-ascender",
-					label: "Win ascender",
+					metrictype: "Win",
+					kind: "ascender",
 					top: offset(os2.usWinAscent),
 				});
 			}
 			if (os2.usWinDescent !== undefined) {
 				lines.push({
 					key: "win-descender",
-					label: "Win descender",
+					metrictype: "Win",
+					kind: "descender",
 					// Negate the value since it's stored as a postive
 					top: offset(os2.usWinDescent * -1),
 				});
@@ -150,14 +156,16 @@ export default {
 			if (os2.sCapHeight !== undefined) {
 				lines.push({
 					key: "cap-height",
-					label: "Cap height",
+					metrictype: null,
+					kind: "Cap height",
 					top: offset(os2.sCapHeight),
 				});
 			}
 			if (os2.sxHeight !== undefined) {
 				lines.push({
 					key: "x-height",
-					label: "x-Height",
+					metrictype: null,
+					kind: "x-Height",
 					top: offset(os2.sxHeight),
 				});
 			}
@@ -167,21 +175,35 @@ export default {
 			for (const line of lines) {
 				const group = groups.find((g) => g.top === line.top);
 				if (group) {
-					group.labels.push(line.label);
+					group.metrictypes.push(line.metrictype);
 				} else {
 					groups.push({
 						key: line.key,
 						top: line.top,
-						labels: [line.label],
+						kind: line.kind,
+						metrictypes: [line.metrictype],
 					});
 				}
 			}
 
-			return groups.map((group) => ({
-				key: group.key,
-				label: group.labels.join(" / "),
-				top: `${group.top}em`,
-			}));
+			// And group the labels
+			return groups.map((group) => {
+				const metrictypes = group.metrictypes.filter(Boolean);
+				let label;
+				if (metrictypes.length === 0) {
+					label = group.kind;
+				} else if (metrictypes.length === 1) {
+					label = `${metrictypes[0]} ${group.kind}`;
+				} else {
+					label = `${metrictypes.join(" / ")} ${group.kind}s`;
+				}
+
+				return {
+					key: group.key,
+					label,
+					top: `${group.top}em`,
+				};
+			});
 		},
 	},
 };
