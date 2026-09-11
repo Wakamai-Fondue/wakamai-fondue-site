@@ -103,7 +103,7 @@ export default {
 			const hhea = this.metrics.hhea;
 			const os2 = this.metrics.os2;
 
-			const offset = (value) => `${-value / upm}em`;
+			const offset = (value) => -value / upm;
 
 			const lines = [
 				{
@@ -162,7 +162,26 @@ export default {
 				});
 			}
 
-			return lines;
+			// Group the same values
+			const groups = [];
+			for (const line of lines) {
+				const group = groups.find((g) => g.top === line.top);
+				if (group) {
+					group.labels.push(line.label);
+				} else {
+					groups.push({
+						key: line.key,
+						top: line.top,
+						labels: [line.label],
+					});
+				}
+			}
+
+			return groups.map((group) => ({
+				key: group.key,
+				label: group.labels.join(" / "),
+				top: `${group.top}em`,
+			}));
 		},
 	},
 };
