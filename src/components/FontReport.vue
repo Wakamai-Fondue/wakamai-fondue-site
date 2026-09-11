@@ -2,6 +2,7 @@
 	<section v-if="font" class="report" id="report">
 		<FontReportNavigation />
 		<FontSummary :font="font" :isExamplefont="isExamplefont" />
+		<FontMetrics :font="font" />
 		<TypeTester :font="font" />
 		<ColorFont v-if="font.isColor" :font="font" />
 		<VariableFont v-if="font.isVariable" :font="font" />
@@ -14,6 +15,7 @@
 
 <script>
 import FontSummary from "./report/FontSummary.vue";
+import FontMetrics from "./report/FontMetrics.vue";
 import TypeTester from "./report/TypeTester.vue";
 import ColorFont from "./report/ColorFont.vue";
 import VariableFont from "./report/VariableFont.vue";
@@ -28,6 +30,7 @@ export default {
 	emits: ["toggleInfoModal"],
 	components: {
 		FontSummary,
+		FontMetrics,
 		TypeTester,
 		ColorFont,
 		VariableFont,
