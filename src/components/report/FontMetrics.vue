@@ -44,14 +44,14 @@
 					></span>
 					<span class="metrics-lh">
 						<span class="metrics-lh-label">1lh</span>
-						<span class="metrics-lh-bracket"></span>
+						<span class="metrics-bracket metrics-bracket-lh"></span>
 					</span>
 					<span class="metrics-width metrics-width-em">
-						<span class="metrics-width-bracket"></span>
+						<span class="metrics-bracket metrics-bracket-em"></span>
 						<span class="metrics-width-label">1em</span>
 					</span>
 					<span class="metrics-width metrics-width-ch">
-						<span class="metrics-width-bracket"></span>
+						<span class="metrics-bracket metrics-bracket-ch"></span>
 						<span class="metrics-width-label">1ch</span>
 					</span>
 				</template>
@@ -287,7 +287,7 @@ export default {
 
 .metrics-lh {
 	position: relative;
-	margin-right: -1.25rem;
+	margin-right: calc(-0.75rem - 1px);
 	align-self: stretch;
 	justify-self: end;
 	display: flex;
@@ -295,22 +295,15 @@ export default {
 }
 
 .metrics-lh-label {
-	margin-right: -1.75rem;
 	font-family: var(--system-font-stack);
 	font-size: 0.75rem;
 	color: var(--medium-grey);
-}
-
-.metrics-lh-bracket {
-	width: 0.5rem;
-	height: 100%;
-	border: var(--line-thickness) solid var(--unlighterer-grey);
-	border-left: 0;
+	position: absolute;
+	left: 0.5rem;
 }
 
 .metrics-width {
 	position: relative;
-	/* top: calc(1lh + 0.5rem); */
 	align-self: start;
 	justify-self: start;
 	display: flex;
@@ -321,24 +314,39 @@ export default {
 
 .metrics-width-em {
 	flex-direction: column-reverse;
-	top: -2rem;
+	top: -2.25rem;
 	width: 1em;
-}
-
-.metrics-width-em .metrics-width-bracket {
-	rotate: 180deg;
 }
 
 .metrics-width-ch {
 	width: 1ch;
-	top: calc(1lh + 0.5rem);
+	top: calc(1lh + calc(0.5rem + 1px));
 }
 
-.metrics-width-bracket {
-	width: 100%;
-	height: 0.5rem;
+.metrics-bracket {
 	border: var(--line-thickness) solid var(--unlighterer-grey);
 	border-top: 0;
+}
+
+.metrics-bracket-ch {
+	width: 1ch;
+	height: 0.5rem;
+}
+
+.metrics-bracket-em {
+	width: 1em;
+	height: 0.5rem;
+	rotate: 180deg;
+}
+
+.metrics-bracket-lh {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 1lh;
+	height: 0.5rem;
+	translate: 50% -50%;
+	rotate: -90deg;
 }
 
 .metrics-width-label {
