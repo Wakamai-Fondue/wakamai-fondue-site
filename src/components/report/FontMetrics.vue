@@ -336,17 +336,18 @@ export default {
 .metrics-bracket-em {
 	width: 1em;
 	height: 0.5rem;
-	rotate: 180deg;
+	border-top: var(--line-thickness) solid var(--unlighterer-grey);
+	border-bottom: 0;
 }
 
 .metrics-bracket-lh {
 	position: absolute;
-	top: 50%;
+	top: 0;
 	right: 0;
-	width: 1lh;
-	height: 0.5rem;
-	translate: 50% -50%;
-	rotate: -90deg;
+	width: 0.5rem;
+	height: 1lh;
+	border-top: var(--line-thickness) solid var(--unlighterer-grey);
+	border-left: 0;
 }
 
 .metrics-width-label {
