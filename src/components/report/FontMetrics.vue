@@ -43,6 +43,16 @@
 						data-label="Line box bottom"
 					></span>
 				</template>
+				<template v-if="view === 'font'">
+					<span
+						v-for="line in fontMetricRulers"
+						:key="line.key"
+						class="metrics-ruler"
+						:class="line.key"
+						:data-label="line.label"
+						:style="{ top: line.top }"
+					></span>
+				</template>
 			</p>
 
 			<div class="metrics-data">
@@ -85,6 +95,74 @@ export default {
 	computed: {
 		metrics() {
 			return this.font.metrics;
+		},
+		fontMetricRulers() {
+			if (!this.metrics) return [];
+
+			const upm = this.metrics.unitsPerEm;
+			const hhea = this.metrics.hhea;
+			const os2 = this.metrics.os2;
+
+			const offset = (value) => `${-value / upm}em`;
+
+			const lines = [
+				{
+					key: "hhea-ascender",
+					label: "hhea ascender",
+					top: offset(hhea.ascender),
+				},
+				{
+					key: "hhea-descender",
+					label: "hhea descender",
+					top: offset(hhea.descender),
+				},
+			];
+
+			if (os2.sTypoAscender !== undefined) {
+				lines.push({
+					key: "typo-ascender",
+					label: "Typo ascender",
+					top: offset(os2.sTypoAscender),
+				});
+			}
+			if (os2.sTypoDescender !== undefined) {
+				lines.push({
+					key: "typo-descender",
+					label: "Typo descender",
+					top: offset(os2.sTypoDescender),
+				});
+			}
+			if (os2.usWinAscent !== undefined) {
+				lines.push({
+					key: "win-ascender",
+					label: "Win ascender",
+					top: offset(os2.usWinAscent),
+				});
+			}
+			if (os2.usWinDescent !== undefined) {
+				lines.push({
+					key: "win-descender",
+					label: "Win descender",
+					// Negate the value since it's stored as a postive
+					top: offset(os2.usWinDescent * -1),
+				});
+			}
+			if (os2.sCapHeight !== undefined) {
+				lines.push({
+					key: "cap-height",
+					label: "Cap height",
+					top: offset(os2.sCapHeight),
+				});
+			}
+			if (os2.sxHeight !== undefined) {
+				lines.push({
+					key: "x-height",
+					label: "x-Height",
+					top: offset(os2.sxHeight),
+				});
+			}
+
+			return lines;
 		},
 	},
 };
