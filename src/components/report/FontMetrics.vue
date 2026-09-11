@@ -2,17 +2,6 @@
 	<section id="metrics">
 		<h2 class="section-title">Metrics</h2>
 		<div class="font-metrics content">
-			<div class="metrics-view-toggle">
-				<label>
-					<input type="radio" value="browser" v-model="view" />
-					Browser
-				</label>
-				<label>
-					<input type="radio" value="font" v-model="view" />
-					Font metrics
-				</label>
-			</div>
-
 			<p class="metrics-preview">
 				<span
 					class="metrics-preview-text"
@@ -67,30 +56,43 @@
 				</template>
 			</p>
 
+			<div class="metrics-view-toggle">
+				<label>
+					<input type="radio" value="browser" v-model="view" />
+					Browser
+				</label>
+				<label>
+					<input type="radio" value="font" v-model="view" />
+					Font metrics
+				</label>
+			</div>
+
 			<div class="metrics-data">
-				<dl class="metrics-values">
-					<dt>Units per em</dt>
-					<dd>{{ metrics.unitsPerEm }}</dd>
-
-					<dt>Ascender</dt>
-					<dd>{{ metrics.cssMetrics.ascender }}%</dd>
-
-					<dt>Descender</dt>
-					<dd>{{ metrics.cssMetrics.descender }}%</dd>
-
-					<dt>Line gap</dt>
-					<dd>{{ metrics.cssMetrics.lineGap }}%</dd>
-
-					<template v-if="metrics.cssMetrics.capHeight !== undefined">
-						<dt>Cap height</dt>
-						<dd>{{ metrics.cssMetrics.capHeight }}%</dd>
-					</template>
-
-					<template v-if="metrics.cssMetrics.xHeight !== undefined">
-						<dt>x-height</dt>
-						<dd>{{ metrics.cssMetrics.xHeight }}%</dd>
-					</template>
-				</dl>
+				<table class="metrics-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>hhea</th>
+							<th>Typo</th>
+							<th>Win</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="row in metricsTable" :key="row.label">
+							<th>{{ row.label }}</th>
+							<td
+								v-for="column in ['hhea', 'typo', 'win']"
+								:key="column"
+							>
+								<template v-if="row[column] !== undefined">
+									{{ row[column] }}
+								</template>
+								<template v-else>—</template>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Units per em: {{ metrics.unitsPerEm }}</p>
 			</div>
 		</div>
 	</section>
@@ -222,6 +224,45 @@ export default {
 				};
 			});
 		},
+		metricsTable() {
+			if (!this.metrics) return [];
+
+			const hhea = this.metrics.hhea;
+			const os2 = this.metrics.os2;
+
+			return [
+				{
+					label: "Ascender",
+					hhea: hhea.ascender,
+					typo: os2.sTypoAscender,
+					win: os2.usWinAscent,
+				},
+				{
+					label: "Descender",
+					hhea: hhea.descender,
+					typo: os2.sTypoDescender,
+					win: os2.usWinDescent,
+				},
+				{
+					label: "Cap height",
+					hhea: undefined,
+					typo: os2.sCapHeight,
+					win: undefined,
+				},
+				{
+					label: "x-height",
+					hhea: undefined,
+					typo: os2.sxHeight,
+					win: undefined,
+				},
+				{
+					label: "Line gap",
+					hhea: hhea.lineGap,
+					typo: os2.sTypoLineGap,
+					win: undefined,
+				},
+			];
+		},
 	},
 };
 </script>
@@ -230,6 +271,7 @@ export default {
 .metrics-view-toggle {
 	display: flex;
 	gap: 1rem;
+	margin-top: 3rem;
 	margin-bottom: 1rem;
 }
 
@@ -363,23 +405,33 @@ export default {
 }
 
 .metrics-data {
-	margin-top: 100px;
 	margin-bottom: 2rem;
 }
 
-.metrics-values {
-	display: grid;
-	grid-template-columns: min-content min-content;
-	gap: 0.5rem 1rem;
+.metrics-table {
+	border-collapse: collapse;
+	margin: 2rem 0;
 }
 
-.metrics-values dt {
-	font-weight: bold;
-	white-space: nowrap;
-}
-
-.metrics-values dd {
+.metrics-table th,
+.metrics-table td {
+	/* padding: 0.25rem 0.75rem; */
 	text-align: right;
+	padding-bottom: 0.25rem;
+}
+
+.metrics-table thead th {
+	text-align: right;
+	padding-left: 4rem;
+	/* color: var(--red); */
+	font-weight: bold;
+}
+
+.metrics-table tbody th {
+	text-align: left;
+	/* font-weight: bold; */
+	white-space: nowrap;
+	/* padding-right: 2rem; */
 }
 
 h3 {
