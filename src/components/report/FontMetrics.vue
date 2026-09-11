@@ -19,7 +19,7 @@
 					contenteditable="plaintext-only"
 					spellcheck="false"
 					autocorrect="off"
-					>Hey<span>x</span></span
+					>Hey</span
 				>
 				<span
 					class="metrics-ruler baseline"
@@ -45,6 +45,14 @@
 					<span class="metrics-lh">
 						<span class="metrics-lh-label">1lh</span>
 						<span class="metrics-lh-bracket"></span>
+					</span>
+					<span class="metrics-width metrics-width-em">
+						<span class="metrics-width-bracket"></span>
+						<span class="metrics-width-label">1em</span>
+					</span>
+					<span class="metrics-width metrics-width-ch">
+						<span class="metrics-width-bracket"></span>
+						<span class="metrics-width-label">1ch</span>
 					</span>
 				</template>
 				<template v-if="view === 'font'">
@@ -229,9 +237,10 @@ export default {
 	font-family: var(--font-stack);
 	font-size: 8rem;
 	line-height: normal;
-	margin: 0;
 	padding: 0;
 	padding-right: 2rem;
+	/* Make room for em/ch labels */
+	margin: 2.5rem 0;
 }
 
 .metrics-preview > * {
@@ -299,7 +308,48 @@ export default {
 	border-left: 0;
 }
 
+.metrics-width {
+	position: relative;
+	/* top: calc(1lh + 0.5rem); */
+	align-self: start;
+	justify-self: start;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.metrics-width-em {
+	flex-direction: column-reverse;
+	top: -2rem;
+	width: 1em;
+}
+
+.metrics-width-em .metrics-width-bracket {
+	rotate: 180deg;
+}
+
+.metrics-width-ch {
+	width: 1ch;
+	top: calc(1lh + 0.5rem);
+}
+
+.metrics-width-bracket {
+	width: 100%;
+	height: 0.5rem;
+	border: var(--line-thickness) solid var(--unlighterer-grey);
+	border-top: 0;
+}
+
+.metrics-width-label {
+	font-family: var(--system-font-stack);
+	font-size: 0.75rem;
+	color: var(--medium-grey);
+	white-space: nowrap;
+}
+
 .metrics-data {
+	margin-top: 100px;
 	margin-bottom: 2rem;
 }
 
