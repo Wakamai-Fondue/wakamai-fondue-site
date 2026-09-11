@@ -2,6 +2,17 @@
 	<section id="metrics">
 		<h2 class="section-title">Metrics</h2>
 		<div class="font-metrics content">
+			<div class="metrics-view-toggle">
+				<label>
+					<input type="radio" value="browser" v-model="view" />
+					Browser
+				</label>
+				<label>
+					<input type="radio" value="font" v-model="view" />
+					Font metrics
+				</label>
+			</div>
+
 			<p class="metrics-preview">
 				<span
 					class="metrics-preview-text"
@@ -11,25 +22,27 @@
 					>Hey</span
 				>
 				<span
-					class="metrics-ruler linebox-top"
-					data-label="Line box top"
-				></span>
-				<span
-					class="metrics-ruler cap-height"
-					data-label="Cap height"
-				></span>
-				<span
-					class="metrics-ruler x-height"
-					data-label="x-height"
-				></span>
-				<span
 					class="metrics-ruler baseline"
 					data-label="Baseline"
 				></span>
-				<span
-					class="metrics-ruler linebox-bottom"
-					data-label="Line box bottom"
-				></span>
+				<template v-if="view === 'browser'">
+					<span
+						class="metrics-ruler linebox-top"
+						data-label="Line box top"
+					></span>
+					<span
+						class="metrics-ruler cap-height"
+						data-label="Cap height"
+					></span>
+					<span
+						class="metrics-ruler x-height"
+						data-label="x-Height"
+					></span>
+					<span
+						class="metrics-ruler linebox-bottom"
+						data-label="Line box bottom"
+					></span>
+				</template>
 			</p>
 
 			<div class="metrics-data">
@@ -64,6 +77,11 @@
 <script>
 export default {
 	props: ["font"],
+	data() {
+		return {
+			view: "browser",
+		};
+	},
 	computed: {
 		metrics() {
 			return this.font.metrics;
@@ -73,6 +91,12 @@ export default {
 </script>
 
 <style scoped>
+.metrics-view-toggle {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
 .metrics-preview {
 	--line-thickness: 1px;
 
@@ -92,12 +116,13 @@ export default {
 
 .metrics-preview-text {
 	outline: 0;
+	z-index: 1;
 }
 
 .metrics-ruler {
 	position: relative;
 	align-self: baseline;
-	border-top: var(--line-thickness) solid #000;
+	border-top: var(--line-thickness) solid var(--unlighterer-grey);
 }
 
 .metrics-ruler.cap-height {
@@ -118,10 +143,12 @@ export default {
 
 .metrics-ruler::after {
 	content: attr(data-label);
+	font-family: var(--system-font-stack);
+	color: var(--medium-grey);
 	position: absolute;
 	right: 0;
 	bottom: 100%;
-	font-size: 0.875rem;
+	font-size: 0.75rem;
 	line-height: 1;
 }
 
