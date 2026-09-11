@@ -185,7 +185,12 @@ export default {
 			// Group the same values
 			const groups = [];
 			for (const line of lines) {
-				const group = groups.find((g) => g.top === line.top);
+				const group = groups.find(
+					// Metrics within this range are grouped on the same ruler.
+					// This prevents tiny rounding differences from triggering
+					// a new ruler at effectively the same spot.
+					(g) => Math.abs(g.top - line.top) < 0.005
+				);
 				if (group) {
 					group.metrictypes.push(line.metrictype);
 				} else {
