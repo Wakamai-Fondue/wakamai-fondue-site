@@ -109,6 +109,13 @@ export default {
 		if (window.opener) {
 			window.opener.postMessage({ type: "ready" }, "*");
 		}
+
+		// Load a font via `?url=`, for sites that have
+		// whitelisted us in their CORS settings
+		const fontUrl = new URLSearchParams(window.location.search).get("url");
+		if (fontUrl) {
+			this.loadFontFromUrl(fontUrl);
+		}
 	},
 	methods: {
 		dragStatus(status) {
@@ -206,6 +213,35 @@ export default {
 					that.isExamplefont = true;
 				};
 			});
+		},
+		async loadFontFromUrl(fontUrl) {
+			let url;
+			try {
+				url = new URL(fontUrl, window.location.href);
+			} catch (error) {
+				this.error = true;
+				return;
+			}
+			// Only allow http(s) URLs
+			if (url.protocol !== "http:" && url.protocol !== "https:") {
+				this.error = true;
+				return;
+			}
+
+			this.working = true;
+
+			try {
+				const response = await fetch(url.href);
+				if (!response.ok) throw new Error("Font not found");
+				const buffer = await response.arrayBuffer();
+				const blob = new Blob([buffer]);
+				const filename = url.pathname.split("/").pop() || "font";
+				this.loadFondue(blob, buffer, filename, this);
+			} catch (error) {
+				console.error(error);
+				this.error = true;
+				this.working = false;
+			}
 		},
 		injectStyleSheet(file, fondue) {
 			// Use the "uploaded" font on the page
