@@ -2,7 +2,19 @@
 
 Add a button to your site that lets visitors analyze your font in Wakamai Fondue.
 
-## Quick start
+## Quick start: can change CORS settings
+
+If your server allows sending fonts to _other_ sites (as dictated by the CORS settings), tell Wakamai Fondue where the font is:
+
+```
+<a href="https://wakamaifondue.com/?url=https://mysite.com/fonts/myfont.woff2">
+	Try in Wakamai Fondue
+</a>
+```
+
+## Quick start: can't change CORS settings
+
+If you can't change your CORS settings, you can include a small script which will take care of sending your font to Wamakai Fondue.
 
 ```html
 <script defer src="https://wakamaifondue.com/try-in-wf.js"></script>
@@ -16,7 +28,9 @@ That's it! The script finds all elements with class `try-in-wf` and handles the 
 
 ## Custom preview text
 
-By default, this will make Wakamai Fondue behave as if the font just got dropped in the fondue. But you can configure the fondue to use custom tester texts, via `data` attributes and/or a JavaScript config.
+_Note: the following is only available if you use the `try-in-wf.js` script_
+
+By default, using the script will make Wakamai Fondue behave as if the font just got dropped in the fondue. But you can configure the fondue to use custom tester texts, via `data` attributes and/or a JavaScript config.
 
 ```html
 <button
