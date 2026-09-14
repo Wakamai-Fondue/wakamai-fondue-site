@@ -219,6 +219,7 @@ export default {
 			try {
 				url = new URL(fontUrl, window.location.href);
 			} catch (error) {
+				console.error(error);
 				this.error = true;
 				return;
 			}
