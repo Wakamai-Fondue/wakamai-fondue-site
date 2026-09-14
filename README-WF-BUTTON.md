@@ -6,7 +6,7 @@ Add a button to your site that lets visitors analyze your font in Wakamai Fondue
 
 If your server allows sending fonts to _other_ sites (as dictated by the CORS settings), tell Wakamai Fondue where the font is:
 
-```
+```html
 <a href="https://wakamaifondue.com/?url=https://mysite.com/fonts/myfont.woff2">
 	Try in Wakamai Fondue
 </a>
