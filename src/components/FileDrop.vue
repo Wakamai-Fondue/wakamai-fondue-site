@@ -13,9 +13,14 @@
 				<button
 					type="button"
 					class="button on"
-					@click="$emit('getExampleFont', 'Polymode-Roman-VF.woff2')"
+					@click="
+						$emit(
+							'getExampleFont',
+							'NaNSuccessTitling-Variable.woff2'
+						)
+					"
 				>
-					Try with Polymode
+					Try with NaN Success Titling
 				</button>
 				<LocalFontPicker
 					:supported="localFontsSupported"

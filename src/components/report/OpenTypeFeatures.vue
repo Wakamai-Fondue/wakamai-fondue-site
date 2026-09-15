@@ -98,8 +98,8 @@
 									:style="getFeatureStyle(feature.tag, n)"
 									:title="`font-feature-settings: &quot;${feature.tag}&quot; ${n};`"
 								>
-									{{ char }}
-								</span>
+									{{ char }} </span
+								>{{ " " }}
 							</template>
 						</span>
 

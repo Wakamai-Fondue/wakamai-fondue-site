@@ -1,13 +1,16 @@
 <template>
 	<div class="example-font-shoutout">
-		<a href="https://polymodesans.com/" target="_blank">
-			<strong>Polymode</strong>
+		<a href="https://www.nan.xyz/fonts/nan-success/" target="_blank">
+			<strong>NaN Success Titling</strong>
 		</a>
 		by
-		<a href="https://xyztype.com" target="_blank">XYZ Type</a>
+		<a href="https://www.nan.xyz/" target="_blank">NaN</a>
 		is today's Wakamai Fondue demo font!
 		<br />
-		<a href="https://xyztype.com/fonts" target="_blank" class="button on"
+		<a
+			href="https://www.nan.xyz/fonts/nan-success/#purchase"
+			target="_blank"
+			class="button on"
 			>Get it here!</a
 		>
 	</div>
