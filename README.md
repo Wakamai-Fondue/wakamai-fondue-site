@@ -1,30 +1,3 @@
-# Wakamai Fondue
+# Wakamai Fondue will be back soon!
 
-## Project setup
-
-```
-npm install
-git submodule update --remote
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Doing some computerings RIGHT NOW
