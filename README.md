@@ -1,6 +1,6 @@
 # Wakamai Fondue
 
-[!] Demo fonts come from a private repo
+[!] Demo fonts come from a private repo!
 
 ## Project setup
 
