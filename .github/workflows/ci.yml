@@ -21,6 +21,6 @@ jobs:
         with:
           node-version-file: .tool-versions
           cache: npm
-      - run: NODE_ENV=development npm install
-      - run: npm run lint:check
+      - run: NODE_ENV=development npm ci --ignore-scripts
+      - run: npm run lint
       - run: npm run build
