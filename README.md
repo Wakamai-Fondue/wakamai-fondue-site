@@ -1,5 +1,7 @@
 # Wakamai Fondue
 
+[!] Demo fonts come from a private repo!
+
 ## Project setup
 
 ```
