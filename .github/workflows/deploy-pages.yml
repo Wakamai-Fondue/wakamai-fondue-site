@@ -23,6 +23,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Wakamai-Fondue/wakamai-fondue-fonts
+          token: ${{ secrets.wffonts }}
+          path: src/public/font
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
