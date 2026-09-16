@@ -1,6 +1,6 @@
 {
 	"name": "wakamai-fondue",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"type": "module",
 	"private": true,
 	"scripts": {
@@ -14,7 +14,7 @@
 		"prettier": "prettier --write \"src/**/*.{js,vue}\""
 	},
 	"dependencies": {
-		"@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#f65fcb7351218c536635fefb61f94ad0815b92a0",
+		"@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#799e1697cb27ecf08fd7d846c16c261d362f9df8",
 		"prismjs": "^1.30.0",
 		"vue": "^3.5.42",
 		"vue-prism-component": "^2.0.0"
