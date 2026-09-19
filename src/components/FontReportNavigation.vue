@@ -4,6 +4,7 @@
 			<nav>
 				<a href="#app" class="new">New</a>
 				<a href="#summary">Summary</a>
+				<a href="#metrics">Metrics</a>
 				<a href="#tester">Tester</a>
 				<a href="#color">Color</a>
 				<a href="#variable">Variable</a>

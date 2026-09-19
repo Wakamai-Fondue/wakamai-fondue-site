@@ -392,6 +392,13 @@ table {
 	border-spacing: 0;
 }
 
+th,
+td {
+	font-weight: inherit;
+	padding: 0;
+	margin: 0;
+}
+
 select,
 button {
 	font-family: inherit;
