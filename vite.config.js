@@ -4,8 +4,9 @@ import { fileURLToPath } from "node:url";
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 
-import { dependencies } from "./package.json" with { type: "json" };
+import packageJson from "./package.json" with { type: "json" };
 
+const { dependencies } = packageJson;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 delete dependencies["@wakamai-fondue/engine"];
