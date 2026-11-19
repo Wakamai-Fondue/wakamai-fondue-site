@@ -98,8 +98,7 @@
 									:style="getFeatureStyle(feature.tag, n)"
 									:title="`font-feature-settings: &quot;${feature.tag}&quot; ${n};`"
 								>
-									{{ char }} </span
-								>{{ " " }}
+									{{ char }} </span>{{ " " }}
 							</template>
 						</span>
 
@@ -173,6 +172,39 @@
 							Show all
 						</button>
 					</div>
+
+					<template
+						v-for="(chars, combinedTag) in featureChars[
+							feature.tag
+						]['combinesWith']"
+						:key="`combined_${feature.tag}_${combinedTag}`"
+					>
+						<div class="feature-control">
+							<span class="opentype-label">{{
+								feature.tag
+							}}</span>
+							{{ feature.uiName || feature.name }}
+							<span class="plus">and</span>
+							<span class="opentype-label">{{
+								combinedTag
+							}}</span>
+							{{ getFeatureName(combinedTag) }}
+						</div>
+						<span
+							:style="
+								getCombinedFeatureStyle(
+									feature.tag,
+									combinedTag
+								)
+							"
+							class="chars"
+							contenteditable="plaintext-only"
+							spellcheck="false"
+							autocorrect="off"
+						>
+							{{ chars.join(" ") }}
+						</span>
+					</template>
 
 					<div
 						v-if="
@@ -312,6 +344,15 @@ export default {
 			};`;
 			return this.variableStyles + featureSettings;
 		},
+		getFeatureName(tag) {
+			const feature = this.font.features.find((f) => f.tag === tag);
+			return feature.uiName || feature.name;
+		},
+		getCombinedFeatureStyle(feature, combinedFeature) {
+			const state = this.currentStates[feature] === 0 ? 0 : 1;
+			const featureSettings = `font-feature-settings:"${combinedFeature}" 1, "${feature}" ${state};`;
+			return this.variableStyles + featureSettings;
+		},
 		getFeatureCSS(feature) {
 			// Type 3 lookups are non-boolean, deal with those if we got 'em
 			if (this.featureChars[feature]?.lookups) {
@@ -419,6 +460,7 @@ export default {
 .feature-control {
 	display: flex;
 	align-items: center;
+	margin: var(--small-margin) 0;
 }
 
 .chars {
@@ -428,7 +470,6 @@ export default {
 	font-size: var(--preview-font-size, 2rem);
 	background: var(--light-grey);
 	padding: 0.5rem;
-	margin-top: var(--small-margin);
 }
 
 .feature-message {
@@ -444,5 +485,10 @@ export default {
 
 .code {
 	position: relative;
+}
+
+.plus {
+	color: var(--red);
+	padding: 0 0.75em 0 0.5em;
 }
 </style>
