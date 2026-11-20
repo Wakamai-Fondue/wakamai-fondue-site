@@ -207,6 +207,7 @@ export default {
 .feature-controls.long li {
 	list-style: initial;
 	color: transparent;
+	break-inside: avoid-column;
 }
 
 .feature-controls .label {
