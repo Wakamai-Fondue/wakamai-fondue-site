@@ -54,6 +54,41 @@
 					</label>
 				</div>
 
+				<div
+					v-if="
+						!getCustomFeatureText(feature.tag) &&
+						isValidFeature(feature) &&
+						featureChars[feature.tag]['summary'][
+							'alreadyAlternateCount'
+						] > 0
+					"
+					class="feature-message"
+				>
+					There
+					{{
+						featureChars[feature.tag]["summary"][
+							"alreadyAlternateCount"
+						] === 1
+							? "is"
+							: "are"
+					}}
+					{{
+						featureChars[feature.tag]["summary"][
+							"alreadyAlternateCount"
+						]
+					}}
+					{{
+						$filters.pluralize(
+							featureChars[feature.tag]["summary"][
+								"alreadyAlternateCount"
+							],
+							"glyph"
+						)
+					}}
+					we couldn't trace back to a character. These are probably
+					substitutions of other substitutions.
+				</div>
+
 				<template v-if="getCustomFeatureText(feature.tag)">
 					<span
 						:style="getFeatureStyle(feature.tag)"
@@ -173,39 +208,6 @@
 						</button>
 					</div>
 
-					<div
-						v-if="
-							featureChars[feature.tag]['summary'][
-								'alreadyAlternateCount'
-							] > 0
-						"
-						class="feature-message"
-					>
-						There
-						{{
-							featureChars[feature.tag]["summary"][
-								"alreadyAlternateCount"
-							] === 1
-								? "is"
-								: "are"
-						}}
-						{{
-							featureChars[feature.tag]["summary"][
-								"alreadyAlternateCount"
-							]
-						}}
-						{{
-							$filters.pluralize(
-								featureChars[feature.tag]["summary"][
-									"alreadyAlternateCount"
-								],
-								"glyph"
-							)
-						}}
-						we couldn't trace back to a character. These are
-						probably substitutions of other substitutions.
-					</div>
-
 					<div class="code">
 						<CopyToClipboard
 							:content="getFeatureCSS(feature.tag)"
@@ -225,7 +227,7 @@
 							<span class="opentype-label">{{
 								feature.tag
 							}}</span>
-							{{ feature.uiName || feature.name }}
+							<!-- {{ feature.uiName || feature.name }} -->
 							<span class="plus">and</span>
 							<span class="opentype-label">{{
 								combinedTag
@@ -500,9 +502,9 @@ export default {
 	font-family: var(--system-font-stack);
 	font-style: italic;
 	color: var(--unlighterer-grey);
-	background: var(--light-grey);
-	padding: 0.5rem;
-	margin-top: var(--small-margin);
+	/* background: var(--light-grey); */
+	/* padding: 0.5rem; */
+	margin: var(--small-margin) 0;
 	overflow: hidden;
 }
 
@@ -511,7 +513,7 @@ export default {
 }
 
 .plus {
-	color: var(--red);
-	padding: 0 0.75em 0 0.5em;
+	/* color: var(--red); */
+	padding: 0 0.6em 0 0.25em;
 }
 </style>
