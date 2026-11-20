@@ -48,7 +48,7 @@
 						<input
 							type="checkbox"
 							@change="flipState(feature.tag)"
-							:disabled="!featureChars[feature.tag]"
+							:disabled="!hasPreview(feature)"
 							checked
 						/><span>Show</span>
 					</label>
@@ -343,6 +343,13 @@ export default {
 		flipState(feature) {
 			this.currentStates[feature] =
 				this.currentStates[feature] === 0 ? 1 : 0;
+		},
+		hasPreview(feature) {
+			return (
+				this.getCustomFeatureText(feature.tag) ||
+				this.isValidFeature(feature) ||
+				this.hasCombinations(feature)
+			);
 		},
 		hasCombinations(feature) {
 			const combinesWith = this.featureChars[feature.tag]?.combinesWith;
