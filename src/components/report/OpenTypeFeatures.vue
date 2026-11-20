@@ -188,6 +188,9 @@
 				>
 					There's no preview for this feature.
 				</div>
+				<div v-else class="feature-message">
+					This feature only works together with another feature.
+				</div>
 
 				<template
 					v-for="(chars, combinedTag) in featureChars[feature.tag]?.[
@@ -197,7 +200,6 @@
 				>
 					<div class="feature-control">
 						<span class="opentype-label">{{ feature.tag }}</span>
-						<!-- {{ feature.uiName || feature.name }} -->
 						<span class="plus">and</span>
 						<span class="opentype-label">{{ combinedTag }}</span>
 						{{ getFeatureName(combinedTag) }}
@@ -493,9 +495,7 @@ export default {
 	font-family: var(--system-font-stack);
 	font-style: italic;
 	color: var(--unlighterer-grey);
-	/* background: var(--light-grey); */
-	/* padding: 0.5rem; */
-	margin: var(--small-margin) 0;
+	margin: 1rem 0;
 	overflow: hidden;
 }
 
