@@ -55,14 +55,16 @@
 				</div>
 
 				<template v-if="getCustomFeatureText(feature.tag)">
-					<span
-						:style="getFeatureStyle(feature.tag)"
-						class="chars"
-						contenteditable="plaintext-only"
-						spellcheck="false"
-						autocorrect="off"
-						>{{ getCustomFeatureText(feature.tag) }}</span
-					>
+					<div class="sample">
+						<span
+							:style="getFeatureStyle(feature.tag)"
+							class="chars"
+							contenteditable="plaintext-only"
+							spellcheck="false"
+							autocorrect="off"
+							>{{ getCustomFeatureText(feature.tag) }}</span
+						>
+					</div>
 					<div class="code">
 						<CopyToClipboard
 							:content="getFeatureCSS(feature.tag)"
@@ -81,53 +83,65 @@
 							'lookups'
 						]"
 					>
-						<span
+						<div
 							v-if="lookup['type'] === 3"
-							:style="getFeatureStyle(feature.tag)"
-							:data-type="lookup['typeName']"
 							:key="`lookup_3_${feature.tag}_${index}`"
-							class="chars"
-							contenteditable="plaintext-only"
-							spellcheck="false"
-							autocorrect="off"
+							class="sample"
 						>
-							<template v-for="(char, index) in lookup['input']">
-								<span
-									v-for="n in lookup['alternateCount'][index]"
-									:key="`type3_${char}_${n}`"
-									:style="getFeatureStyle(feature.tag, n)"
-									:title="`font-feature-settings: &quot;${feature.tag}&quot; ${n};`"
+							<span
+								:style="getFeatureStyle(feature.tag)"
+								:data-type="lookup['typeName']"
+								class="chars"
+								contenteditable="plaintext-only"
+								spellcheck="false"
+								autocorrect="off"
+							>
+								<template
+									v-for="(char, index) in lookup['input']"
 								>
-									{{ char }} </span>{{ " " }}
-							</template>
-						</span>
+									<span
+										v-for="n in lookup['alternateCount'][
+											index
+										]"
+										:key="`type3_${char}_${n}`"
+										:style="getFeatureStyle(feature.tag, n)"
+										:title="`font-feature-settings: &quot;${feature.tag}&quot; ${n};`"
+									>
+										{{ char }} </span>{{ " " }}
+								</template>
+							</span>
+						</div>
 
 						<template v-else-if="lookup['type'] === 6"></template>
 
-						<span
+						<div
 							v-else
-							:style="getFeatureStyle(feature.tag)"
-							:data-type="lookup['typeName']"
 							:key="`lookup_6_${feature.tag}_${index}`"
-							class="chars"
-							contenteditable="plaintext-only"
-							spellcheck="false"
-							autocorrect="off"
+							class="sample"
 						>
-							{{ lookup["input"].join(" ") }}
-						</span>
+							<span
+								:style="getFeatureStyle(feature.tag)"
+								:data-type="lookup['typeName']"
+								class="chars"
+								contenteditable="plaintext-only"
+								spellcheck="false"
+								autocorrect="off"
+							>
+								{{ lookup["input"].join(" ") }}
+							</span>
+						</div>
 					</template>
 
-					<template
+					<div
 						v-if="
 							featureChars[feature.tag]['summary'][
 								'uniqueCombinations'
 							].length
 						"
+						class="sample"
 					>
 						<span
 							:style="getFeatureStyle(feature.tag)"
-							:key="`combsummary_${feature.tag}_{index}`"
 							data-summary="Randomly generated sample of possible combinations"
 							class="chars summarized"
 							contenteditable="plaintext-only"
@@ -136,41 +150,42 @@
 						>
 							{{ getCombinations(feature) }}
 						</span>
-					</template>
 
-					<div
-						v-if="
-							featureChars[feature.tag]['summary']['isCapped'] &&
-							!expandedFeatures[feature.tag]
-						"
-						class="feature-message"
-					>
-						Showing 250 of
-						<template
+						<div
 							v-if="
 								featureChars[feature.tag]['summary'][
-									'exceededMax'
-								]
+									'isCapped'
+								] && !expandedFeatures[feature.tag]
 							"
-							>more than 10000</template
+							class="max-message"
 						>
-						<template v-else>{{
-							featureChars[feature.tag]["summary"][
-								"totalCombinations"
-							]
-						}}</template>
-						possible combinations.
-						<button
-							v-if="
-								!featureChars[feature.tag]['summary'][
-									'exceededMax'
+							Showing {{ MAX_SHOWN }} of
+							<template
+								v-if="
+									featureChars[feature.tag]['summary'][
+										'exceededMax'
+									]
+								"
+								>more than 10000</template
+							>
+							<template v-else>{{
+								featureChars[feature.tag]["summary"][
+									"totalCombinations"
 								]
-							"
-							class="button"
-							@click="showAllCombinations(feature.tag)"
-						>
-							Show all
-						</button>
+							}}</template>
+							possible combinations.
+							<button
+								v-if="
+									!featureChars[feature.tag]['summary'][
+										'exceededMax'
+									]
+								"
+								class="button"
+								@click="showAllCombinations(feature.tag)"
+							>
+								Show all
+							</button>
+						</div>
 					</div>
 
 					<div class="code">
@@ -204,38 +219,45 @@
 						<span class="opentype-label">{{ combinedTag }}</span>
 						{{ getFeatureName(combinedTag) }}
 					</div>
-					<span
-						:style="
-							getCombinedFeatureStyle(feature.tag, combinedTag)
-						"
-						class="chars"
-						contenteditable="plaintext-only"
-						spellcheck="false"
-						autocorrect="off"
-					>
-						{{
-							getCombinedChars(feature.tag, combinedTag).join(" ")
-						}}
-					</span>
-					<div
-						v-if="
-							getCombinedChars(feature.tag, combinedTag).length <
-							chars.length
-						"
-						class="feature-message"
-					>
-						Showing {{ MAX_COMBINED_CHARS }} of
-						{{ chars.length }} characters.
-						<button
-							class="button"
-							@click="
-								showAllCombinations(
-									`${feature.tag}_${combinedTag}`
+					<div class="sample">
+						<span
+							:style="
+								getCombinedFeatureStyle(
+									feature.tag,
+									combinedTag
 								)
 							"
+							class="chars"
+							contenteditable="plaintext-only"
+							spellcheck="false"
+							autocorrect="off"
 						>
-							Show all
-						</button>
+							{{
+								getCombinedChars(feature.tag, combinedTag).join(
+									" "
+								)
+							}}
+						</span>
+						<div
+							v-if="
+								getCombinedChars(feature.tag, combinedTag)
+									.length < chars.length
+							"
+							class="feature-message"
+						>
+							Showing {{ MAX_SHOWN }} of
+							{{ chars.length }} characters.
+							<button
+								class="button"
+								@click="
+									showAllCombinations(
+										`${feature.tag}_${combinedTag}`
+									)
+								"
+							>
+								Show all
+							</button>
+						</div>
 					</div>
 					<div class="code">
 						<CopyToClipboard
@@ -263,7 +285,7 @@ import CopyToClipboard from "@/components/CopyToClipboard.vue";
 import { usePreferences } from "@/composables/usePreferences.js";
 import { useVariableStyles } from "@/composables/useVariableStyles.js";
 
-const MAX_COMBINED_CHARS = 250;
+const MAX_SHOWN = 250;
 
 export default {
 	props: ["font"],
@@ -274,7 +296,7 @@ export default {
 	setup() {
 		const { previewTexts } = usePreferences();
 		const { variableStyles } = useVariableStyles();
-		return { previewTexts, variableStyles, MAX_COMBINED_CHARS };
+		return { previewTexts, variableStyles, MAX_SHOWN };
 	},
 	data() {
 		return {
@@ -389,7 +411,7 @@ export default {
 			if (this.expandedFeatures[`${feature}_${combinedFeature}`]) {
 				return chars;
 			}
-			return chars.slice(0, MAX_COMBINED_CHARS);
+			return chars.slice(0, MAX_SHOWN);
 		},
 		getCombinations(feature) {
 			const summary = this.featureChars[feature.tag]["summary"];
@@ -481,13 +503,16 @@ export default {
 	margin: var(--small-margin) 0;
 }
 
+.sample {
+	background: var(--light-grey);
+	padding: 0.5rem;
+}
+
 .chars {
 	display: block;
 	position: relative;
 	font-family: var(--font-stack);
 	font-size: var(--preview-font-size, 2rem);
-	background: var(--light-grey);
-	padding: 0.5rem;
 }
 
 .feature-message {
@@ -499,12 +524,20 @@ export default {
 	overflow: hidden;
 }
 
+.max-message {
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-style: italic;
+	color: var(--unlighterer-grey);
+	overflow: hidden;
+	text-align: right;
+}
+
 .code {
 	position: relative;
 }
 
 .plus {
-	/* color: var(--red); */
 	padding: 0 0.6em 0 0.25em;
 }
 </style>
