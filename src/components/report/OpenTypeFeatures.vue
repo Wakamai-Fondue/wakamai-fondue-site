@@ -246,8 +246,27 @@
 							spellcheck="false"
 							autocorrect="off"
 						>
-							{{ chars.join(" ") }}
+							{{ getCombinedChars(feature.tag, combinedTag).join(" ") }}
 						</span>
+						<div
+							v-if="
+								chars.length > 250 &&
+								!expandedFeatures[`${feature.tag}_${combinedTag}`]
+							"
+							class="feature-message"
+						>
+							Showing 250 of {{ chars.length }} characters.
+							<button
+								class="button"
+								@click="
+									showAllCombinations(
+										`${feature.tag}_${combinedTag}`
+									)
+								"
+							>
+								Show all
+							</button>
+						</div>
 						<div class="code">
 							<CopyToClipboard
 								:content="
@@ -397,6 +416,14 @@ export default {
 		},
 		showAllCombinations(tag) {
 			this.expandedFeatures[tag] = true;
+		},
+		getCombinedChars(feature, combinedFeature) {
+			const chars =
+				this.featureChars[feature]["combinesWith"][combinedFeature];
+			if (this.expandedFeatures[`${feature}_${combinedFeature}`]) {
+				return chars;
+			}
+			return chars.slice(0, 250);
 		},
 		getCombinations(feature) {
 			const summary = this.featureChars[feature.tag]["summary"];
