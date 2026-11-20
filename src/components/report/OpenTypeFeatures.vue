@@ -246,16 +246,23 @@
 							spellcheck="false"
 							autocorrect="off"
 						>
-							{{ getCombinedChars(feature.tag, combinedTag).join(" ") }}
+							{{
+								getCombinedChars(feature.tag, combinedTag).join(
+									" "
+								)
+							}}
 						</span>
 						<div
 							v-if="
-								chars.length > 250 &&
-								!expandedFeatures[`${feature.tag}_${combinedTag}`]
+								chars.length > MAX_COMBINED_CHARS &&
+								!expandedFeatures[
+									`${feature.tag}_${combinedTag}`
+								]
 							"
 							class="feature-message"
 						>
-							Showing 250 of {{ chars.length }} characters.
+							Showing {{ MAX_COMBINED_CHARS }} of
+							{{ chars.length }} characters.
 							<button
 								class="button"
 								@click="
@@ -304,6 +311,8 @@ import CopyToClipboard from "@/components/CopyToClipboard.vue";
 import { usePreferences } from "@/composables/usePreferences.js";
 import { useVariableStyles } from "@/composables/useVariableStyles.js";
 
+const MAX_COMBINED_CHARS = 250;
+
 export default {
 	props: ["font"],
 	components: {
@@ -313,7 +322,7 @@ export default {
 	setup() {
 		const { previewTexts } = usePreferences();
 		const { variableStyles } = useVariableStyles();
-		return { previewTexts, variableStyles };
+		return { previewTexts, variableStyles, MAX_COMBINED_CHARS };
 	},
 	data() {
 		return {
@@ -423,7 +432,7 @@ export default {
 			if (this.expandedFeatures[`${feature}_${combinedFeature}`]) {
 				return chars;
 			}
-			return chars.slice(0, 250);
+			return chars.slice(0, MAX_COMBINED_CHARS);
 		},
 		getCombinations(feature) {
 			const summary = this.featureChars[feature.tag]["summary"];
