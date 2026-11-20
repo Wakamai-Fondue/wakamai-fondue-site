@@ -254,10 +254,8 @@
 						</span>
 						<div
 							v-if="
-								chars.length > MAX_COMBINED_CHARS &&
-								!expandedFeatures[
-									`${feature.tag}_${combinedTag}`
-								]
+								getCombinedChars(feature.tag, combinedTag).length <
+								chars.length
 							"
 							class="feature-message"
 						>
