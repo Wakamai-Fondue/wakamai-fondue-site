@@ -48,21 +48,23 @@
 						<input
 							type="checkbox"
 							@change="flipState(feature.tag)"
-							:disabled="!featureChars[feature.tag]"
+							:disabled="!hasPreview(feature)"
 							checked
 						/><span>Show</span>
 					</label>
 				</div>
 
 				<template v-if="getCustomFeatureText(feature.tag)">
-					<span
-						:style="getFeatureStyle(feature.tag)"
-						class="chars"
-						contenteditable="plaintext-only"
-						spellcheck="false"
-						autocorrect="off"
-						>{{ getCustomFeatureText(feature.tag) }}</span
-					>
+					<div class="sample">
+						<span
+							:style="getFeatureStyle(feature.tag)"
+							class="chars"
+							contenteditable="plaintext-only"
+							spellcheck="false"
+							autocorrect="off"
+							>{{ getCustomFeatureText(feature.tag) }}</span
+						>
+					</div>
 					<div class="code">
 						<CopyToClipboard
 							:content="getFeatureCSS(feature.tag)"
@@ -81,54 +83,65 @@
 							'lookups'
 						]"
 					>
-						<span
+						<div
 							v-if="lookup['type'] === 3"
-							:style="getFeatureStyle(feature.tag)"
-							:data-type="lookup['typeName']"
 							:key="`lookup_3_${feature.tag}_${index}`"
-							class="chars"
-							contenteditable="plaintext-only"
-							spellcheck="false"
-							autocorrect="off"
+							class="sample"
 						>
-							<template v-for="(char, index) in lookup['input']">
-								<span
-									v-for="n in lookup['alternateCount'][index]"
-									:key="`type3_${char}_${n}`"
-									:style="getFeatureStyle(feature.tag, n)"
-									:title="`font-feature-settings: &quot;${feature.tag}&quot; ${n};`"
+							<span
+								:style="getFeatureStyle(feature.tag)"
+								:data-type="lookup['typeName']"
+								class="chars"
+								contenteditable="plaintext-only"
+								spellcheck="false"
+								autocorrect="off"
+							>
+								<template
+									v-for="(char, index) in lookup['input']"
 								>
-									{{ char }} </span
-								>{{ " " }}
-							</template>
-						</span>
+									<span
+										v-for="n in lookup['alternateCount'][
+											index
+										]"
+										:key="`type3_${char}_${n}`"
+										:style="getFeatureStyle(feature.tag, n)"
+										:title="`font-feature-settings: &quot;${feature.tag}&quot; ${n};`"
+									>
+										{{ char }} </span>{{ " " }}
+								</template>
+							</span>
+						</div>
 
 						<template v-else-if="lookup['type'] === 6"></template>
 
-						<span
+						<div
 							v-else
-							:style="getFeatureStyle(feature.tag)"
-							:data-type="lookup['typeName']"
 							:key="`lookup_6_${feature.tag}_${index}`"
-							class="chars"
-							contenteditable="plaintext-only"
-							spellcheck="false"
-							autocorrect="off"
+							class="sample"
 						>
-							{{ lookup["input"].join(" ") }}
-						</span>
+							<span
+								:style="getFeatureStyle(feature.tag)"
+								:data-type="lookup['typeName']"
+								class="chars"
+								contenteditable="plaintext-only"
+								spellcheck="false"
+								autocorrect="off"
+							>
+								{{ lookup["input"].join(" ") }}
+							</span>
+						</div>
 					</template>
 
-					<template
+					<div
 						v-if="
 							featureChars[feature.tag]['summary'][
 								'uniqueCombinations'
 							].length
 						"
+						class="sample"
 					>
 						<span
 							:style="getFeatureStyle(feature.tag)"
-							:key="`combsummary_${feature.tag}_{index}`"
 							data-summary="Randomly generated sample of possible combinations"
 							class="chars summarized"
 							contenteditable="plaintext-only"
@@ -137,74 +150,42 @@
 						>
 							{{ getCombinations(feature) }}
 						</span>
-					</template>
 
-					<div
-						v-if="
-							featureChars[feature.tag]['summary']['isCapped'] &&
-							!expandedFeatures[feature.tag]
-						"
-						class="feature-message"
-					>
-						Showing 250 of
-						<template
+						<div
 							v-if="
 								featureChars[feature.tag]['summary'][
-									'exceededMax'
-								]
+									'isCapped'
+								] && !expandedFeatures[feature.tag]
 							"
-							>more than 10000</template
+							class="max-message"
 						>
-						<template v-else>{{
-							featureChars[feature.tag]["summary"][
-								"totalCombinations"
-							]
-						}}</template>
-						possible combinations.
-						<button
-							v-if="
-								!featureChars[feature.tag]['summary'][
-									'exceededMax'
-								]
-							"
-							class="button"
-							@click="showAllCombinations(feature.tag)"
-						>
-							Show all
-						</button>
-					</div>
-
-					<div
-						v-if="
-							featureChars[feature.tag]['summary'][
-								'alreadyAlternateCount'
-							] > 0
-						"
-						class="feature-message"
-					>
-						There
-						{{
-							featureChars[feature.tag]["summary"][
-								"alreadyAlternateCount"
-							] === 1
-								? "is"
-								: "are"
-						}}
-						{{
-							featureChars[feature.tag]["summary"][
-								"alreadyAlternateCount"
-							]
-						}}
-						{{
-							$filters.pluralize(
+							Showing {{ MAX_SHOWN }} of
+							<template
+								v-if="
+									featureChars[feature.tag]['summary'][
+										'exceededMax'
+									]
+								"
+								>more than 10000</template
+							>
+							<template v-else>{{
 								featureChars[feature.tag]["summary"][
-									"alreadyAlternateCount"
-								],
-								"glyph"
-							)
-						}}
-						we couldn't trace back to a character. These are
-						probably substitutions of other substitutions.
+									"totalCombinations"
+								]
+							}}</template>
+							possible combinations.
+							<button
+								v-if="
+									!featureChars[feature.tag]['summary'][
+										'exceededMax'
+									]
+								"
+								class="button"
+								@click="showAllCombinations(feature.tag)"
+							>
+								Show all
+							</button>
+						</div>
 					</div>
 
 					<div class="code">
@@ -216,10 +197,83 @@
 						}}</Prism>
 					</div>
 				</template>
-				<div v-else class="feature-message">
-					This feature only modifies glyphs generated by other
-					features.
+				<div
+					v-else-if="!hasCombinations(feature)"
+					class="feature-message"
+				>
+					There's no preview for this feature.
 				</div>
+				<div v-else class="feature-message">
+					This feature only works together with another feature.
+				</div>
+
+				<template
+					v-for="(chars, combinedTag) in featureChars[feature.tag]?.[
+						'combinesWith'
+					]"
+					:key="`combined_${feature.tag}_${combinedTag}`"
+				>
+					<div class="feature-control">
+						<span class="opentype-label">{{ feature.tag }}</span>
+						<span class="plus">and</span>
+						<span class="opentype-label">{{ combinedTag }}</span>
+						{{ getFeatureName(combinedTag) }}
+					</div>
+					<div class="sample">
+						<span
+							:style="
+								getCombinedFeatureStyle(
+									feature.tag,
+									combinedTag
+								)
+							"
+							class="chars"
+							contenteditable="plaintext-only"
+							spellcheck="false"
+							autocorrect="off"
+						>
+							{{
+								getCombinedChars(feature.tag, combinedTag).join(
+									" "
+								)
+							}}
+						</span>
+						<div
+							v-if="
+								getCombinedChars(feature.tag, combinedTag)
+									.length < chars.length
+							"
+							class="feature-message"
+						>
+							Showing {{ MAX_SHOWN }} of
+							{{ chars.length }} characters.
+							<button
+								class="button"
+								@click="
+									showAllCombinations(
+										`${feature.tag}_${combinedTag}`
+									)
+								"
+							>
+								Show all
+							</button>
+						</div>
+					</div>
+					<div class="code">
+						<CopyToClipboard
+							:content="
+								getCombinedFeatureCSS(feature.tag, combinedTag)
+							"
+						/>
+						<Prism
+							language="css"
+							:key="`code_${feature.tag}_${combinedTag}`"
+							>{{
+								getCombinedFeatureCSS(feature.tag, combinedTag)
+							}}</Prism
+						>
+					</div>
+				</template>
 			</div>
 		</div>
 	</section>
@@ -231,6 +285,8 @@ import CopyToClipboard from "@/components/CopyToClipboard.vue";
 import { usePreferences } from "@/composables/usePreferences.js";
 import { useVariableStyles } from "@/composables/useVariableStyles.js";
 
+const MAX_SHOWN = 250;
+
 export default {
 	props: ["font"],
 	components: {
@@ -240,7 +296,7 @@ export default {
 	setup() {
 		const { previewTexts } = usePreferences();
 		const { variableStyles } = useVariableStyles();
-		return { previewTexts, variableStyles };
+		return { previewTexts, variableStyles, MAX_SHOWN };
 	},
 	data() {
 		return {
@@ -285,7 +341,19 @@ export default {
 			}
 		},
 		flipState(feature) {
-			this.currentStates[feature] = 1 - this.currentStates[feature];
+			this.currentStates[feature] =
+				this.currentStates[feature] === 0 ? 1 : 0;
+		},
+		hasPreview(feature) {
+			return (
+				this.getCustomFeatureText(feature.tag) ||
+				this.isValidFeature(feature) ||
+				this.hasCombinations(feature)
+			);
+		},
+		hasCombinations(feature) {
+			const combinesWith = this.featureChars[feature.tag]?.combinesWith;
+			return combinesWith && Object.keys(combinesWith).length > 0;
 		},
 		isValidFeature(feature) {
 			return (
@@ -312,6 +380,15 @@ export default {
 			};`;
 			return this.variableStyles + featureSettings;
 		},
+		getFeatureName(tag) {
+			const feature = this.font.features.find((f) => f.tag === tag);
+			return feature.uiName || feature.name;
+		},
+		getCombinedFeatureStyle(feature, combinedFeature) {
+			const state = this.currentStates[feature] === 0 ? 0 : 1;
+			const featureSettings = `font-feature-settings:"${combinedFeature}" 1, "${feature}" ${state};`;
+			return this.variableStyles + featureSettings;
+		},
 		getFeatureCSS(feature) {
 			// Type 3 lookups are non-boolean, deal with those if we got 'em
 			if (this.featureChars[feature]?.lookups) {
@@ -329,8 +406,19 @@ export default {
 
 			return `font-feature-settings: "${feature}";`;
 		},
+		getCombinedFeatureCSS(feature, combinedFeature) {
+			return `font-feature-settings: "${feature}", "${combinedFeature}";`;
+		},
 		showAllCombinations(tag) {
 			this.expandedFeatures[tag] = true;
+		},
+		getCombinedChars(feature, combinedFeature) {
+			const chars =
+				this.featureChars[feature]["combinesWith"][combinedFeature];
+			if (this.expandedFeatures[`${feature}_${combinedFeature}`]) {
+				return chars;
+			}
+			return chars.slice(0, MAX_SHOWN);
 		},
 		getCombinations(feature) {
 			const summary = this.featureChars[feature.tag]["summary"];
@@ -390,7 +478,7 @@ export default {
 }
 
 .features .content + .content {
-	margin-top: 4rem;
+	margin-top: 5rem;
 }
 
 .required-features li {
@@ -398,7 +486,7 @@ export default {
 }
 
 .feature-demo + .feature-demo {
-	margin-top: 2rem;
+	margin-top: 5rem;
 }
 
 .state {
@@ -419,6 +507,12 @@ export default {
 .feature-control {
 	display: flex;
 	align-items: center;
+	margin: var(--small-margin) 0;
+}
+
+.sample {
+	background: var(--light-grey);
+	padding: 0.5rem;
 }
 
 .chars {
@@ -426,9 +520,6 @@ export default {
 	position: relative;
 	font-family: var(--font-stack);
 	font-size: var(--preview-font-size, 2rem);
-	background: var(--light-grey);
-	padding: 0.5rem;
-	margin-top: var(--small-margin);
 }
 
 .feature-message {
@@ -436,13 +527,24 @@ export default {
 	font-family: var(--system-font-stack);
 	font-style: italic;
 	color: var(--unlighterer-grey);
-	background: var(--light-grey);
-	padding: 0.5rem;
-	margin-top: var(--small-margin);
+	margin: 1rem 0;
 	overflow: hidden;
+}
+
+.max-message {
+	font-feature-settings: normal !important;
+	font-family: var(--system-font-stack);
+	font-style: italic;
+	color: var(--unlighterer-grey);
+	overflow: hidden;
+	text-align: right;
 }
 
 .code {
 	position: relative;
+}
+
+.plus {
+	padding: 0 0.6em 0 0.25em;
 }
 </style>
