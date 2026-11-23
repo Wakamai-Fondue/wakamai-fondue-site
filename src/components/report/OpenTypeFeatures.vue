@@ -478,7 +478,7 @@ export default {
 }
 
 .features .content + .content {
-	margin-top: 4rem;
+	margin-top: 5rem;
 }
 
 .required-features li {
@@ -486,7 +486,7 @@ export default {
 }
 
 .feature-demo + .feature-demo {
-	margin-top: 4rem;
+	margin-top: 5rem;
 }
 
 .state {
