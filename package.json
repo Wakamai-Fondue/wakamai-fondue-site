@@ -14,7 +14,7 @@
 		"prettier": "prettier --write \"src/**/*.{js,vue}\""
 	},
 	"dependencies": {
-		"@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#799e1697cb27ecf08fd7d846c16c261d362f9df8",
+		"@wakamai-fondue/engine": "git+https://github.com/Wakamai-Fondue/wakamai-fondue-engine.git#9ec4a3fde76b76580550c614d88d26e163653c11",
 		"prismjs": "^1.30.0",
 		"vue": "^3.5.45",
 		"vue-prism-component": "^2.0.0"
