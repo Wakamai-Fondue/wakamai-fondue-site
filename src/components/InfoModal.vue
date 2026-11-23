@@ -14,7 +14,7 @@
 		</button>
 		<div class="modal-content">
 			<p class="modal-title">Wakamai Fondue</p>
-			<p class="version">Version 2.0</p>
+			<p class="version">Version 2.3</p>
 			<hr />
 			<p>
 				<strong
